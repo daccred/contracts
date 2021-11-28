@@ -8,7 +8,7 @@ import { LF_EDITOR_VAR } from '@/config/constants';
 
 unstable_setRemoveBackgroundEnabled(true);
 
-const store = createStore();
+const store = createStore({ key: 'nFA5H9elEytDyPyvKL7T' });
 
 localforage.getItem(LF_EDITOR_VAR, function (_err, json) {
   if (json) {
