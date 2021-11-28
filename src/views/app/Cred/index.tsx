@@ -8,22 +8,23 @@ import DefaultAccess from './wizard/Start';
 import Protocol from './wizard/Protocol';
 import CreateNewCert from './wizard/CreateNewCert';
 
-// import CreatePin from '../components/routes/CreatePin'
-// import Authenticate from '../components/routes/EnterPin'
-// import Dip from '../components/routes/Dip'
-
 interface WizardProps {
-  useFormStep?: (...args: unknown) => React.Dispatch<React.SetStateAction<string>> | Promise<void>;
+  useFormStep?: (...args: unknown[]) => React.Dispatch<React.SetStateAction<string>> | Promise<void>;
 }
 
 export default function View(props: WizardProps): JSX.Element {
-  const [__step__] = useRealm<string[]>(CRED_WIZARD_STEP);
+  const [__step__, _set__step__] = useRealm<string[]>(CRED_WIZARD_STEP);
   const [isMounted, setMount] = React.useState(false);
 
   React.useEffect(() => {
     setMount(true);
     return () => setMount(false);
   }, [isMounted, __step__]);
+
+  const _handleStep = async () => {
+   await _set__step__(['default'])
+  };
+
 
   // React.useEffect(() => void 0, [__step__])
 
@@ -42,7 +43,7 @@ export default function View(props: WizardProps): JSX.Element {
   //   await setStore(Object.assign(store, data));
   //   useStep(data?.__step__);
   // };
-  let FormComponent: React.FC<WizardProps> = () => <div>Root</div>;
+  let FormComponent: React.FC<WizardProps> = () => <a><div onClick={_handleStep}>Click to start</div></a>
 
   switch (__step__[__step__.length - 1]) {
     case 'default':
@@ -54,12 +55,6 @@ export default function View(props: WizardProps): JSX.Element {
     case 'access':
       FormComponent = DefaultAccess;
       break;
-    // case 'dip':
-    //   FormComponent = Dip;
-    //   break;
-    // case 'activity':
-    //     FormComponent = Activity;
-    //     break;
     default:
       break;
   }

@@ -24,7 +24,7 @@ const WizardNav: React.FC<WizardNavProps> = (): JSX.Element => {
   };
 
   return (
-    <div className='flex justify-between p-6 bg-gray-100 lg:items-center'>
+    <div className='flex justify-between p-6 bg-white lg:items-center'>
       {/* --- Left hand back icon  ---- */}
       <div className='flex min-w-0'>
         <Button onClick={_handleBackStep} className='w-12 h-12 border-none rounded-full shadow-none ' variant='light'>
