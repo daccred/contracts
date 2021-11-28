@@ -3,6 +3,8 @@ import React from 'react';
 import { MoralisProvider } from 'react-moralis';
 
 import '@/styles/globals.css';
+import '@/styles/blueprint.css';
+import '@/styles/blueprint-extend.css';
 
 import Seo from '@/components/Meta';
 
