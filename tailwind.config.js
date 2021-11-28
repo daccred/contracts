@@ -20,7 +20,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        primary: ['Inter', ...fontFamily.sans],
+        primary: ['Graphik Web', 'Inter', ...fontFamily.sans],
+        heading: ['Pixeboy', 'Inter', ...fontFamily.sans],
       },
       colors: {
         primary: {

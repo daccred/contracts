@@ -46,19 +46,19 @@
 
   /* #region  /**=========== Typography =========== */
   h1 {
-    @apply text-2xl font-bold md:text-4xl font-primary;
+    @apply text-2xl font-bold md:text-4xl font-heading;
   }
 
   h2 {
-    @apply text-xl font-bold md:text-3xl font-primary;
+    @apply text-xl font-bold md:text-3xl font-heading;
   }
 
   h3 {
-    @apply text-lg font-bold md:text-2xl font-primary;
+    @apply text-lg font-bold md:text-2xl font-heading;
   }
 
   h4 {
-    @apply text-base font-bold md:text-lg font-primary;
+    @apply text-base font-bold md:text-lg font-heading;
   }
 
   body {
@@ -103,13 +103,11 @@
 
 html {
   min-height: -webkit-fill-available;
-  font-family: -apple-system, 'Inter', Ubuntu, sans-serif;
 }
 
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, 'Inter', Ubuntu, sans-serif;
 }
 
 .editor-container {

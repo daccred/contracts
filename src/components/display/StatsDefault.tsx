@@ -23,7 +23,7 @@ export default function StatsDefault() {
               <p className='ml-16 text-sm font-medium text-gray-500 truncate'>{item.name}</p>
             </dt>
             <dd className='flex items-baseline pb-6 ml-16 sm:pb-7'>
-              <p className='text-2xl font-semibold text-gray-900'>{item.stat}</p>
+              <h3 className='text-3xl font-medium text-gray-900'>{item.stat}</h3>
               <p
                 className={joinClassNames(
                   item.changeType === 'increase' ? 'text-green-600' : 'text-red-600',
