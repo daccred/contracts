@@ -14,7 +14,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <MoralisProvider appId={MORALIS_APP_ID} serverUrl={MORALIS_SERVER_URL}>
       <Seo templateTitle='DApp Accred' />
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </MoralisProvider>
   );
 }

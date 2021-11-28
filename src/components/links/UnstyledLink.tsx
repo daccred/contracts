@@ -23,7 +23,7 @@ export default function UnstyledLink({ children, href, openNewTab, className, ..
   }
 
   return (
-    <a target='_blank' rel='noopener noreferrer' href={href} {...rest} className={clsx(className, 'cursor-newtab')}>
+    <a target='_blank' rel='noopener noreferrer' href={href} {...rest} className={clsx(className, 'cursor-newtab hover:no-underline')}>
       {children}
     </a>
   );

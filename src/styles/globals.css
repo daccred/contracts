@@ -72,6 +72,10 @@
     @apply w-11/12 mx-auto;
   }
 
+  a:hover {
+    @apply hover:no-underline;
+  }
+
   .bg-dark a.custom-link {
     @apply border-gray-200 hover:border-gray-200/0;
   }
@@ -95,4 +99,27 @@
   .animated-underline:focus-visible {
     background-size: 0 2px, 100% 2px;
   }
+}
+
+html {
+  min-height: -webkit-fill-available;
+  font-family: -apple-system, 'Inter', Ubuntu, sans-serif;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, 'Inter', Ubuntu, sans-serif;
+}
+
+.editor-container {
+  font-family: -apple-system, 'Inter', Ubuntu, sans-serif;
+}
+
+.bp3-dark #root {
+  background-color: #30404d;
+}
+#root {
+  width: 100vw;
+  height: 100%;
 }

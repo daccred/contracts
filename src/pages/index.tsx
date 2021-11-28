@@ -2,14 +2,14 @@ import { GetServerSideProps } from 'next';
 
 import * as NextAuth from '@/lib/auth.helper';
 
-import Layout from '@/components/layout/AdminLayout';
+import Layout from '@/components/layout/PageLayout';
 
-import { DashboardView } from '@/views/Admin';
+import View from '@/views/Admin';
 
 export default function Default() {
   return (
     <Layout>
-      <DashboardView />
+      <View />
     </Layout>
   );
 }

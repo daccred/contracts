@@ -1,12 +1,13 @@
 import React from 'react';
 import { PolotnoContainer, SidePanelWrap, WorkspaceWrap } from 'polotno';
 import { Toolbar } from 'polotno/toolbar/toolbar';
-import { ZoomButtons } from 'polotno/toolbar/zoom-buttons';
+// import { PagesPanel } from 'polotno/side-panel/pages-panel';
+
+// import { ZoomButtons } from 'polotno/toolbar/zoom-buttons';
 import { SidePanel } from 'polotno/side-panel';
 import { Workspace } from 'polotno/canvas/workspace';
 
 import { loadFile } from './actions/file';
-// import { VectorSection } from './svg-sidepanel';
 
 import Topbar from './Topbar';
 
@@ -45,14 +46,14 @@ const Editor = ({ store }) => {
     >
       <Topbar store={store} />
       <div style={{ height: 'calc(100% - 50px)' }}>
-        <PolotnoContainer className='polotno-app-container'>
+        <PolotnoContainer className='editor-container'>
           <SidePanelWrap>
             <SidePanel store={store} />
           </SidePanelWrap>
           <WorkspaceWrap>
             <Toolbar store={store} />
             <Workspace store={store} />
-            <ZoomButtons store={store} />
+            {/* <ZoomButtons store={store} /> */}
           </WorkspaceWrap>
         </PolotnoContainer>
       </div>

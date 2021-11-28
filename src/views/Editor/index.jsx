@@ -3,14 +3,14 @@ import localforage from 'localforage';
 import { createStore } from 'polotno/model/store';
 import { unstable_setRemoveBackgroundEnabled } from 'polotno/config';
 
-import App from './Editor';
+import Editor from './Editor';
+import { LF_EDITOR_VAR } from '@/config/constants';
 
 unstable_setRemoveBackgroundEnabled(true);
 
-const store = createStore({ key: 'nFA5H9elEytDyPyvKL7T' });
-window.store = store;
+const store = createStore();
 
-localforage.getItem('polotno-state', function (err, json) {
+localforage.getItem(LF_EDITOR_VAR, function (_err, json) {
   if (json) {
     store.loadJSON(json);
   }
@@ -22,7 +22,7 @@ localforage.getItem('polotno-state', function (err, json) {
 store.on('change', () => {
   try {
     const json = store.toJSON();
-    localforage.setItem('polotno-state', json);
+    localforage.setItem(LF_EDITOR_VAR, json);
   } catch (e) {
     // eslint-disable-next-line no-console
     console.error(e, 'error occured with init localforage');
@@ -30,5 +30,5 @@ store.on('change', () => {
 });
 
 export default function View() {
-  return <App store={store} />;
+  return <Editor store={store} />;
 }

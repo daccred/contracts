@@ -99,7 +99,7 @@ export default observer(({ store }) => {
               const json = store.toJSON();
 
               const url = 'data:text/json;base64,' + window.btoa(unescape(encodeURIComponent(JSON.stringify(json))));
-              downloadFile(url, 'polotno.json');
+              downloadFile(url, 'accred.json');
             }}
           >
             Save
