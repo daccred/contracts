@@ -41,7 +41,9 @@ export default function CertificationList() {
                 <div className='flex items-center justify-between'>
                   <p className='text-sm font-medium truncate text-primary-600'>{position.title}</p>
                   <div className='flex flex-shrink-0 ml-2'>
-                    <p className='inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full'>{position.type}</p>
+                    <p className='inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full'>
+                      {position.type}
+                    </p>
                   </div>
                 </div>
                 <div className='mt-2 sm:flex sm:justify-between'>

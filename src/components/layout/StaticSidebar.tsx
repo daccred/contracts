@@ -38,7 +38,10 @@ export const StaticSidebar = ({ options }: LayoutNavProps) => {
                       <span className='text-sm text-gray-500 truncate'>@0x0</span>
                     </span>
                   </span>
-                  <SelectorIcon className='flex-shrink-0 w-5 h-5 text-gray-400 group-hover:text-gray-500' aria-hidden='true' />
+                  <SelectorIcon
+                    className='flex-shrink-0 w-5 h-5 text-gray-400 group-hover:text-gray-500'
+                    aria-hidden='true'
+                  />
                 </span>
               </Menu.Button>
             </div>
@@ -55,21 +58,39 @@ export const StaticSidebar = ({ options }: LayoutNavProps) => {
                 <div className='py-1'>
                   <Menu.Item>
                     {({ active }) => (
-                      <a href='#' className={joinClassNames(active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm')}>
+                      <a
+                        href='#'
+                        className={joinClassNames(
+                          active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                          'block px-4 py-2 text-sm'
+                        )}
+                      >
                         View profile
                       </a>
                     )}
                   </Menu.Item>
                   <Menu.Item>
                     {({ active }) => (
-                      <a href='#' className={joinClassNames(active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm')}>
+                      <a
+                        href='#'
+                        className={joinClassNames(
+                          active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                          'block px-4 py-2 text-sm'
+                        )}
+                      >
                         Settings
                       </a>
                     )}
                   </Menu.Item>
                   <Menu.Item>
                     {({ active }) => (
-                      <a href='#' className={joinClassNames(active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm')}>
+                      <a
+                        href='#'
+                        className={joinClassNames(
+                          active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                          'block px-4 py-2 text-sm'
+                        )}
+                      >
                         Notifications
                       </a>
                     )}
@@ -78,14 +99,26 @@ export const StaticSidebar = ({ options }: LayoutNavProps) => {
                 <div className='py-1'>
                   <Menu.Item>
                     {({ active }) => (
-                      <a href='#' className={joinClassNames(active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm')}>
+                      <a
+                        href='#'
+                        className={joinClassNames(
+                          active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                          'block px-4 py-2 text-sm'
+                        )}
+                      >
                         Get desktop app
                       </a>
                     )}
                   </Menu.Item>
                   <Menu.Item>
                     {({ active }) => (
-                      <a href='#' className={joinClassNames(active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm')}>
+                      <a
+                        href='#'
+                        className={joinClassNames(
+                          active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                          'block px-4 py-2 text-sm'
+                        )}
+                      >
                         Support
                       </a>
                     )}
@@ -94,7 +127,13 @@ export const StaticSidebar = ({ options }: LayoutNavProps) => {
                 <div className='py-1'>
                   <Menu.Item>
                     {({ active }) => (
-                      <a href='#' className={joinClassNames(active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm')}>
+                      <a
+                        href='#'
+                        className={joinClassNames(
+                          active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                          'block px-4 py-2 text-sm'
+                        )}
+                      >
                         Logout
                       </a>
                     )}
@@ -149,7 +188,10 @@ export const StaticSidebar = ({ options }: LayoutNavProps) => {
             </div>
             <div className='mt-8'>
               {/* Secondary navigation */}
-              <h3 className='px-3 text-xs font-semibold tracking-wider text-gray-500 uppercase' id='desktop-teams-headline'>
+              <h3
+                className='px-3 text-xs font-semibold tracking-wider text-gray-500 uppercase'
+                id='desktop-teams-headline'
+              >
                 Quick Actions
               </h3>
               <div className='mt-1 space-y-1' role='group' aria-labelledby='desktop-teams-headline'>
@@ -159,7 +201,10 @@ export const StaticSidebar = ({ options }: LayoutNavProps) => {
                     href={team.href}
                     className='flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-md group hover:text-gray-900 hover:bg-gray-50'
                   >
-                    <span className={joinClassNames(team.bgColorClass, 'w-2.5 h-2.5 mr-4 rounded-full')} aria-hidden='true' />
+                    <span
+                      className={joinClassNames(team.bgColorClass, 'w-2.5 h-2.5 mr-4 rounded-full')}
+                      aria-hidden='true'
+                    />
                     <span className='truncate'>{team.name}</span>
                   </a>
                 ))}

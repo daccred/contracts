@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import create, {GetState, SetState} from "zustand"
-import { persist } from "zustand/middleware"
+import create, { GetState, SetState } from 'zustand';
+import { persist } from 'zustand/middleware';
 
 /**--------------------------------------------------------------*/
 /* Handle all of the type definitions for the Store by Slice     */
@@ -8,24 +8,21 @@ import { persist } from "zustand/middleware"
 type SampleSlice = {
   fishes: number;
   repopulate: () => void;
-}
+};
 type NewCredentialSlice = {
-  credential: Record<string, any>,
+  credential: Record<string, any>;
   dispatchNewCredentialAction: (payload: Record<string, any>) => void;
-}
+};
 
 /* The Main Store state that unions all slices */
-type StoreState = SampleSlice & NewCredentialSlice
+type StoreState = SampleSlice & NewCredentialSlice;
 
 /**--------------------------------------------------------------*/
 /* Handle all of the type definitions for the Store by Slice     */
 /**--------------------------------------------------------------*/
 
 /**--------------------------------------------------------------*/
-type StoreSlice<T> = (
-  set: SetState<StoreState>,
-  get: GetState<StoreState>
-) => T
+type StoreSlice<T> = (set: SetState<StoreState>, get: GetState<StoreState>) => T;
 
 /**-------------------------------------------------------------------------*/
 /* ^^^ ABOVE WE USE THE STATES TO DERIVE [get,set] TYPINGS FOR SLICES  ^^^  */
@@ -34,26 +31,26 @@ type StoreSlice<T> = (
 const createSampleSlice: StoreSlice<SampleSlice> = (set, get) => ({
   fishes: 10,
   repopulate: () => {
-    set({ fishes: get().fishes + 1 })
-  }
-})
+    set({ fishes: get().fishes + 1 });
+  },
+});
 
 const createNewCredentialSlice: StoreSlice<NewCredentialSlice> = (set) => ({
   credential: {},
   dispatchNewCredentialAction: (payload) => {
-    set(state => ({credential: Object.assign(state.credential, payload)}) );
-  }
-})
+    set((state) => ({ credential: Object.assign(state.credential, payload) }));
+  },
+});
 
-
-
-export const useZustand = create<StoreState>(persist(
-  (set, get) => ({
-  ...createSampleSlice(set, get),
-  ...createNewCredentialSlice(set, get),
-}),
-  /* ------ Persist Middleware specific configs and action ------ */
-  {
-    name: "app-zustand",
-  }
-))
+export const useZustand = create<StoreState>(
+  persist(
+    (set, get) => ({
+      ...createSampleSlice(set, get),
+      ...createNewCredentialSlice(set, get),
+    }),
+    /* ------ Persist Middleware specific configs and action ------ */
+    {
+      name: 'app-zustand',
+    }
+  )
+);

@@ -66,7 +66,9 @@ export function MobileSidebar({ options }: LayoutNavProps) {
                         key={item.name}
                         href={item.href}
                         className={joinClassNames(
-                          item.current ? 'bg-gray-100 text-gray-900' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50',
+                          item.current
+                            ? 'bg-gray-100 text-gray-900'
+                            : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50',
                           'group flex items-center px-2 py-2 text-base leading-5 font-medium rounded-md'
                         )}
                         aria-current={item.current ? 'page' : undefined}
@@ -85,7 +87,10 @@ export function MobileSidebar({ options }: LayoutNavProps) {
                     ))}
                   </div>
                   <div className='mt-8'>
-                    <h3 className='px-3 text-xs font-semibold tracking-wider text-gray-500 uppercase' id='mobile-teams-headline'>
+                    <h3
+                      className='px-3 text-xs font-semibold tracking-wider text-gray-500 uppercase'
+                      id='mobile-teams-headline'
+                    >
                       Quick Actions
                     </h3>
                     <div className='mt-1 space-y-1' role='group' aria-labelledby='mobile-teams-headline'>
@@ -95,7 +100,10 @@ export function MobileSidebar({ options }: LayoutNavProps) {
                           href={team.href}
                           className='flex items-center px-3 py-2 text-base font-medium leading-5 text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-50'
                         >
-                          <span className={joinClassNames(team.bgColorClass, 'w-2.5 h-2.5 mr-4 rounded-full')} aria-hidden='true' />
+                          <span
+                            className={joinClassNames(team.bgColorClass, 'w-2.5 h-2.5 mr-4 rounded-full')}
+                            aria-hidden='true'
+                          />
                           <span className='truncate'>{team.name}</span>
                         </a>
                       ))}
@@ -170,21 +178,39 @@ export function MobileSidebar({ options }: LayoutNavProps) {
                   <div className='py-1'>
                     <Menu.Item>
                       {({ active }) => (
-                        <a href='#' className={joinClassNames(active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm')}>
+                        <a
+                          href='#'
+                          className={joinClassNames(
+                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                            'block px-4 py-2 text-sm'
+                          )}
+                        >
                           View profile
                         </a>
                       )}
                     </Menu.Item>
                     <Menu.Item>
                       {({ active }) => (
-                        <a href='#' className={joinClassNames(active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm')}>
+                        <a
+                          href='#'
+                          className={joinClassNames(
+                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                            'block px-4 py-2 text-sm'
+                          )}
+                        >
                           Settings
                         </a>
                       )}
                     </Menu.Item>
                     <Menu.Item>
                       {({ active }) => (
-                        <a href='#' className={joinClassNames(active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm')}>
+                        <a
+                          href='#'
+                          className={joinClassNames(
+                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                            'block px-4 py-2 text-sm'
+                          )}
+                        >
                           Notifications
                         </a>
                       )}
@@ -193,14 +219,26 @@ export function MobileSidebar({ options }: LayoutNavProps) {
                   <div className='py-1'>
                     <Menu.Item>
                       {({ active }) => (
-                        <a href='#' className={joinClassNames(active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm')}>
+                        <a
+                          href='#'
+                          className={joinClassNames(
+                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                            'block px-4 py-2 text-sm'
+                          )}
+                        >
                           Get desktop app
                         </a>
                       )}
                     </Menu.Item>
                     <Menu.Item>
                       {({ active }) => (
-                        <a href='#' className={joinClassNames(active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm')}>
+                        <a
+                          href='#'
+                          className={joinClassNames(
+                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                            'block px-4 py-2 text-sm'
+                          )}
+                        >
                           Support
                         </a>
                       )}
@@ -209,7 +247,13 @@ export function MobileSidebar({ options }: LayoutNavProps) {
                   <div className='py-1'>
                     <Menu.Item>
                       {({ active }) => (
-                        <a href='#' className={joinClassNames(active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm')}>
+                        <a
+                          href='#'
+                          className={joinClassNames(
+                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                            'block px-4 py-2 text-sm'
+                          )}
+                        >
                           Logout
                         </a>
                       )}

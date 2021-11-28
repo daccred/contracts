@@ -15,7 +15,8 @@ import { ImagesGrid } from 'polotno/side-panel/images-grid';
 export const SVGPanel = observer(({ store }) => {
   // load data
   const { data, isLoading, loadMore, setQuery } = useInfiniteAPI({
-    getAPI: ({ page, query }) => `https://api.polotno.dev/api/get-svgapi?query=${query}&page=${page - 1}&key=${getKey()}`,
+    getAPI: ({ page, query }) =>
+      `https://api.polotno.dev/api/get-svgapi?query=${query}&page=${page - 1}&key=${getKey()}`,
     getSize: (res) => Math.floor(res.count / res.limit),
   });
 

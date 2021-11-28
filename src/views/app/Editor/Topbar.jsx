@@ -143,8 +143,9 @@ export default observer(({ store }) => {
           <div className={Classes.DIALOG_BODY}>
             <h2>What is Polotno Studio?</h2>
             <p>
-              <strong>Polotno Studio</strong> - is a web application to create graphical designs. You can mix image, text and illustrations to make
-              social media posts, youtube previews, podcast covers, business cards and presentations.
+              <strong>Polotno Studio</strong> - is a web application to create graphical designs. You can mix image,
+              text and illustrations to make social media posts, youtube previews, podcast covers, business cards and
+              presentations.
             </p>
             <h2>Is it Open Source?</h2>
             <p>
@@ -156,8 +157,8 @@ export default observer(({ store }) => {
               <a href='https://polotno.dev/' target='_blank' rel='noreferrer'>
                 Polonto SDK project
               </a>
-              . All core editor functionality are implemented by <strong>polotno</strong> npm package (which is not open source at the time of writing
-              this text).
+              . All core editor functionality are implemented by <strong>polotno</strong> npm package (which is not open
+              source at the time of writing this text).
             </p>
             <p>Polotno Studio is build on top of Polotno SDK to provide a desktop-app-like experience.</p>
             <h2>Who is making Polotno Studio?</h2>
@@ -170,12 +171,13 @@ export default observer(({ store }) => {
               <a href='https://konvajs.org/' target='_blank' rel='noreferrer'>
                 Konva 2d canvas framework
               </a>
-              , I created several similar apps for different companies around the world. So I decided to compile all my knowledge and experience into
-              reusable Polotno project.
+              , I created several similar apps for different companies around the world. So I decided to compile all my
+              knowledge and experience into reusable Polotno project.
             </p>
             <h2>Why Polotno Studio has no signups and no ads? How are you going to support the project financially?</h2>
             <p>
-              Instead of monetizing the end-user application <strong>Polotno Studio</strong> I decided to make money around developers tools with
+              Instead of monetizing the end-user application <strong>Polotno Studio</strong> I decided to make money
+              around developers tools with
               <a href='https://polotno.dev/' target='_blank' rel='noreferrer'>
                 Polonto SDK
               </a>

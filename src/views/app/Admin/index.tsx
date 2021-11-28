@@ -10,7 +10,11 @@ export default function Admin() {
       <section>
         <StatsDefault />
         <div className='py-6 pt-8 my-6'>
-          <SubSectionHeading actionHref={routes.certs.create} actionName='Create New Certification' text='Your Certifications' />
+          <SubSectionHeading
+            actionHref={routes.certs.create}
+            actionName='Create New Certification'
+            text='Your Certifications'
+          />
           <CertificationList />
         </div>
       </section>

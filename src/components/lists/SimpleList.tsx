@@ -19,7 +19,10 @@ export default function SimpleList() {
             <li key={project.id}>
               <a href='#' className='flex items-center justify-between px-4 py-4 group hover:bg-gray-50 sm:px-6'>
                 <span className='flex items-center space-x-3 truncate'>
-                  <span className={classNames(project.bgColorClass, 'w-2.5 h-2.5 flex-shrink-0 rounded-full')} aria-hidden='true' />
+                  <span
+                    className={classNames(project.bgColorClass, 'w-2.5 h-2.5 flex-shrink-0 rounded-full')}
+                    aria-hidden='true'
+                  />
                   <span className='text-sm font-medium leading-6 truncate'>
                     {project.title} <span className='font-normal text-gray-500 truncate'>in {project.team}</span>
                   </span>
@@ -54,7 +57,10 @@ export default function SimpleList() {
                 <tr key={project.id}>
                   <td className='w-full px-6 py-3 text-sm font-medium text-gray-900 max-w-0 whitespace-nowrap'>
                     <div className='flex items-center space-x-3 lg:pl-2'>
-                      <div className={classNames(project.bgColorClass, 'flex-shrink-0 w-2.5 h-2.5 rounded-full')} aria-hidden='true' />
+                      <div
+                        className={classNames(project.bgColorClass, 'flex-shrink-0 w-2.5 h-2.5 rounded-full')}
+                        aria-hidden='true'
+                      />
                       <a href='#' className='truncate hover:text-gray-600'>
                         <span>
                           {project.title} <span className='font-normal text-gray-500'>in {project.team}</span>
@@ -75,11 +81,15 @@ export default function SimpleList() {
                         ))}
                       </div>
                       {project.totalMembers > project.members.length ? (
-                        <span className='flex-shrink-0 text-xs font-medium leading-5'>+{project.totalMembers - project.members.length}</span>
+                        <span className='flex-shrink-0 text-xs font-medium leading-5'>
+                          +{project.totalMembers - project.members.length}
+                        </span>
                       ) : null}
                     </div>
                   </td>
-                  <td className='hidden px-6 py-3 text-sm text-right text-gray-500 md:table-cell whitespace-nowrap'>{project.lastUpdated}</td>
+                  <td className='hidden px-6 py-3 text-sm text-right text-gray-500 md:table-cell whitespace-nowrap'>
+                    {project.lastUpdated}
+                  </td>
                   <td className='px-6 py-3 text-sm font-medium text-right whitespace-nowrap'>
                     <a href='#' className='text-indigo-600 hover:text-indigo-900'>
                       Edit

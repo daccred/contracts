@@ -15,7 +15,10 @@ export default function StatsDefault() {
 
       <dl className='grid grid-cols-1 gap-5 mt-5 sm:grid-cols-2 lg:grid-cols-3'>
         {stats.map((item) => (
-          <div key={item.id} className='relative px-4 pt-5 pb-12 overflow-hidden bg-white rounded-lg shadow sm:pt-6 sm:px-6'>
+          <div
+            key={item.id}
+            className='relative px-4 pt-5 pb-12 overflow-hidden bg-white rounded-lg shadow sm:pt-6 sm:px-6'
+          >
             <dt>
               <div className='absolute p-3 bg-gray-700 rounded-md'>
                 <item.icon className='w-6 h-6 text-white' aria-hidden='true' />

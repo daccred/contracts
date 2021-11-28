@@ -368,7 +368,10 @@ label.bp3-label .bp3-popover2-target {
 .bp3-submenu .bp3-popover2-target.bp3-popover2-open > .bp3-menu-item.bp3-intent-primary.bp3-active,
 .bp3-submenu .bp3-popover2-target.bp3-popover2-open > .bp3-menu-item.bp3-intent-primary.bp3-active::before,
 .bp3-submenu .bp3-popover2-target.bp3-popover2-open > .bp3-menu-item.bp3-intent-primary.bp3-active::after,
-.bp3-submenu .bp3-popover2-target.bp3-popover2-open > .bp3-menu-item.bp3-intent-primary.bp3-active .bp3-menu-item-label {
+.bp3-submenu
+  .bp3-popover2-target.bp3-popover2-open
+  > .bp3-menu-item.bp3-intent-primary.bp3-active
+  .bp3-menu-item-label {
   color: #ffffff;
 }
 .bp3-submenu .bp3-popover2-target.bp3-popover2-open > .bp3-menu-item.bp3-intent-success {
@@ -400,7 +403,10 @@ label.bp3-label .bp3-popover2-target {
 .bp3-submenu .bp3-popover2-target.bp3-popover2-open > .bp3-menu-item.bp3-intent-success.bp3-active,
 .bp3-submenu .bp3-popover2-target.bp3-popover2-open > .bp3-menu-item.bp3-intent-success.bp3-active::before,
 .bp3-submenu .bp3-popover2-target.bp3-popover2-open > .bp3-menu-item.bp3-intent-success.bp3-active::after,
-.bp3-submenu .bp3-popover2-target.bp3-popover2-open > .bp3-menu-item.bp3-intent-success.bp3-active .bp3-menu-item-label {
+.bp3-submenu
+  .bp3-popover2-target.bp3-popover2-open
+  > .bp3-menu-item.bp3-intent-success.bp3-active
+  .bp3-menu-item-label {
   color: #ffffff;
 }
 .bp3-submenu .bp3-popover2-target.bp3-popover2-open > .bp3-menu-item.bp3-intent-warning {
@@ -432,7 +438,10 @@ label.bp3-label .bp3-popover2-target {
 .bp3-submenu .bp3-popover2-target.bp3-popover2-open > .bp3-menu-item.bp3-intent-warning.bp3-active,
 .bp3-submenu .bp3-popover2-target.bp3-popover2-open > .bp3-menu-item.bp3-intent-warning.bp3-active::before,
 .bp3-submenu .bp3-popover2-target.bp3-popover2-open > .bp3-menu-item.bp3-intent-warning.bp3-active::after,
-.bp3-submenu .bp3-popover2-target.bp3-popover2-open > .bp3-menu-item.bp3-intent-warning.bp3-active .bp3-menu-item-label {
+.bp3-submenu
+  .bp3-popover2-target.bp3-popover2-open
+  > .bp3-menu-item.bp3-intent-warning.bp3-active
+  .bp3-menu-item-label {
   color: #ffffff;
 }
 .bp3-submenu .bp3-popover2-target.bp3-popover2-open > .bp3-menu-item.bp3-intent-danger {

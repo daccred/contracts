@@ -22,8 +22,10 @@ export default function ButtonLink({ children, className = '', variant = 'dark',
         'focus:outline-none focus-visible:text-primary-400',
         {
           'bg-dark text-white': variant === 'dark',
-          'bg-white text-dark hover:bg-gray-200 hover:text-dark focus-visible:text-dark border-gray-400': variant === 'light',
-          'bg-primary-400 text-black hover:bg-primary-400/90 hover:text-black border-primary-500 focus-visible:text-dark': variant === 'primary',
+          'bg-white text-dark hover:bg-gray-200 hover:text-dark focus-visible:text-dark border-gray-400':
+            variant === 'light',
+          'bg-primary-400 text-black hover:bg-primary-400/90 hover:text-black border-primary-500 focus-visible:text-dark':
+            variant === 'primary',
         },
         className
       )}

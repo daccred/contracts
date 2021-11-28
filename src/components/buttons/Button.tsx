@@ -13,7 +13,14 @@ type ButtonProps = {
   variant?: keyof typeof ButtonVariant;
 } & React.ComponentPropsWithoutRef<'button'>;
 
-export default function Button({ children, className, disabled: buttonDisabled, isLoading, variant = 'dark', ...rest }: ButtonProps) {
+export default function Button({
+  children,
+  className,
+  disabled: buttonDisabled,
+  isLoading,
+  variant = 'dark',
+  ...rest
+}: ButtonProps) {
   const disabled = isLoading || buttonDisabled;
 
   return (
@@ -46,7 +53,12 @@ export default function Button({ children, className, disabled: buttonDisabled, 
       }
     >
       {isLoading && (
-        <div className={clsx('absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2', variant !== 'dark' ? 'text-black' : 'text-white')}>
+        <div
+          className={clsx(
+            'absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2',
+            variant !== 'dark' ? 'text-black' : 'text-white'
+          )}
+        >
           <ImSpinner2 className='animate-spin' />
         </div>
       )}

@@ -22,9 +22,8 @@ export default function View(props: WizardProps): JSX.Element {
   }, [isMounted, __step__]);
 
   const _handleStep = async () => {
-   await _set__step__(['default'])
+    await _set__step__(['default']);
   };
-
 
   // React.useEffect(() => void 0, [__step__])
 
@@ -43,7 +42,11 @@ export default function View(props: WizardProps): JSX.Element {
   //   await setStore(Object.assign(store, data));
   //   useStep(data?.__step__);
   // };
-  let FormComponent: React.FC<WizardProps> = () => <a><div onClick={_handleStep}>Click to start</div></a>
+  let FormComponent: React.FC<WizardProps> = () => (
+    <a>
+      <div onClick={_handleStep}>Click to start</div>
+    </a>
+  );
 
   switch (__step__[__step__.length - 1]) {
     case 'default':
