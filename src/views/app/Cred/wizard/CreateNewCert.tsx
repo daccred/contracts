@@ -9,11 +9,6 @@ import InputField from '@/components/fields/Input';
 import TextboxField from '@/components/fields/Textbox';
 import { useZustand } from '@/lib/zustand';
 
-export interface IItem {
-  label: string;
-  value: string;
-}
-
 const CreateNewCert = () => {
   const [submitting, _submitting] = React.useState<boolean>(false);
   const [step, _step] = useRealm<string[]>(CRED_WIZARD_STEP);

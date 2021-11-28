@@ -16,6 +16,7 @@ export const AUTH = {
 /* ----------------------------------------------------------------------- */
 /*                navigation routes def for working with layouts           */
 /* ----------------------------------------------------------------------- */
+import { BookmarkIcon, HomeIcon } from '@heroicons/react/outline';
 
 import routes from '@/config/routes';
 
@@ -26,8 +27,8 @@ export const subnav = [
 ];
 
 export const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Certifications', href: '#', current: false },
+  { icon: HomeIcon, name: 'Dashboard', href: '#', current: true },
+  { icon: BookmarkIcon, name: 'Certifications', href: '#', current: false },
 ];
 
 export const userNavigation = [{ name: 'Sign out', href: '#' }];
