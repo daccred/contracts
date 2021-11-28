@@ -2,7 +2,6 @@ import React from 'react';
 import nookies from 'nookies';
 import { decode } from 'js-base64';
 
-// import { config, UserAccountDict } from '@/config/constants'
 import { formatAddress, joinClassNames } from '@/lib/helper';
 import { Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
@@ -10,8 +9,9 @@ import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
 import { AUTH, navigation, userNavigation } from '@/config/constants';
 import MoralisType from 'moralis';
 import NextImage from '../NextImage';
+import WizardNav from '../nav/WizardNav';
 
-const PageLayout: React.FC = ({ children }) => {
+const WizardLayout: React.FC = ({ children }) => {
   const [profile, setProfile] = React.useState<Partial<MoralisType.AuthData>>({});
   const [hasProfile, setHasProfile] = React.useState<boolean>(false);
 
@@ -32,7 +32,7 @@ const PageLayout: React.FC = ({ children }) => {
 
   return (
     <>
-      <div className='min-h-full'>
+      <div className='min-h-screen bg-gray-50'>
         <Disclosure as='nav' className='bg-gray-900'>
           {({ open }) => (
             <>
@@ -184,6 +184,7 @@ const PageLayout: React.FC = ({ children }) => {
           )}
         </Disclosure>
 
+        <WizardNav />
         <main>
           <div className='py-6 mx-auto max-w-7xl sm:px-6 lg:px-8'>
             {/* Replace with your content */}
@@ -196,4 +197,4 @@ const PageLayout: React.FC = ({ children }) => {
   );
 };
 
-export default PageLayout;
+export default WizardLayout;

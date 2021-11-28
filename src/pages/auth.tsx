@@ -3,7 +3,7 @@ import { useMoralis } from 'react-moralis';
 
 import * as NextAuth from '@/lib/auth.helper';
 
-import { AuthView } from '@/views/Auth';
+import { AuthView } from '@/views/app/Auth';
 
 /* -------------------------------------------------------------------------- */
 /*             use moralis to handle authentication logic in view             */

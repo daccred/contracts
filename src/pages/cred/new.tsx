@@ -1,10 +1,10 @@
 import { GetServerSideProps } from 'next';
-import dynamic from 'next/dynamic';
-// import View from '@/views/Editor';
-import * as NextAuth from '@/lib/auth.helper';
-import Layout from '@/components/layout/Layout';
 
-const View = dynamic(() => import('../views/app/Editor'), { ssr: false });
+import * as NextAuth from '@/lib/auth.helper';
+
+import Layout from '@/components/layout/WizardLayout';
+
+import View from '@/views/app/Cred';
 
 export default function Default() {
   return (

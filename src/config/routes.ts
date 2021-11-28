@@ -1,10 +1,10 @@
 const certs = {
-  index: '/certs',
-  create: '/certs/new',
-  editor: '/certs/[id]/editor',
-  recipients: '/certs/[id]/recipients',
-  forms: '/certs/[id]/forms',
-  preview: '/certs/[id]/preview',
+  index: '/cred',
+  create: '/cred/new',
+  editor: '/cred/[id]/editor',
+  recipients: '/cred/[id]/recipients',
+  forms: '/cred/[id]/forms',
+  preview: '/cred/[id]/preview',
 };
 
 const open = {
