@@ -1,18 +1,18 @@
 import React from 'react';
 import { useRealm } from 'use-realm';
-import { useForm, UseFormRegister, Controller, SubmitHandler } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
 /* Import Page Components here */
 import { CRED_WIZARD_STEP } from '@/lib/realm';
 import Button from '@/components/buttons/Button';
 import { useZustand } from '@/lib/zustand';
-import RadioPillInput from '@/components/fields/RadioPill';
 import RadioBox from '@/components/fields/RadioBox';
+import FormManager from '../containers/FormManager';
 
 
 
 /*  ------------------------------------------  Menu Radio Options Array   --------------- */
-/*  ------------------------------------------------------------------------------------- */
+/*  ----------------------------------------------------------------------------------------- */
 const options = [
   { name: 'Hobby', ram: '8GB', cpus: '4 CPUs', disk: '160 GB SSD disk', price: '$40' },
   { name: 'Startup', ram: '12GB', cpus: '6 CPUs', disk: '256 GB SSD disk', price: '$80' },
@@ -20,7 +20,7 @@ const options = [
   { name: 'Enterprise', ram: '32GB', cpus: '12 CPUs', disk: '1024 GB SSD disk', price: '$240' },
 ]
 /*  ------------------------------------------  Menu Radio Options Array   --------------- */
-/*  ------------------------------------------------------------------------------------- */
+/*  ---------------------------------------------------------------------------------------- */
 
 
 
@@ -61,7 +61,7 @@ const CreateNewCert = () => {
       {/* ------- Form Heading section ------- */}
       
       
-     <RadioBox />
+     <RadioBox label={'Select a Medium'} />
 
 
       {/* ---------- Submission Button to handle effects and storage ------------- */}
@@ -74,6 +74,8 @@ const CreateNewCert = () => {
         Add Credential Recipients
       </Button>
       {/* ---------- Submission Button to handle effects and storage ------------- */}
+      
+      <FormManager />
 
     </section>
   );

@@ -31,7 +31,7 @@ const Protocol = () => {
     _selected(data);
 
     try {
-      await _dispatchFormAction(data);
+      await _dispatchFormAction({ protocol: data });
       await _step([...step, 'medium']);
     } catch (error) {
       alert(JSON.stringify(error));
