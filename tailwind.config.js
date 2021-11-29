@@ -21,7 +21,7 @@ module.exports = {
     extend: {
       fontFamily: {
         primary: ['Graphik Web', 'Inter', ...fontFamily.sans],
-        heading: ['Dogica Pixel', 'Inter', ...fontFamily.sans],
+        heading: ['Pixeboy', 'Inter', ...fontFamily.sans],
       },
       colors: {
         primary: {
