@@ -23,7 +23,7 @@ export const AuthView: React.FC<AuthViewOptions> = ({ isAuthenticated, authentic
               <button
                 onClick={() =>
                   authenticate(
-                    { onComplete: () => alert('success') }
+                    { onComplete: () => alert('error occured, check server') }
                     // { onSuccess: (user) => NextAuth.login(user) }
                   )
                 }
