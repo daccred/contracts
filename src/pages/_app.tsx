@@ -2,6 +2,7 @@ import { AppProps } from 'next/app';
 import React from 'react';
 import { MoralisProvider } from 'react-moralis';
 
+import '@/styles/form.css';
 import '@/styles/globals.css';
 import '@/styles/blueprint.css';
 import '@/styles/blueprint-extend.css';

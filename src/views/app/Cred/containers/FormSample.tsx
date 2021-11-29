@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import Form, { UiSchema } from '@rjsf/core';
+import Form from '@rjsf/core';
+import { JSONSchema7 } from 'json-schema';
+import {schema, uiSchema } from '@/lib/form/schema'
 
 
 const FieldWrapper: React.FC = ({ children, ...rest }): JSX.Element => {
     return (
         <section
-        className="flex justify-center w-full px-10 py-6 mx-auto my-6 align-middle bg-white border-2 rounded-md"
+        className="min-w-full px-10 py-6 pb-8 mx-auto my-6 bg-white border-2 rounded-lg"
             {...rest}
         >
             {children}
@@ -14,65 +16,9 @@ const FieldWrapper: React.FC = ({ children, ...rest }): JSX.Element => {
 };
 
 export default function FormSample(): JSX.Element {
-    const [formSchema, setFormSchema] = useState<ISchema>({ '': '' });
+    const [formSchema, setFormSchema] = useState<JSONSchema7>({});
 
-    const uiSchema: UiSchema = {
-        toggle: {
-            "ui:widget": "radio"
-        },
-        name: {
-            'ui:widget': 'text',
-        },
-        collegeName: {
-            'ui:placeholder': 'Meltwater',
-        },
-    };
 
-    interface ISchema {
-        [key: string]: string | Record<any, string> | any;
-    }
-
-    const schema: ISchema = {
-        title: '',
-        description: 'Short Form Description',
-        type: 'object',
-        properties: {
-            name: {
-                type: 'string',
-                title: 'Your Full Name',
-                description: 'Enter your full name',
-            },
-            toggle: {
-                title: 'Gender',
-                description: 'Are you Male or Female?',
-                type: 'boolean',
-                // enum: ['Male', 'Female'],
-                "oneOf": [
-                    {
-                        "title": "True",
-                        "const": true
-                    },
-                    {
-                        "title": "False",
-                        "const": false
-                    }
-                ]
-            },
-            dropdown: {
-                type: 'string',
-                title: 'Country',
-                description: 'Select from a list of available options',
-                default: 'Country',
-                enum: ['South Africa', 'Kenya', 'Ghana', 'Nigeria'],
-            },
-            age: {
-                type: 'number',
-                title: 'Age',
-                description: 'Type your full age in numbers',
-            },
-        },
-        required: ['name', 'age'],
-    };
     useEffect(() => {
         // Set Form Schema to default to defined schema in page
         setFormSchema(schema);
@@ -93,7 +39,7 @@ export default function FormSample(): JSX.Element {
     // console.warn(localStorage.getItem("__rjsForm") || "")
 
     return (
-        <section className="flex flex-col items-start w-full min-h-full align-top" >
+        <section className="flex flex-col" >
 
 
             {/* === section to render the form Heading and Description with Divider ==== */}
@@ -105,6 +51,7 @@ export default function FormSample(): JSX.Element {
             </FieldWrapper>
             {/* === section to render the form Heading and Description with Divider ==== */}
 
+
             {/* =========== Section to generate Form Fields for Public Forms =================== */}
             <FieldWrapper>
                 <Form
@@ -112,9 +59,8 @@ export default function FormSample(): JSX.Element {
                     uiSchema={uiSchema}
                     onSubmit={(data) => {
                         alert("DATA SUBMITTED" + JSON.stringify(data.formData))
-                        window.location.replace('/workspaces/office/survey')
                     }
-                    }
+                }
                 />
             </FieldWrapper>
             {/* =========== Section to generate Form Fields for Public Forms =================== */}

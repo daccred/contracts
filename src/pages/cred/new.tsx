@@ -12,6 +12,7 @@ export default function Default() {
   return (
     <Layout>
       <Head>
+      <link rel="stylesheet" type="text/css" href="/bootstrap.css" />
 
         </Head>
       <View />
