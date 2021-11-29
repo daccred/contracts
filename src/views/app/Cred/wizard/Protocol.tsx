@@ -2,32 +2,49 @@ import React from 'react';
 import { useRealm } from 'use-realm';
 
 /* Import Page Components here */ 1;
-import { CRED_WIZARD_STEP } from '@/lib/realm';
+import { CRED_WIZARD_STEP, WizardStepOpts } from '@/lib/realm';
 import { useZustand } from '@/lib/zustand';
-import RadioPillInput from '@/components/fields/RadioPill';
+import RadioPillInput, { PillOptionProps } from '@/components/fields/RadioPill';
 
 /*  ------------------------------------------  Menu Radio Options Array   --------------- */
 /*  ------------------------------------------------------------------------------------- */
 const options = [
-  { name: 'Ethereum Kovan', networkImg: '/images/ethereum.svg', description: 'Deploy your credential smart contract to the Ethereum Kovan Testnet' },
-  { name: 'Ethereum Mainnet', networkImg: '/images/ethereum.svg', description: 'Deploy your credential smart contract to the Live Ethereum Mainnet' },
-  { name: 'Binance Smart Chain', networkImg: '/images/binance-dark.svg', description: 'Deploy your smart contract to Binance Smart Chain' },
-  { name: 'Polygon MATIC', networkImg: '/images/matic.svg',  description: 'Deploy your credential to Polygon MATIC network' },
+  {
+    disabled: false,
+    name: 'Ethereum Kovan',
+    img: '/images/ethereum.svg',
+    description: 'Deploy your credential smart contract to the Ethereum Kovan Testnet',
+  },
+  {
+    disabled: true,
+    name: 'Ethereum Mainnet',
+    img: '/images/ethereum.svg',
+    description: 'Deploy your credential smart contract to the Live Ethereum Mainnet',
+  },
+  {
+    disabled: true,
+    name: 'Binance Smart Chain',
+    img: '/images/binance-dark.svg',
+    description: 'Deploy your smart contract to Binance Smart Chain',
+  },
+  {
+    disabled: true,
+    name: 'Polygon MATIC',
+    img: '/images/matic.svg',
+    description: 'Deploy your credential to Polygon MATIC network',
+  },
 ];
 /*  ------------------------------------------  Menu Radio Options Array   --------------- */
 /*  ------------------------------------------------------------------------------------- */
 
 const Protocol = () => {
-  const [selected, _selected] = React.useState<any>(options[0]);
-
-  const [step, _step] = useRealm<string[]>(CRED_WIZARD_STEP);
+  const [selected, _selected] = React.useState<PillOptionProps>(options[0]);
+  const [step, _step] = useRealm<WizardStepOpts[]>(CRED_WIZARD_STEP);
 
   /* hook forms */
-
   const _dispatchFormAction = useZustand((slice) => slice.dispatchNewCredentialAction);
 
-  const _handleSubmission = async (data: any): Promise<void> => {
-    console.log(data, "from submission")
+  const _handleSubmission = async (data: PillOptionProps): Promise<void> => {
     _selected(data);
 
     try {
@@ -47,7 +64,6 @@ const Protocol = () => {
       </section>
       {/* ------- Form Heading section ------- */}
       <RadioPillInput value={selected} onChange={_handleSubmission} options={options} />
-
     </section>
   );
 };

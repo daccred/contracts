@@ -5,13 +5,13 @@ import { schema, uiSchema } from '@/lib/form/schema';
 
 const FieldWrapper: React.FC = ({ children, ...rest }): JSX.Element => {
   return (
-    <section className='min-w-full px-10 py-6 pb-8 mx-auto my-6 rounded-lg' {...rest}>
+    <section className='min-w-full px-10 py-6 pb-8 mx-auto my-6 bg-white border-2 rounded-lg' {...rest}>
       {children}
     </section>
   );
 };
 
-export default function FormSample(): JSX.Element {
+export default function FormSample2(): JSX.Element {
   const [formSchema, setFormSchema] = useState<JSONSchema7>({});
 
   useEffect(() => {
@@ -35,6 +35,12 @@ export default function FormSample(): JSX.Element {
 
   return (
     <section className='flex flex-col'>
+      {/* === section to render the form Heading and Description with Divider ==== */}
+      <FieldWrapper>
+        <h1>Advocacy Database Form</h1>
+      </FieldWrapper>
+      {/* === section to render the form Heading and Description with Divider ==== */}
+
       {/* =========== Section to generate Form Fields for Public Forms =================== */}
       <FieldWrapper>
         <Form
@@ -44,9 +50,7 @@ export default function FormSample(): JSX.Element {
           onSubmit={(data) => {
             alert('DATA SUBMITTED' + JSON.stringify(data.formData));
           }}
-        >
-          <button type='submit' />
-        </Form>
+        />
       </FieldWrapper>
       {/* =========== Section to generate Form Fields for Public Forms =================== */}
 

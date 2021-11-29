@@ -9,7 +9,7 @@ import InputField from '@/components/fields/Input';
 import TextboxField from '@/components/fields/Textbox';
 import { useZustand } from '@/lib/zustand';
 
-const CreateNewCert = () => {
+const TemplateSelection = () => {
   const [submitting, _submitting] = React.useState<boolean>(false);
   const [step, _step] = useRealm<WizardStepOpts[]>(CRED_WIZARD_STEP);
 
@@ -42,13 +42,6 @@ const CreateNewCert = () => {
       {/* ------- Form Heading section ------- */}
 
       <InputField register={register} required label='Name' placeholder='Chainlink Fall Hackathon' name='certName' />
-      <TextboxField
-        register={register}
-        required
-        label='Description'
-        placeholder='Write a description'
-        name='certDescription'
-      />
 
       <Button
         className='min-w-full py-4 mt-6 rounded-full'
@@ -61,4 +54,4 @@ const CreateNewCert = () => {
   );
 };
 
-export default CreateNewCert;
+export default TemplateSelection;

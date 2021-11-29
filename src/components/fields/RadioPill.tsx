@@ -1,29 +1,31 @@
 import { RadioGroup } from '@headlessui/react';
 import { joinClassNames } from '@/lib/helper';
+import { RadioGroupProps } from '@/config/d';
 import NextImage from '../NextImage';
-// import { UseFormRegister } from 'react-hook-form';
 
-type RadioPillProps = {
-  name?: string;
-  options: any[];
-  onChange: (data: Record<string, string>) => void;
-  value: any;
-};
+export interface PillOptionProps {
+  name: string;
+  img: string;
+  description: string;
+  disabled?: boolean;
+}
 
-const RadioPillInput = (props: RadioPillProps) => {
+const RadioPillInput = (props: RadioGroupProps<PillOptionProps>) => {
   const { options, onChange, value } = props;
 
   return (
     <RadioGroup value={value} onChange={onChange}>
       <RadioGroup.Label className='sr-only'>Server size</RadioGroup.Label>
       <div className='space-y-4'>
-        {options.map((network) => (
+        {options.map((option) => (
           <RadioGroup.Option
-            key={network.name}
-            value={network}
+            key={option.name}
+            disabled={option.disabled}
+            value={option}
             className={({ checked, active }) =>
               joinClassNames(
                 checked ? 'border-transparent' : 'border-gray-300',
+                option.disabled ? 'opacity-60' : '',
                 active ? 'ring-2 ring-primary-500' : '',
                 'relative block bg-white border rounded-lg shadow-sm px-6 py-4 cursor-pointer sm:flex sm:justify-between focus:outline-none'
               )
@@ -34,29 +36,30 @@ const RadioPillInput = (props: RadioPillProps) => {
                 <div className='flex items-center'>
                   <div className='text-sm'>
                     <RadioGroup.Label as='p' className='font-medium text-gray-900'>
-                      {network.name}
+                      {option.name}
                     </RadioGroup.Label>
                     <RadioGroup.Description as='div' className='text-gray-500'>
-                      <p className='sm:inline'>
-                        {network.description}
-                      </p>
+                      <p className='sm:inline'>{option.description}</p>
                       <span className='hidden sm:inline sm:mx-1' aria-hidden='true'>
                         &middot;
                       </span>
-                      {/* <p className='sm:inline'>{network.disk}</p> */}
+                      {/* <p className='sm:inline'>{option.disk}</p> */}
                     </RadioGroup.Description>
                   </div>
                 </div>
-                <RadioGroup.Description as='div' className='flex justify-center mt-2 text-sm align-middle sm:mt-0 sm:block sm:ml-4 sm:text-right'>
-                  <NextImage 
-                  layout="intrinsic" 
-                  imgClassName="rounded-full" 
-                  className="rounded-full" 
-                  alt={network.name}
-                  width="40px" 
-                  height="40px" 
-                  useSkeleton 
-                  src={network.networkImg} 
+                <RadioGroup.Description
+                  as='div'
+                  className='flex justify-center mt-2 text-sm align-middle sm:mt-0 sm:block sm:ml-4 sm:text-right'
+                >
+                  <NextImage
+                    layout='intrinsic'
+                    imgClassName='rounded-full'
+                    className='rounded-full'
+                    alt={option.name}
+                    width='40px'
+                    height='40px'
+                    useSkeleton
+                    src={option.img}
                   />
                 </RadioGroup.Description>
                 <div
