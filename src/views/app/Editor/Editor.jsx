@@ -1,11 +1,11 @@
 import React from 'react';
-import { PolotnoContainer, SidePanelWrap, WorkspaceWrap } from 'polotno';
-import { Toolbar } from 'polotno/toolbar/toolbar';
-// import { PagesPanel } from 'polotno/side-panel/pages-panel';
+import { PolotnoContainer, SidePanelWrap, WorkspaceWrap } from 'realmono';
+import { Toolbar } from 'realmono/toolbar/toolbar';
+// import { PagesPanel } from 'realmono/side-panel/pages-panel';
 
-// import { ZoomButtons } from 'polotno/toolbar/zoom-buttons';
-import { SidePanel } from 'polotno/side-panel';
-import { Workspace } from 'polotno/canvas/workspace';
+// import { ZoomButtons } from 'realmono/toolbar/zoom-buttons';
+import { SidePanel } from 'realmono/side-panel';
+import { Workspace } from 'realmono/canvas/workspace';
 
 import { loadFile } from './actions/file';
 

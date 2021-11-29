@@ -1,73 +1,62 @@
 import React, { useState, useEffect } from 'react';
 import Form from '@rjsf/core';
 import { JSONSchema7 } from 'json-schema';
-import {schema, uiSchema } from '@/lib/form/schema'
-
+import { schema, uiSchema } from '@/lib/form/schema';
 
 const FieldWrapper: React.FC = ({ children, ...rest }): JSX.Element => {
-    return (
-        <section
-        className="min-w-full px-10 py-6 pb-8 mx-auto my-6 bg-white border-2 rounded-lg"
-            {...rest}
-        >
-            {children}
-        </section>
-    );
+  return (
+    <section className='min-w-full px-10 py-6 pb-8 mx-auto my-6 bg-white border-2 rounded-lg' {...rest}>
+      {children}
+    </section>
+  );
 };
 
 export default function FormSample(): JSX.Element {
-    const [formSchema, setFormSchema] = useState<JSONSchema7>({});
+  const [formSchema, setFormSchema] = useState<JSONSchema7>({});
 
+  useEffect(() => {
+    // Set Form Schema to default to defined schema in page
+    setFormSchema(schema);
 
-    useEffect(() => {
-        // Set Form Schema to default to defined schema in page
-        setFormSchema(schema);
+    // Try to retrieve existing schema from localstorage
+    // const storageForm = JSON.parse(localStorage.getItem('__rjsForm') || '');
 
-        // Try to retrieve existing schema from localstorage
-        // const storageForm = JSON.parse(localStorage.getItem('__rjsForm') || '');
+    setTimeout(() => {
+      // setFormSchema(storageForm)
+    }, 3000);
 
-        setTimeout(() => {
-            // setFormSchema(storageForm)
-        }, 3000);
+    // return () => {
+    //     cleanup
+    // };
+  }, []);
 
-        // return () => {
-        //     cleanup
-        // };
-    }, []);
+  // const storageForm = JSON.parse(localStorage.getItem("__rjsForm") || "")
+  // console.warn(localStorage.getItem("__rjsForm") || "")
 
-    // const storageForm = JSON.parse(localStorage.getItem("__rjsForm") || "")
-    // console.warn(localStorage.getItem("__rjsForm") || "")
+  return (
+    <section className='flex flex-col'>
+      {/* === section to render the form Heading and Description with Divider ==== */}
+      <FieldWrapper>
+        <h1>Advocacy Database Form</h1>
+      </FieldWrapper>
+      {/* === section to render the form Heading and Description with Divider ==== */}
 
-    return (
-        <section className="flex flex-col" >
+      {/* =========== Section to generate Form Fields for Public Forms =================== */}
+      <FieldWrapper>
+        <Form
+          schema={formSchema}
+          uiSchema={uiSchema}
+          disabled
+          onSubmit={(data) => {
+            alert('DATA SUBMITTED' + JSON.stringify(data.formData));
+          }}
+        />
+      </FieldWrapper>
+      {/* =========== Section to generate Form Fields for Public Forms =================== */}
 
+      {/* === Section to render the form Button  === */}
 
-            {/* === section to render the form Heading and Description with Divider ==== */}
-            <FieldWrapper>
-                <h1>
-                    Advocacy Database Form
-                </h1>
-
-            </FieldWrapper>
-            {/* === section to render the form Heading and Description with Divider ==== */}
-
-
-            {/* =========== Section to generate Form Fields for Public Forms =================== */}
-            <FieldWrapper>
-                <Form
-                    schema={formSchema}
-                    uiSchema={uiSchema}
-                    onSubmit={(data) => {
-                        alert("DATA SUBMITTED" + JSON.stringify(data.formData))
-                    }
-                }
-                />
-            </FieldWrapper>
-            {/* =========== Section to generate Form Fields for Public Forms =================== */}
-
-            {/* === Section to render the form Button  === */}
-
-            {/* <MainBox
+      {/* <MainBox
                 width="40rem"
                 margin={'auto'}
                 my={2}
@@ -83,7 +72,7 @@ export default function FormSample(): JSX.Element {
                 // border={theme.custom.altBorder}
                 />
             </MainBox> */}
-            {/* === Section to render the form Button  === */}
-        </section>
-    );
+      {/* === Section to render the form Button  === */}
+    </section>
+  );
 }

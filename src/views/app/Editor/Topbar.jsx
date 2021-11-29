@@ -2,10 +2,10 @@ import React from 'react';
 import { observer } from 'mobx-react-lite';
 import { Button, Navbar, Alignment, AnchorButton, Divider, Dialog, Classes } from '@blueprintjs/core';
 import { FaGithub, FaDiscord } from 'react-icons/fa';
-import DownloadButton from 'polotno/toolbar/download-button';
-import { downloadFile } from 'polotno/utils/download';
+import DownloadButton from 'realmono/toolbar/download-button';
+import { downloadFile } from 'realmono/utils/download';
 
-import styled from 'polotno/utils/styled';
+import styled from 'realmono/utils/styled';
 
 const NavbarContainer = styled('div')`
   @media screen and (max-width: 500px) {
@@ -61,7 +61,7 @@ export default observer(({ store }) => {
             <input
               type='file'
               id='load-project'
-              accept='.json,.polotno'
+              accept='.json,.realmono'
               ref={inputRef}
               style={{ width: '180px', display: 'none' }}
               onChange={(e) => {
@@ -108,7 +108,7 @@ export default observer(({ store }) => {
         <Navbar.Group align={Alignment.RIGHT}>
           <AnchorButton
             minimal
-            href='https://github.com/lavrton/polotno-studio'
+            href='https://github.com/lavrton/realmono-studio'
             target='_blank'
             icon={<FaGithub className='bp3-icon' style={{ fontSize: '20px' }} />}
           >
@@ -150,15 +150,15 @@ export default observer(({ store }) => {
             <h2>Is it Open Source?</h2>
             <p>
               Partially. The source code is available in
-              <a href='https://github.com/lavrton/polotno-studio' target='_blank' rel='noreferrer'>
+              <a href='https://github.com/lavrton/realmono-studio' target='_blank' rel='noreferrer'>
                 GitHub repository
               </a>
               . The repository doesn&apos;t have full source. <strong>Polotno Studio</strong> is powered by
-              <a href='https://polotno.dev/' target='_blank' rel='noreferrer'>
+              <a href='https://realmono.dev/' target='_blank' rel='noreferrer'>
                 Polonto SDK project
               </a>
-              . All core editor functionality are implemented by <strong>polotno</strong> npm package (which is not open
-              source at the time of writing this text).
+              . All core editor functionality are implemented by <strong>realmono</strong> npm package (which is not
+              open source at the time of writing this text).
             </p>
             <p>Polotno Studio is build on top of Polotno SDK to provide a desktop-app-like experience.</p>
             <h2>Who is making Polotno Studio?</h2>
@@ -178,21 +178,21 @@ export default observer(({ store }) => {
             <p>
               Instead of monetizing the end-user application <strong>Polotno Studio</strong> I decided to make money
               around developers tools with
-              <a href='https://polotno.dev/' target='_blank' rel='noreferrer'>
+              <a href='https://realmono.dev/' target='_blank' rel='noreferrer'>
                 Polonto SDK
               </a>
               .
             </p>
             <p>
               <strong>Polotno Studio</strong> is a sandbox application and polished demonstration of
-              <a href='https://polotno.dev/' target='_blank' rel='noreferrer'>
+              <a href='https://realmono.dev/' target='_blank' rel='noreferrer'>
                 Polonto SDK
               </a>
               usage.
             </p>
             <p>
               With
-              <a href='https://polotno.dev/' target='_blank' rel='noreferrer'>
+              <a href='https://realmono.dev/' target='_blank' rel='noreferrer'>
                 Polonto SDK
               </a>
               you can build very different application with very different UI.
