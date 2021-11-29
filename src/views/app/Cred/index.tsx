@@ -4,9 +4,9 @@ import { useRealm } from 'use-realm';
 import { CRED_WIZARD_STEP } from '@/lib/realm';
 
 /* Import Page Components here */
-import DefaultAccess from './wizard/Start';
-import Protocol from './wizard/Protocol';
 import CreateNewCert from './wizard/CreateNewCert';
+import Protocol from './wizard/Protocol';
+import RecipientMedium from './wizard/RecipientMedium';
 
 interface WizardProps {
   useFormStep?: (...args: unknown[]) => React.Dispatch<React.SetStateAction<string>> | Promise<void>;
@@ -55,8 +55,8 @@ export default function View(props: WizardProps): JSX.Element {
     case 'protocol':
       FormComponent = Protocol;
       break;
-    case 'access':
-      FormComponent = DefaultAccess;
+    case 'medium':
+      FormComponent = RecipientMedium;
       break;
     default:
       break;

@@ -1,6 +1,6 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { RadioGroup } from '@headlessui/react';
 import { joinClassNames } from '@/lib/helper';
+import NextImage from '../NextImage';
 // import { UseFormRegister } from 'react-hook-form';
 
 type RadioPillProps = {
@@ -17,10 +17,10 @@ const RadioPillInput = (props: RadioPillProps) => {
     <RadioGroup value={value} onChange={onChange}>
       <RadioGroup.Label className='sr-only'>Server size</RadioGroup.Label>
       <div className='space-y-4'>
-        {options.map((plan) => (
+        {options.map((network) => (
           <RadioGroup.Option
-            key={plan.name}
-            value={plan}
+            key={network.name}
+            value={network}
             className={({ checked, active }) =>
               joinClassNames(
                 checked ? 'border-transparent' : 'border-gray-300',
@@ -34,22 +34,30 @@ const RadioPillInput = (props: RadioPillProps) => {
                 <div className='flex items-center'>
                   <div className='text-sm'>
                     <RadioGroup.Label as='p' className='font-medium text-gray-900'>
-                      {plan.name}
+                      {network.name}
                     </RadioGroup.Label>
                     <RadioGroup.Description as='div' className='text-gray-500'>
                       <p className='sm:inline'>
-                        {plan.ram} / {plan.cpus}
-                      </p>{' '}
+                        {network.description}
+                      </p>
                       <span className='hidden sm:inline sm:mx-1' aria-hidden='true'>
                         &middot;
-                      </span>{' '}
-                      <p className='sm:inline'>{plan.disk}</p>
+                      </span>
+                      {/* <p className='sm:inline'>{network.disk}</p> */}
                     </RadioGroup.Description>
                   </div>
                 </div>
-                <RadioGroup.Description as='div' className='flex mt-2 text-sm sm:mt-0 sm:block sm:ml-4 sm:text-right'>
-                  <div className='font-medium text-gray-900'>{plan.price}</div>
-                  <div className='ml-1 text-gray-500 sm:ml-0'>/mo</div>
+                <RadioGroup.Description as='div' className='flex justify-center mt-2 text-sm align-middle sm:mt-0 sm:block sm:ml-4 sm:text-right'>
+                  <NextImage 
+                  layout="intrinsic" 
+                  imgClassName="rounded-full" 
+                  className="rounded-full" 
+                  alt={network.name}
+                  width="40px" 
+                  height="40px" 
+                  useSkeleton 
+                  src={network.networkImg} 
+                  />
                 </RadioGroup.Description>
                 <div
                   className={joinClassNames(
