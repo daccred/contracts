@@ -2,7 +2,7 @@ import { LockClosedIcon } from '@heroicons/react/solid';
 import React from 'react';
 import { AuthenticateOptions } from 'react-moralis/lib/hooks/core/useMoralis/_useMoralisAuth';
 
-import * as NextAuth from '@/lib/auth.helper';
+// import * as NextAuth from '@/lib/auth.helper';
 
 interface AuthViewOptions {
   isAuthenticated: boolean;
@@ -21,7 +21,12 @@ export const AuthView: React.FC<AuthViewOptions> = ({ isAuthenticated, authentic
             {/* ///////// Button to trigger Metamask Login ///////// */}
             <div>
               <button
-                onClick={() => authenticate({ onSuccess: (user) => NextAuth.login(user) })}
+                onClick={() =>
+                  authenticate(
+                    { onComplete: () => alert('success') }
+                    // { onSuccess: (user) => NextAuth.login(user) }
+                  )
+                }
                 className='relative flex justify-center w-full px-4 py-4 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md group hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
               >
                 <span className='absolute inset-y-0 left-0 flex items-center pl-3'>
