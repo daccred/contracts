@@ -1,37 +1,46 @@
 import React, { Fragment } from 'react';
 import { joinClassNames } from '@/lib/helper';
-import { navigation as n, userNavigation as un } from '@/config/constants';
+import { userNavigation as un } from '@/config/constants';
+import { observer } from 'mobx-react-lite';
 import { Menu, Disclosure, Transition } from '@headlessui/react';
-import { XIcon, MenuIcon } from '@heroicons/react/outline';
+import { XIcon, MenuIcon, HomeIcon } from '@heroicons/react/outline';
+import DownloadButton from 'realmono/toolbar/download-button';
+
 import NextImage from '../next/NextImage';
 import HeaderMobile from './HeaderMobile';
+import UnstyledLink from '../links/UnstyledLink';
+import useNewEditorTemplate from '@/hooks/useNewEditorTemplate';
+import templates from '@/lib/design';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function EditorTopbar({ user, hasProfile, navigation, userNavigation, open }: any) {
+export default observer(({ store, user, hasProfile, navigation, userNavigation, open }: any) => {
+  const { handleTemplateSelection } = useNewEditorTemplate(store)
   return (
-    <div className='px-4 mx-auto max-w-7xl sm:px-6 lg:px-8'>
+    <div className='px-3 mx-auto sm:px-6 lg:px-6'>
       <div className='flex items-center justify-between h-16'>
+
+
+        {/* -------- Left hand Nav section ----- */}
         <div className='flex items-center'>
-          <div className='hidden md:block'>
-            <div className='flex items-baseline ml-0 space-x-4'>
-              {navigation.map((item: typeof n[0]) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className={joinClassNames(
-                    item.current
-                      ? 'bg-gray-800 text-white hover:text-white'
-                      : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                    'px-3 py-2 rounded-md text-sm font-medium'
-                  )}
-                  aria-current={item.current ? 'page' : undefined}
-                >
-                  {item.name}
-                </a>
-              ))}
+          <div className='flex text-gray-500'>
+            <UnstyledLink className="text-gray-500" href="/">
+              <HomeIcon className="w-7 h-7" />
+            </UnstyledLink>
+
+            <div className="hidden bg-gray-500">
+            <DownloadButton store={store} />
             </div>
+
+            <h3 onClick={(e) => handleTemplateSelection(templates.certOne)}>Load stray template</h3>
+
+
           </div>
         </div>
+        {/* -------- Left hand Nav section ----- */}
+
+
+
+
         <div className='hidden md:block'>
           <div className='flex items-center ml-4 md:ml-6'>
             {/* Profile dropdown */}
@@ -86,7 +95,6 @@ export default function EditorTopbar({ user, hasProfile, navigation, userNavigat
         </div>
 
         {/* ---------- This button shows the Menu Icon on Mobile and triggers the mobile menu layout ----- */}
-        {/* ---------- however due to styling it is nested as part of the desktop header components ----- */}
         <div className='flex -mr-2 md:hidden'>
           {/* Mobile menu button */}
           <Disclosure.Button className='inline-flex items-center justify-center p-2 text-gray-400 bg-gray-800 rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white'>
@@ -98,7 +106,6 @@ export default function EditorTopbar({ user, hasProfile, navigation, userNavigat
             )}
           </Disclosure.Button>
         </div>
-        {/* ------------------------------ collapse menu mobile trigger ----------------------------- */}
 
         {/* --------- Embded the Mobile header in the Editor Topbar ------ */}
         <HeaderMobile
@@ -107,9 +114,10 @@ export default function EditorTopbar({ user, hasProfile, navigation, userNavigat
           navigation={navigation}
           open={open}
           hasProfile={hasProfile}
-        />
+          />
         {/* --------- Embded the Mobile header in the Editor Topbar ------ */}
+        {/* ------------------------------  menu mobile section ----------------------------- */}
       </div>
     </div>
   );
-}
+})

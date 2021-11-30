@@ -43,7 +43,7 @@ const templates: TemplateSelectBoxProps[] = [
     thumbnail: '/templates/cert_5.png',
   },
   {
-    id: 5,
+    id: 6,
     value: design.certOne,
     title: 'Certificate',
     thumbnail: '/templates/cert_6.png',

@@ -6,14 +6,17 @@ import { navigation, userNavigation } from '@/config/constants';
 import { Disclosure } from '@headlessui/react';
 
 // import { ZoomButtons } from 'realmono/toolbar/zoom-buttons';
-import { SidePanel } from 'realmono/side-panel';
+import { SidePanel, TextSection, TemplatesSection, ElementsSection, UploadSection, BackgroundSection } from 'realmono/side-panel';
 import { Workspace } from 'realmono/canvas/workspace';
 
 import { loadFile } from './actions/file';
 
-// import Topbar from './Topbar';
 import EditorTopbar from '@/components/header/EditorTopbar';
 import useAuthUser from '@/hooks/useAuthUser';
+
+
+const PANEL_SECTIONS = [TextSection, ElementsSection, UploadSection, BackgroundSection]
+
 
 const useHeight = () => {
   const [height, setHeight] = React.useState(window.innerHeight);
@@ -57,6 +60,7 @@ const Editor = ({ store }) => {
             navigation={navigation}
             open={open}
             hasProfile={hasProfile}
+            store={store}
           />
         )}
       </Disclosure>
@@ -64,11 +68,11 @@ const Editor = ({ store }) => {
       <div style={{ height: 'calc(100% - 50px)' }}>
         <PolotnoContainer className='editor-container'>
           <SidePanelWrap>
-            <SidePanel store={store} />
+            <SidePanel sections={PANEL_SECTIONS} store={store} />
           </SidePanelWrap>
           <WorkspaceWrap>
             <Toolbar store={store} />
-            <Workspace store={store} />
+            <Workspace  pageControlsEnabled={false} store={store} />
             {/* <ZoomButtons store={store} /> */}
           </WorkspaceWrap>
         </PolotnoContainer>
