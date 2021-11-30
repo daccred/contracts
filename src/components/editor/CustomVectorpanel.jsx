@@ -16,7 +16,7 @@ export const SVGPanel = observer(({ store }) => {
   // load data
   const { data, isLoading, loadMore, setQuery } = useInfiniteAPI({
     getAPI: ({ page, query }) =>
-      `https://api.realmono.dev/api/get-svgapi?query=${query}&page=${page - 1}&key=${getKey()}`,
+      `https://api.koolamusic.dev/api/get-svgapi?query=${query}&page=${page - 1}&key=${getKey()}`,
     getSize: (res) => Math.floor(res.count / res.limit),
   });
 
@@ -38,7 +38,7 @@ export const SVGPanel = observer(({ store }) => {
         getPreview={(item) => item.url}
         isLoading={isLoading}
         onSelect={async (item, pos, element) => {
-          const req = await fetch(`https://api.realmono.dev/api/download-svgapi?key=${getKey()}&path=${item.path}`);
+          const req = await fetch(`https://api.koolamusic.dev/api/download-svgapi?key=${getKey()}&path=${item.path}`);
           const json = await req.json();
           const base64 = await svgToURL(json.content);
           if (element && element.type === 'image') {

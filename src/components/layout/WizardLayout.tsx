@@ -1,33 +1,13 @@
 import React from 'react';
-import nookies from 'nookies';
-import { decode } from 'js-base64';
-
-import { formatAddress } from '@/lib/helper';
 import { Disclosure } from '@headlessui/react';
-import { AUTH, navigation, userNavigation } from '@/config/constants';
-import MoralisType from 'moralis';
+import { navigation, userNavigation } from '@/config/constants';
 import WizardNav from '../nav/WizardNav';
 import HeaderDesktop from '@/components/header/HeaderDesktop';
 import HeaderMobile from '@/components/header/HeaderMobile';
+import useAuthUser from '@/hooks/useAuthUser';
 
 const WizardLayout: React.FC = ({ children }) => {
-  const [profile, setProfile] = React.useState<Partial<MoralisType.AuthData>>({});
-  const [hasProfile, setHasProfile] = React.useState<boolean>(false);
-
-  React.useEffect(() => {
-    const cookies = nookies.get(null);
-    const profile = cookies[AUTH.key];
-    if (profile) {
-      setProfile(JSON.parse(decode(profile)));
-      setHasProfile(true);
-    }
-  }, []);
-
-  const user = {
-    name: formatAddress(profile.ethAddress),
-    email: profile.emailAddress || '',
-    imageUrl: '/images/metamask.svg',
-  };
+  const { user, hasProfile } = useAuthUser();
 
   return (
     <>

@@ -3,12 +3,12 @@ import { joinClassNames } from '@/lib/helper';
 import { navigation as n, userNavigation as un } from '@/config/constants';
 import { Disclosure } from '@headlessui/react';
 import { BellIcon } from '@heroicons/react/outline';
-import NextImage from '../NextImage';
+import NextImage from '../next/NextImage';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function HeaderMobile({ user, navigation, userNavigation }: any) {
   return (
-    <Disclosure.Panel className='md:hidden'>
+    <Disclosure.Panel className='relative md:hidden'>
       <div className='px-2 pt-2 pb-3 space-y-1 sm:px-3'>
         {navigation.map((item: typeof n[0]) => (
           <Disclosure.Button
@@ -25,7 +25,7 @@ export default function HeaderMobile({ user, navigation, userNavigation }: any) 
           </Disclosure.Button>
         ))}
       </div>
-      <div className='pt-4 pb-3 border-t border-gray-700'>
+      <div className='pt-4 pb-3 border-t relative border-gray-700'>
         <div className='flex items-center px-5'>
           <div className='flex-shrink-0'>
             <NextImage

@@ -4,9 +4,10 @@ import { navigation as n, userNavigation as un } from '@/config/constants';
 import { Menu, Disclosure, Transition } from '@headlessui/react';
 import { XIcon, MenuIcon } from '@heroicons/react/outline';
 import NextImage from '../next/NextImage';
+import HeaderMobile from './HeaderMobile';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function HeaderDesktop({ user, hasProfile, navigation, userNavigation, open }: any) {
+export default function EditorTopbar({ user, hasProfile, navigation, userNavigation, open }: any) {
   return (
     <div className='px-4 mx-auto max-w-7xl sm:px-6 lg:px-8'>
       <div className='flex items-center justify-between h-16'>
@@ -33,14 +34,6 @@ export default function HeaderDesktop({ user, hasProfile, navigation, userNaviga
         </div>
         <div className='hidden md:block'>
           <div className='flex items-center ml-4 md:ml-6'>
-            {/* <button
-              type='button'
-              className='p-1 text-gray-400 bg-gray-800 rounded-full hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white'
-            >
-              <span className='sr-only'>View notifications</span>
-              <BellIcon className='w-6 h-6' aria-hidden='true' />
-            </button> */}
-
             {/* Profile dropdown */}
             {hasProfile && (
               <Menu as='div' className='relative ml-3'>
@@ -106,6 +99,16 @@ export default function HeaderDesktop({ user, hasProfile, navigation, userNaviga
           </Disclosure.Button>
         </div>
         {/* ------------------------------ collapse menu mobile trigger ----------------------------- */}
+
+        {/* --------- Embded the Mobile header in the Editor Topbar ------ */}
+        <HeaderMobile
+          userNavigation={userNavigation}
+          user={user}
+          navigation={navigation}
+          open={open}
+          hasProfile={hasProfile}
+        />
+        {/* --------- Embded the Mobile header in the Editor Topbar ------ */}
       </div>
     </div>
   );

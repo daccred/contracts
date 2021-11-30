@@ -42,6 +42,13 @@ const createNewCredentialSlice: StoreSlice<NewCredentialSlice> = (set) => ({
   },
 });
 
+// const createAppUserSlice: StoreSlice<NewCredentialSlice> = (set) => ({
+//   credential: {},
+//   dispatchNewCredentialAction: (payload) => {
+//     set((state) => ({ credential: Object.assign(state.credential, payload) }));
+//   },
+// });
+
 export const useZustand = create<StoreState>(
   persist(
     (set, get) => ({

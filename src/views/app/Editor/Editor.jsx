@@ -12,7 +12,8 @@ import { Workspace } from 'realmono/canvas/workspace';
 import { loadFile } from './actions/file';
 
 // import Topbar from './Topbar';
-import HeaderDesktop from '@/components/header/HeaderDesktop';
+import EditorTopbar from '@/components/header/EditorTopbar';
+import useAuthUser from '@/hooks/useAuthUser';
 
 const useHeight = () => {
   const [height, setHeight] = React.useState(window.innerHeight);
@@ -25,6 +26,9 @@ const useHeight = () => {
 };
 
 const Editor = ({ store }) => {
+  const { user, hasProfile } = useAuthUser();
+  const height = useHeight();
+
   const handleDrop = (ev) => {
     // Prevent default behavior (Prevent file from being opened)
     ev.preventDefault();
@@ -33,13 +37,6 @@ const Editor = ({ store }) => {
     for (let i = 0; i < ev.dataTransfer.files.length; i++) {
       loadFile(ev.dataTransfer.files[i], store);
     }
-  };
-
-  const height = useHeight();
-  const user = {
-    name: '0x06b3f....ad10x',
-    email: '0x0c0dsd0s',
-    imageUrl: '/images/metamask.svg',
   };
 
   return (
@@ -52,14 +49,14 @@ const Editor = ({ store }) => {
       }}
       onDrop={handleDrop}
     >
-      <Disclosure as='nav' className='bg-gray-900'>
+      <Disclosure as='nav' className='relative z-20 bg-gray-900'>
         {({ open }) => (
-          <HeaderDesktop
+          <EditorTopbar
             userNavigation={userNavigation}
             user={user}
             navigation={navigation}
             open={open}
-            hasProfile={true}
+            hasProfile={hasProfile}
           />
         )}
       </Disclosure>

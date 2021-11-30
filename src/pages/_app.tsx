@@ -7,7 +7,7 @@ import '@/styles/globals.css';
 import '@/styles/blueprint.css';
 import '@/styles/blueprint-extend.css';
 
-import Seo from '@/components/Meta';
+import Seo from '@/components/next/Meta';
 
 import { MORALIS_APP_ID, MORALIS_SERVER_URL } from '@/config/constants';
 
