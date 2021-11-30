@@ -6,7 +6,7 @@ import NextImage from '../next/NextImage';
 export interface TemplateSelectBoxProps {
   id: number;
   title: string;
-  thumbnail: string;
+  url: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   value: any;
   disabled?: boolean;
@@ -39,7 +39,7 @@ const TemplateSelectBox: React.FC<RadioGroupProps<TemplateSelectBoxProps>> = ({ 
                         useSkeleton
                         imgClassName='w-6 h-6 bg-gray-900 rounded-md'
                         className='w-8 h-8 border-2 rounded-md'
-                        src={option.thumbnail}
+                        src={option.url}
                         alt='User Meta'
                         layout='fill'
                       />

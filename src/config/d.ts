@@ -15,3 +15,11 @@ export interface ClaimOptionsVar {
   medium: TRecipientDataMedium;
   schema: JSONSchema7;
 }
+
+export interface CredentialCreateOptions {
+  claim: ClaimOptionsVar;
+  template: JSON;
+  certName: string;
+  certDescription: string;
+  protocol: TNetworkProtocol;
+}

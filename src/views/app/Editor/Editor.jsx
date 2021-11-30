@@ -6,17 +6,17 @@ import { navigation, userNavigation } from '@/config/constants';
 import { Disclosure } from '@headlessui/react';
 
 // import { ZoomButtons } from 'realmono/toolbar/zoom-buttons';
-import { SidePanel, TextSection, TemplatesSection, ElementsSection, UploadSection, BackgroundSection } from 'realmono/side-panel';
+import { SidePanel, ElementsSection, UploadSection } from 'realmono/side-panel';
 import { Workspace } from 'realmono/canvas/workspace';
 
 import { loadFile } from './actions/file';
 
 import EditorTopbar from '@/components/header/EditorTopbar';
 import useAuthUser from '@/hooks/useAuthUser';
+import TemplateSection from '@/components/editor/EditorTemplateSection';
+// import Tem from '@/components/'
 
-
-const PANEL_SECTIONS = [TextSection, ElementsSection, UploadSection, BackgroundSection]
-
+const PANEL_SECTIONS = [TemplateSection, ElementsSection, UploadSection];
 
 const useHeight = () => {
   const [height, setHeight] = React.useState(window.innerHeight);
@@ -72,7 +72,7 @@ const Editor = ({ store }) => {
           </SidePanelWrap>
           <WorkspaceWrap>
             <Toolbar store={store} />
-            <Workspace  pageControlsEnabled={false} store={store} />
+            <Workspace pageControlsEnabled={false} store={store} />
             {/* <ZoomButtons store={store} /> */}
           </WorkspaceWrap>
         </PolotnoContainer>

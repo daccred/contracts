@@ -9,37 +9,25 @@ import DownloadButton from 'realmono/toolbar/download-button';
 import NextImage from '../next/NextImage';
 import HeaderMobile from './HeaderMobile';
 import UnstyledLink from '../links/UnstyledLink';
-import useNewEditorTemplate from '@/hooks/useNewEditorTemplate';
-import templates from '@/lib/design';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default observer(({ store, user, hasProfile, navigation, userNavigation, open }: any) => {
-  const { handleTemplateSelection } = useNewEditorTemplate(store)
   return (
     <div className='px-3 mx-auto sm:px-6 lg:px-6'>
       <div className='flex items-center justify-between h-16'>
-
-
         {/* -------- Left hand Nav section ----- */}
         <div className='flex items-center'>
           <div className='flex text-gray-500'>
-            <UnstyledLink className="text-gray-500" href="/">
-              <HomeIcon className="w-7 h-7" />
+            <UnstyledLink className='text-gray-500' href='/'>
+              <HomeIcon className='w-7 h-7' />
             </UnstyledLink>
 
-            <div className="hidden bg-gray-500">
-            <DownloadButton store={store} />
+            <div className='hidden bg-gray-500'>
+              <DownloadButton store={store} />
             </div>
-
-            <h3 onClick={(e) => handleTemplateSelection(templates.certOne)}>Load stray template</h3>
-
-
           </div>
         </div>
         {/* -------- Left hand Nav section ----- */}
-
-
-
 
         <div className='hidden md:block'>
           <div className='flex items-center ml-4 md:ml-6'>
@@ -114,10 +102,10 @@ export default observer(({ store, user, hasProfile, navigation, userNavigation, 
           navigation={navigation}
           open={open}
           hasProfile={hasProfile}
-          />
+        />
         {/* --------- Embded the Mobile header in the Editor Topbar ------ */}
         {/* ------------------------------  menu mobile section ----------------------------- */}
       </div>
     </div>
   );
-})
+});
