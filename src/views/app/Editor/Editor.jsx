@@ -1,5 +1,5 @@
-import React from 'react';
 import { PolotnoContainer, SidePanelWrap, WorkspaceWrap } from 'realmono';
+import React from 'react';
 import { Toolbar } from 'realmono/toolbar/toolbar';
 // import { PagesPanel } from 'realmono/side-panel/pages-panel';
 import { navigation, userNavigation } from '@/config/constants';
@@ -14,9 +14,10 @@ import { loadFile } from './actions/file';
 import EditorTopbar from '@/components/header/EditorTopbar';
 import useAuthUser from '@/hooks/useAuthUser';
 import TemplateSection from '@/components/editor/EditorTemplateSection';
+import VariableSection from '@/components/editor/RecipientVariableSection';
 // import Tem from '@/components/'
 
-const PANEL_SECTIONS = [TemplateSection, ElementsSection, UploadSection];
+const PANEL_SECTIONS = [TemplateSection, ElementsSection, VariableSection, UploadSection];
 
 const useHeight = () => {
   const [height, setHeight] = React.useState(window.innerHeight);

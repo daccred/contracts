@@ -14,20 +14,20 @@ export const TemplatesPanel = observer(({ store }: any) => {
   const [images, setEditorTemplates] = useState<TemplateSelectBoxProps[]>([]);
   const { appendTemplate } = useEditorTemplate(store);
 
-  async function loadImages() {
+  async function asyncLoadTemplates() {
     // here we should implement your own API requests
     setEditorTemplates([]);
 
     // wait to emulate network request
-    await new Promise((resolve) => setTimeout(resolve, 3000));
+    await new Promise((resolve) => setTimeout(resolve, 2000));
 
-    // for demo images are hard coded
-    // in real app here will be something like JSON structure
+    // Here we are hard coding the templates into the code, however
+    // we will want to asyn retrieve this from API or Moralis in JSON like structure
     setEditorTemplates(templates);
   }
 
   useEffect(() => {
-    loadImages();
+    asyncLoadTemplates();
   }, []);
 
   return (
@@ -36,7 +36,7 @@ export const TemplatesPanel = observer(({ store }: any) => {
         leftIcon='search'
         placeholder='Search...'
         onChange={(e) => {
-          loadImages();
+          asyncLoadTemplates();
         }}
         style={{
           marginBottom: '20px',

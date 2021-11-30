@@ -650,22 +650,3 @@ label.bp3-label .bp3-popover2-target {
   cursor: help;
 }
 /*# sourceMappingURL=blueprint-popover2.css.map */
-
-@font-face {
-  font-family: 'Icons16';
-  font-style: normal;
-  font-weight: normal;
-  src: url('../../node_modules/@blueprintjs/icons/') format('embedded-opentype'),
-    url('../../node_modules/@blueprintjs/icons/resources/icons/icons-16.woff') format('woff'),
-    url('../../node_modules/@blueprintjs/icons/resources/icons/icons-16.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Icons20';
-  font-style: normal;
-  font-weight: normal;
-  src: url('../../node_modules/@blueprintjs/icons/resources/icons/icons-20.eot?#iefix') format('embedded-opentype'),
-    url('../../node_modules/@blueprintjs/icons/resources/icons/icons-20.woff') format('woff'),
-    url('../../node_modules/@blueprintjs/icons/resources/icons/icons-20.ttf') format('truetype');
-}
-/*# sourceMappingURL=blueprint-icons.css.map */

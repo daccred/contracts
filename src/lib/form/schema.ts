@@ -8,7 +8,7 @@ export const uiSchema: UiSchema = {
   name: {
     'ui:widget': 'text',
   },
-  collegeName: {
+  college: {
     'ui:placeholder': 'Meltwater',
   },
 };
