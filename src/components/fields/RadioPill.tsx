@@ -1,11 +1,12 @@
 import { RadioGroup } from '@headlessui/react';
 import { joinClassNames } from '@/lib/helper';
-import { RadioGroupProps } from '@/config/d';
+import { RadioGroupProps, TNetworkProtocol } from '@/config/d';
 import NextImage from '../NextImage';
 
 export interface PillOptionProps {
   name: string;
   img: string;
+  value: TNetworkProtocol;
   description: string;
   disabled?: boolean;
 }

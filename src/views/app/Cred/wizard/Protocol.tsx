@@ -11,24 +11,28 @@ import RadioPillInput, { PillOptionProps } from '@/components/fields/RadioPill';
 const options = [
   {
     disabled: false,
+    value: 'eth_kovan',
     name: 'Ethereum Kovan',
     img: '/images/ethereum.svg',
     description: 'Deploy your credential smart contract to the Ethereum Kovan Testnet',
   },
   {
     disabled: true,
+    value: 'eth_mainnet',
     name: 'Ethereum Mainnet',
     img: '/images/ethereum.svg',
     description: 'Deploy your credential smart contract to the Live Ethereum Mainnet',
   },
   {
     disabled: true,
+    value: 'bsc',
     name: 'Binance Smart Chain',
     img: '/images/binance-dark.svg',
     description: 'Deploy your smart contract to Binance Smart Chain',
   },
   {
     disabled: true,
+    value: 'matic',
     name: 'Polygon MATIC',
     img: '/images/matic.svg',
     description: 'Deploy your credential to Polygon MATIC network',
@@ -38,7 +42,7 @@ const options = [
 /*  ------------------------------------------------------------------------------------- */
 
 const Protocol = () => {
-  const [selected, _selected] = React.useState<PillOptionProps>(options[0]);
+  const [selected, _selected] = React.useState<PillOptionProps>();
   const [step, _step] = useRealm<WizardStepOpts[]>(CRED_WIZARD_STEP);
 
   /* hook forms */
@@ -48,7 +52,7 @@ const Protocol = () => {
     _selected(data);
 
     try {
-      await _dispatchFormAction({ protocol: data });
+      await _dispatchFormAction({ protocol: data.value });
       await _step([...step, 'medium']);
     } catch (error) {
       alert(JSON.stringify(error));
