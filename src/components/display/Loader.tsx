@@ -16,15 +16,15 @@ export default function Loader() {
           leaveTo='opacity-0 scale-95 '
         >
           <div className='flex flex-col items-center py-16'>
-      <div className='w-32 h-32'>
-          <div className="flex animate-pulse">
-            <div className="w-12 h-12 mx-2 bg-gray-500 rounded-full rotate-6"></div>
-            <div className="w-12 h-12 mx-2 bg-gray-500 rounded-full"></div>
-            <div className="w-12 h-12 mx-2 bg-gray-500 rounded-full"></div>
-            <div className="w-12 h-12 mx-2 bg-gray-500 rounded-full -rotate-6"></div> 
+            <div className='w-32 h-32'>
+              <div className='flex animate-pulse'>
+                <div className='w-12 h-12 mx-2 bg-gray-500 rounded-full rotate-6'></div>
+                <div className='w-12 h-12 mx-2 bg-gray-500 rounded-full'></div>
+                <div className='w-12 h-12 mx-2 bg-gray-500 rounded-full'></div>
+                <div className='w-12 h-12 mx-2 bg-gray-500 rounded-full -rotate-6'></div>
+              </div>
+            </div>
           </div>
-      </div>
-    </div>
         </Transition>
       </div>
     </div>
