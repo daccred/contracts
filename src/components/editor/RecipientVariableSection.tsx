@@ -16,7 +16,7 @@ export const VariablesPanel = observer(({ store }: any) => {
     setEditorVariables([]);
 
     // wait to emulate network request
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await new Promise((resolve) => setTimeout(resolve, 500));
 
     // Here we are hard coding the Variables into the code, however
     // we will want to asyn retrieve this from API or Moralis in JSON like structure
@@ -43,6 +43,7 @@ export const VariablesPanel = observer(({ store }: any) => {
       {/* you can create yur own custom component here */}
       {/* but we will use built-in grid component */}
       <ImagesGrid
+        shadowEnabled={false}
         images={variables}
         getPreview={(image) => image.url}
         onSelect={async (image, _pos, _element) => {

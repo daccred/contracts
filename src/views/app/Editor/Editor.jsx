@@ -69,7 +69,7 @@ const Editor = ({ store }) => {
       <div style={{ height: 'calc(100% - 50px)' }}>
         <PolotnoContainer className='editor-container'>
           <SidePanelWrap>
-            <SidePanel sections={PANEL_SECTIONS} store={store} />
+            <SidePanel defaultSection={'upload'} sections={PANEL_SECTIONS} store={store} />
           </SidePanelWrap>
           <WorkspaceWrap>
             <Toolbar store={store} />
