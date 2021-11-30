@@ -7,11 +7,15 @@ import { useZustand } from '@/lib/zustand';
 import TemplateSelectBox, { TemplateSelectBoxProps } from '@/components/fields/TemplateSelectBox';
 import { CredentialCreateOptions } from '@/config/d';
 import { templates } from '@/config/templates.default';
+import localforage from 'localforage';
+import { LF_EDITOR_VAR } from '@/config/constants';
+import { useRouter } from 'next/router';
 
 const TemplateSelection = () => {
   const [submitting] = React.useState<boolean>(false);
   const [selected, _selected] = React.useState<TemplateSelectBoxProps>();
   const { handleSubmit } = useForm();
+  const router = useRouter();
 
   /* hook forms */
   const _dispatchFormAction = useZustand((slice) => slice.dispatchNewCredentialAction);
@@ -24,6 +28,11 @@ const TemplateSelection = () => {
 
     try {
       await _dispatchFormAction(claim);
+      await localforage.setItem(LF_EDITOR_VAR, data.value);
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
+      router.replace('/editor');
+
       // await _step([...step, 'medium_preview']);
     } catch (error) {
       alert(JSON.stringify(error));

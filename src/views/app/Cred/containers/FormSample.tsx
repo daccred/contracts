@@ -40,7 +40,6 @@ export default function FormSample(): JSX.Element {
         <Form
           schema={formSchema}
           uiSchema={uiSchema}
-          disabled
           onSubmit={(data) => {
             alert('DATA SUBMITTED' + JSON.stringify(data.formData));
           }}
