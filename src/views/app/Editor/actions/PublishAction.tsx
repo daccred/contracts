@@ -1,10 +1,10 @@
 import { useWeb3ExecuteFunction } from 'react-moralis';
-import dacredRouterABI from '@/lib/abis/dacredRouter';
+import ABI from '@/lib/abis/index';
 
 export default function PublishAction(): JSX.Element {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { data, error, fetch, isFetching, isLoading } = useWeb3ExecuteFunction({
-    abi: dacredRouterABI,
+    abi: ABI.dacredRouterABI,
     contractAddress: '0x195c499669Ed02E9313e94836A2dCf9500322532',
     functionName: 'createContractForClient',
     params: {
