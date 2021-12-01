@@ -3,14 +3,14 @@ import { XIcon, ChevronLeftIcon } from '@heroicons/react/solid';
 import Button from '../buttons/Button';
 import ButtonLink from '../links/ButtonLink';
 import { useRealm } from 'use-realm';
-import { CRED_WIZARD_STEP } from '@/lib/realm';
+import { CRED_WIZARD_STEP, WizardStepOpts } from '@/lib/realm';
 
 interface WizardNavProps {
   step?: string[];
 }
 
 const WizardNav: React.FC<WizardNavProps> = (): JSX.Element => {
-  const [step, _step] = useRealm<string[]>(CRED_WIZARD_STEP);
+  const [step, _step] = useRealm<WizardStepOpts[]>(CRED_WIZARD_STEP);
   const [isMounted, setMount] = useState(false);
 
   useEffect(() => {

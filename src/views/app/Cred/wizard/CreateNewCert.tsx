@@ -3,7 +3,7 @@ import { useRealm } from 'use-realm';
 import { useForm } from 'react-hook-form';
 
 /* Import Page Components here */
-import { CRED_WIZARD_STEP } from '@/lib/realm';
+import { CRED_WIZARD_STEP, WizardStepOpts } from '@/lib/realm';
 import Button from '@/components/buttons/Button';
 import InputField from '@/components/fields/Input';
 import TextboxField from '@/components/fields/Textbox';
@@ -11,7 +11,8 @@ import { useZustand } from '@/lib/zustand';
 
 const CreateNewCert = () => {
   const [submitting, _submitting] = React.useState<boolean>(false);
-  const [step, _step] = useRealm<string[]>(CRED_WIZARD_STEP);
+  const [step, _step] = useRealm<WizardStepOpts[]>(CRED_WIZARD_STEP);
+
   /* hook forms */
   const { register, handleSubmit } = useForm();
 

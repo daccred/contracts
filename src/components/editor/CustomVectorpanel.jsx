@@ -2,21 +2,21 @@ import React from 'react';
 import { observer } from 'mobx-react-lite';
 import { InputGroup } from '@blueprintjs/core';
 
-import { useInfiniteAPI } from 'polotno/utils/use-api';
+import { useInfiniteAPI } from 'realmono/utils/use-api';
 
-import { SectionTab } from 'polotno/side-panel';
-import { svgToURL } from 'polotno/utils/svg';
-import { getKey } from 'polotno/utils/validate-key';
-import { getImageSize } from 'polotno/utils/image';
+import { SectionTab } from 'realmono/side-panel';
+import { svgToURL } from 'realmono/utils/svg';
+import { getKey } from 'realmono/utils/validate-key';
+import { getImageSize } from 'realmono/utils/image';
 import { FaVectorSquare } from 'react-icons/fa';
 
-import { ImagesGrid } from 'polotno/side-panel/images-grid';
+import { ImagesGrid } from 'realmono/side-panel/images-grid';
 
 export const SVGPanel = observer(({ store }) => {
   // load data
   const { data, isLoading, loadMore, setQuery } = useInfiniteAPI({
     getAPI: ({ page, query }) =>
-      `https://api.polotno.dev/api/get-svgapi?query=${query}&page=${page - 1}&key=${getKey()}`,
+      `https://api.koolamusic.dev/api/get-svgapi?query=${query}&page=${page - 1}&key=${getKey()}`,
     getSize: (res) => Math.floor(res.count / res.limit),
   });
 
@@ -38,7 +38,7 @@ export const SVGPanel = observer(({ store }) => {
         getPreview={(item) => item.url}
         isLoading={isLoading}
         onSelect={async (item, pos, element) => {
-          const req = await fetch(`https://api.polotno.dev/api/download-svgapi?key=${getKey()}&path=${item.path}`);
+          const req = await fetch(`https://api.koolamusic.dev/api/download-svgapi?key=${getKey()}&path=${item.path}`);
           const json = await req.json();
           const base64 = await svgToURL(json.content);
           if (element && element.type === 'image') {

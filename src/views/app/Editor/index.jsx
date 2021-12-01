@@ -1,7 +1,7 @@
 import React from 'react';
 import localforage from 'localforage';
-import { createStore } from 'polotno/model/store';
-import { unstable_setRemoveBackgroundEnabled } from 'polotno/config';
+import { createStore } from 'realmono/model/store';
+import { unstable_setRemoveBackgroundEnabled } from 'realmono/config';
 
 import Editor from './Editor';
 import { LF_EDITOR_VAR } from '@/config/constants';

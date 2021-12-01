@@ -1,76 +1,79 @@
-// import React from 'react';
-// import { useRealm } from 'use-realm';
-// import { useForm, UseFormRegister, Controller, SubmitHandler } from 'react-hook-form';
+import React from 'react';
+import { useRealm } from 'use-realm';
+import { RiSurveyLine, RiFileExcel2Line, RiContactsBook2Line } from 'react-icons/ri';
 
-// /* Import Page Components here */
-// import { CRED_WIZARD_STEP } from '@/lib/realm';
-// import Button from '@/components/buttons/Button';
-// import { useZustand } from '@/lib/zustand';
-// import RadioPillInput from '@/components/fields/RadioPill';
+/* Import Page Components here */
+import { CRED_WIZARD_STEP, WizardStepOpts } from '@/lib/realm';
+import { useZustand } from '@/lib/zustand';
+import RadioBox, { RadioBoxProps } from '@/components/fields/RadioBox';
+import { ClaimOptionsVar } from '@/config/d';
 
-// /*  ------------------------------------------  Menu Radio Options Array   --------------- */
-// /*  ------------------------------------------------------------------------------------- */
-// const options = [
-//   { name: 'Hobby', ram: '8GB', cpus: '4 CPUs', disk: '160 GB SSD disk', price: '$40' },
-//   { name: 'Startup', ram: '12GB', cpus: '6 CPUs', disk: '256 GB SSD disk', price: '$80' },
-//   { name: 'Business', ram: '16GB', cpus: '8 CPUs', disk: '512 GB SSD disk', price: '$160' },
-//   { name: 'Enterprise', ram: '32GB', cpus: '12 CPUs', disk: '1024 GB SSD disk', price: '$240' },
-// ]
-// /*  ------------------------------------------  Menu Radio Options Array   --------------- */
-// /*  ------------------------------------------------------------------------------------- */
+/*  ------------------------------------------  Menu Radio Options Array   --------------- */
+/*  ----------------------------------------------------------------------------------------- */
 
-// const CreateNewCert = () => {
-//   const [submitting, _submitting] = React.useState<boolean>(false);
-//   const [selected, _selected] = React.useState<typeof options[0]>(options[0])
+const mediums = [
+  {
+    disabled: false,
+    id: '1',
+    value: 'forms',
+    title: 'Quick Forms',
+    description: 'use a quick form to collect the data you need',
+    icon: RiSurveyLine,
+  },
+  {
+    disabled: true,
+    id: '2',
+    value: 'csv',
+    title: 'Import from CSV/Excel',
+    description: 'Import recipients from a .csv, .xlsx file',
+    icon: RiFileExcel2Line,
+  },
+  {
+    disabled: true,
+    id: '3',
+    value: 'contacts',
+    title: 'Import from Contacts',
+    description: 'Import recipients from your google contact',
+    icon: RiContactsBook2Line,
+  },
+];
+/*  ------------------------------------------  Menu Radio Options Array   --------------- */
+/*  ---------------------------------------------------------------------------------------- */
 
-//   const [step, _step] = useRealm<string[]>(CRED_WIZARD_STEP);
+const CreateNewCert = () => {
+  const [selected, _selected] = React.useState<RadioBoxProps | undefined>(undefined);
 
-//   /* hook forms */
-//   const { handleSubmit, control, reset } = useForm<any>();
+  const [step, _step] = useRealm<WizardStepOpts[]>(CRED_WIZARD_STEP);
 
-//   const _dispatchFormAction = useZustand((slice) => slice.dispatchNewCredentialAction);
+  /* hook forms */
+  const _dispatchFormAction = useZustand((slice) => slice.dispatchNewCredentialAction);
 
-//   const _handleSubmission = async (data: typeof options[0]): Promise<void> => {
-//     console.log(data, "from submission")
-//     _selected(data)
-//     _submitting(true);
+  const _handleSubmission = async (data: RadioBoxProps): Promise<void> => {
+    _selected(data);
 
-//     try {
-//       await _dispatchFormAction(data);
-//       // await _step([...step, 'medium']);
-//     } catch (error) {
-//       alert(JSON.stringify(error));
-//     }
-//   };
+    const claim: Partial<ClaimOptionsVar> = {};
+    claim.medium = data.value;
 
-//   return (
-//     <section className='max-w-3xl mx-auto'>
-//       {/* ------- Form Heading section ------- */}
-//       <section className='justify-center my-4 mb-12 text-center align-center'>
-//         <h3>Select a Protocol</h3>
-//         <p className='max-w-2xl m-auto mt-2'>
-//           Choose a protocol where we will deploy this smart contract to
-//         </p>
-//       </section>
-//       {/* ------- Form Heading section ------- */}
-//        <RadioPillInput value={selected} onChange={_handleSubmission}  options={options} />
+    try {
+      await _dispatchFormAction(claim);
+      await _step([...step, 'medium_preview']);
+    } catch (error) {
+      alert(JSON.stringify(error));
+    }
+  };
 
-//       {/* ---------- Submission Button to handle effects and storage ------------- */}
-//       <Button
-//         className='min-w-full py-4 mt-6 rounded-full'
-//         // onClick={handleSubmit(_handleSubmission)}
-//         type="submit"
-//         isLoading={submitting}
-//       >
-//         Create Certification
-//       </Button>
-//       {/* ---------- Submission Button to handle effects and storage ------------- */}
+  return (
+    <section className='max-w-3xl mx-auto'>
+      {/* ------- Form Heading section ------- */}
+      <section className='justify-center my-4 mb-12 text-center align-center'>
+        <h3>Add Credential Recipients</h3>
+        <p className='max-w-2xl m-auto mt-2'>How do you want to populate the app with the data of your recipients</p>
+      </section>
+      {/* ------- Form Heading section ------- */}
 
-//     </section>
-//   );
-// };
+      <RadioBox value={selected} onChange={_handleSubmission} options={mediums} label={'Select a Medium'} />
+    </section>
+  );
+};
 
-// export default CreateNewCert;
-
-// eslint-disable-next-line import/no-anonymous-default-export
-export default {};
+export default CreateNewCert;

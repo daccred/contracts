@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { MobileSidebar } from '@/components/layout/MobileSidebar';
-import { StaticSidebar } from '@/components/layout/StaticSidebar';
+import { MobileSidebar } from '@/components/sidebar/MobileSidebar';
+import { StaticSidebar } from '@/components/sidebar/StaticSidebar';
 
 import { navigation, subnav } from '@/config/constants';
 

@@ -1,45 +1,59 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import React from 'react';
-// import { useRealm } from 'use-realm';
-// import { useForm } from 'react-hook-form';
+import { useRealm } from 'use-realm';
 
 /* Import Page Components here */ 1;
-// import { CRED_WIZARD_STEP } from '@/lib/realm';
-import Button from '@/components/buttons/Button';
+import { CRED_WIZARD_STEP, WizardStepOpts } from '@/lib/realm';
 import { useZustand } from '@/lib/zustand';
-import RadioPillInput from '@/components/fields/RadioPill';
+import RadioPillInput, { PillOptionProps } from '@/components/fields/RadioPill';
 
 /*  ------------------------------------------  Menu Radio Options Array   --------------- */
 /*  ------------------------------------------------------------------------------------- */
 const options = [
-  { name: 'Hobby', ram: '8GB', cpus: '4 CPUs', disk: '160 GB SSD disk', price: '$40' },
-  { name: 'Startup', ram: '12GB', cpus: '6 CPUs', disk: '256 GB SSD disk', price: '$80' },
-  { name: 'Business', ram: '16GB', cpus: '8 CPUs', disk: '512 GB SSD disk', price: '$160' },
-  { name: 'Enterprise', ram: '32GB', cpus: '12 CPUs', disk: '1024 GB SSD disk', price: '$240' },
+  {
+    disabled: false,
+    value: 'eth_kovan',
+    name: 'Ethereum Kovan',
+    img: '/images/ethereum.svg',
+    description: 'Deploy your credential smart contract to the Ethereum Kovan Testnet',
+  },
+  {
+    disabled: true,
+    value: 'eth_mainnet',
+    name: 'Ethereum Mainnet',
+    img: '/images/ethereum.svg',
+    description: 'Deploy your credential smart contract to the Live Ethereum Mainnet',
+  },
+  {
+    disabled: true,
+    value: 'bsc',
+    name: 'Binance Smart Chain',
+    img: '/images/binance-dark.svg',
+    description: 'Deploy your smart contract to Binance Smart Chain',
+  },
+  {
+    disabled: true,
+    value: 'matic',
+    name: 'Polygon MATIC',
+    img: '/images/matic.svg',
+    description: 'Deploy your credential to Polygon MATIC network',
+  },
 ];
 /*  ------------------------------------------  Menu Radio Options Array   --------------- */
 /*  ------------------------------------------------------------------------------------- */
 
-const CreateNewCert = () => {
-  const [submitting, _submitting] = React.useState<boolean>(false);
-  const [selected, _selected] = React.useState<any>(options[0]);
+const Protocol = () => {
+  const [selected, _selected] = React.useState<PillOptionProps>();
+  const [step, _step] = useRealm<WizardStepOpts[]>(CRED_WIZARD_STEP);
 
-  // const [step, _step] = useRealm<string[]>(CRED_WIZARD_STEP);
-
-  // /* hook forms */
-  // const { handleSubmit, control, reset } = useForm<any>();
-
+  /* hook forms */
   const _dispatchFormAction = useZustand((slice) => slice.dispatchNewCredentialAction);
 
-  const _handleSubmission = async (data: any): Promise<void> => {
-    // console.log(data, "from submission")
+  const _handleSubmission = async (data: PillOptionProps): Promise<void> => {
     _selected(data);
-    _submitting(true);
 
     try {
-      await _dispatchFormAction(data);
-      // await _step([...step, 'medium']);
+      await _dispatchFormAction({ protocol: data.value });
+      await _step([...step, 'medium']);
     } catch (error) {
       alert(JSON.stringify(error));
     }
@@ -54,19 +68,8 @@ const CreateNewCert = () => {
       </section>
       {/* ------- Form Heading section ------- */}
       <RadioPillInput value={selected} onChange={_handleSubmission} options={options} />
-
-      {/* ---------- Submission Button to handle effects and storage ------------- */}
-      <Button
-        className='min-w-full py-4 mt-6 rounded-full'
-        // onClick={handleSubmit(_handleSubmission)}
-        type='submit'
-        isLoading={submitting}
-      >
-        Create Certification
-      </Button>
-      {/* ---------- Submission Button to handle effects and storage ------------- */}
     </section>
   );
 };
 
-export default CreateNewCert;
+export default Protocol;

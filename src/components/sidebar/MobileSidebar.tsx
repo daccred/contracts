@@ -7,7 +7,7 @@ import { Fragment, useState } from 'react';
 import { joinClassNames } from '@/lib/helper';
 
 import { LayoutNavProps } from '@/components/layout/layout.interface';
-import NextImage from '@/components/NextImage';
+import NextImage from '@/components/next/NextImage';
 
 export function MobileSidebar({ options }: LayoutNavProps) {
   const { navigation, teams } = options;
