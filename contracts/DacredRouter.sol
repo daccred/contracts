@@ -22,7 +22,7 @@ contract DacredRouter is ChainlinkClient {
     bytes32 private jobId;
     uint256 private fee;
     mapping(address => Daccred) public credentials;
-    string public _uri_ = "https://7340-102-176-94-51.ngrok.io/api/hello";
+    string public _uri_ = "https://7340-102-176-94-51.ngrok.io/api";
 
     /* events */
     event NewContractCreated(address contractAddress, uint createdAt);
@@ -73,8 +73,8 @@ contract DacredRouter is ChainlinkClient {
         Chainlink.Request memory request = buildChainlinkRequest(jobId, address(this), this.fulfill.selector);
         
         // Set the URL to perform the GET request on
-        request.add("get", _uri_);
-        request.add("extPath", _claimContractAddress);
+        request.add("post", _uri_);
+        request.add("e", _claimContractAddress);
         request.add("path", "pass");
         request.add("path", "contractAddress");
         request.add("path", "id");

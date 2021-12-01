@@ -432,11 +432,11 @@
 			]
 		},
 		"DacredRouter.sol": {
-			"keccak256": "0x79924a82f2336002c5f4de11fe0a7c2a59962882ecb08bf58f65a9b78c2b35cf",
+			"keccak256": "0x498026048c8243cfd20d769cabc2c9603523945360addf2c7677ba7f8dc64e67",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://ce374f29edab799fb69e3e36b2830eadb8f3f472109a6ba1f6ee8e3604a23f94",
-				"dweb:/ipfs/QmaHNVoahfjBqBQobYmiPWS3FY6KgZ4tgBCh6ktF2sZF8R"
+				"bzz-raw://3f5687e0f8841f3637d806d94cd33c946317edc472b33ae2cbe2996a76826181",
+				"dweb:/ipfs/QmW4C3Nz4UudwL21e5jxAUnpSCA7ucR9mQbkJbE2Gjf57d"
 			]
 		},
 		"impl/DacredFactory.sol": {

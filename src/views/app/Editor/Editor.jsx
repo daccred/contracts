@@ -10,6 +10,7 @@ import { SidePanel, ElementsSection, UploadSection } from 'realmono/side-panel';
 import { Workspace } from 'realmono/canvas/workspace';
 
 import { loadFile } from './actions/file';
+import PublishAction from './actions/PublishAction';
 
 import EditorTopbar from '@/components/header/EditorTopbar';
 import useAuthUser from '@/hooks/useAuthUser';
@@ -62,7 +63,9 @@ const Editor = ({ store }) => {
             open={open}
             hasProfile={hasProfile}
             store={store}
-          />
+          >
+            <PublishAction />
+          </EditorTopbar>
         )}
       </Disclosure>
       {/* <Topbar store={store} /> */}

@@ -11,7 +11,7 @@ import HeaderMobile from './HeaderMobile';
 import UnstyledLink from '../links/UnstyledLink';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default observer(({ store, user, hasProfile, navigation, userNavigation, open }: any) => {
+export default observer(({ store, user, hasProfile, navigation, userNavigation, open, children }: any) => {
   return (
     <div className='px-3 mx-auto sm:px-6 lg:px-6'>
       <div className='flex items-center justify-between h-16'>
@@ -31,6 +31,9 @@ export default observer(({ store, user, hasProfile, navigation, userNavigation, 
 
         <div className='hidden md:block'>
           <div className='flex items-center ml-4 md:ml-6'>
+            {/* -------- Append action handlers to right hand side -------- */}
+            {children}
+            {/* -------- Append action handlers to right hand side -------- */}
             {/* Profile dropdown */}
             {hasProfile && (
               <Menu as='div' className='relative ml-3'>
