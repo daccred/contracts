@@ -19,7 +19,7 @@ export const TemplatesPanel = observer(({ store }: any) => {
     setEditorTemplates([]);
 
     // wait to emulate network request
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await new Promise((resolve) => setTimeout(resolve, 500));
 
     // Here we are hard coding the templates into the code, however
     // we will want to asyn retrieve this from API or Moralis in JSON like structure
