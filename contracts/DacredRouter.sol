@@ -66,18 +66,21 @@ contract DacredRouter is ChainlinkClient {
     }
     
     function validateRecipient(
-        string memory _certId,
-        address _claimContractAddress
+        // uint _certId,
+        string memory _claimContractAddress
         ) public returns (bytes32 requestId) {
 
         Chainlink.Request memory request = buildChainlinkRequest(jobId, address(this), this.fulfill.selector);
         
         // Set the URL to perform the GET request on
         request.add("get", _uri_);
+        request.add("extPath", _claimContractAddress);
         request.add("path", "pass");
+        request.add("path", "contractAddress");
+        request.add("path", "id");
 
         
-        DacredFactory(_claimContractAddress).awardCredential(msg.sender, _certId);
+
 
 
         
@@ -88,8 +91,11 @@ contract DacredRouter is ChainlinkClient {
     /**
      * Receive the response in the form of bool
      */ 
-    function fulfill(bytes32 _requestId, bool _pass) public recordChainlinkFulfillment(_requestId) {
+    function fulfill(bytes32 _requestId, bool _pass, address contractAddress, string memory id ) public recordChainlinkFulfillment(_requestId) {
         pass = _pass;
+        if(_pass) {
+            DacredFactory(contractAddress).awardCredential(msg.sender, id);
+        }
 
         // Mint Credential for recipient
         // DacredFactory()

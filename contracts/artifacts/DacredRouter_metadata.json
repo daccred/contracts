@@ -150,6 +150,16 @@
 						"internalType": "bool",
 						"name": "_pass",
 						"type": "bool"
+					},
+					{
+						"internalType": "address",
+						"name": "contractAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "id",
+						"type": "string"
 					}
 				],
 				"name": "fulfill",
@@ -187,13 +197,8 @@
 				"inputs": [
 					{
 						"internalType": "string",
-						"name": "_certId",
-						"type": "string"
-					},
-					{
-						"internalType": "address",
 						"name": "_claimContractAddress",
-						"type": "address"
+						"type": "string"
 					}
 				],
 				"name": "validateRecipient",
@@ -219,7 +224,7 @@
 				"constructor": {
 					"notice": "Network: Kovan Oracle: 0xc57B33452b4F7BB189bB5AfaE9cc4aBa1f7a4FD8 (Chainlink Devrel    Node) Job ID: bc746611ebee40a3989bbe49e12a02b9 Fee: 0.1 LINK"
 				},
-				"fulfill(bytes32,bool)": {
+				"fulfill(bytes32,bool,address,string)": {
 					"notice": "Receive the response in the form of bool"
 				}
 			},
@@ -427,11 +432,11 @@
 			]
 		},
 		"DacredRouter.sol": {
-			"keccak256": "0x3385724f643a5d4fe8d4e4cbeeb5071cd4afcdddaa79925d6c1b60fbbf1fdf36",
+			"keccak256": "0x79924a82f2336002c5f4de11fe0a7c2a59962882ecb08bf58f65a9b78c2b35cf",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://db5518cd87142628bfce11b3f7d15ded02d0e62aee5892d9f44df3020651e064",
-				"dweb:/ipfs/QmQuGicnC96uhTDsgC6cQXzXyCVAPDD255B96CGFHfCqir"
+				"bzz-raw://ce374f29edab799fb69e3e36b2830eadb8f3f472109a6ba1f6ee8e3604a23f94",
+				"dweb:/ipfs/QmaHNVoahfjBqBQobYmiPWS3FY6KgZ4tgBCh6ktF2sZF8R"
 			]
 		},
 		"impl/DacredFactory.sol": {
