@@ -1,0 +1,14 @@
+{
+  "apollographql.debug.revealOutputOnLanguageServerError": false,
+  "apollographql.display.showRunInStudioButton": false,
+  "cloudcode.autoDependencies": "off",
+  "cloudcode.beta.enableApiBrowserV2": false,
+  "cloudcode.beta.enableBuildEnvironmentsInit": false,
+  "cloudcode.beta.enableCombinedK8s": false,
+  "cloudcode.beta.enableOutputLogging": false,
+  "foam.decorations.links.enable": false,
+  "vscode-ethover.default.apikey": "TVE76QIRW6YM96SPSYNNWKPN85CXX17VR3",
+  "tslint.alwaysShowRuleFailuresAsWarnings": false,
+  "vetur.completion.autoImport": false,
+  "rest-client.addRequestBodyLineIndentationAroundBrackets": false
+}

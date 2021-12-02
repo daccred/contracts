@@ -42,10 +42,10 @@ const createNewCredentialSlice: StoreSlice<NewCredentialSlice> = (set) => ({
   },
 });
 
-// const createAppUserSlice: StoreSlice<NewCredentialSlice> = (set) => ({
-//   credential: {},
-//   dispatchNewCredentialAction: (payload) => {
-//     set((state) => ({ credential: Object.assign(state.credential, payload) }));
+// const createAppUserSlice: StoreSlice<any> = (set) => ({
+//   saveImgData: {},
+//   dispatchSavesaveImgData: (payload) => {
+//     set((state) => ({ saveImgData: Object.assign(state.saveImgData, payload) }));
 //   },
 // });
 

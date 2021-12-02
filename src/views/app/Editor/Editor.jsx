@@ -16,7 +16,7 @@ import EditorTopbar from '@/components/header/EditorTopbar';
 import useAuthUser from '@/hooks/useAuthUser';
 import TemplateSection from '@/components/editor/EditorTemplateSection';
 import VariableSection from '@/components/editor/RecipientVariableSection';
-// import Tem from '@/components/'
+
 
 const PANEL_SECTIONS = [TemplateSection, ElementsSection, VariableSection, UploadSection];
 
@@ -31,8 +31,12 @@ const useHeight = () => {
 };
 
 const Editor = ({ store }) => {
+  const [publishData, setPublishData] = React.useState()
   const { user, hasProfile } = useAuthUser();
   const height = useHeight();
+
+
+  console.log(publishData)
 
   const handleDrop = (ev) => {
     // Prevent default behavior (Prevent file from being opened)
@@ -64,7 +68,7 @@ const Editor = ({ store }) => {
             hasProfile={hasProfile}
             store={store}
           >
-            <PublishAction />
+            <PublishAction store={store} handlePublish={setPublishData} />
           </EditorTopbar>
         )}
       </Disclosure>
