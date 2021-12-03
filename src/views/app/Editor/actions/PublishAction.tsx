@@ -15,8 +15,8 @@ const options = {
   contractAddress: DACRED_ROUTER_KOVAN,
   functionName: 'createContractForClient',
   params: {
-    name: 'Chainlink Fall Contract',
-    certId: 'CFCTx8',
+    name: 'Smart Farm DAO',
+    certId: 'SFD',
   },
 }
 
@@ -68,7 +68,7 @@ const [response, setResponse] = useState<any>({})
 
       /* Save credential information to Moralis */
       await save({
-        name: 'Chainlink Fall Contract',
+        name: 'Smart Farm DAO',
         certId: '9y8szTm57lmgWxdhY5YJMGx8',
         thumbnail: preview,
         file: file

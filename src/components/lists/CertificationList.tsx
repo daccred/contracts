@@ -3,7 +3,7 @@ import { CalendarIcon, LocationMarkerIcon, InformationCircleIcon } from '@heroic
 const positions = [
   {
     id: 1,
-    title: 'Chainlink Fall Hackathon',
+    title: 'Jupiter Colony DAO',
     type: 'Event',
     location: 'Remote',
     department: 'Short description',
@@ -12,7 +12,7 @@ const positions = [
   },
   {
     id: 2,
-    title: 'Adonis Fullstack Workshop',
+    title: 'Red School Class of 2021',
     type: 'training',
     location: 'Remote',
     department: 'Short description',
