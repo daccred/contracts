@@ -3,9 +3,9 @@ import { CursorClickIcon, MailOpenIcon, UsersIcon } from '@heroicons/react/outli
 import { joinClassNames } from '@/lib/helper';
 
 const stats = [
-  { id: 1, name: 'Total Subscribers', stat: '71,897', icon: UsersIcon, change: '122', changeType: 'increase' },
+  { id: 1, name: 'Total Recipients', stat: '71,897', icon: UsersIcon, change: '122', changeType: 'increase' },
   { id: 2, name: 'Avg. Open Rate', stat: '58.16%', icon: MailOpenIcon, change: '5.4%', changeType: 'increase' },
-  { id: 3, name: 'Avg. Click Rate', stat: '24.57%', icon: CursorClickIcon, change: '3.2%', changeType: 'decrease' },
+  { id: 3, name: 'Avg. Claim Rate', stat: '24.57%', icon: CursorClickIcon, change: '3.2%', changeType: 'decrease' },
 ];
 
 export default function StatsDefault() {

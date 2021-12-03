@@ -4,6 +4,12 @@ export const ESERVER_HOST = 'https://studio.polotno.dev/';
 export const LF_EDITOR_VAR = 'dacred-editor--state';
 export const LF_CERTWIZ_VAR = 'dacred-credentials--state';
 
+/* ------------------------------------------------------------------- */
+/*                all our smart contracts and the networks            */
+/* ----------------------------------------------------------------- */
+export const DACRED_ROUTER_KOVAN = '0x195c499669Ed02E9313e94836A2dCf9500322532'
+
+
 /* -------------------------------------------------------------------------- */
 /*                constants to work with authentication helpers               */
 /* -------------------------------------------------------------------------- */

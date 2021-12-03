@@ -1,30 +1,30 @@
-import { CalendarIcon, LocationMarkerIcon, UsersIcon } from '@heroicons/react/solid';
+import { CalendarIcon, LocationMarkerIcon, InformationCircleIcon } from '@heroicons/react/solid';
 
 const positions = [
   {
     id: 1,
-    title: 'Back End Developer',
-    type: 'Full-time',
+    title: 'Jupiter Colony DAO',
+    type: 'Event',
     location: 'Remote',
-    department: 'Engineering',
+    department: 'Short description',
     closeDate: '2020-01-07',
     closeDateFull: 'January 7, 2020',
   },
   {
     id: 2,
-    title: 'Front End Developer',
-    type: 'Full-time',
+    title: 'Red School Class of 2021',
+    type: 'training',
     location: 'Remote',
-    department: 'Engineering',
+    department: 'Short description',
     closeDate: '2020-01-07',
     closeDateFull: 'January 7, 2020',
   },
   {
     id: 3,
-    title: 'User Interface Designer',
-    type: 'Full-time',
+    title: 'UX Masterclass',
+    type: 'training',
     location: 'Remote',
-    department: 'Design',
+    department: 'The UX Masterclass in Lisbon',
     closeDate: '2020-01-14',
     closeDateFull: 'January 14, 2020',
   },
@@ -49,7 +49,10 @@ export default function CertificationList() {
                 <div className='mt-2 sm:flex sm:justify-between'>
                   <div className='sm:flex'>
                     <p className='flex items-center text-sm text-gray-500'>
-                      <UsersIcon className='flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400' aria-hidden='true' />
+                      <InformationCircleIcon
+                        className='flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400'
+                        aria-hidden='true'
+                      />
                       {position.department}
                     </p>
                     <p className='flex items-center mt-2 text-sm text-gray-500 sm:mt-0 sm:ml-6'>

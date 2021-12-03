@@ -41,7 +41,7 @@ const CreateNewCert = () => {
       </section>
       {/* ------- Form Heading section ------- */}
 
-      <InputField register={register} required label='Name' placeholder='Chainlink Fall Hackathon' name='certName' />
+      <InputField register={register} required label='Name' placeholder='Earth Colony DAO' name='certName' />
       <TextboxField
         register={register}
         required
