@@ -21,7 +21,7 @@ const dataUriRegexp =
 
 const commaIndex = BASE_IMG.indexOf(",");
 
-const matches = dataUriRegexp.exec(BASE_IMG.slice(0, commaIndex + 1));
+// const matches = dataUriRegexp.exec(BASE_IMG.slice(0, commaIndex + 1));
 const _data = BASE_IMG.slice(commaIndex + 1);
 
 // console.log((BASE_IMG.match(dataUriRegexp)))
@@ -31,6 +31,8 @@ const _data = BASE_IMG.slice(commaIndex + 1);
 // https://stackoverflow.com/questions/48237766/file-is-not-defined-error-in-javascript-while-executing-from-node-js-command-p
 // let txtFile = "test.txt";
 // let str = fs.readFileSync(txtFile,'utf8');
+
+// Testing utils https://github.com/MoralisWeb3/Moralis-JS-SDK/blob/main/src/__tests__/ParseFile-test.js
 
 const data = Buffer.from(_data, "base64");
 console.log(data);
@@ -49,13 +51,13 @@ async function storeIPFS() {
     const { File, Web3Storage } = require("web3.storage");
 
     const client = await new Web3Storage({ token: key });
-    const fileToUpload = await new File([data], "user.png");
+    const fileToUpload = await new File([data], "cert.png");
 
     console.log(fileToUpload)
     const files = [fileToUpload];
 
     /* Make req to upload to IPFS */
-    const cid = await client.put(files);
+    const cid = await client.put(files,  { wrapWithDirectory: false });
     console.log("stored files with cid:", cid);
   } catch (error) {
     console.error(error);
