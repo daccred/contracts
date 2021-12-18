@@ -22,7 +22,7 @@ const features = [
   },
 ]
 
-export default function Example() {
+export default function FeatureBox() {
   return (
     <div className="py-12 bg-white">
       <div className="max-w-xl px-4 mx-auto sm:px-6 lg:max-w-7xl lg:px-8">

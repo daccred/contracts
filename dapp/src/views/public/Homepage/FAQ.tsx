@@ -1,4 +1,4 @@
-/* This example requires Tailwind CSS v2.0+ */
+import { joinClassNames } from '@/lib/helper'
 import { Disclosure } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/outline'
 
@@ -11,11 +11,8 @@ const faqs = [
   // More questions...
 ]
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
 
-export default function Example() {
+export default function FAQ() {
   return (
     <div className="bg-gray-50">
       <div className="px-4 py-12 mx-auto max-w-7xl sm:py-16 sm:px-6 lg:px-8">
@@ -31,7 +28,7 @@ export default function Example() {
                         <span className="font-medium text-gray-900">{faq.question}</span>
                         <span className="flex items-center ml-6 h-7">
                           <ChevronDownIcon
-                            className={classNames(open ? '-rotate-180' : 'rotate-0', 'h-6 w-6 transform')}
+                            className={joinClassNames(open ? '-rotate-180' : 'rotate-0', 'h-6 w-6 transform')}
                             aria-hidden="true"
                           />
                         </span>

@@ -1,7 +1,7 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { InboxIcon, SparklesIcon } from '@heroicons/react/outline'
 
-export default function Example() {
+export default function MultichainFeature() {
   return (
     <div className="relative pt-16 pb-32 overflow-hidden bg-white">
       <div className="relative">

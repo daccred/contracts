@@ -10,7 +10,7 @@ const navigation = [
   { name: 'Company', href: '#' },
 ]
 
-export default function Example() {
+export default function Hero() {
   return (
     <div className="bg-gray-50">
       <div className="relative overflow-hidden">

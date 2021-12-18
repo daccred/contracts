@@ -14,7 +14,7 @@
   }
   ```
 */
-export default function Example() {
+export default function CTACallout() {
   return (
     <div className="bg-white">
       <div className="px-4 py-16 mx-auto max-w-7xl sm:px-6 lg:px-8">

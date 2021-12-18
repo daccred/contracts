@@ -3,7 +3,14 @@ import { Fragment } from 'react'
 import { CheckIcon, MinusIcon } from '@heroicons/react/solid'
 import { joinClassNames } from '@/lib/helper'
 
-const tiers = [
+type TierOptions = {
+  name: 'Basic' | 'Essential' | 'Premium',
+  href: string,
+  description: string,
+  priceMonthly: number
+}
+
+const tiers: TierOptions[] = [
   { name: 'Basic', href: '#', priceMonthly: 9, description: 'Quis suspendisse ut fermentum neque vivamus non tellus.' },
   {
     name: 'Essential',
@@ -18,7 +25,22 @@ const tiers = [
     description: 'Orci volutpat ut sed sed neque, dui eget. Quis tristique non.',
   },
 ]
-const sections = [
+
+type FeatureDefs = {
+  name: string
+  tiers: {
+    Basic?: boolean,
+    Essential?: boolean | string
+    Premium: boolean | string
+  }
+}
+
+interface TierSection {
+  name: string,
+  features: FeatureDefs[]
+}
+
+const sections: TierSection[] = [
   {
     name: 'Features',
     features: [
@@ -49,7 +71,7 @@ const sections = [
 ]
 
 
-export default function Example() {
+export default function PricingTable() {
   return (
     <div className="bg-white">
       <div className="py-16 mx-auto bg-white max-w-7xl sm:py-24 sm:px-6 lg:px-8">
@@ -88,7 +110,7 @@ export default function Example() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200">
-                    {section.features.map((feature) => (
+                    {section.features.map((feature: FeatureDefs) => (
                       <tr key={feature.name} className="border-t border-gray-200">
                         <th className="px-4 py-5 text-sm font-normal text-left text-gray-500" scope="row">
                           {feature.name}

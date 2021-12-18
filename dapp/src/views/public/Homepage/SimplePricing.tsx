@@ -8,7 +8,7 @@ const includedFeatures = [
   'Official member t-shirt',
 ]
 
-export default function Example() {
+export default function SimplePricing() {
   return (
     <div className="bg-gray-100">
       <div className="pt-12 sm:pt-16 lg:pt-20">
