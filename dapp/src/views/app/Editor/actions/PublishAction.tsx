@@ -28,7 +28,7 @@ interface PublishActionProps {
 
 export default function PublishAction({ store, handlePublish }: PublishActionProps) {
 /* ================================================================================================ */
-const [response, setResponse] = useState<any>({})
+// const [response, setResponse] = useState<any>({})
 
   const { data, error, fetch, isFetching, isLoading } = useWeb3ExecuteFunction(options);
   const { isSaving, error : objError, save } = useNewMoralisObject('Credentials');

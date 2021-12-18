@@ -1,0 +1,20 @@
+{
+  "name": "labs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lab.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "core-js": "^3.20.0",
+    "fetch": "^1.1.0",
+    "file-base64": "^1.0.0",
+    "into-stream": "^7.0.0",
+    "node-fetch": "^3.1.0",
+    "web3.storage": "^3.5.1"
+  }
+}
