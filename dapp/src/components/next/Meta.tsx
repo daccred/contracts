@@ -3,11 +3,11 @@ import { useRouter } from 'next/router';
 import { openGraph } from '@/lib/helper';
 
 const defaultMeta = {
-  title: 'On-chain Credentials Platform',
-  siteName: 'On-chain Credentials Platform',
-  description: 'Create certificates on-chain for edtech, events etc',
+  title: 'Issue Web3 credentials as NFT',
+  siteName: 'Issue Web3 credentials as NFT',
+  description: 'Create certificates, badges and credentials on the blockchain as NFTs, in the Web3 economy',
   url: 'https://dacred.io',
-  image: 'https://dacred.io/favicon/large-og.jpg',
+  image: 'https://dacred.io/favicon/large-og.png',
   type: 'website',
   robots: 'follow, index',
 };

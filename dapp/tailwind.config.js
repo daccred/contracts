@@ -21,8 +21,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        primary: ['Graphik Web', 'Inter', ...fontFamily.sans],
-        heading: ['Pixeboy', 'Inter', ...fontFamily.sans],
+        primary: ['Matter SQ', 'Inter', ...fontFamily.sans],
+        heading: ['Space Grotesk', 'Graph', 'Inter', ...fontFamily.sans],
       },
       colors: {
         primary: {

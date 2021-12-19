@@ -4,11 +4,11 @@ import { createStore } from 'realmono/model/store';
 import { unstable_setRemoveBackgroundEnabled } from 'realmono/config';
 
 import Editor from './Editor';
-import { LF_EDITOR_VAR } from '@/config/constants';
+import { LF_EDITOR_VAR, LF_STORE_KEY } from '@/config/constants';
 
 unstable_setRemoveBackgroundEnabled(true);
 
-const store = createStore({ key: 'nFA5H9elEytDyPyvKL7T' });
+const store = createStore({ key: LF_STORE_KEY });
 
 localforage.getItem(LF_EDITOR_VAR, function (_err, json) {
   if (json) {

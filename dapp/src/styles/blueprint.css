@@ -975,7 +975,7 @@ a > .bp3-code {
 .bp3-button.bp3-minimal {
   background: none;
   -webkit-box-shadow: none;
-  font-family: 'Pixeboy', 'Graphik Web', Inter, sans-serif;
+  font-family: 'Graph', Inter, sans-serif;
   letter-spacing: 0.5px;
   box-shadow: none;
 }
@@ -8552,7 +8552,7 @@ button.bp3-menu-item {
   -webkit-box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.1), 0 0 0 rgba(16, 22, 26, 0), 0 1px 1px rgba(16, 22, 26, 0.2);
   box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.1), 0 0 0 rgba(16, 22, 26, 0), 0 1px 1px rgba(16, 22, 26, 0.2);
   height: 50px;
-  font-family: 'Pixeboy', 'Graphik Web', Inter, sans-serif;
+  font-family: 'Graph', Inter, sans-serif;
   letter-spacing: 0.5px;
   padding: 0 15px;
   position: relative;

@@ -1,8 +1,10 @@
 export const MORALIS_APP_ID = 'yYmAdNgqUQ3P8vPViKYjYE82EPjGAa8HCC7FZqDL';
 export const MORALIS_SERVER_URL = 'https://09zmv9mmxz2l.usemoralis.com:2053/server';
 export const ESERVER_HOST = 'https://studio.polotno.dev/';
+/* LF: Local Forage */
 export const LF_EDITOR_VAR = 'dacred-editor--state';
 export const LF_CERTWIZ_VAR = 'dacred-credentials--state';
+export const LF_STORE_KEY = 'ILvcJpQFhD5AC6AVd7P2'
 
 /* ------------------------------------------------------------------- */
 /*                all our smart contracts and the networks            */

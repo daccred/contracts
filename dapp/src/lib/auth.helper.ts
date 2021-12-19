@@ -27,7 +27,7 @@ export const login = async (payload: MoralisType.User, target = config.rootRoute
   const userCookie = encode(JSON.stringify(payload));
   setCookie(null, config.key, userCookie, {
     sameSite: 'lax',
-    maxAge: 30 * 24 * 60 * 60,
+    maxAge: 2 * 24 * 60 * 60,
   });
   window.location.replace(target);
 };
