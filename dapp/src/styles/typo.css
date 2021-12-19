@@ -52,7 +52,7 @@
   } */
 
 
-
+/* Custom configuration with font module CSS: See https://drafts.csswg.org/css-fonts/#descdef-font-face-descent-override */
   @font-face {
     font-family: 'Matter SQ';
     src: url('/fonts/MatterSQ-Regular.woff2') format('woff2'),
@@ -60,8 +60,8 @@
     font-weight: normal;
     font-style: normal;
     font-display: swap;
-    ascent-override: 110%;
-    /* descent-override: 25%; */
+    ascent-override: 120%;
+    descent-override: 50%;
 }
 
 @font-face {
@@ -71,7 +71,10 @@
     font-weight: 500;
     font-style: normal;
     font-display: swap;
-    ascent-override: 105%;
+        ascent-override: 120%;
+    descent-override: 50%;
+
+
 
 }
 
@@ -82,7 +85,10 @@
     font-weight: 600;
     font-style: normal;
     font-display: swap;
-    ascent-override: 105%;
+        ascent-override: 120%;
+    descent-override: 50%;
+
+
 
 }
 
