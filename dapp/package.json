@@ -16,7 +16,7 @@
     "format:check": "prettier -c src",
     "release": "standard-version",
     "push-release": "git push --follow-tags origin main",
-    "prepare": "husky install"
+    "pre:prepare": "husky install"
   },
   "dependencies": {
     "@flatfile/react": "0.3.5",
