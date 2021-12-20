@@ -31,7 +31,7 @@ export default function FeatureBox() {
           {features.map((feature) => (
             <div key={feature.name}>
               <dt>
-                <div className="flex items-center justify-center w-12 h-12 text-white bg-indigo-500 rounded-md">
+                <div className="flex items-center justify-center w-12 h-12 text-white bg-primary-500 rounded-md">
                   <feature.icon className="w-6 h-6" aria-hidden="true" />
                 </div>
                 <p className="mt-5 text-lg font-medium leading-6 text-gray-900">{feature.name}</p>

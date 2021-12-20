@@ -34,7 +34,7 @@ export default function SimplePricing() {
                 </p>
                 <div className="mt-8">
                   <div className="flex items-center">
-                    <h4 className="flex-shrink-0 pr-4 text-sm font-semibold tracking-wider text-indigo-600 uppercase bg-white">
+                    <h4 className="flex-shrink-0 pr-4 text-sm font-semibold tracking-wider text-primary-600 uppercase bg-white">
                       What's included
                     </h4>
                     <div className="flex-1 border-t-2 border-gray-200" />

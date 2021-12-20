@@ -2,6 +2,7 @@
 
 
 import CTACallout from './CTACallout';
+import FAQ from './FAQ';
 import FeatureBox from './FeatureBox';
 import Hero from './Hero';
 import MultichainFeature from './MultichainFeature';
@@ -33,6 +34,9 @@ export default function Homepage() {
 
         <CTACallout />
         {/* ---- save the best for last ------ */}
+
+{/* Nothing here, but if you ask one, we can try and answer @koolamusic me a message */}
+        <FAQ />
       </section>
       {/* ----------------- Render React Children in this layout from here --------------- */}
     </>

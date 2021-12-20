@@ -9,7 +9,7 @@ export default function MultichainFeature() {
           <div className="max-w-xl px-4 mx-auto sm:px-6 lg:py-16 lg:max-w-none lg:mx-0 lg:px-0">
             <div>
               <div>
-                <span className="flex items-center justify-center w-12 h-12 bg-indigo-600 rounded-md">
+                <span className="flex items-center justify-center w-12 h-12 rounded-md bg-primary-600">
                   <InboxIcon className="w-6 h-6 text-white" aria-hidden="true" />
                 </span>
               </div>
@@ -25,7 +25,7 @@ export default function MultichainFeature() {
                 <div className="mt-6">
                   <a
                     href="#"
-                    className="inline-flex px-4 py-2 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700"
+                    className="inline-flex px-4 py-2 text-base font-medium text-white border border-transparent rounded-md shadow-sm bg-primary-600 hover:bg-primary-700"
                   >
                     Get started
                   </a>
@@ -71,7 +71,7 @@ export default function MultichainFeature() {
           <div className="max-w-xl px-4 mx-auto sm:px-6 lg:py-32 lg:max-w-none lg:mx-0 lg:px-0 lg:col-start-2">
             <div>
               <div>
-                <span className="flex items-center justify-center w-12 h-12 bg-indigo-600 rounded-md">
+                <span className="flex items-center justify-center w-12 h-12 rounded-md bg-primary-600">
                   <SparklesIcon className="w-6 h-6 text-white" aria-hidden="true" />
                 </span>
               </div>
@@ -87,7 +87,7 @@ export default function MultichainFeature() {
                 <div className="mt-6">
                   <a
                     href="#"
-                    className="inline-flex px-4 py-2 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700"
+                    className="inline-flex px-4 py-2 text-base font-medium text-white border border-transparent rounded-md shadow-sm bg-primary-600 hover:bg-primary-700"
                   >
                     Get started
                   </a>

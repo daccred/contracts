@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useRealm } from 'use-realm';
 import { RiSurveyLine, RiFileExcel2Line, RiContactsBook2Line } from 'react-icons/ri';
+
+import { FlatfileButton } from "@flatfile/react";
 
 /* Import Page Components here */
 import { CRED_WIZARD_STEP, WizardStepOpts } from '@/lib/realm';
@@ -21,7 +23,7 @@ const mediums = [
     icon: RiSurveyLine,
   },
   {
-    disabled: true,
+    disabled: false,
     id: '2',
     value: 'csv',
     title: 'Import from CSV/Excel',
@@ -29,7 +31,7 @@ const mediums = [
     icon: RiFileExcel2Line,
   },
   {
-    disabled: true,
+    disabled: false,
     id: '3',
     value: 'contacts',
     title: 'Import from Contacts',
@@ -48,8 +50,10 @@ const CreateNewCert = () => {
   /* hook forms */
   const _dispatchFormAction = useZustand((slice) => slice.dispatchNewCredentialAction);
 
-  const _handleSubmission = async (data: RadioBoxProps): Promise<void> => {
+  const _handleSubmission = async (launch: any, data: RadioBoxProps): Promise<void> => {
     _selected(data);
+
+    if(data.value == 'csv') launch()
 
     const claim: Partial<ClaimOptionsVar> = {};
     claim.medium = data.value;
@@ -62,6 +66,59 @@ const CreateNewCert = () => {
     }
   };
 
+
+  const [results, setResults] = useState<any>();
+  function FileApp() {
+    return (
+      <div className="App">
+        <FlatfileButton
+          settings={{
+              type: "test import",
+              fields: [
+                  { label: "name", key: "name" },
+                  { label: "Email", key: "email" }
+              ]
+          }}
+          licenseKey={"7d991ac6-5689-4bb9-ae88-adc4093fc0c6"}
+          customer={{
+              companyId: "ABC-123",
+              companyName: "ABC Corp.",
+              email: "john@abc123.com",
+              name: "John Smith",
+              userId: "12345"
+          }}
+          onData={async (results) => {
+            // do something with the results
+            console.log(results);
+          }}
+          onRecordChange={(record) =>{return { name: { value: record.name + " from change" }}}
+          }
+          onRecordInit={(record) => {
+            return { name: { value: record.name + " from init" }
+          }}}
+          fieldHooks={{
+            email: (values) =>{
+              return values.map(([item, index]) => [
+                { value: item + ".au" },
+                index
+              ]);
+            }
+          }}
+          onCancel={() => {
+            console.log("cancel");
+          }}
+          render={(importer, launch) => {
+            // return <button onClick={launch}>Upload file</button>;
+      return <RadioBox value={selected} onChange={(d) => _handleSubmission(launch, d)} options={mediums} label={'Select a Medium'} />
+      
+          }}
+        />
+      </div>
+    );
+  }
+
+
+
   return (
     <section className='max-w-3xl mx-auto'>
       {/* ------- Form Heading section ------- */}
@@ -71,9 +128,74 @@ const CreateNewCert = () => {
       </section>
       {/* ------- Form Heading section ------- */}
 
-      <RadioBox value={selected} onChange={_handleSubmission} options={mediums} label={'Select a Medium'} />
+      <FileApp />
     </section>
   );
 };
 
 export default CreateNewCert;
+
+
+
+//  function FileApp() {
+//   const [results, setResults] = useState<any>();
+//   return (
+//     <div className="App">
+//       <FlatfileButton
+//         settings={{
+//             type: "test import",
+//             fields: [
+//                 { label: "name", key: "name" },
+//                 { label: "Email", key: "email" }
+//             ]
+//         }}
+//         licenseKey={"7d991ac6-5689-4bb9-ae88-adc4093fc0c6"}
+//         customer={{
+//             companyId: "ABC-123",
+//             companyName: "ABC Corp.",
+//             email: "john@abc123.com",
+//             name: "John Smith",
+//             userId: "12345"
+//         }}
+//         onData={async (results) => {
+//           // do something with the results
+//           console.log(results);
+//         }}
+//         onRecordChange={(record) =>{return { name: { value: record.name + " from change" }}}
+//         }
+//         onRecordInit={(record) => {
+//           return { name: { value: record.name + " from init" }
+//         }}}
+//         fieldHooks={{
+//           email: (values) =>{
+//             return values.map(([item, index]) => [
+//               { value: item + ".au" },
+//               index
+//             ]);
+//           }
+//         }}
+//         onCancel={() => {
+//           console.log("cancel");
+//         }}
+//         render={(importer, launch) => {
+//           return <button onClick={launch}>Upload file</button>;
+//         }}
+//       />
+
+//       {/* <pre style={{ padding: "20px", background: "#dadada" }}>
+//         {results ? (
+//           <ul>
+//             {results.data.map((record: any) => (
+//               <li>
+//                 {record.name} &lt;{record.email}&gt;
+//               </li>
+//             ))}
+//           </ul>
+//         ) : (
+//           <div>no data yet</div>
+//         )}
+//       </pre> */}
+//     </div>
+//   );
+// }
+

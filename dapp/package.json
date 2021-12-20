@@ -19,6 +19,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@flatfile/react": "0.3.5",
     "@headlessui/react": "^1.4.2",
     "@heroicons/react": "^1.0.5",
     "@rjsf/bootstrap-4": "^3.2.1",
