@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { useRealm } from 'use-realm';
 import { RiSurveyLine, RiFileExcel2Line, RiContactsBook2Line } from 'react-icons/ri';
 
-import { FlatfileButton } from "@flatfile/react";
+import { FlatfileButton } from '@flatfile/react';
 
 /* Import Page Components here */
 import { CRED_WIZARD_STEP, WizardStepOpts } from '@/lib/realm';
@@ -53,7 +53,7 @@ const CreateNewCert = () => {
   const _handleSubmission = async (launch: any, data: RadioBoxProps): Promise<void> => {
     _selected(data);
 
-    if(data.value == 'csv') launch()
+    if (data.value == 'csv') launch();
 
     const claim: Partial<ClaimOptionsVar> = {};
     claim.medium = data.value;
@@ -66,58 +66,59 @@ const CreateNewCert = () => {
     }
   };
 
-
   const [results, setResults] = useState<any>();
   function FileApp() {
     return (
-      <div className="App">
+      <div className='App'>
         <FlatfileButton
           settings={{
-              type: "test import",
-              fields: [
-                  { label: "name", key: "name" },
-                  { label: "Email", key: "email" }
-              ]
+            type: 'test import',
+            fields: [
+              { label: 'name', key: 'name' },
+              { label: 'Email', key: 'email' },
+            ],
           }}
-          licenseKey={"7d991ac6-5689-4bb9-ae88-adc4093fc0c6"}
+          licenseKey={'7d991ac6-5689-4bb9-ae88-adc4093fc0c6'}
           customer={{
-              companyId: "ABC-123",
-              companyName: "ABC Corp.",
-              email: "john@abc123.com",
-              name: "John Smith",
-              userId: "12345"
+            companyId: 'ABC-123',
+            companyName: 'ABC Corp.',
+            email: 'john@abc123.com',
+            name: 'John Smith',
+            userId: '12345',
           }}
           onData={async (results) => {
             // do something with the results
             console.log(results);
           }}
-          onRecordChange={(record) =>{return { name: { value: record.name + " from change" }}}
-          }
+          onRecordChange={(record) => {
+            return { name: { value: record.name + ' from change' } };
+          }}
           onRecordInit={(record) => {
-            return { name: { value: record.name + " from init" }
-          }}}
+            return { name: { value: record.name + ' from init' } };
+          }}
           fieldHooks={{
-            email: (values) =>{
-              return values.map(([item, index]) => [
-                { value: item + ".au" },
-                index
-              ]);
-            }
+            email: (values) => {
+              return values.map(([item, index]) => [{ value: item + '.au' }, index]);
+            },
           }}
           onCancel={() => {
-            console.log("cancel");
+            console.log('cancel');
           }}
           render={(importer, launch) => {
             // return <button onClick={launch}>Upload file</button>;
-      return <RadioBox value={selected} onChange={(d) => _handleSubmission(launch, d)} options={mediums} label={'Select a Medium'} />
-      
+            return (
+              <RadioBox
+                value={selected}
+                onChange={(d) => _handleSubmission(launch, d)}
+                options={mediums}
+                label={'Select a Medium'}
+              />
+            );
           }}
         />
       </div>
     );
   }
-
-
 
   return (
     <section className='max-w-3xl mx-auto'>
@@ -134,8 +135,6 @@ const CreateNewCert = () => {
 };
 
 export default CreateNewCert;
-
-
 
 //  function FileApp() {
 //   const [results, setResults] = useState<any>();
@@ -198,4 +197,3 @@ export default CreateNewCert;
 //     </div>
 //   );
 // }
-

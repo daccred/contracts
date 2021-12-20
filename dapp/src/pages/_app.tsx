@@ -10,8 +10,6 @@ import '@/styles/globals.css';
 import Seo from '@/components/next/Meta';
 import { MORALIS_APP_ID, MORALIS_SERVER_URL } from '@/config/constants';
 
-
-
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <MoralisProvider appId={MORALIS_APP_ID} serverUrl={MORALIS_SERVER_URL}>

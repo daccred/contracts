@@ -1,4 +1,4 @@
-  /* @font-face {
+/* @font-face {
     font-family: 'Space Grotesk';
     src: url('/fonts/SpaceGrotesk-Medium.woff2') format('woff2'),
         url('/fonts/SpaceGrotesk-Medium.woff') format('woff');
@@ -8,33 +8,31 @@
 } */
 
 @font-face {
-    font-family: 'Space Grotesk';
-    src: url('/fonts/SpaceGrotesk-SemiBold.woff2') format('woff2'),
-        url('/fonts/SpaceGrotesk-SemiBold.woff') format('woff');
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
-}
-
-
-@font-face {
-    font-family: 'Graph';
-    src: url('/fonts/6cd0250e1ad9bba559f5e05a149ffb14.woff2') format('woff2'),
-        url('/fonts/6cd0250e1ad9bba559f5e05a149ffb14.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+  font-family: 'Space Grotesk';
+  src: url('/fonts/SpaceGrotesk-SemiBold.woff2') format('woff2'),
+    url('/fonts/SpaceGrotesk-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'Graph';
-    src: url('/fonts/58ab47536e5676522206daab153cf4b9.woff2') format('woff2'),
-        url('/fonts/58ab47536e5676522206daab153cf4b9.woff') format('woff');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
+  font-family: 'Graph';
+  src: url('/fonts/6cd0250e1ad9bba559f5e05a149ffb14.woff2') format('woff2'),
+    url('/fonts/6cd0250e1ad9bba559f5e05a149ffb14.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
+@font-face {
+  font-family: 'Graph';
+  src: url('/fonts/58ab47536e5676522206daab153cf4b9.woff2') format('woff2'),
+    url('/fonts/58ab47536e5676522206daab153cf4b9.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
 
 /* ---- See https://web.dev/variable-fonts/ for modern browsers ---*/
 /* @supports (font-variation-settings: normal) {
@@ -51,28 +49,25 @@
     }
   } */
 
-
 /* Custom configuration with font module CSS: See https://drafts.csswg.org/css-fonts/#descdef-font-face-descent-override */
-  @font-face {
-    font-family: 'Matter SQ';
-    src: url('/fonts/MatterSQ-Regular.woff2') format('woff2'),
-        url('/fonts/MatterSQ-Regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-    ascent-override: 120%;
-    descent-override: 50%;
+@font-face {
+  font-family: 'Matter SQ';
+  src: url('/fonts/MatterSQ-Regular.woff2') format('woff2'), url('/fonts/MatterSQ-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  ascent-override: 120%;
+  descent-override: 50%;
 }
 
 @font-face {
-    font-family: 'Matter SQ';
-    src: url('/fonts/MatterSQ-Medium.woff2') format('woff2'),
-        url('/fonts/MatterSQ-Medium.woff') format('woff');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-    ascent-override: 120%;
-    descent-override: 50%;
+  font-family: 'Matter SQ';
+  src: url('/fonts/MatterSQ-Medium.woff2') format('woff2'), url('/fonts/MatterSQ-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  ascent-override: 120%;
+  descent-override: 50%;
 }
 
 /* @font-face {
@@ -86,4 +81,3 @@
     descent-override: 50%;
 }
  */
-

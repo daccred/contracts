@@ -137,6 +137,9 @@ body {
   justify-content: center;
 }
 
-.bp3-button.bp3-minimal:disabled, .bp3-button.bp3-minimal:disabled:hover, .bp3-button.bp3-minimal.bp3-disabled, .bp3-button.bp3-minimal.bp3-disabled:hover {
+.bp3-button.bp3-minimal:disabled,
+.bp3-button.bp3-minimal:disabled:hover,
+.bp3-button.bp3-minimal.bp3-disabled,
+.bp3-button.bp3-minimal.bp3-disabled:hover {
   color: rgba(88, 88, 88, 0.397);
 }

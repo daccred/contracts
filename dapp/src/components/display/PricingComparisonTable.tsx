@@ -1,14 +1,14 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment } from 'react'
-import { CheckIcon, MinusIcon } from '@heroicons/react/solid'
-import { joinClassNames } from '@/lib/helper'
+import { Fragment } from 'react';
+import { CheckIcon, MinusIcon } from '@heroicons/react/solid';
+import { joinClassNames } from '@/lib/helper';
 
 type TierOptions = {
-  name: 'Basic' | 'Essential' | 'Premium',
-  href: string,
-  description: string,
-  priceMonthly: number
-}
+  name: 'Basic' | 'Essential' | 'Premium';
+  href: string;
+  description: string;
+  priceMonthly: number;
+};
 
 const tiers: TierOptions[] = [
   { name: 'Basic', href: '#', priceMonthly: 9, description: 'Quis suspendisse ut fermentum neque vivamus non tellus.' },
@@ -24,20 +24,20 @@ const tiers: TierOptions[] = [
     priceMonthly: 59,
     description: 'Orci volutpat ut sed sed neque, dui eget. Quis tristique non.',
   },
-]
+];
 
 type FeatureDefs = {
-  name: string
+  name: string;
   tiers: {
-    Basic?: boolean,
-    Essential?: boolean | string
-    Premium: boolean | string
-  }
-}
+    Basic?: boolean;
+    Essential?: boolean | string;
+    Premium: boolean | string;
+  };
+};
 
 interface TierSection {
-  name: string,
-  features: FeatureDefs[]
+  name: string;
+  features: FeatureDefs[];
 }
 
 const sections: TierSection[] = [
@@ -68,65 +68,64 @@ const sections: TierSection[] = [
       { name: 'Tristique pellentesque ornare diam sapien.', tiers: { Premium: true } },
     ],
   },
-]
-
+];
 
 export default function PricingTable() {
   return (
-    <div className="bg-white">
-      <div className="py-16 mx-auto bg-white max-w-7xl sm:py-24 sm:px-6 lg:px-8">
+    <div className='bg-white'>
+      <div className='py-16 mx-auto bg-white max-w-7xl sm:py-24 sm:px-6 lg:px-8'>
         {/* xs to lg */}
-        <div className="max-w-2xl mx-auto space-y-16 lg:hidden">
+        <div className='max-w-2xl mx-auto space-y-16 lg:hidden'>
           {tiers.map((tier, tierIdx) => (
             <section key={tier.name}>
-              <div className="px-4 mb-8">
-                <h2 className="text-lg font-medium leading-6 text-gray-900">{tier.name}</h2>
-                <p className="mt-4">
-                  <span className="text-4xl font-extrabold text-gray-900">${tier.priceMonthly}</span>{' '}
-                  <span className="text-base font-medium text-gray-500">/mo</span>
+              <div className='px-4 mb-8'>
+                <h2 className='text-lg font-medium leading-6 text-gray-900'>{tier.name}</h2>
+                <p className='mt-4'>
+                  <span className='text-4xl font-extrabold text-gray-900'>${tier.priceMonthly}</span>{' '}
+                  <span className='text-base font-medium text-gray-500'>/mo</span>
                 </p>
-                <p className="mt-4 text-sm text-gray-500">{tier.description}</p>
+                <p className='mt-4 text-sm text-gray-500'>{tier.description}</p>
                 <a
                   href={tier.href}
-                  className="block w-full py-2 mt-6 text-sm font-semibold text-center text-white bg-gray-800 border border-gray-800 rounded-md hover:bg-gray-900"
+                  className='block w-full py-2 mt-6 text-sm font-semibold text-center text-white bg-gray-800 border border-gray-800 rounded-md hover:bg-gray-900'
                 >
                   Buy {tier.name}
                 </a>
               </div>
 
               {sections.map((section) => (
-                <table key={section.name} className="w-full">
-                  <caption className="px-4 py-3 text-sm font-medium text-left text-gray-900 border-t border-gray-200 bg-gray-50">
+                <table key={section.name} className='w-full'>
+                  <caption className='px-4 py-3 text-sm font-medium text-left text-gray-900 border-t border-gray-200 bg-gray-50'>
                     {section.name}
                   </caption>
                   <thead>
                     <tr>
-                      <th className="sr-only" scope="col">
+                      <th className='sr-only' scope='col'>
                         Feature
                       </th>
-                      <th className="sr-only" scope="col">
+                      <th className='sr-only' scope='col'>
                         Included
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-gray-200">
+                  <tbody className='divide-y divide-gray-200'>
                     {section.features.map((feature: FeatureDefs) => (
-                      <tr key={feature.name} className="border-t border-gray-200">
-                        <th className="px-4 py-5 text-sm font-normal text-left text-gray-500" scope="row">
+                      <tr key={feature.name} className='border-t border-gray-200'>
+                        <th className='px-4 py-5 text-sm font-normal text-left text-gray-500' scope='row'>
                           {feature.name}
                         </th>
-                        <td className="py-5 pr-4">
+                        <td className='py-5 pr-4'>
                           {typeof feature.tiers[tier.name] === 'string' ? (
-                            <span className="block text-sm text-right text-gray-700">{feature.tiers[tier.name]}</span>
+                            <span className='block text-sm text-right text-gray-700'>{feature.tiers[tier.name]}</span>
                           ) : (
                             <>
                               {feature.tiers[tier.name] === true ? (
-                                <CheckIcon className="w-5 h-5 ml-auto text-green-500" aria-hidden="true" />
+                                <CheckIcon className='w-5 h-5 ml-auto text-green-500' aria-hidden='true' />
                               ) : (
-                                <MinusIcon className="w-5 h-5 ml-auto text-gray-400" aria-hidden="true" />
+                                <MinusIcon className='w-5 h-5 ml-auto text-gray-400' aria-hidden='true' />
                               )}
 
-                              <span className="sr-only">{feature.tiers[tier.name] === true ? 'Yes' : 'No'}</span>
+                              <span className='sr-only'>{feature.tiers[tier.name] === true ? 'Yes' : 'No'}</span>
                             </>
                           )}
                         </td>
@@ -144,7 +143,7 @@ export default function PricingTable() {
               >
                 <a
                   href={tier.href}
-                  className="block w-full py-2 text-sm font-semibold text-center text-white bg-gray-800 border border-gray-800 rounded-md hover:bg-gray-900"
+                  className='block w-full py-2 text-sm font-semibold text-center text-white bg-gray-800 border border-gray-800 rounded-md hover:bg-gray-900'
                 >
                   Buy {tier.name}
                 </a>
@@ -154,42 +153,42 @@ export default function PricingTable() {
         </div>
 
         {/* lg+ */}
-        <div className="hidden lg:block">
-          <table className="w-full h-px table-fixed">
-            <caption className="sr-only">Pricing plan comparison</caption>
+        <div className='hidden lg:block'>
+          <table className='w-full h-px table-fixed'>
+            <caption className='sr-only'>Pricing plan comparison</caption>
             <thead>
               <tr>
-                <th className="px-6 pb-4 text-sm font-medium text-left text-gray-900" scope="col">
-                  <span className="sr-only">Feature by</span>
+                <th className='px-6 pb-4 text-sm font-medium text-left text-gray-900' scope='col'>
+                  <span className='sr-only'>Feature by</span>
                   <span>Plans</span>
                 </th>
                 {tiers.map((tier) => (
                   <th
                     key={tier.name}
-                    className="w-1/4 px-6 pb-4 text-lg font-medium leading-6 text-left text-gray-900"
-                    scope="col"
+                    className='w-1/4 px-6 pb-4 text-lg font-medium leading-6 text-left text-gray-900'
+                    scope='col'
                   >
                     {tier.name}
                   </th>
                 ))}
               </tr>
             </thead>
-            <tbody className="border-t border-gray-200 divide-y divide-gray-200">
+            <tbody className='border-t border-gray-200 divide-y divide-gray-200'>
               <tr>
-                <th className="px-6 py-8 text-sm font-medium text-left text-gray-900 align-top" scope="row">
+                <th className='px-6 py-8 text-sm font-medium text-left text-gray-900 align-top' scope='row'>
                   Pricing
                 </th>
                 {tiers.map((tier) => (
-                  <td key={tier.name} className="h-full px-6 py-8 align-top">
-                    <div className="relative table h-full">
+                  <td key={tier.name} className='h-full px-6 py-8 align-top'>
+                    <div className='relative table h-full'>
                       <p>
-                        <span className="text-4xl font-extrabold text-gray-900">${tier.priceMonthly}</span>{' '}
-                        <span className="text-base font-medium text-gray-500">/mo</span>
+                        <span className='text-4xl font-extrabold text-gray-900'>${tier.priceMonthly}</span>{' '}
+                        <span className='text-base font-medium text-gray-500'>/mo</span>
                       </p>
-                      <p className="mt-4 mb-16 text-sm text-gray-500">{tier.description}</p>
+                      <p className='mt-4 mb-16 text-sm text-gray-500'>{tier.description}</p>
                       <a
                         href={tier.href}
-                        className="absolute bottom-0 flex-grow block w-full py-2 text-sm font-semibold text-center text-white bg-gray-800 border border-gray-800 rounded-md 5 hover:bg-gray-900"
+                        className='absolute bottom-0 flex-grow block w-full py-2 text-sm font-semibold text-center text-white bg-gray-800 border border-gray-800 rounded-md 5 hover:bg-gray-900'
                       >
                         Buy {tier.name}
                       </a>
@@ -201,31 +200,31 @@ export default function PricingTable() {
                 <Fragment key={section.name}>
                   <tr>
                     <th
-                      className="py-3 pl-6 text-sm font-medium text-left text-gray-900 bg-gray-50"
+                      className='py-3 pl-6 text-sm font-medium text-left text-gray-900 bg-gray-50'
                       colSpan={4}
-                      scope="colgroup"
+                      scope='colgroup'
                     >
                       {section.name}
                     </th>
                   </tr>
                   {section.features.map((feature) => (
                     <tr key={feature.name}>
-                      <th className="px-6 py-5 text-sm font-normal text-left text-gray-500" scope="row">
+                      <th className='px-6 py-5 text-sm font-normal text-left text-gray-500' scope='row'>
                         {feature.name}
                       </th>
                       {tiers.map((tier) => (
-                        <td key={tier.name} className="px-6 py-5">
+                        <td key={tier.name} className='px-6 py-5'>
                           {typeof feature.tiers[tier.name] === 'string' ? (
-                            <span className="block text-sm text-gray-700">{feature.tiers[tier.name]}</span>
+                            <span className='block text-sm text-gray-700'>{feature.tiers[tier.name]}</span>
                           ) : (
                             <>
                               {feature.tiers[tier.name] === true ? (
-                                <CheckIcon className="w-5 h-5 text-green-500" aria-hidden="true" />
+                                <CheckIcon className='w-5 h-5 text-green-500' aria-hidden='true' />
                               ) : (
-                                <MinusIcon className="w-5 h-5 text-gray-400" aria-hidden="true" />
+                                <MinusIcon className='w-5 h-5 text-gray-400' aria-hidden='true' />
                               )}
 
-                              <span className="sr-only">
+                              <span className='sr-only'>
                                 {feature.tiers[tier.name] === true ? 'Included' : 'Not included'} in {tier.name}
                               </span>
                             </>
@@ -238,15 +237,15 @@ export default function PricingTable() {
               ))}
             </tbody>
             <tfoot>
-              <tr className="border-t border-gray-200">
-                <th className="sr-only" scope="row">
+              <tr className='border-t border-gray-200'>
+                <th className='sr-only' scope='row'>
                   Choose your plan
                 </th>
                 {tiers.map((tier) => (
-                  <td key={tier.name} className="px-6 pt-5">
+                  <td key={tier.name} className='px-6 pt-5'>
                     <a
                       href={tier.href}
-                      className="block w-full py-2 text-sm font-semibold text-center text-white bg-gray-800 border border-gray-800 rounded-md hover:bg-gray-900"
+                      className='block w-full py-2 text-sm font-semibold text-center text-white bg-gray-800 border border-gray-800 rounded-md hover:bg-gray-900'
                     >
                       Buy {tier.name}
                     </a>
@@ -258,5 +257,5 @@ export default function PricingTable() {
         </div>
       </div>
     </div>
-  )
+  );
 }

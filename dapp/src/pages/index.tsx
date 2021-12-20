@@ -8,7 +8,6 @@ import View from '@/views/public/Homepage';
 /* -------------------------------------------------------------------------- */
 
 export default function Auth() {
-
   return <View />;
 }
 
