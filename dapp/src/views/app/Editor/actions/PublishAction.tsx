@@ -48,7 +48,8 @@ export default function PublishAction({ store, handlePublish }: PublishActionPro
       // const contractEvents = result.events['NewContractCreated']
       const preview = await store.toDataURL();
 
-      console.log(preview);
+      // eslint-disable-next-line no-console
+      console.warn(preview, "toDataURL");
       alert(JSON.stringify(result.events['NewContractCreated'].returnValues.contractAddress));
 
       /* Make call to contract method */
@@ -58,7 +59,8 @@ export default function PublishAction({ store, handlePublish }: PublishActionPro
       /* Save the preview image to Moralis and store in IPFS */
       const file = new Moralis.File('certificate.json', { base64: preview.split(',')[1] });
 
-      console.log(file);
+      // eslint-disable-next-line no-console
+      console.log(file, "file on IPFS");
 
       /* Save credential information to Moralis */
       await save({

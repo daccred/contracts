@@ -36,4 +36,5 @@ yarn-error.log*
 # next-sitemap
 robots.txt
 sitemap.xml
-.tsbuildinfo
+*.tsbuildinfo
+tsconfig.tsbuildinfo

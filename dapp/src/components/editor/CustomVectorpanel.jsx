@@ -68,7 +68,6 @@ export const SVGPanel = observer(({ store }) => {
 export const VectorSection = {
   name: 'svgapi',
   displayName: 'svgpanel',
-  // eslint-disable-next-line react/display-name
   Tab: (props) => (
     <SectionTab name='Icons' {...props}>
       <FaVectorSquare />

@@ -95,7 +95,6 @@ export const VariablesPanel = observer(({ store }: any) => {
 const VariableSection = {
   name: 'cert_variables',
   displayName: 'cert_variables',
-  // eslint-disable-next-line react/display-name
   Tab: (props: any) => (
     <SectionTab name='Variables' {...props}>
       <VscSymbolVariable className='w-5 h-5' />

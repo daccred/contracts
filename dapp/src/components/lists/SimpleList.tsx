@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import { ChevronRightIcon } from '@heroicons/react/solid';
 import * as React from 'react';
 

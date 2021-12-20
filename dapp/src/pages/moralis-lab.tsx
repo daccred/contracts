@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-/* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import ABI from '@/lib/abis';
 import { DACRED_ROUTER_KOVAN } from '@/config/constants';

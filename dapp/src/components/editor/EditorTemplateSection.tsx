@@ -66,7 +66,6 @@ export const TemplatesPanel = observer(({ store }: any) => {
 const TemplateSection = {
   name: 'cert_Templates',
   displayName: 'cert_Templates',
-  // eslint-disable-next-line react/display-name
   Tab: (props: any) => (
     <SectionTab name='Templates' {...props}>
       <LibraryIcon className='w-5 h-5' />

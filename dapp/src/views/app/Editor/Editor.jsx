@@ -34,7 +34,8 @@ const Editor = ({ store }) => {
   const { user, hasProfile } = useAuthUser();
   const height = useHeight();
 
-  console.log(publishData);
+  // eslint-disable-next-line no-console
+  console.warn(publishData);
 
   const handleDrop = (ev) => {
     // Prevent default behavior (Prevent file from being opened)
