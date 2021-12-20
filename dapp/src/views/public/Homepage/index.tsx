@@ -25,7 +25,6 @@ export default function Homepage() {
         {/* ----  */}
         <Roadmap />
 
-
         <CTACallout />
         {/* ---- save the best for last ------ */}
 

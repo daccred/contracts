@@ -4,14 +4,14 @@ import { ChevronDownIcon } from '@heroicons/react/outline';
 
 const faqs = [
   {
-    question: "What is an NFT?",
+    question: 'What is an NFT?',
     answer:
-      "NFT is short for Non Fungible tokens, which are a standard used to create ownership of digital assets on the blockchain",
+      'NFT is short for Non Fungible tokens, which are a standard used to create ownership of digital assets on the blockchain',
   },
   {
-    question: "What is Web3.0 all about",
+    question: 'What is Web3.0 all about',
     answer:
-      "Web3 is the advent of the new internet, driven by blockchain networks and decentralized, in Web3 everything is permissionless and decentralized",
+      'Web3 is the advent of the new internet, driven by blockchain networks and decentralized, in Web3 everything is permissionless and decentralized',
   },
 ];
 
@@ -47,8 +47,11 @@ export default function FAQ() {
           </dl>
         </div>
         <div className='max-w-3xl mx-auto'>
-          <p className="py-20 text-gray-500">Not seeing an answer to your question, please shoot me an tweet <span className="px-2 bg-gray-300 rounded-full">@koolamusic</span> and I'll respond</p>
-          </div>
+          <p className='py-20 text-gray-500'>
+            Not seeing an answer to your question, please shoot me an tweet{' '}
+            <span className='px-2 bg-gray-300 rounded-full'>@koolamusic</span> and I'll respond
+          </p>
+        </div>
       </div>
     </div>
   );

@@ -3,7 +3,7 @@ import { InboxIcon, SparklesIcon } from '@heroicons/react/outline';
 
 export default function MultichainFeature() {
   return (
-    <div className='relative pt-16 sm:pb-6 md:pb-32 md:my-12 sm:my-6 overflow-hidden bg-white'>
+    <div className='relative pt-16 overflow-hidden bg-white sm:pb-6 md:pb-32 md:my-12 sm:my-6'>
       <div className='relative'>
         <div className='lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:grid-flow-col-dense lg:gap-24'>
           <div className='max-w-xl px-4 mx-auto sm:px-6 lg:py-16 lg:max-w-none lg:mx-0 lg:px-0'>
