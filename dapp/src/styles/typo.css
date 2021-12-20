@@ -71,14 +71,11 @@
     font-weight: 500;
     font-style: normal;
     font-display: swap;
-        ascent-override: 120%;
+    ascent-override: 120%;
     descent-override: 50%;
-
-
-
 }
 
-@font-face {
+/* @font-face {
     font-family: 'Matter SQ';
     src: url('/fonts/MatterSQ-SemiBold.woff2') format('woff2'),
         url('/fonts/MatterSQ-SemiBold.woff') format('woff');
@@ -87,9 +84,6 @@
     font-display: swap;
         ascent-override: 120%;
     descent-override: 50%;
-
-
-
 }
-
+ */
 

@@ -16,8 +16,9 @@ export const DACRED_ROUTER_KOVAN = '0x195c499669Ed02E9313e94836A2dCf9500322532'
 /*                constants to work with authentication helpers               */
 /* -------------------------------------------------------------------------- */
 export const AUTH = {
-  loginRoute: '/auth',
-  rootRoute: '/',
+  loginRoute: '/authorize',
+  defaultRoute: '/',
+  rootRoute: '/studio',
   key: '__app.sid__',
 };
 

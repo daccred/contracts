@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Menu, Transition } from '@headlessui/react';
 import { SelectorIcon } from '@heroicons/react/solid';
@@ -34,7 +33,7 @@ export const StaticSidebar = ({ options }: LayoutNavProps) => {
                       alt=''
                     />
                     <span className='flex flex-col flex-1 min-w-0'>
-                      <span className='text-sm font-medium text-gray-900 truncate'>Cent Admin</span>
+                      <span className='text-sm font-medium text-gray-900 truncate'>Daccred Admin</span>
                       <span className='text-sm text-gray-500 truncate'>@0x0</span>
                     </span>
                   </span>

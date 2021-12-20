@@ -1,19 +1,17 @@
 import { GetServerSideProps } from 'next';
-
 import * as NextAuth from '@/lib/auth.helper';
 
-import Layout from '@/components/layout/PageLayout';
+import View from '@/views/public/Homepage';
 
-import View from '@/views/app/Admin';
+/* -------------------------------------------------------------------------- */
+/*             use moralis to handle authentication logic in view             */
+/* -------------------------------------------------------------------------- */
 
-export default function Default() {
-  return (
-    <Layout>
-      <View />
-    </Layout>
-  );
+export default function Auth() {
+
+  return <View />;
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  return await NextAuth.handleAuthenticatedRequest(context);
+  return await NextAuth.redirectAuthenticated(context);
 };

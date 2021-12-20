@@ -15,7 +15,7 @@ export const AuthView: React.FC<AuthViewOptions> = ({ isAuthenticated, authentic
       <div className='flex items-center justify-center min-h-full px-4 py-12 sm:px-6 lg:px-8'>
         <div className='w-full max-w-md space-y-8'>
           <div>
-            <h2 className='mt-6 text-3xl font-extrabold text-center text-gray-900'>Welcome back</h2>
+            <h2 className='mt-6 text-3xl font-extrabold text-center text-gray-900 capitalize'>Access your account</h2>
           </div>
           <section className='mt-8 space-y-6'>
             {/* ///////// Button to trigger Metamask Login ///////// */}
@@ -24,10 +24,10 @@ export const AuthView: React.FC<AuthViewOptions> = ({ isAuthenticated, authentic
                 onClick={() =>
                   authenticate({ signingMessage: 'One Time Access', onSuccess: (user) => NextAuth.login(user) })
                 }
-                className='relative flex justify-center w-full px-4 py-4 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md group hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+                className='relative flex justify-center w-full px-4 py-4 text-sm font-medium text-white bg-gray-600 border border-transparent rounded-md group hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500'
               >
                 <span className='absolute inset-y-0 left-0 flex items-center pl-3'>
-                  <LockClosedIcon className='w-5 h-5 text-indigo-500 group-hover:text-indigo-400' aria-hidden='true' />
+                  <LockClosedIcon className='w-5 h-5 text-gray-500 group-hover:text-gray-400' aria-hidden='true' />
                 </span>
                 {isAuthenticated ? 'You are logged in' : 'Login with Metamask'}
               </button>

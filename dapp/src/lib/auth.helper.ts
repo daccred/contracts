@@ -71,7 +71,7 @@ export const isAuthenticated = async (ctx: ContextArg) => {
   }
 };
 
-export const handleAuthenticatedRequest = async (ctx: ContextArg, target = config.loginRoute) => {
+export const handleAuthenticatedRequest = async (ctx: ContextArg, target = config.defaultRoute) => {
   /* If user is authenticated, get profile from cookies and pass into props */
 
   const userHasCookie = await isAuthenticated(ctx);
