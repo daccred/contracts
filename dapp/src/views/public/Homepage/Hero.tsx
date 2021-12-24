@@ -63,7 +63,7 @@ export default function Hero() {
                 <span className='relative block text-primary-600'>on any blockchain</span>
               </h1>
               <p className='max-w-md mx-auto mt-3 text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl'>
-                Draft, Design and Issue Certificates, Badges and any type of Credential to individuals as Non Fungible
+                Draft, Design and Issue Certificates, Badges and any type of Credential to Individuals as Non Fungible
                 Tokens (NFTs) to your Recipients, Participants and Community
               </p>
             </div>
