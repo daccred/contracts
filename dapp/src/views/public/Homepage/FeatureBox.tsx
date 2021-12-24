@@ -5,19 +5,19 @@ const features = [
   {
     name: 'Competitive exchange rates',
     description:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
+      'Pay in the Cryptocurrency you are most conversant with and access the service instantly without any holdups. We meet you at the point where you are.',
     icon: GlobeAltIcon,
   },
   {
     name: 'No hidden fees',
     description:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
+      'Our pricing is very transparent and straightforward. So you can focus on what is really important for your customers and clients and we do the rest.',
     icon: ScaleIcon,
   },
   {
     name: 'Transfers are instant',
     description:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
+      'Using the blockchain technology guarantees instant transfers and a strong layer of verifiability for every single credential you might have.',
     icon: LightningBoltIcon,
   },
 ];
