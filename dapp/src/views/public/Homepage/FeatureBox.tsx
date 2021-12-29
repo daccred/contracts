@@ -17,7 +17,7 @@ const features = [
   {
     name: 'Transfers are instant',
     description:
-      'Using the blockchain technology guarantees that all transafers are instant with and a strong layer of verifiability for every single credential you might have.',
+      'Using the blockchain technology guarantees that all transfers are instant with and a strong layer of verifiability for every single credential you might have.',
     icon: LightningBoltIcon,
   },
 ];
