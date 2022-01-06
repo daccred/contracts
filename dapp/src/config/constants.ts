@@ -13,7 +13,9 @@ export const LF_STORE_KEY = 'ILvcJpQFhD5AC6AVd7P2';
 /* ------------------------------------------------------------------- */
 /*                all our smart contracts and the networks            */
 /* ----------------------------------------------------------------- */
-export const DACRED_ROUTER_KOVAN = '0x195c499669Ed02E9313e94836A2dCf9500322532';
+export const DACRED_ROUTER_KOVAN = '0x8A3AC1642b2B98F71D23f1547B754eeDd9Af2245';
+export const DACRED_ROUTER_GANACHE = '0x9561C133DD8580860B6b7E504bC5Aa500f0f06a7';
+export const DACRED_ROUTER_ROPSTEN = '0x46e0e42b9d952c3d894d12139aed33fa5d318bff';
 
 /* -------------------------------------------------------------------------- */
 /*                constants to work with authentication helpers               */

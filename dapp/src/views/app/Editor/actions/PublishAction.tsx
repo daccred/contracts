@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import ABI from '@/lib/abis';
-import { DACRED_ROUTER_KOVAN } from '@/config/constants';
+import { DACRED_ROUTER_ROPSTEN, DACRED_ROUTER_KOVAN, DACRED_ROUTER_GANACHE} from '@/config/constants';
 import { useMoralis, useNewMoralisObject, useWeb3ExecuteFunction } from 'react-moralis';
 import Button from '@/components/buttons/Button';
 import { observer } from 'mobx-react-lite';
@@ -10,18 +10,18 @@ import { useState, useEffect } from 'react';
 import { Moralis } from 'moralis';
 
 const options = {
-  abi: ABI.dacredRouterABI,
-  contractAddress: DACRED_ROUTER_KOVAN,
+  abi: ABI.leanRouter,
+  contractAddress: DACRED_ROUTER_ROPSTEN,
   functionName: 'createContractForClient',
   params: {
-    name: 'Smart Farm DAO',
-    certId: 'SFD',
+    name: 'Var School Fall 2020',
+    certId: 'VSF20',
   },
 };
 
 interface PublishActionProps {
   handlePublish: (arg: unknown) => void;
-  publishProps: unknown;
+  publishProps?: unknown;
   store: StoreType;
 }
 
@@ -31,6 +31,7 @@ export default function PublishAction({ store, handlePublish }: PublishActionPro
 
   const { data, error, fetch, isFetching, isLoading } = useWeb3ExecuteFunction(options);
   const { isSaving, error: objError, save } = useNewMoralisObject('Credentials');
+  // const [moralisSaveOp, setMoralisSaveOp] = useState<any>()
   // const { Moralis } = withMoralis()
 
   const {
@@ -57,24 +58,29 @@ export default function PublishAction({ store, handlePublish }: PublishActionPro
       // console.log(callContract, "CALL CONTRACT RESPONSE")
 
       /* Save the preview image to Moralis and store in IPFS */
-      const file = new Moralis.File('certificate.json', { base64: preview.split(',')[1] });
+      const file = new Moralis.File('certificate.png', { base64: preview.split(',')[1] });
 
       // eslint-disable-next-line no-console
       console.log(file, 'file on IPFS');
 
       /* Save credential information to Moralis */
-      await save({
+      const moralisOperation = {
         name: 'Smart Farm DAO',
         certId: '9y8szTm57lmgWxdhY5YJMGx8',
         thumbnail: preview,
         file: file,
-      });
+      };
+      await save(moralisOperation);
+
+      // await setMoralisSaveOp(moralisOperation)
+      handlePublish && handlePublish({ moralisOperation, result });
     } catch (error) {
-      alert(JSON.stringify(error));
+      // eslint-disable-next-line no-console
+      console.error(error, 'from Publish action');
+      // alert(JSON.stringify(error));
     }
   };
   /* handle callback */
-  handlePublish && handlePublish(data);
 
   /* ================================================================================================ */
 
@@ -84,6 +90,7 @@ export default function PublishAction({ store, handlePublish }: PublishActionPro
         onClick={() => fetch({ onSuccess: (result) => _handlePublishAction(result) })}
         disabled={isFetching}
         isLoading={isLoading || isSaving}
+        className="w-full"
       >
         Publish
       </Button>
