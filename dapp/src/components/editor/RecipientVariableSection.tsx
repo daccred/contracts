@@ -6,7 +6,7 @@ import { InputGroup } from '@blueprintjs/core';
 import { SectionTab } from 'realmono/side-panel';
 import { ImagesGrid } from 'realmono/side-panel/images-grid';
 import { VscSymbolVariable } from 'react-icons/vsc';
-import { recipientVariables } from '@/config/recipient.default';
+import { recipientVariables } from '@/config/defaults/recipient.default';
 
 export const VariablesPanel = observer(({ store }: any) => {
   const [variables, setEditorVariables] = useState<typeof recipientVariables>([]);

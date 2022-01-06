@@ -6,7 +6,7 @@ import { InputGroup } from '@blueprintjs/core';
 import { SectionTab } from 'realmono/side-panel';
 import { ImagesGrid } from 'realmono/side-panel/images-grid';
 import { LibraryIcon } from '@heroicons/react/outline';
-import { templates } from '@/config/templates.default';
+import { templates } from '@/config/defaults/templates.default';
 import { TemplateSelectBoxProps } from '../fields/TemplateSelectBox';
 import useEditorTemplate from '@/hooks/useEditorTemplate';
 

@@ -9,19 +9,18 @@ contract DacredFactory is ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
 
-    event CredentialAwarded(address recipient, uint tokenId);
+    event CredentialAwarded(address recipient, uint tokenId, string claimURI);
 
     constructor(string memory _name, string memory _symbol) ERC721(_name, _symbol) {}
 
-    function awardCredential(address recipient, string memory tokenURI) public returns(uint256) {
+    function awardCredential(address recipient, string memory claimURI) public returns(uint256) {
         _tokenIds.increment();
 
         uint256 newItemId = _tokenIds.current();
         _mint(recipient, newItemId);
-        _setTokenURI(newItemId, tokenURI);
+        _setTokenURI(newItemId, claimURI);
 
-        emit CredentialAwarded(msg.sender, newItemId);
-
+        emit CredentialAwarded(msg.sender, newItemId, claimURI);
         return newItemId;
     }
 }

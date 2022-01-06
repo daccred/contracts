@@ -6,7 +6,7 @@ import Button from '@/components/buttons/Button';
 import { useZustand } from '@/lib/zustand';
 import TemplateSelectBox, { TemplateSelectBoxProps } from '@/components/fields/TemplateSelectBox';
 import { CredentialCreateOptions } from '@/config/d';
-import { templates } from '@/config/templates.default';
+import { templates } from '@/config/defaults/templates.default';
 import localforage from 'localforage';
 import { LF_EDITOR_VAR } from '@/config/constants';
 import { useRouter } from 'next/router';

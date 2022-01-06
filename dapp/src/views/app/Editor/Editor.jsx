@@ -10,14 +10,15 @@ import { SidePanel, ElementsSection, UploadSection } from 'realmono/side-panel';
 import { Workspace } from 'realmono/canvas/workspace';
 
 import { loadFile } from './actions/file';
-import PublishAction from './actions/PublishAction';
+// import PublishAction from './actions/PublishAction';
 
 import EditorTopbar from '@/components/header/EditorTopbar';
 import useAuthUser from '@/hooks/useAuthUser';
 import TemplateSection from '@/components/editor/EditorTemplateSection';
 import VariableSection from '@/components/editor/RecipientVariableSection';
+import PublishSection from '@/components/editor/EditorPublishSection';
 
-const PANEL_SECTIONS = [TemplateSection, ElementsSection, VariableSection, UploadSection];
+const PANEL_SECTIONS = [TemplateSection, ElementsSection, UploadSection, VariableSection, PublishSection];
 
 const useHeight = () => {
   const [height, setHeight] = React.useState(window.innerHeight);
@@ -30,12 +31,8 @@ const useHeight = () => {
 };
 
 const Editor = ({ store }) => {
-  const [publishData, setPublishData] = React.useState();
   const { user, hasProfile } = useAuthUser();
   const height = useHeight();
-
-  // eslint-disable-next-line no-console
-  console.warn(publishData);
 
   const handleDrop = (ev) => {
     // Prevent default behavior (Prevent file from being opened)
@@ -66,9 +63,7 @@ const Editor = ({ store }) => {
             open={open}
             hasProfile={hasProfile}
             store={store}
-          >
-            <PublishAction store={store} handlePublish={setPublishData} />
-          </EditorTopbar>
+          />
         )}
       </Disclosure>
       {/* <Topbar store={store} /> */}

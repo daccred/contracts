@@ -13,13 +13,13 @@ export const templates: TemplateSelectBoxProps[] = [
   },
   {
     id: 2,
-    value: design.certTwo,
+    value: design.certThree,
     title: 'Certificate',
     url: '/templates/cert_2.png',
   },
   {
     id: 3,
-    value: design.certThree,
+    value: design.certTwo,
     title: 'Certificate',
     url: '/templates/cert_3.png',
   },
@@ -33,13 +33,13 @@ export const templates: TemplateSelectBoxProps[] = [
     id: 5,
     value: design.certThree,
     title: 'Certificate',
-    url: '/templates/cert_5.png',
+    url: '/templates/cert_2.png',
   },
   {
     id: 6,
     value: design.certOne,
     title: 'Certificate',
-    url: '/templates/cert_6.png',
+    url: '/templates/cert_3.png',
   },
 ];
 /*  ------------------------------------------  Menu Radio Options Array   --------------- */
