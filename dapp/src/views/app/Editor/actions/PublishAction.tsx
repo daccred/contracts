@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import ABI from '@/lib/abis';
-import { DACRED_ROUTER_ROPSTEN, DACRED_ROUTER_KOVAN, DACRED_ROUTER_GANACHE} from '@/config/constants';
+import { DACRED_ROUTER_ROPSTEN, DACRED_ROUTER_KOVAN, DACRED_ROUTER_GANACHE } from '@/config/constants';
 import { useMoralis, useNewMoralisObject, useWeb3ExecuteFunction } from 'react-moralis';
 import Button from '@/components/buttons/Button';
 import { observer } from 'mobx-react-lite';
@@ -88,9 +88,9 @@ export default function PublishAction({ store, handlePublish }: PublishActionPro
     <div className='flex'>
       <Button
         onClick={() => fetch({ onSuccess: (result) => _handlePublishAction(result) })}
-        disabled={isFetching}
+        disabled={!!data || isFetching}
         isLoading={isLoading || isSaving}
-        className="w-full"
+        className='w-full'
       >
         Publish
       </Button>

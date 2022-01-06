@@ -8,6 +8,7 @@ import { MdOutlinePublish } from 'react-icons/md';
 import { recipientVariables } from '@/config/defaults/recipient.default';
 import PublishAction from '../../views/app/Editor/actions/PublishAction';
 import { formatAddress, getAddressTxt } from '@/lib/helper';
+import { ClipboardCopyIcon } from '@heroicons/react/outline';
 
 export const PublishPanel = observer(({ store }: any) => {
   const [variables, setEditorVariables] = useState<any>();
@@ -19,20 +20,21 @@ export const PublishPanel = observer(({ store }: any) => {
 
   const handlePublishTrigger = (payload: any) => {
     setTriggered(false);
+    setEditorVariables({});
 
     setPublishData(payload);
-    
+
     const editorVariables = {
-      contractAddress: payload?.result.events.NewContractCreated.returnValues.contractAddress || '',
-      deployedAt: payload?.result.events.NewContractCreated.returnValues.createdAt || '',
-      certificateName: payload?.moralisOperation.name || '',
-      certificateId: payload?.moralisOperation.certId || '',
-      thumbnail: payload?.moralisOperation.thumbnail || '',
-      transactionHash: payload?.result.transactionHash || '',
+      contractAddress: payload.result.events.NewContractCreated.returnValues.contractAddress || '',
+      deployedAt: payload.result.events.NewContractCreated.returnValues.createdAt || '',
+      certificateName: payload.moralisOperation.name || '',
+      certificateId: payload.moralisOperation.certId || '',
+      thumbnail: payload.moralisOperation.thumbnail || '',
+      transactionHash: payload.result.transactionHash || '',
     };
-    
+
     setEditorVariables(editorVariables);
-    
+
     setTriggered(true);
     console.log(variables);
     console.log([publishData]);
@@ -81,14 +83,36 @@ export const PublishPanel = observer(({ store }: any) => {
 
       {/* Show once published */}
       <div className='px-3 pt-4 pb-4 mt-8 rounded-sm'>
-        <h5 className='mb-2 bold'>Are you ready to publish your credential to the blockchain, click the publish button below to launch 🚀</h5>
+        <h5 className='mb-2 bold'>
+          Are you ready to publish your credential to the blockchain, click the publish button below to launch 🚀
+        </h5>
         {isTriggered && publishData && (
-          <section className="overflow-hidden text-sm ">
-            <p className='px-2 py-2 mt-2 bg-gray-100 border'>Contract Address: <a className='underline' target='_blank' href={`https://ropsten.etherscan.io/address/${variables.contractAddress}`}>{getAddressTxt(variables.contractAddress)}</a></p>
+          <section className='overflow-hidden text-sm '>
+            <p className='px-2 py-2 mt-2 bg-gray-100 border'>
+              Contract Address:{' '}
+              <a
+                className='underline'
+                target='_blank'
+                href={`https://ropsten.etherscan.io/token/${variables.contractAddress}`}
+              >
+                {getAddressTxt(variables.contractAddress)}
+              </a>{' '}
+              <ClipboardCopyIcon className='inline w-5 h-5 pl-1' />{' '}
+            </p>
             <p className='px-2 py-2 mt-2 bg-gray-100 border'>Deployed At: {variables.deployedAt}</p>
             <p className='px-2 py-2 mt-2 bg-gray-100 border'>Certificate Name: {variables.certificateName}</p>
             <p className='px-2 py-2 mt-2 bg-gray-100 border'>Certificate ID: {variables.certificateId}</p>
-            <p className='px-2 py-2 mt-2 bg-gray-100 border'>Transaction Hash: <a className='underline' target='_blank' href={`https://ropsten.etherscan.io/tx/${variables.transactionHash}`}>{formatAddress(variables.transactionHash)}</a></p>
+            <p className='px-2 py-2 mt-2 bg-gray-100 border'>
+              Transaction Hash:{' '}
+              <a
+                className='underline'
+                target='_blank'
+                href={`https://ropsten.etherscan.io/tx/${variables.transactionHash}`}
+              >
+                {formatAddress(variables.transactionHash)}
+              </a>{' '}
+              <ClipboardCopyIcon className='inline w-5 h-5 pl-1' />{' '}
+            </p>
             <img src={variables.thumbnail} className='w-full mt-12' />
           </section>
         )}
