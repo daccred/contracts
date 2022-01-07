@@ -27,13 +27,12 @@ const TemplateSelection = () => {
     claim.template = data.value;
 
     try {
-      await _dispatchFormAction(claim);
-      await localforage.setItem(LF_EDITOR_VAR, data.value);
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      await _dispatchFormAction({template: data});
+      await localforage.setItem(LF_EDITOR_VAR, JSON.stringify(data));
+      new Promise((resolve) => setTimeout(resolve, 2000));
 
-      router.replace('/editor');
+      router.replace('/editor/6f689bc3897750dbf04622491821f663a606aa5fec2');
 
-      // await _step([...step, 'medium_preview']);
     } catch (error) {
       alert(JSON.stringify(error));
     }

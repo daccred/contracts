@@ -1,12 +1,11 @@
 import React from 'react';
 import localforage from 'localforage';
 import { createStore } from 'realmono/model/store';
-import { unstable_setRemoveBackgroundEnabled } from 'realmono/config';
+// import { unstable_setRemoveBackgroundEnabled } from 'realmono/config';
 
 import Editor from './Editor';
 import { LF_EDITOR_VAR, LF_STORE_KEY } from '@/config/constants';
 
-unstable_setRemoveBackgroundEnabled(true);
 
 const store = createStore({ key: LF_STORE_KEY });
 
