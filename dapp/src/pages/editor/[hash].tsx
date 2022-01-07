@@ -16,7 +16,6 @@ export default function Default() {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   // eslint-disable-next-line no-console
-  console.log(context.params, context.query)
+  console.log(context.params, context.query);
   return await NextAuth.handleAuthenticatedRequest(context);
 };
-

@@ -8,7 +8,7 @@ import { MdOutlinePublish } from 'react-icons/md';
 import { recipientVariables } from '@/config/defaults/recipient.default';
 import PublishAction from '../../views/app/Editor/actions/PublishAction';
 import { formatAddress, getAddressTxt } from '@/lib/helper';
-import { ClipboardCopyIcon } from '@heroicons/react/outline';
+import { ClipboardCopyIcon, ExternalLinkIcon } from '@heroicons/react/outline';
 
 export const PublishPanel = observer(({ store }: any) => {
   const [variables, setEditorVariables] = useState<any>();
@@ -112,6 +112,17 @@ export const PublishPanel = observer(({ store }: any) => {
                 {formatAddress(variables.transactionHash)}
               </a>{' '}
               <ClipboardCopyIcon className='inline w-5 h-5 pl-1' />{' '}
+            </p>
+            <p className='px-2 py-2 mt-2 bg-gray-100 border'>
+              Claim URL:{' '}
+              <a
+                className='underline'
+                target='_blank'
+                href={`http://localhost:3000/claims/${variables.contractAddress}`}
+              >
+                {getAddressTxt(variables.contractAddress)}
+              </a>{' '}
+              <ExternalLinkIcon className='inline w-5 h-5 pl-1' />{' '}
             </p>
             <img src={variables.thumbnail} className='w-full mt-12' />
           </section>

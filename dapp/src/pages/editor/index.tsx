@@ -17,4 +17,3 @@ export default function Default() {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   return await NextAuth.handleAuthenticatedRequest(context);
 };
-

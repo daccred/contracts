@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next';
 
 export default function RedirectPage() {
-  return ;
+  return;
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {

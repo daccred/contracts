@@ -6,7 +6,6 @@ import { createStore } from 'realmono/model/store';
 import Editor from './Editor';
 import { LF_EDITOR_VAR, LF_STORE_KEY } from '@/config/constants';
 
-
 const store = createStore({ key: LF_STORE_KEY });
 
 localforage.getItem(LF_EDITOR_VAR, function (_err, json) {
