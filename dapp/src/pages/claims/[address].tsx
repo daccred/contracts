@@ -1,7 +1,9 @@
 import { GetServerSideProps } from 'next';
+import dynamic from 'next/dynamic';
 import * as NextAuth from '@/lib/auth.helper';
 
-import View from '@/views/public/Claims';
+// import View from '@/views/public/Claims';
+const View = dynamic(() => import('../../views/public/Claims'), { ssr: false });
 
 /* -------------------------------------------------------------------------- */
 /*             use moralis to handle authentication logic in view             */
