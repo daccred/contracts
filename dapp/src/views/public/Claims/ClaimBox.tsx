@@ -1,18 +1,21 @@
 /* This example requires Tailwind CSS v2.0+ */
+import Button from '@/components/buttons/Button';
 import { CheckCircleIcon } from '@heroicons/react/solid';
 
 const includedFeatures = [
   'An NFT (Non Fungible Token)',
-  'Crendential on the Blockchain',
+  'Credential on the Blockchain',
   // 'Entry to annual conference',
   // 'Official member t-shirt',
 ];
 
 interface ClaimPageProps {
   preview: string;
+  claimHandler: () => void;
+  isLoading?: boolean;
 }
 
-export default function ClaimBox({ preview }: ClaimPageProps) {
+export default function ClaimBox({ preview, claimHandler, isLoading }: ClaimPageProps) {
   return (
     <div className='bg-gray-100'>
       <div className='pt-12 sm:pt-16 lg:pt-20'>
@@ -72,14 +75,17 @@ export default function ClaimBox({ preview }: ClaimPageProps) {
                   </a>
                 </p>
                 <div className='mt-6'>
-                  <div className='rounded-md shadow'>
+                  <Button onClick={claimHandler} disabled={isLoading} isLoading={isLoading} className='w-full'>
+                    Publish
+                  </Button>
+                  {/* <div className='rounded-md shadow'>
                     <a
                       href='#'
                       className='flex items-center justify-center px-5 py-3 text-base font-medium text-white bg-gray-800 border border-transparent rounded-md hover:bg-gray-900'
                     >
                       Claim my Certificate
                     </a>
-                  </div>
+                  </div> */}
                 </div>
                 {/* <div className='mt-4 text-sm'>
                   <a href='#' className='font-medium text-gray-900'>
