@@ -2,7 +2,7 @@
 import { CheckCircleIcon } from '@heroicons/react/solid';
 
 const includedFeatures = [
-  'And NFT (Non Fungible Token)',
+  'An NFT (Non Fungible Token)',
   'Crendential on the Blockchain',
   // 'Entry to annual conference',
   // 'Official member t-shirt',
@@ -26,11 +26,10 @@ export default function ClaimBox({ preview }: ClaimPageProps) {
         </div>
       </div>
 
-      <section className="max-w-2xl px-4 mx-auto my-8">
-        <img src={preview} className="w-full mx-auto" />
+      <section className='max-w-2xl px-4 mx-auto my-8'>
+        <img src={preview} className='w-full mx-auto' />
       </section>
 
-      
       <div className='pb-16 mt-8 bg-white sm:mt-12 sm:pb-20 lg:pb-28'>
         <div className='relative'>
           <div className='absolute inset-0 bg-gray-100 h-1/2' />
@@ -39,7 +38,7 @@ export default function ClaimBox({ preview }: ClaimPageProps) {
               <div className='flex-1 px-6 py-8 bg-white lg:p-12'>
                 <h3 className='text-2xl font-extrabold text-gray-900 sm:text-3xl'>Claim your Badge</h3>
                 <p className='mt-6 text-base text-gray-500'>
-                Afrikathon has issued a certificate of Innovation to you from the Opportunity Hackathon 2021.
+                  Afrikathon has issued a certificate of Innovation to you from the Opportunity Hackathon 2021.
                 </p>
                 <div className='mt-8'>
                   <div className='flex items-center'>
@@ -68,7 +67,8 @@ export default function ClaimBox({ preview }: ClaimPageProps) {
                 </div>
                 <p className='mt-4 text-sm'>
                   <a href='#' className='font-medium text-gray-500 underline'>
-                    Clicking claim will validate your <br /> status and deploy and Hacker Badge Credential <br /> for you on the blockchain
+                    Clicking claim will validate your <br /> status and deploy and Hacker Badge Credential <br /> for
+                    you on the blockchain
                   </a>
                 </p>
                 <div className='mt-6'>
