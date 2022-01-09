@@ -4,7 +4,7 @@ import { CheckCircleIcon } from '@heroicons/react/solid';
 import { joinClassNames } from '@/lib/helper';
 import { RadioGroupProps, TRecipientDataMedium } from '@/config/d';
 import { IconType } from 'react-icons/lib';
-import { FlatfileButton } from '@flatfile/react';
+// import { FlatfileButton } from '@flatfile/react';
 
 export interface RadioBoxProps {
   id: string;
@@ -17,10 +17,10 @@ export interface RadioBoxProps {
 
 const RadioBox: React.FC<RadioGroupProps<RadioBoxProps>> = ({ label, value, onChange, options }) => {
   return (
-    <RadioGroup value={value} onChange={(e) => console.log(e)}>
+    <RadioGroup value={value} onChange={onChange}>
       <RadioGroup.Label className='text-base font-medium text-gray-900'>{label || 'Select a Medium'}</RadioGroup.Label>
 
-      <FlatfileButton
+      {/* <FlatfileButton
         licenseKey='7d991ac6-5689-4bb9-ae88-adc4093fc0c6'
         customer={{ userId: '33007' }}
         settings={{
@@ -37,7 +37,7 @@ const RadioBox: React.FC<RadioGroupProps<RadioBoxProps>> = ({ label, value, onCh
           onChange(results);
           return 'Done!';
         }}
-      >
+      > */}
         <div className='grid grid-cols-1 mt-4 gap-y-6 sm:grid-cols-3 sm:gap-x-4'>
           {options.map((option) => (
             <RadioGroup.Option
@@ -87,7 +87,7 @@ const RadioBox: React.FC<RadioGroupProps<RadioBoxProps>> = ({ label, value, onCh
             </RadioGroup.Option>
           ))}
         </div>
-      </FlatfileButton>
+      {/* </FlatfileButton> */}
     </RadioGroup>
   );
 };

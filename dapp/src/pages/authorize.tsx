@@ -5,7 +5,7 @@ import { useMoralis, useChain } from 'react-moralis';
 import * as NextAuth from '@/lib/auth.helper';
 import { AuthView } from '@/views/app/Auth';
 
-import { DEFAULT_TESTNET } from '@/config/constants';
+import { HARMONY_TESTNET } from '@/config/constants';
 
 /* -------------------------------------------------------------------------- */
 /*             use moralis to handle authentication logic in view             */
@@ -21,7 +21,7 @@ export default function Auth(): JSX.Element {
     async function handleWeb3() {
       await enableWeb3();
       // Then switch chain to match our programming
-      await switchNetwork(DEFAULT_TESTNET);
+      await switchNetwork(HARMONY_TESTNET);
     }
 
     handleWeb3();

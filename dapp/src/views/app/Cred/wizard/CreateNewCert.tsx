@@ -23,7 +23,7 @@ const CreateNewCert = () => {
 
     try {
       await _dispatchFormAction(data);
-      await _step([...step, 'protocol']);
+      await _step([...step, 'medium']);
     } catch (error) {
       alert(JSON.stringify(error));
     }

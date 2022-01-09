@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import ABI from '@/lib/abis';
-import { DACRED_ROUTER_ROPSTEN, DACRED_ROUTER_KOVAN, DACRED_ROUTER_GANACHE } from '@/config/constants';
+import { DACRED_ROUTER_ROPSTEN, DACRED_ROUTER_HARMONY, DACRED_ROUTER_GANACHE } from '@/config/constants';
 import { useMoralis, useNewMoralisObject, useWeb3ExecuteFunction } from 'react-moralis';
 import Button from '@/components/buttons/Button';
 import { observer } from 'mobx-react-lite';
@@ -11,7 +11,7 @@ import { Moralis } from 'moralis';
 
 const options = {
   abi: ABI.leanRouter,
-  contractAddress: DACRED_ROUTER_ROPSTEN,
+  contractAddress: DACRED_ROUTER_HARMONY,
   functionName: 'createContractForClient',
   params: {
     name: 'Var School Fall 2020',
