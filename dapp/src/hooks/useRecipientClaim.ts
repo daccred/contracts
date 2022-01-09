@@ -1,15 +1,17 @@
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { useNewMoralisObject } from 'react-moralis';
+import { useNewMoralisObject, useWeb3ExecuteFunction } from 'react-moralis';
+import ABI from '@/lib/abis';
 import Moralis from 'moralis';
 import { useState } from 'react';
+import { useMoralis } from 'react-moralis';
 
 const _metadataMock = {
   id: 18845238,
   name: 'Var School Class of 2020',
   description: 'Certificate of Participation',
   credential_url: 'http://api.daccred.co?aad=BAhJIj57InR5cGUiOiJjb3Vy9b8',
-  public_address: '0x0b3bb8a2c253ec009e0e3d455369a58ab4afa0a3',
+  public_address: '0xb72430b16657a7463a9dBb5d4645b3dC539B6e6b',
   pdf: null,
   pdfIPFS: null,
   image: null,
@@ -23,7 +25,7 @@ const _metadataMock = {
   verified: false,
   recipient: {
     name: 'Andrew Miracle',
-    wallet_address: '0x0b3bb8a2c253ec009e0e3d455369a58ab4afa0a3',
+    wallet_address: '0xb72430b16657a7463a9dBb5d4645b3dC539B6e6b',
   },
   issuer: {
     id: 45327,
@@ -40,8 +42,8 @@ const _metadataMock = {
 export interface TemplateSaveOptions {
   name: string;
   description: string;
-  network: string;
-  networkId?: string;
+  chainAccount: string;
+  chainId?: string;
   imageDataURI: string; // Base64
   pdfDataURI: string; // Base64
   suppliers: string;
@@ -50,6 +52,7 @@ export interface TemplateSaveOptions {
   metadata?: Moralis.File;
   metadataIPFS?: string;
   metadataURI?: string;
+  web3Account?: string; // The Address of the user, injected from Web3
   imgIPFS?: string;
   imgURI?: string;
   pdfIPFS?: string;
@@ -58,20 +61,30 @@ export interface TemplateSaveOptions {
 }
 
 /* When saving to IPFS, we can infer properties to Moralis.File types */
-
 export type MoralisIPFSFile = Moralis.File & {
   _ipfs: string;
   _hash: string;
 };
+
+const web3ExecOptions = {
+  abi: ABI.daccredFactory,
+  contractAddress: '0x017259b32450351ee2dafd9c900e3510af847fa0', // Var School Fall 2020 Ropsten
+  functionName: 'awardCredential',
+};
+
 /**
  * A hook for making/saving new Asset template to Moralis Objects
  */
 export const useRecipientClaim = () => {
+  const { enableWeb3 } = useMoralis();
   const [isSubmitting, _setSubmitting] = useState<boolean>();
   const { object, error, save } = useNewMoralisObject('Claims');
+  const { fetch: sendWeb3Transaction } = useWeb3ExecuteFunction(web3ExecOptions);
 
   const execute = async (saveOptions: Partial<TemplateSaveOptions>) => {
     _setSubmitting(true);
+    await enableWeb3();
+
     const { imageDataURI, pdfDataURI, ...options } = saveOptions;
 
     /* ----- Save upload file input to IPFS ----- */
@@ -133,7 +146,24 @@ export const useRecipientClaim = () => {
     });
 
     console.log(response);
-    _setSubmitting(false);
+
+    /* ------------------- Web3 Execute Transaction ------------------- */
+    const web3ExecParams = {
+      address: _metadataMock.public_address,
+      claimURI: jsonMetadata._ipfs,
+    };
+
+    await sendWeb3Transaction({
+      params: {
+        ...web3ExecOptions,
+        params: web3ExecParams,
+      },
+      onSuccess: async (results) => {
+        console.log(results);
+      },
+    });
+    /* ------------------- Web3 Execute Transaction ------------------- */
+    // _setSubmitting(false);
 
     /* return object and error = null from operation or error and obj = null when errr*/
     return [response, error];
