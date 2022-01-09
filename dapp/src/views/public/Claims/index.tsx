@@ -24,7 +24,11 @@ const store = createStore({ key: LF_STORE_KEY });
 //   functionName: 'awardCredential',
 // };
 
-export default function Homepage() {
+interface ClaimViewProps {
+  contractAddress: string;
+}
+
+export default function ClaimView({ contractAddress }: ClaimViewProps) {
   const { enableWeb3, isWeb3Enabled } = useMoralis();
   const { chainId, account } = useChain();
   const [pdf, setPdf] = useState(null);
@@ -87,6 +91,7 @@ export default function Homepage() {
         pdfDataURI: pdf,
         chainAccount: account as string,
         chainId: chainId as string,
+        documentContractAddress: contractAddress
       })) as any;
 
       // console.log(response)

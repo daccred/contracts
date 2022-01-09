@@ -17,8 +17,6 @@ export default function HomeNavbar() {
                 </a>
               </div>
             </div>
-   
-
           </nav>
         </div>
 
@@ -40,7 +38,6 @@ export default function HomeNavbar() {
                 <div>
                   <img className='w-auto h-8' src='/images/logo-dark.svg' alt='' />
                 </div>
-
               </div>
             </div>
           </Popover.Panel>

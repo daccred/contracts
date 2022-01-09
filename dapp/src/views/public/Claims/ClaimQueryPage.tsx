@@ -53,7 +53,7 @@ export default function Hero() {
 
         <div className='relative pt-6 pb-16 sm:pb-24'>
           {/* --------- Inject the Navbar here ---------------- */}
-          <Navbar   />
+          <Navbar />
           {/* --------- Inject the Navbar here ---------------- */}
 
           <div className='px-4 mx-auto mt-16 max-w-7xl sm:mt-24 sm:px-6'>

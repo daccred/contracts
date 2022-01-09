@@ -9,11 +9,12 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useMoralis } from 'react-moralis';
 
+
 const _metadataMock = {
   id: 18845238,
   name: 'Var School Class of 2020',
   description: 'Certificate of Participation',
-  credential_url: 'http://api.daccred.co?aad=BAhJIj57InR5cGUiOiJjb3Vy9b8',
+  credential_url: 'http://openapi.daccred.co/BAhJIj57InR5cGUiOiJjb3Vy9b8',
   public_address: '0xb72430b16657a7463a9dBb5d4645b3dC539B6e6b',
   pdf: null,
   pdfIPFS: null,
@@ -33,7 +34,7 @@ const _metadataMock = {
   issuer: {
     id: 45327,
     name: 'Var School',
-    url: 'http://api.daccred.co/cGUiOiJjb3Vyc',
+    url: 'http://openapi.daccred.co/cGUiOiJjb3Vyc',
     contract_address: '0x67d8daeb33e7b60ef423f42f7973148cf64a5eee',
     description: 'Class of 2021',
     image_url: null,
@@ -50,6 +51,7 @@ export interface TemplateSaveOptions {
   imageDataURI: string; // Base64
   pdfDataURI: string; // Base64
   suppliers: string;
+  documentContractAddress: string // Contract Address from page props
   img?: Moralis.File;
   pdf?: Moralis.File;
   metadata?: Moralis.File;
@@ -71,7 +73,7 @@ export type MoralisIPFSFile = Moralis.File & {
 
 const web3ExecOptions = {
   abi: ABI.daccredFactory,
-  contractAddress: '0x017259b32450351ee2dafd9c900e3510af847fa0', // Var School Fall 2020 Ropsten
+  // contractAddress: '0x017259b32450351ee2dafd9c900e3510af847fa0', // Var School Fall 2020 Ropsten
   functionName: 'awardCredential',
 };
 
@@ -152,6 +154,7 @@ export const useRecipientClaim = () => {
         await fetch({
           params: {
             ...web3ExecOptions,
+            contractAddress: options.documentContractAddress,
             params: {
               recipient: options.chainAccount,
               tokenURI: jsonMetadata._ipfs,

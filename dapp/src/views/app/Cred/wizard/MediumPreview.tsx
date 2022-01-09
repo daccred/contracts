@@ -8,7 +8,7 @@ import Button from '@/components/buttons/Button';
 import { useZustand } from '@/lib/zustand';
 
 /* ------- Preview Components ------ */
-import FormManager from '../containers/FormManager';
+// import FormManager from '../containers/FormManager';
 import { ClipboardCopyIcon } from '@heroicons/react/outline';
 /* ------- Preview Components ------ */
 
@@ -70,7 +70,7 @@ const MediumPreview = () => {
 
         {/* ------- Form Heading section ------- */}
 
-        <FormManager />
+        {/* <FormManager /> */}
 
         <Button
           className='self-end py-4 mt-12 text-right rounded-full justify-self-end place-content-end'

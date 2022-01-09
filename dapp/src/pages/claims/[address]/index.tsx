@@ -6,12 +6,16 @@ import dynamic from 'next/dynamic';
 // import View from '@/views/public/Claims';
 const View = dynamic(() => import('../../../views/public/Claims'), { ssr: false });
 
+interface ClaimPageProps {
+  address: string
+}
+
 /* -------------------------------------------------------------------------- */
 /*             use moralis to handle authentication logic in view             */
 /* -------------------------------------------------------------------------- */
 
-export default function Auth() {
-  return <View />;
+export default function Auth(props: ClaimPageProps) {
+  return <View contractAddress={props.address} />;
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -20,7 +24,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   // return await NextAuth.handleAuthenticatedRequest(context);
   return {
     props: {
-      claim: null,
+     ...context.params
     },
   };
 };

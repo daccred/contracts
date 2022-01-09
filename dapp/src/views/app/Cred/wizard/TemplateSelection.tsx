@@ -7,8 +7,8 @@ import { useZustand } from '@/lib/zustand';
 import TemplateSelectBox, { TemplateSelectBoxProps } from '@/components/fields/TemplateSelectBox';
 import { CredentialCreateOptions } from '@/config/d';
 import { templates } from '@/config/defaults/templates.default';
-import localforage from 'localforage';
-import { LF_EDITOR_VAR } from '@/config/constants';
+// import localforage from 'localforage';
+// import { LF_EDITOR_VAR } from '@/config/constants';
 import { useRouter } from 'next/router';
 
 const TemplateSelection = () => {
@@ -28,7 +28,7 @@ const TemplateSelection = () => {
 
     try {
       await _dispatchFormAction({ template: data });
-      await localforage.setItem(LF_EDITOR_VAR, JSON.stringify(data));
+      // await localforage.setItem(LF_EDITOR_VAR, JSON.stringify(data));
       new Promise((resolve) => setTimeout(resolve, 2000));
 
       router.replace('/editor/6f689bc3897750dbf04622491821f663a606aa5fec2');

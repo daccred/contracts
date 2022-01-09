@@ -21,7 +21,7 @@ const mediums = [
     icon: RiSurveyLine,
   },
   {
-    disabled: true,
+    disabled: false,
     id: '2',
     value: 'csv',
     title: 'Import from CSV/Excel',
@@ -56,7 +56,7 @@ const RecipientMedium = () => {
 
     try {
       await _dispatchFormAction(claim);
-      await _step([...step, 'medium_preview']);
+      await _step([...step, 'templates']);
     } catch (error) {
       alert(JSON.stringify(error));
     }
