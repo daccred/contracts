@@ -5,6 +5,8 @@ export const META_API = 'https://openapi.daccred.co';
 export const LOCAL_API = 'http://localhost:8080';
 export const DEFAULT_MAINNET = '0x1'; // Ethereum
 export const DEFAULT_TESTNET = '0x3'; // Ropsten
+export const HARMONY_TESTNET ='1666700000' // Harmony Testnet
+
 /* LF: Local Forage */
 export const LF_EDITOR_VAR = 'dacred-editor--state';
 export const LF_CERTWIZ_VAR = 'dacred-credentials--state';
