@@ -1,11 +1,7 @@
 import React from 'react';
-/* This example requires Tailwind CSS v2.0+ */
 import { Fragment } from 'react';
 import { Popover, Transition } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
-{
-  /* ---- Menu items: Product, Features, Developer Docs, {Button: Enter DApp} */
-}
 
 const navigation = [
   { name: 'Product', href: '#product' },
@@ -14,7 +10,10 @@ const navigation = [
   { name: 'FAQ', href: '#faq' },
 ];
 
-export default function HomeNavbar() {
+type HomeNavbarProps = {
+  hideMenu?: boolean;
+};
+export default function HomeNavbar({ hideMenu }: HomeNavbarProps) {
   return (
     <React.Fragment>
       <Popover>
@@ -23,7 +22,7 @@ export default function HomeNavbar() {
             <div className='flex items-center flex-1 md:absolute md:inset-y-0 md:left-0'>
               <div className='flex items-center justify-between w-full md:w-auto'>
                 <a href='#'>
-                  <span className='sr-only'>Workflow</span>
+                  <span className='sr-only'>Daccred</span>
                   <img className='w-auto h-8 sm:h-10' src='/images/logo-dark.svg' alt='' />
                 </a>
                 <div className='flex items-center -mr-2 md:hidden'>
@@ -35,22 +34,25 @@ export default function HomeNavbar() {
               </div>
             </div>
             <div className='hidden md:flex md:space-x-10'>
-              {navigation.map((item) => (
-                <a key={item.name} href={item.href} className='font-medium text-gray-500 hover:text-gray-900'>
-                  {item.name}
-                </a>
-              ))}
+              {!hideMenu &&
+                navigation.map((item) => (
+                  <a key={item.name} href={item.href} className='font-medium text-gray-500 hover:text-gray-900'>
+                    {item.name}
+                  </a>
+                ))}
             </div>
-            <div className='hidden md:absolute md:flex md:items-center md:justify-end md:inset-y-0 md:right-0'>
-              <span className='inline-flex rounded-md shadow'>
-                <a
-                  href='/authorize'
-                  className='inline-flex items-center px-4 py-2 text-base font-medium bg-white border border-transparent rounded-md text-primary-600 hover:text-primary-500'
-                >
-                  Enter App
-                </a>
-              </span>
-            </div>
+            {!hideMenu && (
+              <div className='hidden md:absolute md:flex md:items-center md:justify-end md:inset-y-0 md:right-0'>
+                <span className='inline-flex rounded-md shadow'>
+                  <a
+                    href='/authorize'
+                    className='inline-flex items-center px-4 py-2 text-base font-medium bg-white border border-transparent rounded-md text-primary-600 hover:text-primary-500'
+                  >
+                    Enter App
+                  </a>
+                </span>
+              </div>
+            )}
           </nav>
         </div>
 
@@ -80,22 +82,25 @@ export default function HomeNavbar() {
                 </div>
               </div>
               <div className='px-2 pt-2 pb-3 space-y-1'>
-                {navigation.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className='block px-3 py-2 text-base font-medium text-gray-700 rounded-md hover:text-gray-900 hover:bg-gray-50'
-                  >
-                    {item.name}
-                  </a>
-                ))}
+                {!hideMenu &&
+                  navigation.map((item) => (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      className='block px-3 py-2 text-base font-medium text-gray-700 rounded-md hover:text-gray-900 hover:bg-gray-50'
+                    >
+                      {item.name}
+                    </a>
+                  ))}
               </div>
-              <a
-                href='/authorize'
-                className='block w-full px-5 py-3 font-medium text-center text-primary-600 bg-gray-50 hover:bg-gray-100 hover:text-primary-700'
-              >
-                Enter App
-              </a>
+              {!hideMenu && (
+                <a
+                  href='/authorize'
+                  className='block w-full px-5 py-3 font-medium text-center text-primary-600 bg-gray-50 hover:bg-gray-100 hover:text-primary-700'
+                >
+                  Enter App
+                </a>
+              )}
             </div>
           </Popover.Panel>
         </Transition>
