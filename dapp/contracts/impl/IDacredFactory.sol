@@ -8,6 +8,6 @@ interface IDacredFactory is IERC721 {
      /**
      * @dev Method to award certificate to a user after validation
      */
-    function awardCredential(address recipient, string memory tokenURI) external returns (uint256);
+    function awardCredential(address recipient, string memory claimURI) external returns (uint256);
 
 }

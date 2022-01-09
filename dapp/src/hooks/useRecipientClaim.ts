@@ -1,9 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { useNewMoralisObject, useWeb3ExecuteFunction } from 'react-moralis';
 import ABI from '@/lib/abis';
+
 import Moralis from 'moralis';
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 import { useMoralis } from 'react-moralis';
 
 const _metadataMock = {
@@ -43,7 +46,7 @@ export interface TemplateSaveOptions {
   name: string;
   description: string;
   chainAccount: string;
-  chainId?: string;
+  chainId: string;
   imageDataURI: string; // Base64
   pdfDataURI: string; // Base64
   suppliers: string;
@@ -76,10 +79,13 @@ const web3ExecOptions = {
  * A hook for making/saving new Asset template to Moralis Objects
  */
 export const useRecipientClaim = () => {
+  const router = useRouter();
+
   const { enableWeb3 } = useMoralis();
   const [isSubmitting, _setSubmitting] = useState<boolean>();
-  const { object, error, save } = useNewMoralisObject('Claims');
-  const { fetch: sendWeb3Transaction } = useWeb3ExecuteFunction(web3ExecOptions);
+  const { error, save } = useNewMoralisObject('Claims');
+  const { fetch } = useWeb3ExecuteFunction(web3ExecOptions);
+  const [response, setResponse] = useState<any>();
 
   const execute = async (saveOptions: Partial<TemplateSaveOptions>) => {
     _setSubmitting(true);
@@ -104,9 +110,6 @@ export const useRecipientClaim = () => {
     //@ts-ignore
     const pdf = new Moralis.File(`${Date.now()}.pdf`, { uri: pdfDataURI }) as MoralisIPFSFile;
     await pdf.saveIPFS();
-
-    /* placeholder variable to handle success data */
-    let response;
 
     /* ------  After Creating the file and uploading to IPFS /////// --- */
     /* ------  We will now persist the object into the Moralis Database /////// --- */
@@ -142,32 +145,32 @@ export const useRecipientClaim = () => {
 
     await save(options, {
       throwOnError: false,
-      onSuccess: (result) => (response = JSON.stringify(result)),
-    });
-
-    console.log(response);
-
-    /* ------------------- Web3 Execute Transaction ------------------- */
-    const web3ExecParams = {
-      address: _metadataMock.public_address,
-      claimURI: jsonMetadata._ipfs,
-    };
-
-    await sendWeb3Transaction({
-      params: {
-        ...web3ExecOptions,
-        params: web3ExecParams,
+      onSuccess: async (objectResult) => {
+        setResponse(objectResult);
+        console.log(JSON.stringify(objectResult));
+        /* ------------------- Web3 Execute Transaction ------------------- */
+        await fetch({
+          params: {
+            ...web3ExecOptions,
+            params: {
+              recipient: options.chainAccount,
+              tokenURI: jsonMetadata._ipfs,
+            },
+          },
+          onSuccess: async (results) => {
+            console.log(JSON.stringify(results));
+            // await setResponse({ ...response, onChainAction: results });
+            _setSubmitting(false);
+            await router.replace(`${router.asPath}/${objectResult.id}`);
+          },
+        });
+        /* ------------------- Web3 Execute Transaction ------------------- */
       },
-      onSuccess: async (results) => {
-        console.log(results);
-      },
     });
-    /* ------------------- Web3 Execute Transaction ------------------- */
-    // _setSubmitting(false);
 
     /* return object and error = null from operation or error and obj = null when errr*/
-    return [response, error];
+    // return response;
   };
 
-  return { execute, object, isSubmitting, error };
+  return { execute, response, isSubmitting, error };
 };

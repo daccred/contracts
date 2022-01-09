@@ -5,7 +5,7 @@ import daccredFactoryABI from './daccredFactory.json';
 const ABIS = {
   dacredRouterABI: dacredRouterABI.abi,
   leanRouter: leanRouterABI.output.abi,
-  daccredFactory: daccredFactoryABI.output.abi,
+  daccredFactory: daccredFactoryABI,
 };
 
 export default ABIS;
