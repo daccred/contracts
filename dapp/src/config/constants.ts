@@ -1,6 +1,5 @@
 export const MORALIS_APP_ID = 'yYmAdNgqUQ3P8vPViKYjYE82EPjGAa8HCC7FZqDL';
 export const MORALIS_SERVER_URL = 'https://09zmv9mmxz2l.usemoralis.com:2053/server';
-export const ESERVER_HOST = 'https://studio.dev/';
 export const META_API = 'https://openapi.daccred.co';
 export const LOCAL_API = 'http://localhost:8080';
 export const DEFAULT_MAINNET = '0x1'; // Ethereum
