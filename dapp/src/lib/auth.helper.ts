@@ -12,6 +12,7 @@ import { destroyCookie, parseCookies, setCookie } from 'nookies';
 
 import { AUTH as config } from '@/config/constants';
 type ContextArg = Partial<NextPageContext>;
+type TAuthUser = MoralisType.User<MoralisType.Attributes>['attributes'];
 
 export const redirect = (target = config.loginRoute) => {
   return {
@@ -22,7 +23,7 @@ export const redirect = (target = config.loginRoute) => {
   };
 };
 
-export const login = async (payload: MoralisType.User, target = config.rootRoute) => {
+export const login = async (payload: TAuthUser, target = config.rootRoute) => {
   // Sign in a user by setting the cookie with the token received from Login Auth Request
   const userCookie = encode(JSON.stringify(payload));
   setCookie(null, config.key, userCookie, {
