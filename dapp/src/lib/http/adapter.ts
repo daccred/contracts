@@ -5,7 +5,8 @@ import axios from 'axios';
 import tmpl from 'string-template';
 import qs from 'qs';
 import progress from 'nprogress';
-import { APURL } from '@/config/constants';
+import { APURL, AUTH } from '@/config/constants';
+import { parseCookies } from 'nookies';
 
 class HttpAdapter extends Object {
   private baseURL = APURL;
@@ -19,7 +20,7 @@ class HttpAdapter extends Object {
       });
     },
     baseURL: this.baseURL,
-    withCredentials: true,
+    // withCredentials: true,
     headers: {
       'X-Request-With': 'XMLHttpRequest',
     },
@@ -28,7 +29,6 @@ class HttpAdapter extends Object {
   public axios: AxiosInstance = axios.create(this.defaults);
   public endpoint!: string;
   public config!: AxiosRequestConfig;
-  private browser = typeof window === 'object' && typeof window != 'undefined';
 
   constructor(endpoint: string, config?: AxiosRequestConfig) {
     super();
@@ -46,40 +46,43 @@ class HttpAdapter extends Object {
       route
     );
     const url = [`${this.baseURL}${route}`].join('/').replace(/\/+$/, '');
+    const cookies = parseCookies(null);
+    const userCookie = cookies[AUTH.key];
+
 
     this.config = { ...this.defaults, ...config, baseURL: url };
+    this.config.headers = { ...this.defaults.headers, "auth": userCookie }
     // console.log(Resource.config)
     // Integrating interceptors for request and response
     this.axios.interceptors.request.use(
-      (config: AxiosRequestConfig) => {
-        if (this.browser) {
-          progress.start();
+      async (config: AxiosRequestConfig) => {
+        // Fetch the auth token for a user
+        const cookies = await parseCookies(null);
+        const userCookie = cookies[AUTH.key];
+    
+        config.headers = {
+          'Authorization': `Bearer ${userCookie}`,
+        };
+          await progress.start();
           return config;
-        }
-        return config;
+
       },
+
+
+
       (error: AxiosError) => {
-        if (this.browser) {
-          progress.done();
-          return Promise.reject(error);
-        }
+        progress.done();
         return Promise.reject(error);
       }
     );
 
     this.axios.interceptors.response.use(
       (response: AxiosResponse) => {
-        if (this.browser) {
-          progress.done();
-          return response;
-        }
+        progress.done();
         return response;
       },
       (error: AxiosError) => {
-        if (this.browser) {
-          progress.done();
-          return Promise.reject(error);
-        }
+        progress.done();
         return Promise.reject(error);
       }
     );

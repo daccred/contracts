@@ -7,6 +7,8 @@ import { formatAddress } from '@/lib/helper';
 import * as NextAuth from '@/lib/auth.helper';
 import { configure, loadCache, serializeCache, makeUseAxios } from 'axios-hooks';
 import { DocModel, PasswordlessModel } from '@/lib/http/adapter';
+import makeAxios from '@/lib/http/axios';
+import { authPasswordlessRoute } from '@/lib/http/api';
 
 interface UserAttributes extends MoralisType.Attributes {
   emailAddress?: string;
@@ -23,17 +25,15 @@ interface AuthUserAttributes {
 }
 
 const useAxios = makeUseAxios({
-  axios: PasswordlessModel.axios,
+  axios: makeAxios,
   defaultOptions: { useCache: false, manual: true },
 });
 
 export default function useServerAuth() {
   const [{ data: postData, loading: postLoading, error: postError }, executePost] = useAxios({
-    url: undefined,
+    url: authPasswordlessRoute,
     method: 'POST',
   });
-
-  console.log(PasswordlessModel);
 
   const passwordless = async (profile: MoralisType.User<UserAttributes>) => {
     try {
