@@ -4,7 +4,7 @@ export const META_API = 'https://openapi.daccred.co';
 export const LOCAL_API = 'http://localhost:8080';
 export const DEFAULT_MAINNET = '0x1'; // Ethereum
 export const DEFAULT_TESTNET = '0x3'; // Ropsten
-export const HARMONY_TESTNET ='0x6357d2e0' // Harmony Testnet 1666700000 converted to Hex
+export const HARMONY_TESTNET = '0x6357d2e0'; // Harmony Testnet 1666700000 converted to Hex
 
 /* LF: Local Forage */
 export const LF_EDITOR_VAR = 'dacred-editor--state';
@@ -49,4 +49,4 @@ export const navigation = [
   { icon: BookmarkIcon, name: 'Certifications', href: routes.certs.index, current: false },
 ];
 
-export const userNavigation = [{ name: 'Sign out', href: '#' }];
+export const userNavigation = [{ name: 'Sign out', href: '/logout' }];

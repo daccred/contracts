@@ -2,11 +2,11 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import BN from "bn.js";
-import { EventData, PastEventOptions } from "web3-eth-contract";
+import BN from 'bn.js';
+import { EventData, PastEventOptions } from 'web3-eth-contract';
 
 export interface ERC165Contract extends Truffle.Contract<ERC165Instance> {
-  "new"(meta?: Truffle.TransactionDetails): Promise<ERC165Instance>;
+  'new'(meta?: Truffle.TransactionDetails): Promise<ERC165Instance>;
 }
 
 type AllEvents = never;
@@ -15,19 +15,13 @@ export interface ERC165Instance extends Truffle.ContractInstance {
   /**
    * See {IERC165-supportsInterface}.
    */
-  supportsInterface(
-    interfaceId: string,
-    txDetails?: Truffle.TransactionDetails
-  ): Promise<boolean>;
+  supportsInterface(interfaceId: string, txDetails?: Truffle.TransactionDetails): Promise<boolean>;
 
   methods: {
     /**
      * See {IERC165-supportsInterface}.
      */
-    supportsInterface(
-      interfaceId: string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<boolean>;
+    supportsInterface(interfaceId: string, txDetails?: Truffle.TransactionDetails): Promise<boolean>;
   };
 
   getPastEvents(event: string): Promise<EventData[]>;
@@ -37,8 +31,5 @@ export interface ERC165Instance extends Truffle.ContractInstance {
     callback: (error: Error, event: EventData) => void
   ): Promise<EventData[]>;
   getPastEvents(event: string, options: PastEventOptions): Promise<EventData[]>;
-  getPastEvents(
-    event: string,
-    callback: (error: Error, event: EventData) => void
-  ): Promise<EventData[]>;
+  getPastEvents(event: string, callback: (error: Error, event: EventData) => void): Promise<EventData[]>;
 }

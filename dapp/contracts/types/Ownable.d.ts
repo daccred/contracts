@@ -2,15 +2,15 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import BN from "bn.js";
-import { EventData, PastEventOptions } from "web3-eth-contract";
+import BN from 'bn.js';
+import { EventData, PastEventOptions } from 'web3-eth-contract';
 
 export interface OwnableContract extends Truffle.Contract<OwnableInstance> {
-  "new"(meta?: Truffle.TransactionDetails): Promise<OwnableInstance>;
+  'new'(meta?: Truffle.TransactionDetails): Promise<OwnableInstance>;
 }
 
 export interface OwnershipTransferred {
-  name: "OwnershipTransferred";
+  name: 'OwnershipTransferred';
   args: {
     previousOwner: string;
     newOwner: string;
@@ -31,9 +31,7 @@ export interface OwnableInstance extends Truffle.ContractInstance {
    * Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.
    */
   renounceOwnership: {
-    (txDetails?: Truffle.TransactionDetails): Promise<
-      Truffle.TransactionResponse<AllEvents>
-    >;
+    (txDetails?: Truffle.TransactionDetails): Promise<Truffle.TransactionResponse<AllEvents>>;
     call(txDetails?: Truffle.TransactionDetails): Promise<void>;
     sendTransaction(txDetails?: Truffle.TransactionDetails): Promise<string>;
     estimateGas(txDetails?: Truffle.TransactionDetails): Promise<number>;
@@ -43,21 +41,10 @@ export interface OwnableInstance extends Truffle.ContractInstance {
    * Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.
    */
   transferOwnership: {
-    (newOwner: string, txDetails?: Truffle.TransactionDetails): Promise<
-      Truffle.TransactionResponse<AllEvents>
-    >;
-    call(
-      newOwner: string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<void>;
-    sendTransaction(
-      newOwner: string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<string>;
-    estimateGas(
-      newOwner: string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<number>;
+    (newOwner: string, txDetails?: Truffle.TransactionDetails): Promise<Truffle.TransactionResponse<AllEvents>>;
+    call(newOwner: string, txDetails?: Truffle.TransactionDetails): Promise<void>;
+    sendTransaction(newOwner: string, txDetails?: Truffle.TransactionDetails): Promise<string>;
+    estimateGas(newOwner: string, txDetails?: Truffle.TransactionDetails): Promise<number>;
   };
 
   methods: {
@@ -70,9 +57,7 @@ export interface OwnableInstance extends Truffle.ContractInstance {
      * Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.
      */
     renounceOwnership: {
-      (txDetails?: Truffle.TransactionDetails): Promise<
-        Truffle.TransactionResponse<AllEvents>
-      >;
+      (txDetails?: Truffle.TransactionDetails): Promise<Truffle.TransactionResponse<AllEvents>>;
       call(txDetails?: Truffle.TransactionDetails): Promise<void>;
       sendTransaction(txDetails?: Truffle.TransactionDetails): Promise<string>;
       estimateGas(txDetails?: Truffle.TransactionDetails): Promise<number>;
@@ -82,21 +67,10 @@ export interface OwnableInstance extends Truffle.ContractInstance {
      * Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.
      */
     transferOwnership: {
-      (newOwner: string, txDetails?: Truffle.TransactionDetails): Promise<
-        Truffle.TransactionResponse<AllEvents>
-      >;
-      call(
-        newOwner: string,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<void>;
-      sendTransaction(
-        newOwner: string,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<string>;
-      estimateGas(
-        newOwner: string,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<number>;
+      (newOwner: string, txDetails?: Truffle.TransactionDetails): Promise<Truffle.TransactionResponse<AllEvents>>;
+      call(newOwner: string, txDetails?: Truffle.TransactionDetails): Promise<void>;
+      sendTransaction(newOwner: string, txDetails?: Truffle.TransactionDetails): Promise<string>;
+      estimateGas(newOwner: string, txDetails?: Truffle.TransactionDetails): Promise<number>;
     };
   };
 
@@ -107,8 +81,5 @@ export interface OwnableInstance extends Truffle.ContractInstance {
     callback: (error: Error, event: EventData) => void
   ): Promise<EventData[]>;
   getPastEvents(event: string, options: PastEventOptions): Promise<EventData[]>;
-  getPastEvents(
-    event: string,
-    callback: (error: Error, event: EventData) => void
-  ): Promise<EventData[]>;
+  getPastEvents(event: string, callback: (error: Error, event: EventData) => void): Promise<EventData[]>;
 }

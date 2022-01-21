@@ -2,12 +2,11 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import BN from "bn.js";
-import { EventData, PastEventOptions } from "web3-eth-contract";
+import BN from 'bn.js';
+import { EventData, PastEventOptions } from 'web3-eth-contract';
 
-export interface IERC721ReceiverContract
-  extends Truffle.Contract<IERC721ReceiverInstance> {
-  "new"(meta?: Truffle.TransactionDetails): Promise<IERC721ReceiverInstance>;
+export interface IERC721ReceiverContract extends Truffle.Contract<IERC721ReceiverInstance> {
+  'new'(meta?: Truffle.TransactionDetails): Promise<IERC721ReceiverInstance>;
 }
 
 type AllEvents = never;
@@ -90,8 +89,5 @@ export interface IERC721ReceiverInstance extends Truffle.ContractInstance {
     callback: (error: Error, event: EventData) => void
   ): Promise<EventData[]>;
   getPastEvents(event: string, options: PastEventOptions): Promise<EventData[]>;
-  getPastEvents(
-    event: string,
-    callback: (error: Error, event: EventData) => void
-  ): Promise<EventData[]>;
+  getPastEvents(event: string, callback: (error: Error, event: EventData) => void): Promise<EventData[]>;
 }

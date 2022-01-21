@@ -2,15 +2,15 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import BN from "bn.js";
-import { EventData, PastEventOptions } from "web3-eth-contract";
+import BN from 'bn.js';
+import { EventData, PastEventOptions } from 'web3-eth-contract';
 
 export interface RouterContract extends Truffle.Contract<RouterInstance> {
-  "new"(meta?: Truffle.TransactionDetails): Promise<RouterInstance>;
+  'new'(meta?: Truffle.TransactionDetails): Promise<RouterInstance>;
 }
 
 export interface BadgeContractDeployed {
-  name: "BadgeContractDeployed";
+  name: 'BadgeContractDeployed';
   args: {
     contractAddress: string;
     createdAt: BN;
@@ -30,26 +30,12 @@ export interface RouterInstance extends Truffle.ContractInstance {
   ): Promise<{ 0: string; 1: string; 2: string; 3: BN }>;
 
   createContractForClient: {
-    (
-      name: string,
-      certId: string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<Truffle.TransactionResponse<AllEvents>>;
-    call(
-      name: string,
-      certId: string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<string>;
-    sendTransaction(
-      name: string,
-      certId: string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<string>;
-    estimateGas(
-      name: string,
-      certId: string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<number>;
+    (name: string, certId: string, txDetails?: Truffle.TransactionDetails): Promise<
+      Truffle.TransactionResponse<AllEvents>
+    >;
+    call(name: string, certId: string, txDetails?: Truffle.TransactionDetails): Promise<string>;
+    sendTransaction(name: string, certId: string, txDetails?: Truffle.TransactionDetails): Promise<string>;
+    estimateGas(name: string, certId: string, txDetails?: Truffle.TransactionDetails): Promise<number>;
   };
 
   methods: {
@@ -61,26 +47,12 @@ export interface RouterInstance extends Truffle.ContractInstance {
     ): Promise<{ 0: string; 1: string; 2: string; 3: BN }>;
 
     createContractForClient: {
-      (
-        name: string,
-        certId: string,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<Truffle.TransactionResponse<AllEvents>>;
-      call(
-        name: string,
-        certId: string,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<string>;
-      sendTransaction(
-        name: string,
-        certId: string,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<string>;
-      estimateGas(
-        name: string,
-        certId: string,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<number>;
+      (name: string, certId: string, txDetails?: Truffle.TransactionDetails): Promise<
+        Truffle.TransactionResponse<AllEvents>
+      >;
+      call(name: string, certId: string, txDetails?: Truffle.TransactionDetails): Promise<string>;
+      sendTransaction(name: string, certId: string, txDetails?: Truffle.TransactionDetails): Promise<string>;
+      estimateGas(name: string, certId: string, txDetails?: Truffle.TransactionDetails): Promise<number>;
     };
   };
 
@@ -91,8 +63,5 @@ export interface RouterInstance extends Truffle.ContractInstance {
     callback: (error: Error, event: EventData) => void
   ): Promise<EventData[]>;
   getPastEvents(event: string, options: PastEventOptions): Promise<EventData[]>;
-  getPastEvents(
-    event: string,
-    callback: (error: Error, event: EventData) => void
-  ): Promise<EventData[]>;
+  getPastEvents(event: string, callback: (error: Error, event: EventData) => void): Promise<EventData[]>;
 }

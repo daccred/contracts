@@ -2,19 +2,15 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import BN from "bn.js";
-import { EventData, PastEventOptions } from "web3-eth-contract";
+import BN from 'bn.js';
+import { EventData, PastEventOptions } from 'web3-eth-contract';
 
 export interface ERC20Contract extends Truffle.Contract<ERC20Instance> {
-  "new"(
-    name_: string,
-    symbol_: string,
-    meta?: Truffle.TransactionDetails
-  ): Promise<ERC20Instance>;
+  'new'(name_: string, symbol_: string, meta?: Truffle.TransactionDetails): Promise<ERC20Instance>;
 }
 
 export interface Approval {
-  name: "Approval";
+  name: 'Approval';
   args: {
     owner: string;
     spender: string;
@@ -26,7 +22,7 @@ export interface Approval {
 }
 
 export interface Transfer {
-  name: "Transfer";
+  name: 'Transfer';
   args: {
     from: string;
     to: string;
@@ -63,25 +59,16 @@ export interface ERC20Instance extends Truffle.ContractInstance {
   /**
    * See {IERC20-balanceOf}.
    */
-  balanceOf(
-    account: string,
-    txDetails?: Truffle.TransactionDetails
-  ): Promise<BN>;
+  balanceOf(account: string, txDetails?: Truffle.TransactionDetails): Promise<BN>;
 
   /**
    * See {IERC20-transfer}. Requirements: - `recipient` cannot be the zero address. - the caller must have a balance of at least `amount`.
    */
   transfer: {
-    (
-      recipient: string,
-      amount: number | BN | string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<Truffle.TransactionResponse<AllEvents>>;
-    call(
-      recipient: string,
-      amount: number | BN | string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<boolean>;
+    (recipient: string, amount: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<
+      Truffle.TransactionResponse<AllEvents>
+    >;
+    call(recipient: string, amount: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<boolean>;
     sendTransaction(
       recipient: string,
       amount: number | BN | string,
@@ -97,48 +84,31 @@ export interface ERC20Instance extends Truffle.ContractInstance {
   /**
    * See {IERC20-allowance}.
    */
-  allowance(
-    owner: string,
-    spender: string,
-    txDetails?: Truffle.TransactionDetails
-  ): Promise<BN>;
+  allowance(owner: string, spender: string, txDetails?: Truffle.TransactionDetails): Promise<BN>;
 
   /**
    * See {IERC20-approve}. Requirements: - `spender` cannot be the zero address.
    */
   approve: {
-    (
-      spender: string,
-      amount: number | BN | string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<Truffle.TransactionResponse<AllEvents>>;
-    call(
-      spender: string,
-      amount: number | BN | string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<boolean>;
+    (spender: string, amount: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<
+      Truffle.TransactionResponse<AllEvents>
+    >;
+    call(spender: string, amount: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<boolean>;
     sendTransaction(
       spender: string,
       amount: number | BN | string,
       txDetails?: Truffle.TransactionDetails
     ): Promise<string>;
-    estimateGas(
-      spender: string,
-      amount: number | BN | string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<number>;
+    estimateGas(spender: string, amount: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<number>;
   };
 
   /**
    * See {IERC20-transferFrom}. Emits an {Approval} event indicating the updated allowance. This is not required by the EIP. See the note at the beginning of {ERC20}. Requirements: - `sender` and `recipient` cannot be the zero address. - `sender` must have a balance of at least `amount`. - the caller must have allowance for ``sender``'s tokens of at least `amount`.
    */
   transferFrom: {
-    (
-      sender: string,
-      recipient: string,
-      amount: number | BN | string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<Truffle.TransactionResponse<AllEvents>>;
+    (sender: string, recipient: string, amount: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<
+      Truffle.TransactionResponse<AllEvents>
+    >;
     call(
       sender: string,
       recipient: string,
@@ -163,16 +133,10 @@ export interface ERC20Instance extends Truffle.ContractInstance {
    * Atomically increases the allowance granted to `spender` by the caller. This is an alternative to {approve} that can be used as a mitigation for problems described in {IERC20-approve}. Emits an {Approval} event indicating the updated allowance. Requirements: - `spender` cannot be the zero address.
    */
   increaseAllowance: {
-    (
-      spender: string,
-      addedValue: number | BN | string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<Truffle.TransactionResponse<AllEvents>>;
-    call(
-      spender: string,
-      addedValue: number | BN | string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<boolean>;
+    (spender: string, addedValue: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<
+      Truffle.TransactionResponse<AllEvents>
+    >;
+    call(spender: string, addedValue: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<boolean>;
     sendTransaction(
       spender: string,
       addedValue: number | BN | string,
@@ -189,11 +153,9 @@ export interface ERC20Instance extends Truffle.ContractInstance {
    * Atomically decreases the allowance granted to `spender` by the caller. This is an alternative to {approve} that can be used as a mitigation for problems described in {IERC20-approve}. Emits an {Approval} event indicating the updated allowance. Requirements: - `spender` cannot be the zero address. - `spender` must have allowance for the caller of at least `subtractedValue`.
    */
   decreaseAllowance: {
-    (
-      spender: string,
-      subtractedValue: number | BN | string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<Truffle.TransactionResponse<AllEvents>>;
+    (spender: string, subtractedValue: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<
+      Truffle.TransactionResponse<AllEvents>
+    >;
     call(
       spender: string,
       subtractedValue: number | BN | string,
@@ -235,25 +197,16 @@ export interface ERC20Instance extends Truffle.ContractInstance {
     /**
      * See {IERC20-balanceOf}.
      */
-    balanceOf(
-      account: string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<BN>;
+    balanceOf(account: string, txDetails?: Truffle.TransactionDetails): Promise<BN>;
 
     /**
      * See {IERC20-transfer}. Requirements: - `recipient` cannot be the zero address. - the caller must have a balance of at least `amount`.
      */
     transfer: {
-      (
-        recipient: string,
-        amount: number | BN | string,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<Truffle.TransactionResponse<AllEvents>>;
-      call(
-        recipient: string,
-        amount: number | BN | string,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<boolean>;
+      (recipient: string, amount: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<
+        Truffle.TransactionResponse<AllEvents>
+      >;
+      call(recipient: string, amount: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<boolean>;
       sendTransaction(
         recipient: string,
         amount: number | BN | string,
@@ -269,26 +222,16 @@ export interface ERC20Instance extends Truffle.ContractInstance {
     /**
      * See {IERC20-allowance}.
      */
-    allowance(
-      owner: string,
-      spender: string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<BN>;
+    allowance(owner: string, spender: string, txDetails?: Truffle.TransactionDetails): Promise<BN>;
 
     /**
      * See {IERC20-approve}. Requirements: - `spender` cannot be the zero address.
      */
     approve: {
-      (
-        spender: string,
-        amount: number | BN | string,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<Truffle.TransactionResponse<AllEvents>>;
-      call(
-        spender: string,
-        amount: number | BN | string,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<boolean>;
+      (spender: string, amount: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<
+        Truffle.TransactionResponse<AllEvents>
+      >;
+      call(spender: string, amount: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<boolean>;
       sendTransaction(
         spender: string,
         amount: number | BN | string,
@@ -335,16 +278,10 @@ export interface ERC20Instance extends Truffle.ContractInstance {
      * Atomically increases the allowance granted to `spender` by the caller. This is an alternative to {approve} that can be used as a mitigation for problems described in {IERC20-approve}. Emits an {Approval} event indicating the updated allowance. Requirements: - `spender` cannot be the zero address.
      */
     increaseAllowance: {
-      (
-        spender: string,
-        addedValue: number | BN | string,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<Truffle.TransactionResponse<AllEvents>>;
-      call(
-        spender: string,
-        addedValue: number | BN | string,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<boolean>;
+      (spender: string, addedValue: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<
+        Truffle.TransactionResponse<AllEvents>
+      >;
+      call(spender: string, addedValue: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<boolean>;
       sendTransaction(
         spender: string,
         addedValue: number | BN | string,
@@ -361,11 +298,9 @@ export interface ERC20Instance extends Truffle.ContractInstance {
      * Atomically decreases the allowance granted to `spender` by the caller. This is an alternative to {approve} that can be used as a mitigation for problems described in {IERC20-approve}. Emits an {Approval} event indicating the updated allowance. Requirements: - `spender` cannot be the zero address. - `spender` must have allowance for the caller of at least `subtractedValue`.
      */
     decreaseAllowance: {
-      (
-        spender: string,
-        subtractedValue: number | BN | string,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<Truffle.TransactionResponse<AllEvents>>;
+      (spender: string, subtractedValue: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<
+        Truffle.TransactionResponse<AllEvents>
+      >;
       call(
         spender: string,
         subtractedValue: number | BN | string,
@@ -391,8 +326,5 @@ export interface ERC20Instance extends Truffle.ContractInstance {
     callback: (error: Error, event: EventData) => void
   ): Promise<EventData[]>;
   getPastEvents(event: string, options: PastEventOptions): Promise<EventData[]>;
-  getPastEvents(
-    event: string,
-    callback: (error: Error, event: EventData) => void
-  ): Promise<EventData[]>;
+  getPastEvents(event: string, callback: (error: Error, event: EventData) => void): Promise<EventData[]>;
 }

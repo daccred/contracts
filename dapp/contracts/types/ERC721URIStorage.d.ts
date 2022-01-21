@@ -2,16 +2,15 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import BN from "bn.js";
-import { EventData, PastEventOptions } from "web3-eth-contract";
+import BN from 'bn.js';
+import { EventData, PastEventOptions } from 'web3-eth-contract';
 
-export interface ERC721URIStorageContract
-  extends Truffle.Contract<ERC721URIStorageInstance> {
-  "new"(meta?: Truffle.TransactionDetails): Promise<ERC721URIStorageInstance>;
+export interface ERC721URIStorageContract extends Truffle.Contract<ERC721URIStorageInstance> {
+  'new'(meta?: Truffle.TransactionDetails): Promise<ERC721URIStorageInstance>;
 }
 
 export interface Approval {
-  name: "Approval";
+  name: 'Approval';
   args: {
     owner: string;
     approved: string;
@@ -23,7 +22,7 @@ export interface Approval {
 }
 
 export interface ApprovalForAll {
-  name: "ApprovalForAll";
+  name: 'ApprovalForAll';
   args: {
     owner: string;
     operator: string;
@@ -35,7 +34,7 @@ export interface ApprovalForAll {
 }
 
 export interface Transfer {
-  name: "Transfer";
+  name: 'Transfer';
   args: {
     from: string;
     to: string;
@@ -53,26 +52,12 @@ export interface ERC721URIStorageInstance extends Truffle.ContractInstance {
    * See {IERC721-approve}.
    */
   approve: {
-    (
-      to: string,
-      tokenId: number | BN | string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<Truffle.TransactionResponse<AllEvents>>;
-    call(
-      to: string,
-      tokenId: number | BN | string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<void>;
-    sendTransaction(
-      to: string,
-      tokenId: number | BN | string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<string>;
-    estimateGas(
-      to: string,
-      tokenId: number | BN | string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<number>;
+    (to: string, tokenId: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<
+      Truffle.TransactionResponse<AllEvents>
+    >;
+    call(to: string, tokenId: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<void>;
+    sendTransaction(to: string, tokenId: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<string>;
+    estimateGas(to: string, tokenId: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<number>;
   };
 
   /**
@@ -83,19 +68,12 @@ export interface ERC721URIStorageInstance extends Truffle.ContractInstance {
   /**
    * See {IERC721-getApproved}.
    */
-  getApproved(
-    tokenId: number | BN | string,
-    txDetails?: Truffle.TransactionDetails
-  ): Promise<string>;
+  getApproved(tokenId: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<string>;
 
   /**
    * See {IERC721-isApprovedForAll}.
    */
-  isApprovedForAll(
-    owner: string,
-    operator: string,
-    txDetails?: Truffle.TransactionDetails
-  ): Promise<boolean>;
+  isApprovedForAll(owner: string, operator: string, txDetails?: Truffle.TransactionDetails): Promise<boolean>;
 
   /**
    * See {IERC721Metadata-name}.
@@ -105,44 +83,24 @@ export interface ERC721URIStorageInstance extends Truffle.ContractInstance {
   /**
    * See {IERC721-ownerOf}.
    */
-  ownerOf(
-    tokenId: number | BN | string,
-    txDetails?: Truffle.TransactionDetails
-  ): Promise<string>;
+  ownerOf(tokenId: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<string>;
 
   /**
    * See {IERC721-setApprovalForAll}.
    */
   setApprovalForAll: {
-    (
-      operator: string,
-      approved: boolean,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<Truffle.TransactionResponse<AllEvents>>;
-    call(
-      operator: string,
-      approved: boolean,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<void>;
-    sendTransaction(
-      operator: string,
-      approved: boolean,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<string>;
-    estimateGas(
-      operator: string,
-      approved: boolean,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<number>;
+    (operator: string, approved: boolean, txDetails?: Truffle.TransactionDetails): Promise<
+      Truffle.TransactionResponse<AllEvents>
+    >;
+    call(operator: string, approved: boolean, txDetails?: Truffle.TransactionDetails): Promise<void>;
+    sendTransaction(operator: string, approved: boolean, txDetails?: Truffle.TransactionDetails): Promise<string>;
+    estimateGas(operator: string, approved: boolean, txDetails?: Truffle.TransactionDetails): Promise<number>;
   };
 
   /**
    * See {IERC165-supportsInterface}.
    */
-  supportsInterface(
-    interfaceId: string,
-    txDetails?: Truffle.TransactionDetails
-  ): Promise<boolean>;
+  supportsInterface(interfaceId: string, txDetails?: Truffle.TransactionDetails): Promise<boolean>;
 
   /**
    * See {IERC721Metadata-symbol}.
@@ -153,12 +111,9 @@ export interface ERC721URIStorageInstance extends Truffle.ContractInstance {
    * See {IERC721-transferFrom}.
    */
   transferFrom: {
-    (
-      from: string,
-      to: string,
-      tokenId: number | BN | string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<Truffle.TransactionResponse<AllEvents>>;
+    (from: string, to: string, tokenId: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<
+      Truffle.TransactionResponse<AllEvents>
+    >;
     call(
       from: string,
       to: string,
@@ -182,62 +137,39 @@ export interface ERC721URIStorageInstance extends Truffle.ContractInstance {
   /**
    * See {IERC721Metadata-tokenURI}.
    */
-  tokenURI(
-    tokenId: number | BN | string,
-    txDetails?: Truffle.TransactionDetails
-  ): Promise<string>;
+  tokenURI(tokenId: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<string>;
 
   methods: {
     /**
      * See {IERC721-approve}.
      */
     approve: {
-      (
-        to: string,
-        tokenId: number | BN | string,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<Truffle.TransactionResponse<AllEvents>>;
-      call(
-        to: string,
-        tokenId: number | BN | string,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<void>;
+      (to: string, tokenId: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<
+        Truffle.TransactionResponse<AllEvents>
+      >;
+      call(to: string, tokenId: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<void>;
       sendTransaction(
         to: string,
         tokenId: number | BN | string,
         txDetails?: Truffle.TransactionDetails
       ): Promise<string>;
-      estimateGas(
-        to: string,
-        tokenId: number | BN | string,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<number>;
+      estimateGas(to: string, tokenId: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<number>;
     };
 
     /**
      * See {IERC721-balanceOf}.
      */
-    balanceOf(
-      owner: string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<BN>;
+    balanceOf(owner: string, txDetails?: Truffle.TransactionDetails): Promise<BN>;
 
     /**
      * See {IERC721-getApproved}.
      */
-    getApproved(
-      tokenId: number | BN | string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<string>;
+    getApproved(tokenId: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<string>;
 
     /**
      * See {IERC721-isApprovedForAll}.
      */
-    isApprovedForAll(
-      owner: string,
-      operator: string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<boolean>;
+    isApprovedForAll(owner: string, operator: string, txDetails?: Truffle.TransactionDetails): Promise<boolean>;
 
     /**
      * See {IERC721Metadata-name}.
@@ -247,44 +179,24 @@ export interface ERC721URIStorageInstance extends Truffle.ContractInstance {
     /**
      * See {IERC721-ownerOf}.
      */
-    ownerOf(
-      tokenId: number | BN | string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<string>;
+    ownerOf(tokenId: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<string>;
 
     /**
      * See {IERC721-setApprovalForAll}.
      */
     setApprovalForAll: {
-      (
-        operator: string,
-        approved: boolean,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<Truffle.TransactionResponse<AllEvents>>;
-      call(
-        operator: string,
-        approved: boolean,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<void>;
-      sendTransaction(
-        operator: string,
-        approved: boolean,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<string>;
-      estimateGas(
-        operator: string,
-        approved: boolean,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<number>;
+      (operator: string, approved: boolean, txDetails?: Truffle.TransactionDetails): Promise<
+        Truffle.TransactionResponse<AllEvents>
+      >;
+      call(operator: string, approved: boolean, txDetails?: Truffle.TransactionDetails): Promise<void>;
+      sendTransaction(operator: string, approved: boolean, txDetails?: Truffle.TransactionDetails): Promise<string>;
+      estimateGas(operator: string, approved: boolean, txDetails?: Truffle.TransactionDetails): Promise<number>;
     };
 
     /**
      * See {IERC165-supportsInterface}.
      */
-    supportsInterface(
-      interfaceId: string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<boolean>;
+    supportsInterface(interfaceId: string, txDetails?: Truffle.TransactionDetails): Promise<boolean>;
 
     /**
      * See {IERC721Metadata-symbol}.
@@ -295,12 +207,9 @@ export interface ERC721URIStorageInstance extends Truffle.ContractInstance {
      * See {IERC721-transferFrom}.
      */
     transferFrom: {
-      (
-        from: string,
-        to: string,
-        tokenId: number | BN | string,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<Truffle.TransactionResponse<AllEvents>>;
+      (from: string, to: string, tokenId: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<
+        Truffle.TransactionResponse<AllEvents>
+      >;
       call(
         from: string,
         to: string,
@@ -324,21 +233,15 @@ export interface ERC721URIStorageInstance extends Truffle.ContractInstance {
     /**
      * See {IERC721Metadata-tokenURI}.
      */
-    tokenURI(
-      tokenId: number | BN | string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<string>;
+    tokenURI(tokenId: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<string>;
 
     /**
      * See {IERC721-safeTransferFrom}.
      */
-    "safeTransferFrom(address,address,uint256)": {
-      (
-        from: string,
-        to: string,
-        tokenId: number | BN | string,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<Truffle.TransactionResponse<AllEvents>>;
+    'safeTransferFrom(address,address,uint256)': {
+      (from: string, to: string, tokenId: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<
+        Truffle.TransactionResponse<AllEvents>
+      >;
       call(
         from: string,
         to: string,
@@ -362,7 +265,7 @@ export interface ERC721URIStorageInstance extends Truffle.ContractInstance {
     /**
      * See {IERC721-safeTransferFrom}.
      */
-    "safeTransferFrom(address,address,uint256,bytes)": {
+    'safeTransferFrom(address,address,uint256,bytes)': {
       (
         from: string,
         to: string,
@@ -401,8 +304,5 @@ export interface ERC721URIStorageInstance extends Truffle.ContractInstance {
     callback: (error: Error, event: EventData) => void
   ): Promise<EventData[]>;
   getPastEvents(event: string, options: PastEventOptions): Promise<EventData[]>;
-  getPastEvents(
-    event: string,
-    callback: (error: Error, event: EventData) => void
-  ): Promise<EventData[]>;
+  getPastEvents(event: string, callback: (error: Error, event: EventData) => void): Promise<EventData[]>;
 }

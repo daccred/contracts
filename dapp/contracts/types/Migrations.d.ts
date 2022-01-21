@@ -2,12 +2,11 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import BN from "bn.js";
-import { EventData, PastEventOptions } from "web3-eth-contract";
+import BN from 'bn.js';
+import { EventData, PastEventOptions } from 'web3-eth-contract';
 
-export interface MigrationsContract
-  extends Truffle.Contract<MigrationsInstance> {
-  "new"(meta?: Truffle.TransactionDetails): Promise<MigrationsInstance>;
+export interface MigrationsContract extends Truffle.Contract<MigrationsInstance> {
+  'new'(meta?: Truffle.TransactionDetails): Promise<MigrationsInstance>;
 }
 
 type AllEvents = never;
@@ -18,22 +17,12 @@ export interface MigrationsInstance extends Truffle.ContractInstance {
   owner(txDetails?: Truffle.TransactionDetails): Promise<string>;
 
   setCompleted: {
-    (
-      completed: number | BN | string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<Truffle.TransactionResponse<AllEvents>>;
-    call(
-      completed: number | BN | string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<void>;
-    sendTransaction(
-      completed: number | BN | string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<string>;
-    estimateGas(
-      completed: number | BN | string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<number>;
+    (completed: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<
+      Truffle.TransactionResponse<AllEvents>
+    >;
+    call(completed: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<void>;
+    sendTransaction(completed: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<string>;
+    estimateGas(completed: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<number>;
   };
 
   methods: {
@@ -42,22 +31,12 @@ export interface MigrationsInstance extends Truffle.ContractInstance {
     owner(txDetails?: Truffle.TransactionDetails): Promise<string>;
 
     setCompleted: {
-      (
-        completed: number | BN | string,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<Truffle.TransactionResponse<AllEvents>>;
-      call(
-        completed: number | BN | string,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<void>;
-      sendTransaction(
-        completed: number | BN | string,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<string>;
-      estimateGas(
-        completed: number | BN | string,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<number>;
+      (completed: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<
+        Truffle.TransactionResponse<AllEvents>
+      >;
+      call(completed: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<void>;
+      sendTransaction(completed: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<string>;
+      estimateGas(completed: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<number>;
     };
   };
 
@@ -68,8 +47,5 @@ export interface MigrationsInstance extends Truffle.ContractInstance {
     callback: (error: Error, event: EventData) => void
   ): Promise<EventData[]>;
   getPastEvents(event: string, options: PastEventOptions): Promise<EventData[]>;
-  getPastEvents(
-    event: string,
-    callback: (error: Error, event: EventData) => void
-  ): Promise<EventData[]>;
+  getPastEvents(event: string, callback: (error: Error, event: EventData) => void): Promise<EventData[]>;
 }

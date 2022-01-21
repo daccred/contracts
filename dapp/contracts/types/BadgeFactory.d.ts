@@ -2,20 +2,15 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import BN from "bn.js";
-import { EventData, PastEventOptions } from "web3-eth-contract";
+import BN from 'bn.js';
+import { EventData, PastEventOptions } from 'web3-eth-contract';
 
-export interface BadgeFactoryContract
-  extends Truffle.Contract<BadgeFactoryInstance> {
-  "new"(
-    _name: string,
-    _symbol: string,
-    meta?: Truffle.TransactionDetails
-  ): Promise<BadgeFactoryInstance>;
+export interface BadgeFactoryContract extends Truffle.Contract<BadgeFactoryInstance> {
+  'new'(_name: string, _symbol: string, meta?: Truffle.TransactionDetails): Promise<BadgeFactoryInstance>;
 }
 
 export interface Approval {
-  name: "Approval";
+  name: 'Approval';
   args: {
     owner: string;
     approved: string;
@@ -27,7 +22,7 @@ export interface Approval {
 }
 
 export interface ApprovalForAll {
-  name: "ApprovalForAll";
+  name: 'ApprovalForAll';
   args: {
     owner: string;
     operator: string;
@@ -39,7 +34,7 @@ export interface ApprovalForAll {
 }
 
 export interface CredentialAwarded {
-  name: "CredentialAwarded";
+  name: 'CredentialAwarded';
   args: {
     recipient: string;
     tokenId: BN;
@@ -51,7 +46,7 @@ export interface CredentialAwarded {
 }
 
 export interface OwnershipTransferred {
-  name: "OwnershipTransferred";
+  name: 'OwnershipTransferred';
   args: {
     previousOwner: string;
     newOwner: string;
@@ -61,7 +56,7 @@ export interface OwnershipTransferred {
 }
 
 export interface Transfer {
-  name: "Transfer";
+  name: 'Transfer';
   args: {
     from: string;
     to: string;
@@ -72,38 +67,19 @@ export interface Transfer {
   };
 }
 
-type AllEvents =
-  | Approval
-  | ApprovalForAll
-  | CredentialAwarded
-  | OwnershipTransferred
-  | Transfer;
+type AllEvents = Approval | ApprovalForAll | CredentialAwarded | OwnershipTransferred | Transfer;
 
 export interface BadgeFactoryInstance extends Truffle.ContractInstance {
   /**
    * See {IERC721-approve}.
    */
   approve: {
-    (
-      to: string,
-      tokenId: number | BN | string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<Truffle.TransactionResponse<AllEvents>>;
-    call(
-      to: string,
-      tokenId: number | BN | string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<void>;
-    sendTransaction(
-      to: string,
-      tokenId: number | BN | string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<string>;
-    estimateGas(
-      to: string,
-      tokenId: number | BN | string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<number>;
+    (to: string, tokenId: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<
+      Truffle.TransactionResponse<AllEvents>
+    >;
+    call(to: string, tokenId: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<void>;
+    sendTransaction(to: string, tokenId: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<string>;
+    estimateGas(to: string, tokenId: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<number>;
   };
 
   /**
@@ -114,19 +90,12 @@ export interface BadgeFactoryInstance extends Truffle.ContractInstance {
   /**
    * See {IERC721-getApproved}.
    */
-  getApproved(
-    tokenId: number | BN | string,
-    txDetails?: Truffle.TransactionDetails
-  ): Promise<string>;
+  getApproved(tokenId: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<string>;
 
   /**
    * See {IERC721-isApprovedForAll}.
    */
-  isApprovedForAll(
-    owner: string,
-    operator: string,
-    txDetails?: Truffle.TransactionDetails
-  ): Promise<boolean>;
+  isApprovedForAll(owner: string, operator: string, txDetails?: Truffle.TransactionDetails): Promise<boolean>;
 
   /**
    * See {IERC721Metadata-name}.
@@ -141,18 +110,13 @@ export interface BadgeFactoryInstance extends Truffle.ContractInstance {
   /**
    * See {IERC721-ownerOf}.
    */
-  ownerOf(
-    tokenId: number | BN | string,
-    txDetails?: Truffle.TransactionDetails
-  ): Promise<string>;
+  ownerOf(tokenId: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<string>;
 
   /**
    * Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.
    */
   renounceOwnership: {
-    (txDetails?: Truffle.TransactionDetails): Promise<
-      Truffle.TransactionResponse<AllEvents>
-    >;
+    (txDetails?: Truffle.TransactionDetails): Promise<Truffle.TransactionResponse<AllEvents>>;
     call(txDetails?: Truffle.TransactionDetails): Promise<void>;
     sendTransaction(txDetails?: Truffle.TransactionDetails): Promise<string>;
     estimateGas(txDetails?: Truffle.TransactionDetails): Promise<number>;
@@ -162,35 +126,18 @@ export interface BadgeFactoryInstance extends Truffle.ContractInstance {
    * See {IERC721-setApprovalForAll}.
    */
   setApprovalForAll: {
-    (
-      operator: string,
-      approved: boolean,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<Truffle.TransactionResponse<AllEvents>>;
-    call(
-      operator: string,
-      approved: boolean,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<void>;
-    sendTransaction(
-      operator: string,
-      approved: boolean,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<string>;
-    estimateGas(
-      operator: string,
-      approved: boolean,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<number>;
+    (operator: string, approved: boolean, txDetails?: Truffle.TransactionDetails): Promise<
+      Truffle.TransactionResponse<AllEvents>
+    >;
+    call(operator: string, approved: boolean, txDetails?: Truffle.TransactionDetails): Promise<void>;
+    sendTransaction(operator: string, approved: boolean, txDetails?: Truffle.TransactionDetails): Promise<string>;
+    estimateGas(operator: string, approved: boolean, txDetails?: Truffle.TransactionDetails): Promise<number>;
   };
 
   /**
    * See {IERC165-supportsInterface}.
    */
-  supportsInterface(
-    interfaceId: string,
-    txDetails?: Truffle.TransactionDetails
-  ): Promise<boolean>;
+  supportsInterface(interfaceId: string, txDetails?: Truffle.TransactionDetails): Promise<boolean>;
 
   /**
    * See {IERC721Metadata-symbol}.
@@ -200,21 +147,15 @@ export interface BadgeFactoryInstance extends Truffle.ContractInstance {
   /**
    * See {IERC721Metadata-tokenURI}.
    */
-  tokenURI(
-    tokenId: number | BN | string,
-    txDetails?: Truffle.TransactionDetails
-  ): Promise<string>;
+  tokenURI(tokenId: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<string>;
 
   /**
    * See {IERC721-transferFrom}.
    */
   transferFrom: {
-    (
-      from: string,
-      to: string,
-      tokenId: number | BN | string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<Truffle.TransactionResponse<AllEvents>>;
+    (from: string, to: string, tokenId: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<
+      Truffle.TransactionResponse<AllEvents>
+    >;
     call(
       from: string,
       to: string,
@@ -239,44 +180,19 @@ export interface BadgeFactoryInstance extends Truffle.ContractInstance {
    * Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.
    */
   transferOwnership: {
-    (newOwner: string, txDetails?: Truffle.TransactionDetails): Promise<
-      Truffle.TransactionResponse<AllEvents>
-    >;
-    call(
-      newOwner: string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<void>;
-    sendTransaction(
-      newOwner: string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<string>;
-    estimateGas(
-      newOwner: string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<number>;
+    (newOwner: string, txDetails?: Truffle.TransactionDetails): Promise<Truffle.TransactionResponse<AllEvents>>;
+    call(newOwner: string, txDetails?: Truffle.TransactionDetails): Promise<void>;
+    sendTransaction(newOwner: string, txDetails?: Truffle.TransactionDetails): Promise<string>;
+    estimateGas(newOwner: string, txDetails?: Truffle.TransactionDetails): Promise<number>;
   };
 
   awardCredential: {
-    (
-      recipient: string,
-      claimURI: string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<Truffle.TransactionResponse<AllEvents>>;
-    call(
-      recipient: string,
-      claimURI: string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<BN>;
-    sendTransaction(
-      recipient: string,
-      claimURI: string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<string>;
-    estimateGas(
-      recipient: string,
-      claimURI: string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<number>;
+    (recipient: string, claimURI: string, txDetails?: Truffle.TransactionDetails): Promise<
+      Truffle.TransactionResponse<AllEvents>
+    >;
+    call(recipient: string, claimURI: string, txDetails?: Truffle.TransactionDetails): Promise<BN>;
+    sendTransaction(recipient: string, claimURI: string, txDetails?: Truffle.TransactionDetails): Promise<string>;
+    estimateGas(recipient: string, claimURI: string, txDetails?: Truffle.TransactionDetails): Promise<number>;
   };
 
   methods: {
@@ -284,52 +200,32 @@ export interface BadgeFactoryInstance extends Truffle.ContractInstance {
      * See {IERC721-approve}.
      */
     approve: {
-      (
-        to: string,
-        tokenId: number | BN | string,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<Truffle.TransactionResponse<AllEvents>>;
-      call(
-        to: string,
-        tokenId: number | BN | string,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<void>;
+      (to: string, tokenId: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<
+        Truffle.TransactionResponse<AllEvents>
+      >;
+      call(to: string, tokenId: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<void>;
       sendTransaction(
         to: string,
         tokenId: number | BN | string,
         txDetails?: Truffle.TransactionDetails
       ): Promise<string>;
-      estimateGas(
-        to: string,
-        tokenId: number | BN | string,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<number>;
+      estimateGas(to: string, tokenId: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<number>;
     };
 
     /**
      * See {IERC721-balanceOf}.
      */
-    balanceOf(
-      owner: string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<BN>;
+    balanceOf(owner: string, txDetails?: Truffle.TransactionDetails): Promise<BN>;
 
     /**
      * See {IERC721-getApproved}.
      */
-    getApproved(
-      tokenId: number | BN | string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<string>;
+    getApproved(tokenId: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<string>;
 
     /**
      * See {IERC721-isApprovedForAll}.
      */
-    isApprovedForAll(
-      owner: string,
-      operator: string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<boolean>;
+    isApprovedForAll(owner: string, operator: string, txDetails?: Truffle.TransactionDetails): Promise<boolean>;
 
     /**
      * See {IERC721Metadata-name}.
@@ -344,18 +240,13 @@ export interface BadgeFactoryInstance extends Truffle.ContractInstance {
     /**
      * See {IERC721-ownerOf}.
      */
-    ownerOf(
-      tokenId: number | BN | string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<string>;
+    ownerOf(tokenId: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<string>;
 
     /**
      * Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.
      */
     renounceOwnership: {
-      (txDetails?: Truffle.TransactionDetails): Promise<
-        Truffle.TransactionResponse<AllEvents>
-      >;
+      (txDetails?: Truffle.TransactionDetails): Promise<Truffle.TransactionResponse<AllEvents>>;
       call(txDetails?: Truffle.TransactionDetails): Promise<void>;
       sendTransaction(txDetails?: Truffle.TransactionDetails): Promise<string>;
       estimateGas(txDetails?: Truffle.TransactionDetails): Promise<number>;
@@ -365,35 +256,18 @@ export interface BadgeFactoryInstance extends Truffle.ContractInstance {
      * See {IERC721-setApprovalForAll}.
      */
     setApprovalForAll: {
-      (
-        operator: string,
-        approved: boolean,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<Truffle.TransactionResponse<AllEvents>>;
-      call(
-        operator: string,
-        approved: boolean,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<void>;
-      sendTransaction(
-        operator: string,
-        approved: boolean,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<string>;
-      estimateGas(
-        operator: string,
-        approved: boolean,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<number>;
+      (operator: string, approved: boolean, txDetails?: Truffle.TransactionDetails): Promise<
+        Truffle.TransactionResponse<AllEvents>
+      >;
+      call(operator: string, approved: boolean, txDetails?: Truffle.TransactionDetails): Promise<void>;
+      sendTransaction(operator: string, approved: boolean, txDetails?: Truffle.TransactionDetails): Promise<string>;
+      estimateGas(operator: string, approved: boolean, txDetails?: Truffle.TransactionDetails): Promise<number>;
     };
 
     /**
      * See {IERC165-supportsInterface}.
      */
-    supportsInterface(
-      interfaceId: string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<boolean>;
+    supportsInterface(interfaceId: string, txDetails?: Truffle.TransactionDetails): Promise<boolean>;
 
     /**
      * See {IERC721Metadata-symbol}.
@@ -403,21 +277,15 @@ export interface BadgeFactoryInstance extends Truffle.ContractInstance {
     /**
      * See {IERC721Metadata-tokenURI}.
      */
-    tokenURI(
-      tokenId: number | BN | string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<string>;
+    tokenURI(tokenId: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<string>;
 
     /**
      * See {IERC721-transferFrom}.
      */
     transferFrom: {
-      (
-        from: string,
-        to: string,
-        tokenId: number | BN | string,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<Truffle.TransactionResponse<AllEvents>>;
+      (from: string, to: string, tokenId: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<
+        Truffle.TransactionResponse<AllEvents>
+      >;
       call(
         from: string,
         to: string,
@@ -442,56 +310,28 @@ export interface BadgeFactoryInstance extends Truffle.ContractInstance {
      * Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.
      */
     transferOwnership: {
-      (newOwner: string, txDetails?: Truffle.TransactionDetails): Promise<
-        Truffle.TransactionResponse<AllEvents>
-      >;
-      call(
-        newOwner: string,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<void>;
-      sendTransaction(
-        newOwner: string,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<string>;
-      estimateGas(
-        newOwner: string,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<number>;
+      (newOwner: string, txDetails?: Truffle.TransactionDetails): Promise<Truffle.TransactionResponse<AllEvents>>;
+      call(newOwner: string, txDetails?: Truffle.TransactionDetails): Promise<void>;
+      sendTransaction(newOwner: string, txDetails?: Truffle.TransactionDetails): Promise<string>;
+      estimateGas(newOwner: string, txDetails?: Truffle.TransactionDetails): Promise<number>;
     };
 
     awardCredential: {
-      (
-        recipient: string,
-        claimURI: string,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<Truffle.TransactionResponse<AllEvents>>;
-      call(
-        recipient: string,
-        claimURI: string,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<BN>;
-      sendTransaction(
-        recipient: string,
-        claimURI: string,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<string>;
-      estimateGas(
-        recipient: string,
-        claimURI: string,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<number>;
+      (recipient: string, claimURI: string, txDetails?: Truffle.TransactionDetails): Promise<
+        Truffle.TransactionResponse<AllEvents>
+      >;
+      call(recipient: string, claimURI: string, txDetails?: Truffle.TransactionDetails): Promise<BN>;
+      sendTransaction(recipient: string, claimURI: string, txDetails?: Truffle.TransactionDetails): Promise<string>;
+      estimateGas(recipient: string, claimURI: string, txDetails?: Truffle.TransactionDetails): Promise<number>;
     };
 
     /**
      * See {IERC721-safeTransferFrom}.
      */
-    "safeTransferFrom(address,address,uint256)": {
-      (
-        from: string,
-        to: string,
-        tokenId: number | BN | string,
-        txDetails?: Truffle.TransactionDetails
-      ): Promise<Truffle.TransactionResponse<AllEvents>>;
+    'safeTransferFrom(address,address,uint256)': {
+      (from: string, to: string, tokenId: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<
+        Truffle.TransactionResponse<AllEvents>
+      >;
       call(
         from: string,
         to: string,
@@ -515,7 +355,7 @@ export interface BadgeFactoryInstance extends Truffle.ContractInstance {
     /**
      * See {IERC721-safeTransferFrom}.
      */
-    "safeTransferFrom(address,address,uint256,bytes)": {
+    'safeTransferFrom(address,address,uint256,bytes)': {
       (
         from: string,
         to: string,
@@ -554,8 +394,5 @@ export interface BadgeFactoryInstance extends Truffle.ContractInstance {
     callback: (error: Error, event: EventData) => void
   ): Promise<EventData[]>;
   getPastEvents(event: string, options: PastEventOptions): Promise<EventData[]>;
-  getPastEvents(
-    event: string,
-    callback: (error: Error, event: EventData) => void
-  ): Promise<EventData[]>;
+  getPastEvents(event: string, callback: (error: Error, event: EventData) => void): Promise<EventData[]>;
 }
