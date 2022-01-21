@@ -6,7 +6,7 @@ import { decode } from 'js-base64';
 import { formatAddress } from '@/lib/helper';
 import * as NextAuth from '@/lib/auth.helper';
 import { configure, loadCache, serializeCache, makeUseAxios } from 'axios-hooks';
-import { PasswordlessModel } from '@/lib/http';
+import { DocModel, PasswordlessModel } from '@/lib/http/adapter';
 
 interface UserAttributes extends MoralisType.Attributes {
   emailAddress?: string;
@@ -14,33 +14,28 @@ interface UserAttributes extends MoralisType.Attributes {
 }
 
 interface AuthUserAttributes {
-  public_address: string,
-  signature:  string,
-  object_id:  string,
-  session_token:  string,
-  name:   string,
-  email?:  string,
+  public_address: string;
+  signature: string;
+  object_id: string;
+  session_token: string;
+  name: string;
+  email?: string;
 }
 
-
 const useAxios = makeUseAxios({
-  axios: PasswordlessModel.axios
-})
-
-
+  axios: PasswordlessModel.axios,
+  defaultOptions: { useCache: false, manual: true },
+});
 
 export default function useServerAuth() {
+  const [{ data: postData, loading: postLoading, error: postError }, executePost] = useAxios({
+    url: undefined,
+    method: 'POST',
+  });
 
-  const [{ data: postData, loading: postLoading, error: postError }, executePost] = useAxios(
-    { 
-      url: `${APURL}/auth/passwordless`,
-      method: 'POST',
-    },
-    { manual: true }
-  );
+  console.log(PasswordlessModel);
 
   const passwordless = async (profile: MoralisType.User<UserAttributes>) => {
-
     try {
       const user: AuthUserAttributes = {
         public_address: profile.attributes.ethAddress as string,
@@ -52,17 +47,16 @@ export default function useServerAuth() {
       };
 
       const result = await executePost({
-        data: user
+        data: user,
       });
 
       // eslint-disable-next-line no-console
       console.log(result.data, postData, postLoading, postError);
 
-      // NextAuth.login({...user, token: result.data.access_token});
+      NextAuth.login({ ...user, token: result.data.access_token });
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.error(postError?.response, postData);
-      NextAuth.logoutUser(null);
+      console.error(postError?.response, postError);
       throw new Error('cannot login user');
     }
   };

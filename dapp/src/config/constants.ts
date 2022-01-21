@@ -29,7 +29,7 @@ export const AUTH = {
   defaultRoute: '/',
   rootRoute: '/studio',
   key: '__app.sid__', // for user profile
-  token: '__auth.id__' // for the auth JWT token
+  token: '__auth.id__', // for the auth JWT token
 };
 
 /* ----------------------------------------------------------------------- */
