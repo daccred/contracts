@@ -2,7 +2,6 @@
 import { ShieldCheckIcon, ShieldExclamationIcon } from '@heroicons/react/solid';
 import { useCallback, useEffect, useState } from 'react';
 import { LockClosedIcon } from '@heroicons/react/solid';
-import { ethers } from 'ethers';
 import { imgBase64 } from './moralis-lab';
 
 function Certificate() {
@@ -38,7 +37,7 @@ function Certificate() {
         },
       },
       encryption: false,
-    }
+    },
   });
   const [error, setError] = useState('undefined');
   const [rawEncryptedData, setRawEncryptedData] = useState(null);
@@ -49,9 +48,8 @@ function Certificate() {
   const getCertificate = useCallback(async () => {
     // const nft = await getNft(address, id);
     // const data = await getIpfsMetadata(nft.token_uri);
-    const metadata = {};
+    // const metadata = {};
     setCertificate({
-      
       metadata: {
         name: 'Hoola Certificate',
         description: 'encryptedMetadata , publicKey)',
@@ -64,7 +62,7 @@ function Certificate() {
             identity: 'encryptedMetadata[',
           },
           issuedOn: '          encryptedMetadata[',
-  
+
           verification: {
             type: '            encryptedMetadata[',
             creator: '            encryptedMetadata[',
@@ -83,7 +81,7 @@ function Certificate() {
           },
         },
         encryption: false,
-      }
+      },
     });
 
     // const name = await getEnsNameFromAddress(data?.openBadge.badge.issuer.id);
@@ -270,7 +268,7 @@ function Certificate() {
                     <div>
                       <button
                         type='submit'
-                        onClick={() => console.log("holla")}
+                        onClick={() => console.log('holla')}
                         className='inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-60 disabled:bg-gray-400 disabled:text-gray-700'
                       >
                         Check

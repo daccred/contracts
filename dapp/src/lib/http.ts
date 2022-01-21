@@ -4,7 +4,7 @@ import axios from 'axios';
 import tmpl from 'string-template';
 import qs from 'qs';
 import nProgress from 'nprogress';
-import { LOCAL_API } from '@/config/constants';
+import { APURL } from '@/config/constants';
 
 class HttpAdapter extends Object {
   static defaults: any;
@@ -23,6 +23,8 @@ class HttpAdapter extends Object {
       static buildURL(pattern = '', data = {}) {
         const stub = tmpl(pattern, data).replace(/\/+$/, '');
         const route = this.endpoint.replace(/\/+$/, '');
+
+        // eslint-disable-next-line no-console
         console.log(baseURL, 'versus', this.endpoint, 'and', route);
         return [`${baseURL}${route}`, stub].join('/').replace(/\/+$/, '');
       }
@@ -112,7 +114,7 @@ HttpAdapter.defaults = {
     });
   },
 };
-const baseURL = LOCAL_API;
+const baseURL = APURL;
 const defaultConfig = {
   baseURL,
   headers: {
@@ -121,4 +123,4 @@ const defaultConfig = {
 };
 
 HttpAdapter.updateDefaults(defaultConfig);
-export class RequestProxy extends HttpAdapter.createResource('/') {}
+export class PasswordlessModel extends HttpAdapter.createResource('/auth/passwordless') {}

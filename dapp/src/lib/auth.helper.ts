@@ -26,7 +26,7 @@ export const redirect = (target = config.loginRoute) => {
 export const login = async (payload: TAuthUser, target = config.rootRoute) => {
   // Sign in a user by setting the cookie with the token received from Login Auth Request
   const userCookie = encode(JSON.stringify(payload));
-  setCookie(null, config.key, userCookie, {
+  await setCookie(null, config.key, userCookie, {
     sameSite: 'lax',
     maxAge: 2 * 24 * 60 * 60,
   });
