@@ -1,5 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/router';
+import routes from '@/config/routes';
 
 /* Import Page Components here */
 import Button from '@/components/buttons/Button';
@@ -13,34 +15,35 @@ import useDocumentApi from '@/hooks/useDocumentApi';
 
 const CreateNewCert = () => {
   const { register, handleSubmit } = useForm();
-  const {saveNewDocument, isSaveLoading } = useDocumentApi()
+  const router = useRouter();
+  const { saveNewDocument, isSaveLoading } = useDocumentApi();
 
   const document = useZustand((slice) => slice.document.data);
 
   const _handleSubmission = async (inputData: Partial<DocumentStoreProps>): Promise<void> => {
     try {
-      
       const result = await saveNewDocument({
         ...document,
         /* By default use the Harmony Network */
         name: inputData.name,
         description: inputData.description,
         network: networkConfigs[NetworkEnum.HARMONY_TESTNET],
-        networkId: NetworkEnum.HARMONY_TESTNET
+        networkId: NetworkEnum.HARMONY_TESTNET,
       });
 
-      console.log(document, "The Zustand store we are tracking locally")
-      console.log(result, "The API Response")
-      
-      // await _step([...step, 'templates']);
+      /* Push to Editor page with Hash slug from result */
+      router.push({
+        pathname: routes.editor.hash,
+        query: { hash: result.data.result.slug },
+      });
+
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.error(error)
+      console.error(error);
       alert(JSON.stringify(error));
     }
   };
 
-  
   return (
     <section className='max-w-3xl mx-auto'>
       {/* ------- Form Heading section ------- */}
@@ -48,7 +51,7 @@ const CreateNewCert = () => {
         <h3>Create a certification</h3>
         <p className='max-w-2xl m-auto mt-2'>
           A certification is your activity or event or workshop or school year. Enter the name for this certification
-          and year to continue.
+          and description to continue.
         </p>
       </section>
       {/* ------- Form Heading section ------- */}

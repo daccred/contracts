@@ -23,7 +23,7 @@ export const defaults: AxiosRequestConfig = {
     'X-Request-With': 'XMLHttpRequest',
   },
 };
-const axios: AxiosInstance = CreateAxios.create(defaults)
+const axios: AxiosInstance = CreateAxios.create(defaults);
 const __browser__ = typeof window === 'object' && typeof window != 'undefined';
 
 axios.interceptors.request.use(
@@ -31,9 +31,9 @@ axios.interceptors.request.use(
     // Fetch the auth token for a user
     const cookies = await parseCookies(null);
     const authToken = cookies[AUTH.token];
-    
+
     /* Add authorization headers if we have any */
-    if(authToken) { 
+    if (authToken) {
       config.headers = {
         authorization: `Bearer ${authToken}`,
       };
@@ -64,10 +64,9 @@ axios.interceptors.response.use(
     return response;
   },
   (error: AxiosError) => {
-
     /* If we get a 401 Error we clear the credentials */
     if (error.response?.status === 401) {
-      NextAuth.logoutUser(null)
+      NextAuth.logoutUser(null);
       return Promise.reject(error);
     }
 
@@ -82,7 +81,7 @@ axios.interceptors.response.use(
 );
 
 /* Finally patch up Axios with all new config requirements */
-const makeAxios: AxiosInstance = axios
+const makeAxios: AxiosInstance = axios;
 
 /* Create Axios Instance with defaults */
 export default makeAxios;

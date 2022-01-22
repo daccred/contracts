@@ -26,7 +26,7 @@ export const redirect = (target = config.loginRoute) => {
 export const login = async (payload: TAuthUser, target = config.rootRoute) => {
   /* Payload consists of Auth Token and user data from Moralis */
   /* We need them separately to manage requests */
-  const {token, ...rest } = payload
+  const { token, ...rest } = payload;
 
   // Sign in a user by setting the cookie with the token received from Login Auth Request
   const userCookie = encode(JSON.stringify(rest));
@@ -41,8 +41,7 @@ export const login = async (payload: TAuthUser, target = config.rootRoute) => {
   await setCookie(null, config.token, token, {
     sameSite: 'lax',
     maxAge: 2 * 24 * 60 * 60,
-  })
-
+  });
 
   window.location.replace(target);
 };

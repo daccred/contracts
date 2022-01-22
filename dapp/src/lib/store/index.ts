@@ -7,27 +7,27 @@ import { createNewDocumentSlice, DocumentStore } from './doc';
 /* Handle all of the type definitions for the Store by Slice     */
 /**--------------------------------------------------------------*/
 export type InitialStoreSlice<T extends unknown> = {
-  isLoaded: boolean,
-  isLoading: boolean,
-  actionSuccessful: boolean,
-  actionFailed: boolean,
-  results: [],
-  prev?: undefined,
-  next?: undefined,
-  page_by?: Record<string, any>,
-  filter_by?: Record<string, any>,
-  sort_by?: Record<string, any>,
-  errors?: Record<string, any>,
-  query?: undefined,
-  data: T
+  isLoaded: boolean;
+  isLoading: boolean;
+  actionSuccessful: boolean;
+  actionFailed: boolean;
+  results: [];
+  prev?: undefined;
+  next?: undefined;
+  page_by?: Record<string, any>;
+  filter_by?: Record<string, any>;
+  sort_by?: Record<string, any>;
+  errors?: Record<string, any>;
+  query?: undefined;
+  data: T;
 };
 
 export type DefaultStateProps = {
-  __version__: string,
-  isAppLoaded: boolean,
-  isAppLoading: boolean,
-  errors: any,
-}
+  __version__: string;
+  isAppLoaded: boolean;
+  isAppLoading: boolean;
+  errors: any;
+};
 
 /* The Main Store state that unions all slices */
 type StoreState = DefaultStateProps & DocumentStore;
@@ -56,7 +56,7 @@ export const initialState: InitialStoreSlice<unknown> = {
   sort_by: {},
   errors: {},
   query: undefined,
-  data: {}
+  data: {},
 };
 
 export const loadingState: Partial<InitialStoreSlice<any>> = {
@@ -64,21 +64,21 @@ export const loadingState: Partial<InitialStoreSlice<any>> = {
   isLoading: true,
   actionSuccessful: false,
   actionFailed: false,
-}
+};
 
 export const actionSuccessState: Partial<InitialStoreSlice<any>> = {
   isLoaded: true,
   isLoading: false,
   actionSuccessful: true,
   actionFailed: false,
-}
+};
 
 export const actionFailState: Partial<InitialStoreSlice<any>> = {
   isLoaded: true,
   isLoading: false,
   actionSuccessful: false,
   actionFailed: true,
-}
+};
 
 const initialStateSlice: StoreSlice<any> = (set) => ({
   __version__: 1.0,
@@ -86,10 +86,8 @@ const initialStateSlice: StoreSlice<any> = (set) => ({
   isAppLoading: false,
   errors: {},
   /* This clear function will clear the whole store */
-  clear: () => set({ }, true),
+  clear: () => set({}, true),
 });
-
-
 
 // const createAppUserSlice: StoreSlice<any> = (set) => ({
 //   saveImgData: {},
@@ -111,4 +109,4 @@ export const useZustand = create<StoreState>(
   )
 );
 
-export default useZustand
+export default useZustand;

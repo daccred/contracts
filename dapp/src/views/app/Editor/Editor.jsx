@@ -12,6 +12,8 @@ import { Workspace } from 'realmono/canvas/workspace';
 import { loadFile } from './actions/file';
 // import PublishAction from './actions/PublishAction';
 
+import useStore from '@/lib/store'
+import useHeight from '@/hooks/useHeight';
 import EditorTopbar from '@/components/header/EditorTopbar';
 import useAuthUser from '@/hooks/useAuthUser';
 import TemplateSection from '@/components/editor/EditorTemplateSection';
@@ -20,19 +22,13 @@ import PublishSection from '@/components/editor/EditorPublishSection';
 
 const PANEL_SECTIONS = [TemplateSection, ElementsSection, UploadSection, VariableSection, PublishSection];
 
-const useHeight = () => {
-  const [height, setHeight] = React.useState(window.innerHeight);
-  React.useEffect(() => {
-    window.addEventListener('resize', () => {
-      setHeight(window.innerHeight);
-    });
-  }, []);
-  return height;
-};
-
 const Editor = ({ store }) => {
   const { user, hasProfile } = useAuthUser();
-  const height = useHeight();
+  const height = useHeight()
+
+
+  /* The document state from zustand */
+  const document = useStore(slice => slice.document)
 
   const handleDrop = (ev) => {
     // Prevent default behavior (Prevent file from being opened)
@@ -63,6 +59,7 @@ const Editor = ({ store }) => {
             open={open}
             hasProfile={hasProfile}
             store={store}
+            document={document.data}
           />
         )}
       </Disclosure>

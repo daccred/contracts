@@ -7,8 +7,13 @@ import { SectionTab } from 'realmono/side-panel';
 import { ImagesGrid } from 'realmono/side-panel/images-grid';
 import { VscSymbolVariable } from 'react-icons/vsc';
 import { recipientVariables } from '@/config/defaults/recipient.default';
+import useStore from '@/lib/store'
 
 export const VariablesPanel = observer(({ store }: any) => {
+
+  /* The document state from zustand */
+  const document = useStore(slice => slice.document.data)
+
   const [variables, setEditorVariables] = useState<typeof recipientVariables>([]);
 
   async function asyncLoadVariables() {

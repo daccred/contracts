@@ -5,7 +5,6 @@ export enum NetworkEnum {
   HARMONY_MAINNET = '0x63564C40',
 }
 
-
 /**
  * @dev DocumentStatus
  * Use to define the publish status of the document, off-chain and on-chain

@@ -26,19 +26,18 @@ const TemplateSelection = () => {
   const _handleSubmission = async (): Promise<void> => {
     try {
       /* Update Application Root Store with Data */
-      await _dispatchFormAction({ 
+      await _dispatchFormAction({
         editorSchema: JSON.stringify(selected?.value),
         /* By default use the Harmony Network */
         network: networkConfigs[NetworkEnum.HARMONY_TESTNET],
-        networkId: NetworkEnum.HARMONY_TESTNET
+        networkId: NetworkEnum.HARMONY_TESTNET,
       });
 
       /* Persist Value to LocalForage too, Localforage can handle objects and json values */
       await localforage.setItem(LF_EDITOR_VAR, selected?.value);
-      
+
       /* Route Wizard to default page to set name and description */
       setWizardStep([...step, 'default']);
-
     } catch (error) {
       alert(JSON.stringify(error));
     }
@@ -47,18 +46,17 @@ const TemplateSelection = () => {
   const _handleDesignScratch = async (): Promise<void> => {
     /* Set Empty Design Schema */
     await localforage.setItem(LF_EDITOR_VAR, undefined);
-    
-    await _dispatchFormAction({ 
+
+    await _dispatchFormAction({
       editorSchema: JSON.stringify({}),
       /* By default use the Harmony Network */
       network: networkConfigs[NetworkEnum.HARMONY_TESTNET],
-      networkId: NetworkEnum.HARMONY_TESTNET
+      networkId: NetworkEnum.HARMONY_TESTNET,
     });
 
     /* Route to next page */
     setWizardStep([...step, 'default']);
-
-  }
+  };
 
   return (
     <section className='max-w-3xl mx-auto'>
@@ -75,9 +73,10 @@ const TemplateSelection = () => {
         label={'Select a Template'}
       />
 
-
-      <div className="flex my-6 cursor-pointer justify">
-        <p onClick={_handleDesignScratch} className="flex px-3 py-2 mx-auto underline hover:bg-gray-100">Other design from Scratch</p>
+      <div className='flex my-6 cursor-pointer justify'>
+        <p onClick={_handleDesignScratch} className='flex px-3 py-2 mx-auto underline hover:bg-gray-100'>
+          Other design from Scratch
+        </p>
       </div>
 
       {selected && (
@@ -89,7 +88,6 @@ const TemplateSelection = () => {
           Design with Template
         </Button>
       )}
-      
     </section>
   );
 };

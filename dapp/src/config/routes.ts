@@ -13,9 +13,15 @@ const open = {
   claim: '/public/claim/[id]',
 };
 
+const editor = {
+  index: '/editor',
+  hash: '/editor/[hash]',
+};
+
 export const routes = {
   certs,
   open,
+  editor,
 };
 
 export default routes;

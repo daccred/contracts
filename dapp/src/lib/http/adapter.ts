@@ -49,9 +49,8 @@ class HttpAdapter extends Object {
     const cookies = parseCookies(null);
     const userCookie = cookies[AUTH.key];
 
-
     this.config = { ...this.defaults, ...config, baseURL: url };
-    this.config.headers = { ...this.defaults.headers, "auth": userCookie }
+    this.config.headers = { ...this.defaults.headers, auth: userCookie };
     // console.log(Resource.config)
     // Integrating interceptors for request and response
     this.axios.interceptors.request.use(
@@ -59,16 +58,13 @@ class HttpAdapter extends Object {
         // Fetch the auth token for a user
         const cookies = await parseCookies(null);
         const userCookie = cookies[AUTH.key];
-    
+
         config.headers = {
-          'Authorization': `Bearer ${userCookie}`,
+          Authorization: `Bearer ${userCookie}`,
         };
-          await progress.start();
-          return config;
-
+        await progress.start();
+        return config;
       },
-
-
 
       (error: AxiosError) => {
         progress.done();
