@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 
 /* Import Page Components here */
 import Button from '@/components/buttons/Button';
-import { useZustand } from '@/lib/zustand';
+import { useZustand } from '@/lib/store';
 import TemplateSelectBox, { TemplateSelectBoxProps } from '@/components/fields/TemplateSelectBox';
 import { CredentialCreateOptions } from '@/config/d';
 import { templates } from '@/config/defaults/templates.default';

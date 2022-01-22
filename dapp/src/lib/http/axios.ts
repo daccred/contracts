@@ -30,11 +30,15 @@ axios.interceptors.request.use(
     // Fetch the auth token for a user
     const cookies = await parseCookies(null);
     const userCookie = cookies[AUTH.key];
+    
+    /* Add authorization headers if we have any */
+    if(userCookie) { 
+      config.headers = {
+        authorization: `Bearer ${userCookie}`,
+      };
+    }
 
-    config.headers = {
-      authorization: `Bearer ${userCookie}`,
-    };
-
+    /* Only use progress bar in client */
     if (__browser__) {
       await progress.start();
       return config;

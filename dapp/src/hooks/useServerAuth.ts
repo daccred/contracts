@@ -1,12 +1,6 @@
-import { useEffect, useMemo, useState } from 'react';
-import nookies from 'nookies';
 import MoralisType from 'moralis';
-import { APURL, AUTH } from '@/config/constants';
-import { decode } from 'js-base64';
-import { formatAddress } from '@/lib/helper';
 import * as NextAuth from '@/lib/auth.helper';
-import { configure, loadCache, serializeCache, makeUseAxios } from 'axios-hooks';
-import { DocModel, PasswordlessModel } from '@/lib/http/adapter';
+import { makeUseAxios } from 'axios-hooks';
 import makeAxios from '@/lib/http/axios';
 import { authPasswordlessRoute } from '@/lib/http/api';
 

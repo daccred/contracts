@@ -7,7 +7,7 @@ import { CRED_WIZARD_STEP, WizardStepOpts } from '@/lib/realm';
 import Button from '@/components/buttons/Button';
 import InputField from '@/components/fields/Input';
 import TextboxField from '@/components/fields/Textbox';
-import { useZustand } from '@/lib/zustand';
+import { useZustand } from '@/lib/store';
 
 const CreateNewCert = () => {
   const [submitting, _submitting] = React.useState<boolean>(false);

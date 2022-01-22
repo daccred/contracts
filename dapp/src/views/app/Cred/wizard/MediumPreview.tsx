@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 /* Import Page Components here */
 import { CRED_WIZARD_STEP, WizardStepOpts } from '@/lib/realm';
 import Button from '@/components/buttons/Button';
-import { useZustand } from '@/lib/zustand';
+import { useZustand } from '@/lib/store';
 
 /* ------- Preview Components ------ */
 // import FormManager from '../containers/FormManager';

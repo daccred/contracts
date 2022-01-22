@@ -4,7 +4,7 @@ import { RiSurveyLine, RiFileExcel2Line, RiContactsBook2Line } from 'react-icons
 
 /* Import Page Components here */
 import { CRED_WIZARD_STEP, WizardStepOpts } from '@/lib/realm';
-import { useZustand } from '@/lib/zustand';
+import { useZustand } from '@/lib/store';
 import RadioBox, { RadioBoxProps } from '@/components/fields/RadioBox';
 import { ClaimOptionsVar } from '@/config/d';
 

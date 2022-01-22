@@ -1,4 +1,4 @@
-type NetworkIndex = '0x1' | '0x3' | '0x4' | '0x2a' | '0x5' | '0x539' | '0xa86a' | '0x38' | '0x61' | '0x89' | '0x13881';
+type NetworkIndex = '0x1' | '0x3' | '0x4' | '0x2a' | '0x5' | '0x539' | '0xa86a' | '0x38' | '0x61' | '0x89' | '0x13881' | '0x6357d2e0' | '0x63564C40'
 
 interface NetworkConfig {
   currencySymbol: string;
@@ -35,6 +35,22 @@ export const networkConfigs: NetworkConfigMap = {
   '0x5': {
     currencySymbol: 'ETH',
     blockExplorerUrl: 'https://goerli.etherscan.io/',
+  },
+  '0x6357d2e0': {
+    chainId: 1666700000,
+    chainName: 'Harmony Testnet',
+    currencyName: 'ONE',
+    currencySymbol: 'ONE',
+    rpcUrl: 'https://api.s0.b.hmny.io',
+    blockExplorerUrl: 'https://explorer.pops.one/',
+  },
+  '0x63564C40': {
+    chainId: 1666600000,
+    chainName: 'Harmony Mainnet',
+    currencyName: 'ONE',
+    currencySymbol: 'ONE',
+    rpcUrl: 'https://api.harmony.one',
+    blockExplorerUrl: 'https://explorer.harmony.one/',
   },
   '0x539': {
     chainName: 'Local Chain',
