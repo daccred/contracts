@@ -1,6 +1,6 @@
 import { RadioGroup } from '@headlessui/react';
 import { joinClassNames } from '@/lib/helper';
-import { RadioGroupProps } from '@/config/d';
+import { RadioGroupProps } from '@/config/types';
 import NextImage from '../next/NextImage';
 
 export interface TemplateSelectBoxProps {

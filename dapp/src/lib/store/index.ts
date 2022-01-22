@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import create, { GetState, SetState } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { createNewDocumentSlice, DocumentStore } from './_doc';
+import { createNewDocumentSlice, DocumentStore } from './doc';
 
 /**--------------------------------------------------------------*/
 /* Handle all of the type definitions for the Store by Slice     */
@@ -22,8 +22,15 @@ export type InitialStoreSlice<T extends unknown> = {
   data: T
 };
 
+export type DefaultStateProps = {
+  __version__: string,
+  isAppLoaded: boolean,
+  isAppLoading: boolean,
+  errors: any,
+}
+
 /* The Main Store state that unions all slices */
-type StoreState = InitialStoreSlice<any> & DocumentStore;
+type StoreState = DefaultStateProps & DocumentStore;
 
 /**--------------------------------------------------------------*/
 /* Handle all of the type definitions for the Store by Slice     */
@@ -73,8 +80,13 @@ export const actionFailState: Partial<InitialStoreSlice<any>> = {
   actionFailed: true,
 }
 
-const initialStateSlice: StoreSlice<InitialStoreSlice<any>> = () => ({
-  ...initialState,
+const initialStateSlice: StoreSlice<any> = (set) => ({
+  __version__: 1.0,
+  isAppLoaded: true,
+  isAppLoading: false,
+  errors: {},
+  /* This clear function will clear the whole store */
+  clear: () => set({ }, true),
 });
 
 

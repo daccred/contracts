@@ -2,13 +2,14 @@
 /* Jan, 21, 2022: We have started adopting this naming convention */
 
 import { DocumentStatus, NetworkEnum } from "@/config/enums";
-import { networkConfigs } from "@/config/networks";
+import { NetworkConfig } from "@/config/networks";
 import { actionSuccessState, initialState, InitialStoreSlice, StoreSlice } from "@/lib/store";
 
 export interface DocumentStoreProps {
   name?: string;
+  description?: string;
   editorSchema?: string;
-  network?: keyof typeof networkConfigs
+  network?: NetworkConfig
   networkId?: NetworkEnum
   deployerAddress?: string;
   slug?: string;
@@ -22,24 +23,25 @@ export interface DocumentStoreProps {
 /* Handle all of the type definitions for the Store by Slice     */
 /**--------------------------------------------------------------*/
 export type DocumentStore = {
-  credential:  InitialStoreSlice<DocumentStoreProps>;
+  document:  InitialStoreSlice<DocumentStoreProps>;
   clear: () => void;
   handleWizardAction: (payload: Partial<DocumentStoreProps>) => void;
 };
 
 export const createNewDocumentSlice: StoreSlice<DocumentStore> = (set) => ({
-  credential: {
+  document: {
     ...initialState,
     data: {}
   },
-  clear: () => set({ }, true),
+  /* Clear the document slice from state */
+  clear: () => set({ document: { ...initialState, data: {}} }, true),
   /* For each step in the wizard we trigger a succes round and update data */
   handleWizardAction: (payload: Partial<DocumentStoreProps>) => {
     set((state) => ({ 
-      credential: {
-        ...state.credential,
+      document: {
+        ...state.document,
         ...actionSuccessState,
-        data: Object.assign(state.credential.data, payload) 
+        data: Object.assign(state.document.data, payload) 
       }
     }));
   },

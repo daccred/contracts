@@ -5,37 +5,49 @@ import { useForm } from 'react-hook-form';
 import Button from '@/components/buttons/Button';
 import { useZustand } from '@/lib/store';
 import TemplateSelectBox, { TemplateSelectBoxProps } from '@/components/fields/TemplateSelectBox';
-import { CredentialCreateOptions } from '@/config/d';
 import { templates } from '@/config/defaults/templates.default';
-// import localforage from 'localforage';
-// import { LF_EDITOR_VAR } from '@/config/constants';
-import { useRouter } from 'next/router';
+import localforage from 'localforage';
+import { LF_EDITOR_VAR } from '@/config/constants';
+import { WizardStepOpts, CRED_WIZARD_STEP } from '@/lib/realm';
+import { useRealm } from 'use-realm';
 
 const TemplateSelection = () => {
   const [submitting] = React.useState<boolean>(false);
-  const [selected, _selected] = React.useState<TemplateSelectBoxProps>();
+  const [step, setWizardStep] = useRealm<WizardStepOpts[]>(CRED_WIZARD_STEP);
+
+  const [selected, setSelectedTemplate] = React.useState<TemplateSelectBoxProps>();
   const { handleSubmit } = useForm();
-  const router = useRouter();
 
   /* hook forms */
-  const _dispatchFormAction = useZustand((slice) => slice.dispatchNewCredentialAction);
+  const _dispatchFormAction = useZustand((slice) => slice.handleWizardAction);
 
-  const _handleSubmission = async (data: TemplateSelectBoxProps): Promise<void> => {
-    _selected(data);
-
-    const claim: Partial<CredentialCreateOptions> = {};
-    claim.template = data.value;
-
+  const _handleSubmission = async (): Promise<void> => {
     try {
-      await _dispatchFormAction({ template: data });
-      // await localforage.setItem(LF_EDITOR_VAR, JSON.stringify(data));
-      new Promise((resolve) => setTimeout(resolve, 2000));
+      /* Update Application Root Store with Data */
+      await _dispatchFormAction({ 
+        editorSchema: JSON.stringify(selected?.value)
+      });
 
-      router.replace('/editor/6f689bc3897750dbf04622491821f663a606aa5fec2');
+      /* Persist Value to LocalForage too, Localforage can handle objects and json values */
+      await localforage.setItem(LF_EDITOR_VAR, selected?.value);
+      
+      /* Route Wizard to default page to set name and description */
+      setWizardStep([...step, 'default']);
+
     } catch (error) {
       alert(JSON.stringify(error));
     }
   };
+
+  const _handleDesignScratch = async (): Promise<void> => {
+    /* Set Empty Design Schema */
+    await _dispatchFormAction({ 
+      editorSchema: JSON.stringify({})
+    });
+    /* Route to next page */
+    await setWizardStep([...step, 'default']);
+
+  }
 
   return (
     <section className='max-w-3xl mx-auto'>
@@ -47,10 +59,15 @@ const TemplateSelection = () => {
       {/* ------- Form Heading section ------- */}
       <TemplateSelectBox
         value={selected}
-        onChange={_handleSubmission}
+        onChange={setSelectedTemplate}
         options={templates}
         label={'Select a Template'}
       />
+
+
+      <div className="flex my-6 cursor-pointer justify">
+        <p onClick={_handleDesignScratch} className="flex px-3 py-2 mx-auto underline hover:bg-gray-100">Other design from Scratch</p>
+      </div>
 
       {selected && (
         <Button
@@ -61,6 +78,7 @@ const TemplateSelection = () => {
           Design with Template
         </Button>
       )}
+      
     </section>
   );
 };

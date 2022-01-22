@@ -8,6 +8,9 @@ import Button from '@/components/buttons/Button';
 import InputField from '@/components/fields/Input';
 import TextboxField from '@/components/fields/Textbox';
 import { useZustand } from '@/lib/store';
+import { DocumentStoreProps } from '@/lib/store/doc';
+import { networkConfigs } from '@/config/networks';
+import { NetworkEnum } from '@/config/enums';
 
 const CreateNewCert = () => {
   const [submitting, _submitting] = React.useState<boolean>(false);
@@ -16,19 +19,27 @@ const CreateNewCert = () => {
   /* hook forms */
   const { register, handleSubmit } = useForm();
 
-  const _dispatchFormAction = useZustand((slice) => slice.dispatchNewDocumentAction);
+  const _dispatchFormAction = useZustand((slice) => slice.handleWizardAction);
 
-  const _handleSubmission = async (data: Record<string, string>): Promise<void> => {
+  const _handleSubmission = async (data: Partial<DocumentStoreProps>): Promise<void> => {
     _submitting(true);
 
     try {
-      await _dispatchFormAction(data);
-      await _step([...step, 'medium']);
+      
+      await _dispatchFormAction({
+        ...data,
+        /* By default use the Harmony Network */
+        network: networkConfigs[NetworkEnum.HARMONY_TESTNET],
+        networkId: NetworkEnum.HARMONY_TESTNET
+      });
+      
+      await _step([...step, 'templates']);
     } catch (error) {
       alert(JSON.stringify(error));
     }
   };
 
+  
   return (
     <section className='max-w-3xl mx-auto'>
       {/* ------- Form Heading section ------- */}
@@ -41,13 +52,13 @@ const CreateNewCert = () => {
       </section>
       {/* ------- Form Heading section ------- */}
 
-      <InputField register={register} required label='Name' placeholder='Earth Colony DAO' name='certName' />
+      <InputField register={register} required label='Name' placeholder='Earth Colony DAO' name='name' />
       <TextboxField
         register={register}
         required
         label='Description'
         placeholder='Write a description'
-        name='certDescription'
+        name='description'
       />
 
       <Button
