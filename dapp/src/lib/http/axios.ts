@@ -6,6 +6,7 @@ import qs from 'qs';
 import progress from 'nprogress';
 import { APURL, AUTH } from '@/config/constants';
 import { parseCookies } from 'nookies';
+import * as NextAuth from '@/lib/auth.helper';
 
 export const defaults: AxiosRequestConfig = {
   paramsSerializer: function (params) {
@@ -29,12 +30,12 @@ axios.interceptors.request.use(
   async (config: AxiosRequestConfig) => {
     // Fetch the auth token for a user
     const cookies = await parseCookies(null);
-    const userCookie = cookies[AUTH.key];
+    const authToken = cookies[AUTH.token];
     
     /* Add authorization headers if we have any */
-    if(userCookie) { 
+    if(authToken) { 
       config.headers = {
-        authorization: `Bearer ${userCookie}`,
+        authorization: `Bearer ${authToken}`,
       };
     }
 
@@ -63,10 +64,19 @@ axios.interceptors.response.use(
     return response;
   },
   (error: AxiosError) => {
+
+    /* If we get a 401 Error we clear the credentials */
+    if (error.response?.status === 401) {
+      NextAuth.logoutUser(null)
+      return Promise.reject(error);
+    }
+
+    /* Ensure we in the browser for SSR compatibility */
     if (__browser__) {
       progress.done();
       return Promise.reject(error);
     }
+
     return Promise.reject(error);
   }
 );

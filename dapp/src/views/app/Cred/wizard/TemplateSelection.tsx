@@ -10,6 +10,8 @@ import localforage from 'localforage';
 import { LF_EDITOR_VAR } from '@/config/constants';
 import { WizardStepOpts, CRED_WIZARD_STEP } from '@/lib/realm';
 import { useRealm } from 'use-realm';
+import { NetworkEnum } from '@/config/enums';
+import { networkConfigs } from '@/config/networks';
 
 const TemplateSelection = () => {
   const [submitting] = React.useState<boolean>(false);
@@ -25,7 +27,10 @@ const TemplateSelection = () => {
     try {
       /* Update Application Root Store with Data */
       await _dispatchFormAction({ 
-        editorSchema: JSON.stringify(selected?.value)
+        editorSchema: JSON.stringify(selected?.value),
+        /* By default use the Harmony Network */
+        network: networkConfigs[NetworkEnum.HARMONY_TESTNET],
+        networkId: NetworkEnum.HARMONY_TESTNET
       });
 
       /* Persist Value to LocalForage too, Localforage can handle objects and json values */
@@ -41,11 +46,17 @@ const TemplateSelection = () => {
 
   const _handleDesignScratch = async (): Promise<void> => {
     /* Set Empty Design Schema */
+    await localforage.setItem(LF_EDITOR_VAR, undefined);
+    
     await _dispatchFormAction({ 
-      editorSchema: JSON.stringify({})
+      editorSchema: JSON.stringify({}),
+      /* By default use the Harmony Network */
+      network: networkConfigs[NetworkEnum.HARMONY_TESTNET],
+      networkId: NetworkEnum.HARMONY_TESTNET
     });
+
     /* Route to next page */
-    await setWizardStep([...step, 'default']);
+    setWizardStep([...step, 'default']);
 
   }
 
