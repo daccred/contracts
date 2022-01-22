@@ -3,7 +3,7 @@
 
 import { DocumentStatus, NetworkEnum } from "@/config/enums";
 import { networkConfigs } from "@/config/networks";
-import { StoreSlice } from "@/lib/store";
+import { actionSuccessState, initialState, InitialStoreSlice, StoreSlice } from "@/lib/store";
 
 export interface DocumentStoreProps {
   name?: string;
@@ -22,13 +22,25 @@ export interface DocumentStoreProps {
 /* Handle all of the type definitions for the Store by Slice     */
 /**--------------------------------------------------------------*/
 export type DocumentStore = {
-  credential?:  DocumentStoreProps;
-  dispatchNewDocumentAction?: (payload: Partial<DocumentStoreProps>) => void;
+  credential:  InitialStoreSlice<DocumentStoreProps>;
+  clear: () => void;
+  handleWizardAction: (payload: Partial<DocumentStoreProps>) => void;
 };
 
 export const createNewDocumentSlice: StoreSlice<DocumentStore> = (set) => ({
-  credential: {},
-  dispatchNewDocumentAction: (payload: Partial<DocumentStoreProps>) => {
-    set((state) => ({ credential: Object.assign(state.credential, payload) }));
+  credential: {
+    ...initialState,
+    data: {}
+  },
+  clear: () => set({ }, true),
+  /* For each step in the wizard we trigger a succes round and update data */
+  handleWizardAction: (payload: Partial<DocumentStoreProps>) => {
+    set((state) => ({ 
+      credential: {
+        ...state.credential,
+        ...actionSuccessState,
+        data: Object.assign(state.credential.data, payload) 
+      }
+    }));
   },
 });
