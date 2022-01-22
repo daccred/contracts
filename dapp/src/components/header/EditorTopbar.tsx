@@ -27,11 +27,12 @@ export default observer(({ store, user, hasProfile, document, navigation, userNa
             </div>
 
             {/* ---- Show the name of the Document --- */}
-            <div className="flex align-center">
-              <h5 className="mt-1 ml-4 text-gray-100 cursor-pointer hover:translate-x-1">{document.name || 'document.name'}</h5>
+            <div className='flex align-center'>
+              <h5 className='mt-1 ml-4 text-gray-100 cursor-pointer hover:translate-x-1'>
+                {document.name || 'document.name'}
+              </h5>
             </div>
             {/* ---- Show the name of the Document --- */}
-
           </div>
         </div>
         {/* -------- Left hand Nav section ----- */}

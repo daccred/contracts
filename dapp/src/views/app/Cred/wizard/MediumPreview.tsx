@@ -22,7 +22,7 @@ const MediumPreview = () => {
   /* hook forms */
   const { handleSubmit } = useForm();
 
-  const _dispatchFormAction = useZustand((slice) => slice.dispatchNewCredentialAction);
+  const _dispatchFormAction = useZustand((slice) => slice.handleWizardAction);
 
   const _handleSubmission = async (data: Record<string, string>): Promise<void> => {
     _submitting(true);

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 /**
  * @name useHeight
@@ -15,4 +15,4 @@ export const useHeight = () => {
   return height;
 };
 
-export default useHeight
+export default useHeight;

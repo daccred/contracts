@@ -6,13 +6,14 @@ import { navigation, userNavigation } from '@/config/constants';
 import { Disclosure } from '@headlessui/react';
 
 // import { ZoomButtons } from 'realmono/toolbar/zoom-buttons';
-import { SidePanel, ElementsSection, UploadSection } from 'realmono/side-panel';
+// import { ElementsSection } from 'realmono/side-panel';
+import { SidePanel, UploadSection } from 'realmono/side-panel';
 import { Workspace } from 'realmono/canvas/workspace';
 
 import { loadFile } from './actions/file';
 // import PublishAction from './actions/PublishAction';
 
-import useStore from '@/lib/store'
+import useStore from '@/lib/store';
 import useHeight from '@/hooks/useHeight';
 import EditorTopbar from '@/components/header/EditorTopbar';
 import useAuthUser from '@/hooks/useAuthUser';
@@ -20,15 +21,14 @@ import TemplateSection from '@/components/editor/EditorTemplateSection';
 import VariableSection from '@/components/editor/RecipientVariableSection';
 import PublishSection from '@/components/editor/EditorPublishSection';
 
-const PANEL_SECTIONS = [TemplateSection, ElementsSection, UploadSection, VariableSection, PublishSection];
+const PANEL_SECTIONS = [TemplateSection, UploadSection, VariableSection, PublishSection];
 
 const Editor = ({ store }) => {
   const { user, hasProfile } = useAuthUser();
-  const height = useHeight()
-
+  const height = useHeight();
 
   /* The document state from zustand */
-  const document = useStore(slice => slice.document)
+  const document = useStore((slice) => slice.document);
 
   const handleDrop = (ev) => {
     // Prevent default behavior (Prevent file from being opened)

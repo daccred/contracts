@@ -36,7 +36,6 @@ const CreateNewCert = () => {
         pathname: routes.editor.hash,
         query: { hash: result.data.result.slug },
       });
-
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error);
