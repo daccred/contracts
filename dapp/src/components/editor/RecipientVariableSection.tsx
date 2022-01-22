@@ -7,9 +7,10 @@ import { SectionTab } from 'realmono/side-panel';
 import { ImagesGrid } from 'realmono/side-panel/images-grid';
 import { VscSymbolVariable } from 'react-icons/vsc';
 import { recipientVariables } from '@/config/defaults/recipient.default';
-import useStore from '@/lib/store';
 import { ClipboardCopyIcon } from '@heroicons/react/outline';
 import { BASE_URL } from '@/config/constants';
+
+import useStore from '@/lib/store';
 import useCopyClipboard from '@/hooks/useCopyClipboard';
 /* ------- Preview Components ------ */
 

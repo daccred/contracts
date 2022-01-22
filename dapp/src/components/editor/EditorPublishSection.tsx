@@ -9,37 +9,51 @@ import { recipientVariables } from '@/config/defaults/recipient.default';
 import PublishAction from '../../views/app/Editor/actions/PublishAction';
 import { formatAddress, getAddressTxt } from '@/lib/helper';
 import { ClipboardCopyIcon, ExternalLinkIcon } from '@heroicons/react/outline';
+import useStore  from '@/lib/store';
+import { BASE_URL } from '@/config/constants';
+import { DocumentDeployProps } from '@/lib/store/doc';
+import routes from '@/config/routes';
 
 export const PublishPanel = observer(({ store }: any) => {
-  const [variables, setEditorVariables] = useState<any>();
   const [publishData, setPublishData] = useState<any>({});
-  const [isTriggered, setTriggered] = useState<boolean>(false);
+  
+  /* Interact with the Store */
+  const document = useStore(slice => slice.document)
+  const publication = useStore(slice => slice.publication)
+  const dispatchSuccessAction = useStore(slice => slice.dispatchDocDeployment)
 
-  // eslint-disable-next-line no-console
-  // console.log(publishData);
 
   const handlePublishTrigger = (payload: any) => {
-    setTriggered(false);
-    setEditorVariables({});
+
+    console.log(payload)
 
     setPublishData(payload);
 
-    const editorVariables = {
-      contractAddress: payload.result.events.NewContractCreated.returnValues.contractAddress || '',
-      deployedAt: payload.result.events.NewContractCreated.returnValues.createdAt || '',
-      certificateName: payload.moralisOperation.name || '',
-      certificateId: payload.moralisOperation.certId || '',
-      thumbnail: payload.moralisOperation.thumbnail || '',
+    const publishActionResponse: DocumentDeployProps = {
+      metadata: {
+        parseId: payload.moralisOperation.certId,
+        thumbnail: payload.moralisOperation.thumbnail,
+        name: payload.moralisOperation.name,
+        slug: payload.moralisOperation.slug,
+        description: payload.moralisOperation.description,
+      },
+      gasUsed: payload.result.gasUsed,
+      parentContract: payload.result.to,
+      blockHash: payload.result.blockHash,
+      gasLimit: payload.result.cumulativeGasUsed,
       transactionHash: payload.result.transactionHash || '',
+      contractAddress: payload.result.events.NewContractCreated.returnValues.contractAddress || '',
+      deployedAt: new Date(payload.result.events.NewContractCreated.returnValues.createdAt).toLocaleString() || '',
     };
 
-    setEditorVariables(editorVariables);
+    /* Dispatch variables to Global Store */
+    dispatchSuccessAction(publishActionResponse)
 
-    setTriggered(true);
-    console.log(variables);
     console.log([publishData]);
   };
-
+  
+  // console.log(variables ,"OUTSIDE >>>>>>>>>>");
+  // console.log([publishData] ,"OUTSIDE >>>>>>>>>>");
   // let publishMetadata;
 
   // if(isTriggered) {
@@ -47,17 +61,17 @@ export const PublishPanel = observer(({ store }: any) => {
   //   console.log(publishMetadata)
   // }
 
-  async function asyncLoadVariables() {
-    // here we should implement your own API requests
-    setEditorVariables([]);
+  // async function asyncLoadVariables() {
+  //   // here we should implement your own API requests
+  //   setEditorVariables([]);
 
-    // wait to emulate network request
-    await new Promise((resolve) => setTimeout(resolve, 500));
+  //   // wait to emulate network request
+  //   await new Promise((resolve) => setTimeout(resolve, 500));
 
-    // Here we are hard coding the Variables into the code, however
-    // we will want to asyn retrieve this from API or Moralis in JSON like structure
-    setEditorVariables(recipientVariables);
-  }
+  //   // Here we are hard coding the Variables into the code, however
+  //   // we will want to asyn retrieve this from API or Moralis in JSON like structure
+  //   setEditorVariables(recipientVariables);
+  // }
 
   // useEffect(() => {
   //   asyncLoadVariables();
@@ -86,30 +100,30 @@ export const PublishPanel = observer(({ store }: any) => {
         <h5 className='mb-2 bold'>
           Are you ready to publish your credential to the blockchain, click the publish button below to launch 🚀
         </h5>
-        {isTriggered && publishData && (
+        {publication.actionSuccessful && (
           <section className='overflow-hidden text-sm '>
             <p className='px-2 py-2 mt-2 bg-gray-100 border'>
               Contract Address:{' '}
               <a
                 className='underline'
                 target='_blank'
-                href={`https://ropsten.etherscan.io/token/${variables.contractAddress}`}
+                href={`${document.data.network?.blockExplorerUrl}address/${publication.contractAddress}`}
               >
-                {getAddressTxt(variables.contractAddress)}
+                {getAddressTxt(publication.contractAddress || "")}
               </a>{' '}
               <ClipboardCopyIcon className='inline w-5 h-5 pl-1' />{' '}
             </p>
-            <p className='px-2 py-2 mt-2 bg-gray-100 border'>Deployed At: {variables.deployedAt}</p>
-            <p className='px-2 py-2 mt-2 bg-gray-100 border'>Certificate Name: {variables.certificateName}</p>
-            <p className='px-2 py-2 mt-2 bg-gray-100 border'>Certificate ID: {variables.certificateId}</p>
+            <p className='px-2 py-2 mt-2 bg-gray-100 border'>Deployed At: {publication.deployedAt}</p>
+            <p className='px-2 py-2 mt-2 bg-gray-100 border'>Certificate Name: {publication.metadata?.name}</p>
+            <p className='px-2 py-2 mt-2 bg-gray-100 border'>Certificate ID: {publication.metadata?.parseId}</p>
             <p className='px-2 py-2 mt-2 bg-gray-100 border'>
               Transaction Hash:{' '}
               <a
                 className='underline'
                 target='_blank'
-                href={`https://ropsten.etherscan.io/tx/${variables.transactionHash}`}
+                href={`${document.data.network?.blockExplorerUrl}tx/${publication.transactionHash}`}
               >
-                {formatAddress(variables.transactionHash)}
+                {formatAddress(publication.transactionHash || "")}
               </a>{' '}
               <ClipboardCopyIcon className='inline w-5 h-5 pl-1' />{' '}
             </p>
@@ -118,13 +132,13 @@ export const PublishPanel = observer(({ store }: any) => {
               <a
                 className='underline'
                 target='_blank'
-                href={`http://localhost:3000/claims/${variables.contractAddress}`}
+                href={`${routes.claims.index}/${publication.contractAddress}`}
               >
-                {getAddressTxt(variables.contractAddress)}
+                {getAddressTxt(publication.contractAddress || "")}
               </a>{' '}
               <ExternalLinkIcon className='inline w-5 h-5 pl-1' />{' '}
             </p>
-            <img src={variables.thumbnail} className='w-full mt-12' />
+            <img src={publication.metadata?.thumbnail} className='w-full mt-12' />
           </section>
         )}
       </div>

@@ -18,20 +18,40 @@ export interface DocumentStoreProps {
   status?: DocumentStatus;
 }
 
+export interface DocumentDeployProps {
+  metadata?: {
+    name: string
+    slug: string
+    parseId: string
+    thumbnail: string
+    description: string
+  },
+  parentContract?: string
+  blockHash?: string
+  gasLimit?:string
+  gasUsed?:string
+  contractAddress?:string
+  deployedAt?: string | Date
+  transactionHash?: string
+};
+
 /**--------------------------------------------------------------*/
 /* Handle all of the type definitions for the Store by Slice     */
 /**--------------------------------------------------------------*/
 export type DocumentStore = {
   document: InitialStoreSlice<DocumentStoreProps>;
+  publication: DocumentDeployProps & typeof actionSuccessState
   clear: () => void;
+  dispatchDocDeployment: (payload: DocumentDeployProps) => void;
   handleWizardAction: (payload: Partial<DocumentStoreProps>) => void;
 };
 
 export const createNewDocumentSlice: StoreSlice<DocumentStore> = (set) => ({
   document: {
     ...initialState,
-    data: {},
+    data: {}
   },
+  publication: {},
   /* Clear the document slice from state */
   clear: () => set({ document: { ...initialState, data: {} } }, true),
   /* For each step in the wizard we trigger a succes round and update data */
@@ -44,4 +64,13 @@ export const createNewDocumentSlice: StoreSlice<DocumentStore> = (set) => ({
       },
     }));
   },
+  dispatchDocDeployment: (payload: DocumentDeployProps) => {
+    set((state) => ({
+      publication: {
+        ...state.publication,
+        ...actionSuccessState,
+        ...payload
+      }
+    }))
+  }
 });

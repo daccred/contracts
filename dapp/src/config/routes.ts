@@ -18,9 +18,17 @@ const editor = {
   hash: '/editor/[hash]',
 };
 
+
+const claims = {
+  index: '/claims',
+  address: '/editor/[address]',
+  tokenUri: '/editor/[address]/[tokenURI]',
+};
+
 export const routes = {
   certs,
   open,
+  claims,
   editor,
 };
 
