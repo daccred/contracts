@@ -6,10 +6,14 @@ import Layout from '@/components/layout/Layout';
 
 const View = dynamic(() => import('../../views/app/Editor'), { ssr: false });
 
-export default function Default() {
+interface EditorViewProps {
+  hash: string
+}
+
+export default function Default({ hash }: EditorViewProps) {
   return (
     <Layout>
-      <View />
+      <View slug={hash} />
     </Layout>
   );
 }
@@ -17,5 +21,8 @@ export default function Default() {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   // eslint-disable-next-line no-console
   console.log(context.params, context.query);
-  return await NextAuth.handleAuthenticatedRequest(context);
+  return await NextAuth.handleAuthenticatedRequest({
+    ctx: context,
+    props: context.params
+  });
 };

@@ -1,11 +1,12 @@
 import Loader from '@/components/display/Loader';
+import { MORALIS_DB_CLAIMS } from '@/config/constants';
 import { GetServerSideProps } from 'next';
-import dynamic from 'next/dynamic';
+// import dynamic from 'next/dynamic';
 import { useMoralisQuery } from 'react-moralis';
 // import * as NextAuth from '@/lib/auth.helper';
 
 // import View from '@/views/public/Claims';
-const View = dynamic(() => import('../../../views/public/Claims'), { ssr: false });
+// const View = dynamic(() => import('../../../views/public/Claims'), { ssr: false });
 
 /* -------------------------------------------------------------------------- */
 /*             use moralis to handle authentication logic in view             */
@@ -17,7 +18,7 @@ interface ClaimQueryProps {
 }
 
 export default function Page({ tokenURI }: ClaimQueryProps) {
-  const { data, error, isLoading } = useMoralisQuery('Claims', (query) => query.equalTo('objectId', tokenURI));
+  const { data, error, isLoading } = useMoralisQuery(MORALIS_DB_CLAIMS, (query) => query.equalTo('objectId', tokenURI));
 
   if (error) {
     return <span>🤯</span>;

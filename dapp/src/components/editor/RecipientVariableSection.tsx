@@ -20,8 +20,7 @@ export const VariablesPanel = observer(({ store }: any) => {
   const WAITLIST = `${BASE_URL}/waitlist/${document.recipientListSlug}`;
 
   const [variables, setEditorVariables] = useState<typeof recipientVariables>([]);
-  const [_, staticCopy] = useCopyClipboard(800)
-
+  const [_, staticCopy] = useCopyClipboard(800);
 
   async function asyncLoadVariables() {
     // here we should implement your own API requests
@@ -113,9 +112,12 @@ export const VariablesPanel = observer(({ store }: any) => {
             selectable: true,
             showInExport: true,
             text: image.name,
-            custom: image,
+            custom: {
+              variableText: image.name,
+              variableName: image.title
+            },
             placeholder: '',
-            fontSize: 42,
+            fontSize: 36,
             fontFamily: 'Space Mono',
             fontStyle: 'normal',
             fontWeight: 'bold',

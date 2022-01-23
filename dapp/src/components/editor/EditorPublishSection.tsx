@@ -9,33 +9,28 @@ import { recipientVariables } from '@/config/defaults/recipient.default';
 import PublishAction from '../../views/app/Editor/actions/PublishAction';
 import { formatAddress, getAddressTxt } from '@/lib/helper';
 import { ClipboardCopyIcon, ExternalLinkIcon } from '@heroicons/react/outline';
-import useStore  from '@/lib/store';
+import useStore from '@/lib/store';
 import { BASE_URL } from '@/config/constants';
 import { DocumentDeployProps } from '@/lib/store/doc';
 import routes from '@/config/routes';
 
 export const PublishPanel = observer(({ store }: any) => {
-  const [publishData, setPublishData] = useState<any>({});
-  
   /* Interact with the Store */
-  const document = useStore(slice => slice.document)
-  const publication = useStore(slice => slice.publication)
-  const dispatchSuccessAction = useStore(slice => slice.dispatchDocDeployment)
-
+  const document = useStore((slice) => slice.document);
+  const publication = useStore((slice) => slice.publication);
+  const dispatchSuccessAction = useStore((slice) => slice.dispatchDocDeployment);
 
   const handlePublishTrigger = (payload: any) => {
-
-    console.log(payload)
-
-    setPublishData(payload);
+    console.log(payload);
 
     const publishActionResponse: DocumentDeployProps = {
       metadata: {
-        parseId: payload.moralisOperation.certId,
-        thumbnail: payload.moralisOperation.thumbnail,
-        name: payload.moralisOperation.name,
-        slug: payload.moralisOperation.slug,
-        description: payload.moralisOperation.description,
+        parseId: payload.moralisOperation.id,
+        thumbnail: payload.moralisOperation.attributes.thumbnail,
+        name: payload.moralisOperation.attributes.name,
+        slug: payload.moralisOperation.attributes.slug,
+        description: payload.moralisOperation.attributes.description,
+        deployedAt: payload.moralisOperation.createdAt.toString(),
       },
       gasUsed: payload.result.gasUsed,
       parentContract: payload.result.to,
@@ -43,15 +38,14 @@ export const PublishPanel = observer(({ store }: any) => {
       gasLimit: payload.result.cumulativeGasUsed,
       transactionHash: payload.result.transactionHash || '',
       contractAddress: payload.result.events.NewContractCreated.returnValues.contractAddress || '',
-      deployedAt: new Date(payload.result.events.NewContractCreated.returnValues.createdAt).toLocaleString() || '',
     };
 
-    /* Dispatch variables to Global Store */
-    dispatchSuccessAction(publishActionResponse)
+    console.log(publishActionResponse, 'The payload to persist in global store');
 
-    console.log([publishData]);
+    /* Dispatch variables to Global Store */
+    dispatchSuccessAction(publishActionResponse);
   };
-  
+
   // console.log(variables ,"OUTSIDE >>>>>>>>>>");
   // console.log([publishData] ,"OUTSIDE >>>>>>>>>>");
   // let publishMetadata;
@@ -100,7 +94,7 @@ export const PublishPanel = observer(({ store }: any) => {
         <h5 className='mb-2 bold'>
           Are you ready to publish your credential to the blockchain, click the publish button below to launch 🚀
         </h5>
-        {publication.actionSuccessful && (
+        {publication.actionSuccessful && !publication.isLoading && (
           <section className='overflow-hidden text-sm '>
             <p className='px-2 py-2 mt-2 bg-gray-100 border'>
               Contract Address:{' '}
@@ -109,11 +103,11 @@ export const PublishPanel = observer(({ store }: any) => {
                 target='_blank'
                 href={`${document.data.network?.blockExplorerUrl}address/${publication.contractAddress}`}
               >
-                {getAddressTxt(publication.contractAddress || "")}
+                {getAddressTxt(publication.contractAddress || '')}
               </a>{' '}
               <ClipboardCopyIcon className='inline w-5 h-5 pl-1' />{' '}
             </p>
-            <p className='px-2 py-2 mt-2 bg-gray-100 border'>Deployed At: {publication.deployedAt}</p>
+            <p className='px-2 py-2 mt-2 bg-gray-100 border'>Deployed At: {publication.metadata?.deployedAt}</p>
             <p className='px-2 py-2 mt-2 bg-gray-100 border'>Certificate Name: {publication.metadata?.name}</p>
             <p className='px-2 py-2 mt-2 bg-gray-100 border'>Certificate ID: {publication.metadata?.parseId}</p>
             <p className='px-2 py-2 mt-2 bg-gray-100 border'>
@@ -123,18 +117,14 @@ export const PublishPanel = observer(({ store }: any) => {
                 target='_blank'
                 href={`${document.data.network?.blockExplorerUrl}tx/${publication.transactionHash}`}
               >
-                {formatAddress(publication.transactionHash || "")}
+                {formatAddress(publication.transactionHash || '')}
               </a>{' '}
               <ClipboardCopyIcon className='inline w-5 h-5 pl-1' />{' '}
             </p>
             <p className='px-2 py-2 mt-2 bg-gray-100 border'>
               Claim URL:{' '}
-              <a
-                className='underline'
-                target='_blank'
-                href={`${routes.claims.index}/${publication.contractAddress}`}
-              >
-                {getAddressTxt(publication.contractAddress || "")}
+              <a className='underline' target='_blank' href={`${routes.claims.index}/${publication.contractAddress}`}>
+                {getAddressTxt(publication.contractAddress || '')}
               </a>{' '}
               <ExternalLinkIcon className='inline w-5 h-5 pl-1' />{' '}
             </p>

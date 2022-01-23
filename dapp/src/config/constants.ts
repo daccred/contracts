@@ -7,6 +7,8 @@ export const DEFAULT_MAINNET = '0x1'; // Ethereum
 export const DEFAULT_TESTNET = '0x3'; // Ropsten
 export const HARMONY_TESTNET = '0x6357d2e0'; // Harmony Testnet 1666700000 converted to Hex
 export const HARMONY_MAINNET = '0x63564C40'; // Harmony Mainnet 1666600000 converted to Hex
+export const MORALIS_DB_CREDENTIALS = 'Credentials';
+export const MORALIS_DB_CLAIMS = 'Claims';
 
 /* LF: Local Forage */
 export const LF_EDITOR_VAR = 'dacred-editor--state';

@@ -18,7 +18,6 @@ const editor = {
   hash: '/editor/[hash]',
 };
 
-
 const claims = {
   index: '/claims',
   address: '/editor/[address]',

@@ -8,6 +8,7 @@ import Moralis from 'moralis';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useMoralis } from 'react-moralis';
+import { MORALIS_DB_CLAIMS } from '@/config/constants';
 
 const _metadataMock = {
   id: 18845238,
@@ -84,7 +85,7 @@ export const useRecipientClaim = () => {
 
   const { enableWeb3 } = useMoralis();
   const [isSubmitting, _setSubmitting] = useState<boolean>();
-  const { error, save } = useNewMoralisObject('Claims');
+  const { error, save } = useNewMoralisObject(MORALIS_DB_CLAIMS);
   const { fetch } = useWeb3ExecuteFunction(web3ExecOptions);
   const [response, setResponse] = useState<any>();
 

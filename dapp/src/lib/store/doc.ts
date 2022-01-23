@@ -3,7 +3,8 @@
 
 import { DocumentStatus, NetworkEnum } from '@/config/enums';
 import { NetworkConfig } from '@/config/networks';
-import { actionSuccessState, initialState, InitialStoreSlice, StoreSlice } from '@/lib/store';
+import { actionSuccessState, initialState, InitialStoreSlice, loadingState, StoreSlice } from '@/lib/store';
+import Moralis from 'moralis/types';
 
 export interface DocumentStoreProps {
   name?: string;
@@ -16,32 +17,35 @@ export interface DocumentStoreProps {
   owner?: string;
   recipientListSlug?: string;
   status?: DocumentStatus;
+  moralisReflect?: Moralis.Object;
 }
 
 export interface DocumentDeployProps {
   metadata?: {
-    name: string
-    slug: string
-    parseId: string
-    thumbnail: string
-    description: string
-  },
-  parentContract?: string
-  blockHash?: string
-  gasLimit?:string
-  gasUsed?:string
-  contractAddress?:string
-  deployedAt?: string | Date
-  transactionHash?: string
-};
+    name: string;
+    slug: string;
+    parseId: string;
+    thumbnail: string;
+    description: string;
+    deployedAt?: string | Date;
+  };
+  parentContract?: string;
+  blockHash?: string;
+  gasLimit?: string;
+  gasUsed?: string;
+  contractAddress?: string;
+  transactionHash?: string;
+}
 
 /**--------------------------------------------------------------*/
 /* Handle all of the type definitions for the Store by Slice     */
 /**--------------------------------------------------------------*/
 export type DocumentStore = {
   document: InitialStoreSlice<DocumentStoreProps>;
-  publication: DocumentDeployProps & typeof actionSuccessState
+  publication: DocumentDeployProps & typeof actionSuccessState;
   clear: () => void;
+  dispatchPublicationLoading: () => void;
+  dispatchDocumentLoading: () => void;
   dispatchDocDeployment: (payload: DocumentDeployProps) => void;
   handleWizardAction: (payload: Partial<DocumentStoreProps>) => void;
 };
@@ -49,11 +53,16 @@ export type DocumentStore = {
 export const createNewDocumentSlice: StoreSlice<DocumentStore> = (set) => ({
   document: {
     ...initialState,
-    data: {}
+    data: {},
   },
-  publication: {},
+  publication: {
+    isLoaded: false,
+    isLoading: false,
+  },
   /* Clear the document slice from state */
   clear: () => set({ document: { ...initialState, data: {} } }, true),
+  dispatchPublicationLoading: () => set({ publication: loadingState }),
+  dispatchDocumentLoading: () => set({ publication: loadingState }),
   /* For each step in the wizard we trigger a succes round and update data */
   handleWizardAction: (payload: Partial<DocumentStoreProps>) => {
     set((state) => ({
@@ -69,8 +78,8 @@ export const createNewDocumentSlice: StoreSlice<DocumentStore> = (set) => ({
       publication: {
         ...state.publication,
         ...actionSuccessState,
-        ...payload
-      }
-    }))
-  }
+        ...payload,
+      },
+    }));
+  },
 });

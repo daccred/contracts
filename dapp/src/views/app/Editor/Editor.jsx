@@ -1,12 +1,9 @@
 import { PolotnoContainer, SidePanelWrap, WorkspaceWrap } from 'realmono';
 import React from 'react';
 import { Toolbar } from 'realmono/toolbar/toolbar';
-// import { PagesPanel } from 'realmono/side-panel/pages-panel';
 import { navigation, userNavigation } from '@/config/constants';
 import { Disclosure } from '@headlessui/react';
 
-// import { ZoomButtons } from 'realmono/toolbar/zoom-buttons';
-// import { ElementsSection } from 'realmono/side-panel';
 import { SidePanel, UploadSection } from 'realmono/side-panel';
 import { Workspace } from 'realmono/canvas/workspace';
 
@@ -63,7 +60,6 @@ const Editor = ({ store }) => {
           />
         )}
       </Disclosure>
-      {/* <Topbar store={store} /> */}
       <div style={{ height: 'calc(100% - 50px)' }}>
         <PolotnoContainer className='editor-container'>
           <SidePanelWrap>

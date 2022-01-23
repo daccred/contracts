@@ -12,10 +12,15 @@ import { DocumentStoreProps } from '@/lib/store/doc';
 import { networkConfigs } from '@/config/networks';
 import { NetworkEnum } from '@/config/enums';
 import useDocumentApi from '@/hooks/useDocumentApi';
+import { WizardStepOpts, CRED_WIZARD_STEP } from '@/lib/realm';
+import { useRealm } from 'use-realm';
 
 const CreateNewCert = () => {
-  const { register, handleSubmit } = useForm();
   const router = useRouter();
+  const { register, handleSubmit } = useForm();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [_step, setWizardStep] = useRealm<WizardStepOpts[]>(CRED_WIZARD_STEP);
+
   const { saveNewDocument, isSaveLoading } = useDocumentApi();
 
   const document = useZustand((slice) => slice.document.data);
@@ -30,6 +35,9 @@ const CreateNewCert = () => {
         network: networkConfigs[NetworkEnum.HARMONY_TESTNET],
         networkId: NetworkEnum.HARMONY_TESTNET,
       });
+
+      /* This is a hack, we want to reset the wizard once complete */
+      setWizardStep(['templates']);
 
       /* Push to Editor page with Hash slug from result */
       router.push({
@@ -66,7 +74,8 @@ const CreateNewCert = () => {
 
       <Button
         className='min-w-full py-4 mt-6 rounded-full'
-        onClick={handleSubmit(_handleSubmission)}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        onClick={handleSubmit(_handleSubmission as any)}
         isLoading={isSaveLoading}
       >
         Create Certification
