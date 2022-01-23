@@ -43,7 +43,7 @@ export default function PublishAction({ store, handlePublish }: PublishActionPro
     isLoading: queryLoading,
   } = useMoralisQuery(MORALIS_DB_CREDENTIALS, (query) => query.equalTo('objectId', document.data?.moralisReflect?.id));
 
-  console.log(certQueryData)
+  console.log(certQueryData);
   console.log(document.data, 'MORALIS REFLECT OBJ');
 
   const {

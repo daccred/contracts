@@ -114,7 +114,7 @@ export const VariablesPanel = observer(({ store }: any) => {
             text: image.name,
             custom: {
               variableText: image.name,
-              variableName: image.title
+              variableName: image.title,
             },
             placeholder: '',
             fontSize: 36,

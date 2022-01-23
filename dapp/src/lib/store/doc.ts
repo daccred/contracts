@@ -10,6 +10,7 @@ export interface DocumentStoreProps {
   name?: string;
   description?: string;
   editorSchema?: string;
+  schema?: string;
   network?: NetworkConfig;
   networkId?: NetworkEnum;
   deployerAddress?: string;
@@ -47,7 +48,7 @@ export type DocumentStore = {
   dispatchPublicationLoading: () => void;
   dispatchDocumentLoading: () => void;
   dispatchDocDeployment: (payload: DocumentDeployProps) => void;
-  handleWizardAction: (payload: Partial<DocumentStoreProps>) => void;
+  updateDocumentStore: (payload: Partial<DocumentStoreProps>) => void;
 };
 
 export const createNewDocumentSlice: StoreSlice<DocumentStore> = (set) => ({
@@ -64,7 +65,7 @@ export const createNewDocumentSlice: StoreSlice<DocumentStore> = (set) => ({
   dispatchPublicationLoading: () => set({ publication: loadingState }),
   dispatchDocumentLoading: () => set({ publication: loadingState }),
   /* For each step in the wizard we trigger a succes round and update data */
-  handleWizardAction: (payload: Partial<DocumentStoreProps>) => {
+  updateDocumentStore: (payload: Partial<DocumentStoreProps>) => {
     set((state) => ({
       document: {
         ...state.document,

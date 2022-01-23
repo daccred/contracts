@@ -14,12 +14,11 @@ import { AUTH as config } from '@/config/constants';
 type ContextArg = Partial<NextPageContext>;
 type TAuthUser = MoralisType.User<MoralisType.Attributes>['attributes'];
 export interface NextAuthHandlerRequestProps {
-  ctx: ContextArg, 
-  target?: string,
+  ctx: ContextArg;
+  target?: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  props?: any
+  props?: any;
 }
-
 
 export const redirect = (target = config.loginRoute) => {
   return {
@@ -93,12 +92,11 @@ export const isAuthenticated = async (ctx: ContextArg) => {
   }
 };
 
-
 export const handleAuthenticatedRequest = async ({
-    ctx, 
-    target = config.defaultRoute, 
-    props = {}
-  }: NextAuthHandlerRequestProps) => {
+  ctx,
+  target = config.defaultRoute,
+  props = {},
+}: NextAuthHandlerRequestProps) => {
   /* If user is authenticated, get profile from cookies and pass into props */
 
   const userHasToken = await isAuthenticated(ctx);
@@ -109,7 +107,7 @@ export const handleAuthenticatedRequest = async ({
     return {
       props: {
         user: userProfile,
-        ...props
+        ...props,
       },
     };
   }
