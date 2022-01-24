@@ -47,11 +47,19 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const result = await document.find();
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { createdAt, editorSchema, file, updatedAt, ...rest } = result[0].attributes;
+  const { createdAt, file, updatedAt, ...rest } = result[0].attributes;
   // eslint-disable-next-line no-console
-  console.log(context.params, context.query);
+  console.log(context.params, context.query, Object.keys(rest));
   return await NextAuth.handleAuthenticatedRequest({
     ctx: context,
-    props: { ...context.params, data: rest },
+    props: {
+      ...context.params,
+      data: {
+        ...rest,
+        parseId: result[0].id,
+        deployedAt: updatedAt.toString(),
+        updatedAt: createdAt.toString(),
+      },
+    },
   });
 };

@@ -31,7 +31,7 @@ interface PublishActionProps {
 
 export default function PublishAction({ store, handlePublish }: PublishActionProps) {
   /* ================================================================================================ */
-  const [submitting, setSubmitting] = useState<boolean>(false)
+  const [submitting, setSubmitting] = useState<boolean>(false);
   const document = useStore((slice) => slice.document);
   const dispatchLoadingAction = useStore((slice) => slice.dispatchPublicationLoading);
 
@@ -57,7 +57,6 @@ export default function PublishAction({ store, handlePublish }: PublishActionPro
     enableWeb3();
     // Set the response from moralis query
     // setResponse(certQueryData[0])
-
   }, []);
 
   const _handlePublishAction = async (result: any) => {
@@ -65,7 +64,6 @@ export default function PublishAction({ store, handlePublish }: PublishActionPro
       /* Heuristics ....___ Prepare state */
       // await fetchCredentials()
       dispatchLoadingAction();
-
 
       /* Get Schema from Local Forage */
       const documentSchema = await localforage.getItem(LF_EDITOR_VAR);
@@ -99,26 +97,34 @@ export default function PublishAction({ store, handlePublish }: PublishActionPro
       /* --------------- Moralis Reflect ---------------- */
       // const moralisReflect = await save({...result.data.result})
       const Credentials = Moralis.Object.extend(MORALIS_DB_CREDENTIALS);
-      
+
       const moralisDocument = new Moralis.Query(Credentials);
       moralisDocument.equalTo('slug', document.data.slug as string);
       const queryResult = await moralisDocument.find();
-      const certificate = queryResult[0]
+      const certificate = queryResult[0];
 
-      console.log(certificate, "MORALIS QUERY RES")
       certificate.set('file', file);
       certificate.set('thumbnail', preview);
+      certificate.set('isPublished', true);
+      certificate.set('blockHash', result.blockHash);
+      certificate.set('parentContract', result.to);
+      certificate.set('gasUsed', result.gasUsed);
+      certificate.set('gasLimit', result.cumulativeGasUsed);
+      certificate.set('transactionHash', result.transactionHash);
+      certificate.set('contractAddress', result.events.NewContractCreated.returnValues.contractAddress);
+      certificate.set('isPublished', true);
       certificate.set('certId', document.data.slug);
       certificate.set('description', document.data.description);
       certificate.set('schema', JSON.stringify(documentSchema));
+
+      console.log(certificate, 'MORALIS Query Result Augmentation');
 
       const saveOp = await certificate.save();
       /* --------------- Moralis Reflect ---------------- */
 
       // await setMoralisSaveOp(moralisOperation)
-      setSubmitting(true);
       handlePublish && handlePublish({ moralisOperation: saveOp, result });
-
+      setSubmitting(false);
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error, '[PublishAction: Deploy Certifate action]');
@@ -135,6 +141,7 @@ export default function PublishAction({ store, handlePublish }: PublishActionPro
         onClick={() => {
           /* Heuristics ....___ Prepare state */
           setSubmitting(true);
+          if (document.data.isPublished) alert('Already published');
 
           /* ------------------- Web3 Execute Transaction ------------------- */
           fetch({

@@ -22,7 +22,7 @@ export default function useDocumentApi() {
 
   /* Init store values */
   const store = useStore((slice) => slice.document);
-  const dispatchStoreAction = useStore((slice) => slice.handleWizardAction);
+  const dispatchStoreAction = useStore((slice) => slice.updateDocumentStore);
   const dispatchLoadingAction = useStore((slice) => slice.dispatchDocumentLoading);
 
   /* Axios API Interaction */

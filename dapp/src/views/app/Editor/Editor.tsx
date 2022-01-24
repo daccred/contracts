@@ -44,7 +44,9 @@ const Editor = ({ store, slug }: EditorProps) => {
 
     localforage.getItem(LF_EDITOR_VAR, function (_err, json) {
       if (json) {
-        const canOverwrite = window.confirm('You have an offline version of your design, do you want to overwrite it');
+        const canOverwrite = window.confirm(
+          'Loading this site will overwrite all of the design progress you have made in this browser locally'
+        );
 
         canOverwrite && store.loadJSON(schema);
         canOverwrite && Promise.resolve(localforage.setItem(LF_EDITOR_VAR, schema));

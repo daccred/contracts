@@ -8,6 +8,7 @@ import Moralis from 'moralis/types';
 
 export interface DocumentStoreProps {
   name?: string;
+  isPublished: boolean;
   description?: string;
   editorSchema?: string;
   schema?: string;
@@ -19,6 +20,16 @@ export interface DocumentStoreProps {
   recipientListSlug?: string;
   status?: DocumentStatus;
   moralisReflect?: Moralis.Object;
+  parseId?: string;
+  thumbnail?: string;
+  createdAt?: string | Date;
+  deployedAt?: string | Date;
+  parentContract?: string;
+  blockHash?: string;
+  gasLimit?: string;
+  gasUsed?: string;
+  contractAddress?: string;
+  transactionHash?: string;
 }
 
 export interface DocumentDeployProps {
@@ -43,7 +54,8 @@ export interface DocumentDeployProps {
 /**--------------------------------------------------------------*/
 export type DocumentStore = {
   document: InitialStoreSlice<DocumentStoreProps>;
-  publication: DocumentDeployProps & typeof actionSuccessState;
+  /**@deprecated we now use document to track everything  */
+  publication?: DocumentDeployProps & typeof actionSuccessState;
   clear: () => void;
   dispatchPublicationLoading: () => void;
   dispatchDocumentLoading: () => void;
@@ -54,14 +66,16 @@ export type DocumentStore = {
 export const createNewDocumentSlice: StoreSlice<DocumentStore> = (set) => ({
   document: {
     ...initialState,
-    data: {},
+    data: {
+      isPublished: false,
+    },
   },
   publication: {
     isLoaded: false,
     isLoading: false,
   },
   /* Clear the document slice from state */
-  clear: () => set({ document: { ...initialState, data: {} } }, true),
+  clear: () => set({ document: { ...initialState, data: { isPublished: false } } }, true),
   dispatchPublicationLoading: () => set({ publication: loadingState }),
   dispatchDocumentLoading: () => set({ publication: loadingState }),
   /* For each step in the wizard we trigger a succes round and update data */

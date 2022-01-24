@@ -11,27 +11,25 @@ import { formatAddress, getAddressTxt } from '@/lib/helper';
 import { ClipboardCopyIcon, ExternalLinkIcon } from '@heroicons/react/outline';
 import useStore from '@/lib/store';
 import { BASE_URL } from '@/config/constants';
-import { DocumentDeployProps } from '@/lib/store/doc';
+import { DocumentStoreProps } from '@/lib/store/doc';
 import routes from '@/config/routes';
 
 export const PublishPanel = observer(({ store }: any) => {
   /* Interact with the Store */
   const document = useStore((slice) => slice.document);
-  const publication = useStore((slice) => slice.publication);
-  const dispatchSuccessAction = useStore((slice) => slice.dispatchDocDeployment);
+  // const publication = useStore((slice) => slice.publication);
+  const dispatchSuccessAction = useStore((slice) => slice.updateDocumentStore);
 
   const handlePublishTrigger = (payload: any) => {
     console.log(payload);
 
-    const publishActionResponse: DocumentDeployProps = {
-      metadata: {
-        parseId: payload.moralisOperation.id,
-        thumbnail: payload.moralisOperation.attributes.thumbnail,
-        name: payload.moralisOperation.attributes.name,
-        slug: payload.moralisOperation.attributes.slug,
-        description: payload.moralisOperation.attributes.description,
-        deployedAt: payload.moralisOperation.createdAt.toString(),
-      },
+    const publishActionResponse: Partial<DocumentStoreProps> = {
+      parseId: payload.moralisOperation.id,
+      thumbnail: payload.moralisOperation.attributes.thumbnail,
+      name: payload.moralisOperation.attributes.name,
+      slug: payload.moralisOperation.attributes.slug,
+      description: payload.moralisOperation.attributes.description,
+      deployedAt: payload.moralisOperation.createdAt.toString(),
       gasUsed: payload.result.gasUsed,
       parentContract: payload.result.to,
       blockHash: payload.result.blockHash,
@@ -94,49 +92,51 @@ export const PublishPanel = observer(({ store }: any) => {
         <h5 className='mb-2 bold'>
           Are you ready to publish your credential to the blockchain, click the publish button below to launch 🚀
         </h5>
-        {publication.actionSuccessful && !publication.isLoading && (
+        {document.actionSuccessful && !document.isLoading && (
           <section className='overflow-hidden text-sm '>
             <p className='px-2 py-2 mt-2 bg-gray-100 border'>
               Contract Address:{' '}
               <a
                 className='underline'
                 target='_blank'
-                href={`${document.data.network?.blockExplorerUrl}address/${publication.contractAddress}`}
+                href={`${document.data.network?.blockExplorerUrl}address/${document.data?.contractAddress}`}
               >
-                {getAddressTxt(publication.contractAddress || '')}
+                {getAddressTxt(document.data?.contractAddress || '')}
               </a>{' '}
               <ClipboardCopyIcon className='inline w-5 h-5 pl-1' />{' '}
             </p>
-            <p className='px-2 py-2 mt-2 bg-gray-100 border'>Deployed At: {publication.metadata?.deployedAt}</p>
-            <p className='px-2 py-2 mt-2 bg-gray-100 border'>Certificate Name: {publication.metadata?.name}</p>
-            <p className='px-2 py-2 mt-2 bg-gray-100 border'>Certificate ID: {publication.metadata?.parseId}</p>
+            <p className='px-2 py-2 mt-2 bg-gray-100 border'>Deployed At: {document.data?.deployedAt}</p>
+            <p className='px-2 py-2 mt-2 bg-gray-100 border'>Certificate Name: {document.data?.name}</p>
+            <p className='px-2 py-2 mt-2 bg-gray-100 border'>Certificate ID: {document.data?.parseId}</p>
             <p className='px-2 py-2 mt-2 bg-gray-100 border'>
               Transaction Hash:{' '}
               <a
                 className='underline'
                 target='_blank'
-                href={`${document.data.network?.blockExplorerUrl}tx/${publication.transactionHash}`}
+                href={`${document.data.network?.blockExplorerUrl}tx/${document.data.transactionHash}`}
               >
-                {formatAddress(publication.transactionHash || '')}
+                {formatAddress(document.data.transactionHash || '')}
               </a>{' '}
               <ClipboardCopyIcon className='inline w-5 h-5 pl-1' />{' '}
             </p>
             <p className='px-2 py-2 mt-2 bg-gray-100 border'>
               Claim URL:{' '}
-              <a className='underline' target='_blank' href={`${routes.claims.index}/${publication.contractAddress}`}>
-                {getAddressTxt(publication.contractAddress || '')}
+              <a className='underline' target='_blank' href={`${routes.claims.index}/${document.data.contractAddress}`}>
+                {getAddressTxt(document.data.contractAddress || '')}
               </a>{' '}
               <ExternalLinkIcon className='inline w-5 h-5 pl-1' />{' '}
             </p>
-            <img src={publication.metadata?.thumbnail} className='w-full mt-12' />
+            <img src={document.data?.thumbnail} className='w-full mt-12' />
           </section>
         )}
       </div>
       {/* Show once published */}
 
-      <div className='block w-full px-3 mt-4'>
-        <PublishAction store={store} handlePublish={handlePublishTrigger} />
-      </div>
+      {!document.data.isPublished && (
+        <div className='block w-full px-3 mt-4'>
+          <PublishAction store={store} handlePublish={handlePublishTrigger} />
+        </div>
+      )}
     </div>
   );
 });
