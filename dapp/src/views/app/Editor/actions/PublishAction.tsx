@@ -31,33 +31,42 @@ interface PublishActionProps {
 
 export default function PublishAction({ store, handlePublish }: PublishActionProps) {
   /* ================================================================================================ */
-  // const [response, setResponse] = useState<any>({})
+  const [submitting, setSubmitting] = useState<boolean>(false)
   const document = useStore((slice) => slice.document);
   const dispatchLoadingAction = useStore((slice) => slice.dispatchPublicationLoading);
 
   const { data, error, fetch, isFetching, isLoading } = useWeb3ExecuteFunction(web3ExecOptions);
   // const { isSaving, error: objError, save } = useNewMoralisObject(MORALIS_DB_CREDENTIALS);
-  const {
-    data: certQueryData,
-    error: queryError,
-    isLoading: queryLoading,
-  } = useMoralisQuery(MORALIS_DB_CREDENTIALS, (query) => query.equalTo('objectId', document.data?.moralisReflect?.id));
+  // const {
+  //   fetch: fetchCredentials,
+  //   data: certQueryData,
+  //   error: queryError,
+  //   isLoading: queryLoading,
+  // } = useMoralisQuery(MORALIS_DB_CREDENTIALS, (query) => query.equalTo('slug', document.data?.slug), [1], {autoFetch: false});
 
-  console.log(certQueryData);
-  console.log(document.data, 'MORALIS REFLECT OBJ');
+  // eslint-disable-next-line no-console
+  // console.log(response);
 
   const {
-    web3,
+    // web3,
     enableWeb3,
     // isWeb3Enabled, isWeb3EnableLoading, web3EnableError
   } = useMoralis();
 
   useEffect(() => {
     enableWeb3();
+    // Set the response from moralis query
+    // setResponse(certQueryData[0])
+
   }, []);
 
   const _handlePublishAction = async (result: any) => {
     try {
+      /* Heuristics ....___ Prepare state */
+      // await fetchCredentials()
+      dispatchLoadingAction();
+
+
       /* Get Schema from Local Forage */
       const documentSchema = await localforage.getItem(LF_EDITOR_VAR);
 
@@ -75,24 +84,31 @@ export default function PublishAction({ store, handlePublish }: PublishActionPro
       const file = new Moralis.File('certificate.png', { base64: preview.split(',')[1] });
 
       // eslint-disable-next-line no-console
-      console.log(file, 'file on IPFS');
+      console.log(file, 'file on IPFS', document.data);
 
       /* Save credential information to Moralis */
-      const moralisOperation = {
-        file: file,
-        thumbnail: preview,
-        name: document.data.name,
-        slug: document.data.slug,
-        certId: document.data.slug,
-        description: document.data.description,
-        schema: JSON.stringify(documentSchema),
-      };
+      // const moralisOperation = {
+      //   file: file,
+      //   thumbnail: preview,
+      //   name: document.data.name,
+      //   slug: document.data.slug,
+      //   certId: document.data.slug,
+      //   description: document.data.description,
+      //   schema: JSON.stringify(documentSchema),
+      // };
       /* --------------- Moralis Reflect ---------------- */
       // const moralisReflect = await save({...result.data.result})
-      const certificate = certQueryData[0];
+      const Credentials = Moralis.Object.extend(MORALIS_DB_CREDENTIALS);
+      
+      const moralisDocument = new Moralis.Query(Credentials);
+      moralisDocument.equalTo('slug', document.data.slug as string);
+      const queryResult = await moralisDocument.find();
+      const certificate = queryResult[0]
+
+      console.log(certificate, "MORALIS QUERY RES")
       certificate.set('file', file);
       certificate.set('thumbnail', preview);
-      certificate.set('certId', document.data.name);
+      certificate.set('certId', document.data.slug);
       certificate.set('description', document.data.description);
       certificate.set('schema', JSON.stringify(documentSchema));
 
@@ -100,10 +116,12 @@ export default function PublishAction({ store, handlePublish }: PublishActionPro
       /* --------------- Moralis Reflect ---------------- */
 
       // await setMoralisSaveOp(moralisOperation)
+      setSubmitting(true);
       handlePublish && handlePublish({ moralisOperation: saveOp, result });
+
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.error(error, queryError, '[PublishAction: Deploy Certifate action]');
+      console.error(error, '[PublishAction: Deploy Certifate action]');
       // alert(JSON.stringify(error));
     }
   };
@@ -115,8 +133,8 @@ export default function PublishAction({ store, handlePublish }: PublishActionPro
     <div className='flex'>
       <Button
         onClick={() => {
-          dispatchLoadingAction();
           /* Heuristics ....___ Prepare state */
+          setSubmitting(true);
 
           /* ------------------- Web3 Execute Transaction ------------------- */
           fetch({
@@ -136,7 +154,7 @@ export default function PublishAction({ store, handlePublish }: PublishActionPro
           /* ------------------- Web3 Execute Transaction ------------------- */
         }}
         disabled={!!data || isFetching}
-        isLoading={queryLoading || isLoading || document.isLoading}
+        isLoading={submitting}
         className='w-full'
       >
         Publish

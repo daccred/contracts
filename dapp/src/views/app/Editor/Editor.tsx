@@ -26,8 +26,8 @@ const PANEL_SECTIONS = [TemplateSection, UploadSection, VariableSection, Publish
 
 export interface EditorProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  store: any
-  slug: string
+  store: any;
+  slug: string;
 }
 
 const Editor = ({ store, slug }: EditorProps) => {
@@ -37,29 +37,28 @@ const Editor = ({ store, slug }: EditorProps) => {
   /*  -------------------The document state from zustand ------------------- */
   const document = useStore((slice) => slice.document);
   /*  -------------------The document state from zustand ------------------- */
-  
+
   React.useEffect(() => {
     /* Update the Editor with Retrieved Store JSON */
-    const schema = JSON.parse(document.data.schema as string)
-    
-    
+    const schema = JSON.parse(document.data.schema as string);
+
     localforage.getItem(LF_EDITOR_VAR, function (_err, json) {
-      if (window.confirm('You have an offline version of your design, do you want to overwrite it')) {
-        store.loadJSON(schema);
-        Promise.resolve(localforage.setItem(LF_EDITOR_VAR, schema))
+      if (json) {
+        const canOverwrite = window.confirm('You have an offline version of your design, do you want to overwrite it');
+
+        canOverwrite && store.loadJSON(schema);
+        canOverwrite && Promise.resolve(localforage.setItem(LF_EDITOR_VAR, schema));
+      } else {
+        store.loadJSON(json);
       }
+
       if (!store.pages.length) {
         store.addPage();
       }
+    });
+  }, [slug]);
 
-      store.loadJSON(json);
-
-});
-
-  }, [slug])
-  
-
-  const handleDrop = (ev: { preventDefault: () => void; dataTransfer: { files: string | any[]; }; }) => {
+  const handleDrop = (ev: { preventDefault: () => void; dataTransfer: { files: string | any[] } }) => {
     // Prevent default behavior (Prevent file from being opened)
     ev.preventDefault();
 
@@ -101,11 +100,11 @@ const Editor = ({ store, slug }: EditorProps) => {
         <div style={{ height: 'calc(100% - 50px)' }}>
           <PolotnoContainer className='editor-container'>
             <SidePanelWrap>
-              <SidePanel 
-              defaultSection={'upload'} 
-              //@ts-ignore
-              sections={PANEL_SECTIONS} 
-              store={store} 
+              <SidePanel
+                defaultSection={'upload'}
+                //@ts-ignore
+                sections={PANEL_SECTIONS}
+                store={store}
               />
             </SidePanelWrap>
             <WorkspaceWrap>
@@ -115,7 +114,7 @@ const Editor = ({ store, slug }: EditorProps) => {
             </WorkspaceWrap>
           </PolotnoContainer>
         </div>
-      )} 
+      )}
     </div>
   );
 };

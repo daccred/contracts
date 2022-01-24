@@ -7,15 +7,6 @@ import { LF_EDITOR_VAR, LF_STORE_KEY } from '@/config/constants';
 
 export const store = createStore({ key: LF_STORE_KEY });
 
-localforage.getItem(LF_EDITOR_VAR, function (_err, json) {
-  if (json) {
-    store.loadJSON(json);
-  }
-  if (!store.pages.length) {
-    store.addPage();
-  }
-});
-
 store.on('change', () => {
   try {
     /* Persist every new change to local forage to avoid losses */

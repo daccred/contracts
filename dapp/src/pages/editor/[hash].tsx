@@ -1,25 +1,21 @@
-import {useEffect} from 'react'
+import { useEffect } from 'react';
 import { GetServerSideProps } from 'next';
 import dynamic from 'next/dynamic';
-// import View from '@/views/Editor';
 import * as NextAuth from '@/lib/auth.helper';
 import Layout from '@/components/layout/Layout';
 import { MORALIS_DB_CREDENTIALS } from '@/config/constants';
-import { useMoralisQuery } from 'react-moralis';
-import useStore from '@/lib/store'
+import useStore from '@/lib/store';
 import withMoralis from '@/lib/moralis';
-import Moralis from 'moralis/types';
 import { DocumentStoreProps } from '@/lib/store/doc';
 
 const View = dynamic(() => import('../../views/app/Editor'), { ssr: false });
 
 interface EditorViewProps {
   hash: string;
-  data: DocumentStoreProps
+  data: DocumentStoreProps;
 }
 
 export default function Default({ hash, data }: EditorViewProps) {
-
   /*  -------------------The document state from zustand ------------------- */
   const document = useStore((slice) => slice.document);
 
@@ -27,23 +23,13 @@ export default function Default({ hash, data }: EditorViewProps) {
   const dispatchUpdate = useStore((slice) => slice.updateDocumentStore);
   /*  -------------------The document state from zustand ------------------- */
 
-
   useEffect(() => {
-    dispatchLoading()
+    dispatchLoading();
 
-    console.log(document)
-    dispatchUpdate(data)
+    console.log(document);
+    dispatchUpdate(data);
+  }, [hash]);
 
-    // useStore.setState({
-    //   document: {
-    //     ...document,
-    //     data
-    //   }
-    // })
-   
-
-  }, [hash])
-  
   return (
     <Layout>
       <View slug={hash} />
@@ -52,21 +38,20 @@ export default function Default({ hash, data }: EditorViewProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-const Moralis = withMoralis().Moralis;
+  const Moralis = withMoralis().Moralis;
 
-const Credentials = Moralis.Object.extend(MORALIS_DB_CREDENTIALS);
+  const Credentials = Moralis.Object.extend(MORALIS_DB_CREDENTIALS);
 
-const document = new Moralis.Query(Credentials)
-document.equalTo('slug', context.params?.hash)
-const result = await document.find()
+  const document = new Moralis.Query(Credentials);
+  document.equalTo('slug', context.params?.hash);
+  const result = await document.find();
 
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const {createdAt, editorSchema, file, updatedAt, ...rest} = result[0].attributes
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { createdAt, editorSchema, file, updatedAt, ...rest } = result[0].attributes;
   // eslint-disable-next-line no-console
-  console.log(context.params, context.query, );
+  console.log(context.params, context.query);
   return await NextAuth.handleAuthenticatedRequest({
     ctx: context,
-    props: {...context.params, data: rest},
+    props: { ...context.params, data: rest },
   });
 };
