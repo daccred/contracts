@@ -2,7 +2,7 @@
 
 import CTACallout from './CTACallout';
 import FAQ from './FAQ';
-import FeatureBox from './FeatureBox';
+// import FeatureBox from './FeatureBox';
 import Hero from './Hero';
 import MultichainFeature from './MultichainFeature';
 import Roadmap from './Roadmap';
