@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 /* Import Page Components here */
 import { CRED_WIZARD_STEP, WizardStepOpts } from '@/lib/realm';
 import Button from '@/components/buttons/Button';
-import { useZustand } from '@/lib/zustand';
+import { useZustand } from '@/lib/store';
 
 /* ------- Preview Components ------ */
 // import FormManager from '../containers/FormManager';
@@ -22,7 +22,7 @@ const MediumPreview = () => {
   /* hook forms */
   const { handleSubmit } = useForm();
 
-  const _dispatchFormAction = useZustand((slice) => slice.dispatchNewCredentialAction);
+  const _dispatchFormAction = useZustand((slice) => slice.updateDocumentStore);
 
   const _handleSubmission = async (data: Record<string, string>): Promise<void> => {
     _submitting(true);

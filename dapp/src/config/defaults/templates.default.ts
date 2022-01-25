@@ -3,7 +3,7 @@ import design from '@/lib/design';
 
 /*  ------------------------------------------  Menu Radio Options Array   --------------- */
 /*  ----------------------------------------------------------------------------------------- */
-
+export const scratchTemplate = design.scratch;
 export const templates: TemplateSelectBoxProps[] = [
   {
     id: 1,
@@ -23,23 +23,23 @@ export const templates: TemplateSelectBoxProps[] = [
     title: 'Certificate',
     url: '/templates/cert_3.png',
   },
-  {
-    id: 4,
-    value: design.certOne,
-    title: 'Certificate',
-    url: '/templates/cert_4.png',
-  },
-  {
-    id: 5,
-    value: design.certThree,
-    title: 'Certificate',
-    url: '/templates/cert_2.png',
-  },
-  {
-    id: 6,
-    value: design.certOne,
-    title: 'Certificate',
-    url: '/templates/cert_3.png',
-  },
+  // {
+  //   id: 4,
+  //   value: design.certOne,
+  //   title: 'Certificate',
+  //   url: '/templates/cert_4.png',
+  // },
+  // {
+  //   id: 5,
+  //   value: design.certThree,
+  //   title: 'Certificate',
+  //   url: '/templates/cert_2.png',
+  // },
+  // {
+  //   id: 6,
+  //   value: design.certOne,
+  //   title: 'Certificate',
+  //   url: '/templates/cert_3.png',
+  // },
 ];
 /*  ------------------------------------------  Menu Radio Options Array   --------------- */

@@ -4,9 +4,9 @@ import { RiSurveyLine, RiFileExcel2Line, RiContactsBook2Line } from 'react-icons
 
 /* Import Page Components here */
 import { CRED_WIZARD_STEP, WizardStepOpts } from '@/lib/realm';
-import { useZustand } from '@/lib/zustand';
+import { useZustand } from '@/lib/store';
 import RadioBox, { RadioBoxProps } from '@/components/fields/RadioBox';
-import { ClaimOptionsVar } from '@/config/d';
+import { ClaimOptionsVar } from '@/config/types';
 
 /*  ------------------------------------------  Menu Radio Options Array   --------------- */
 /*  ----------------------------------------------------------------------------------------- */
@@ -46,7 +46,7 @@ const RecipientMedium = () => {
   const [step, _step] = useRealm<WizardStepOpts[]>(CRED_WIZARD_STEP);
 
   /* hook forms */
-  const _dispatchFormAction = useZustand((slice) => slice.dispatchNewCredentialAction);
+  const _dispatchFormAction = useZustand((slice) => slice.updateDocumentStore);
 
   const _handleSubmission = async (data: RadioBoxProps): Promise<void> => {
     _selected(data);
@@ -55,8 +55,9 @@ const RecipientMedium = () => {
     claim.medium = data.value;
 
     try {
-      await _dispatchFormAction(claim);
-      await _step([...step, 'templates']);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      _dispatchFormAction(claim as any);
+      _step([...step, 'templates']);
     } catch (error) {
       alert(JSON.stringify(error));
     }

@@ -1,10 +1,14 @@
 export const MORALIS_APP_ID = 'yYmAdNgqUQ3P8vPViKYjYE82EPjGAa8HCC7FZqDL';
 export const MORALIS_SERVER_URL = 'https://09zmv9mmxz2l.usemoralis.com:2053/server';
-export const META_API = 'https://openapi.daccred.co';
-export const LOCAL_API = 'http://localhost:8080';
+export const META_API = 'https://openapi.daccred.co/v1';
+export const BASE_URL = process.env.NEXT_PUBLIC_VERCEL_URL || 'http://localhost:3000';
+export const OPENAPI = process.env.NEXT_PUBLIC_OPENAPI || 'http://localhost:8080/v1';
 export const DEFAULT_MAINNET = '0x1'; // Ethereum
 export const DEFAULT_TESTNET = '0x3'; // Ropsten
-export const HARMONY_TESTNET ='0x6357d2e0' // Harmony Testnet 1666700000 converted to Hex
+export const HARMONY_TESTNET = '0x6357d2e0'; // Harmony Testnet 1666700000 converted to Hex
+export const HARMONY_MAINNET = '0x63564C40'; // Harmony Mainnet 1666600000 converted to Hex
+export const MORALIS_DB_CREDENTIALS = 'Credentials';
+export const MORALIS_DB_CLAIMS = 'Claims';
 
 /* LF: Local Forage */
 export const LF_EDITOR_VAR = 'dacred-editor--state';
@@ -28,7 +32,8 @@ export const AUTH = {
   loginRoute: '/authorize',
   defaultRoute: '/',
   rootRoute: '/studio',
-  key: '__app.sid__',
+  key: '__app.sid__', // for user profile
+  token: '__auth.id__', // for the auth JWT token
 };
 
 /* ----------------------------------------------------------------------- */
@@ -49,4 +54,4 @@ export const navigation = [
   { icon: BookmarkIcon, name: 'Certifications', href: routes.certs.index, current: false },
 ];
 
-export const userNavigation = [{ name: 'Sign out', href: '#' }];
+export const userNavigation = [{ name: 'Sign out', href: '/logout' }];

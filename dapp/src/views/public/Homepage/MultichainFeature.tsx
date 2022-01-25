@@ -1,5 +1,5 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { InboxIcon, SparklesIcon } from '@heroicons/react/outline';
+import { InboxIcon } from '@heroicons/react/outline';
 
 export default function MultichainFeature() {
   return (
@@ -69,7 +69,8 @@ export default function MultichainFeature() {
           </div>
         </div>
       </div>
-      <div className='mt-24'>
+
+      {/* <div className='mt-24'>
         <div className='lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:grid-flow-col-dense lg:gap-24'>
           <div className='max-w-xl px-4 mx-auto sm:px-6 lg:py-32 lg:max-w-none lg:mx-0 lg:px-0 lg:col-start-2'>
             <div>
@@ -84,7 +85,7 @@ export default function MultichainFeature() {
                 </h2>
                 <p className='mt-4 text-lg text-gray-500'>
                   With our Bridges and Multi-chain integration, you can deploy your credentials, certificates and badges
-                  as <span className='px-1 text-gray-800 underline rounded-md '>NFTs</span> to any blockchain of your
+                  as <span className='px-1 text-gray-800 underline rounded-md '>NFTs</span> to the blockchain of your
                   choice, with more blockchain integrations coming soon.
                 </p>
                 <div className='mt-6'>
@@ -108,7 +109,7 @@ export default function MultichainFeature() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

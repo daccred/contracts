@@ -3,7 +3,7 @@ import { useRealm } from 'use-realm';
 
 /* Import Page Components here */ 1;
 import { CRED_WIZARD_STEP, WizardStepOpts } from '@/lib/realm';
-import { useZustand } from '@/lib/zustand';
+import { useZustand } from '@/lib/store';
 import RadioPillInput, { PillOptionProps } from '@/components/fields/RadioPill';
 
 /*  ------------------------------------------  Menu Radio Options Array   --------------- */
@@ -46,13 +46,14 @@ const Protocol = () => {
   const [step, _step] = useRealm<WizardStepOpts[]>(CRED_WIZARD_STEP);
 
   /* hook forms */
-  const _dispatchFormAction = useZustand((slice) => slice.dispatchNewCredentialAction);
+  const _dispatchFormAction = useZustand((slice) => slice.updateDocumentStore);
 
   const _handleSubmission = async (data: PillOptionProps): Promise<void> => {
     _selected(data);
 
     try {
-      await _dispatchFormAction({ protocol: data.value });
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      await _dispatchFormAction({ protocol: data.value } as any);
       await _step([...step, 'medium']);
     } catch (error) {
       alert(JSON.stringify(error));

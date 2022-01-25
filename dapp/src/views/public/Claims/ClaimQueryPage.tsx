@@ -60,7 +60,7 @@ export default function Hero() {
             <div className='text-center'>
               <h1 className='text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-6xl'>
                 <span className='block uppercase font-primary'>NFT credentials</span>
-                <span className='relative block text-primary-600'>on any blockchain</span>
+                <span className='relative block text-primary-600'>on the blockchain</span>
               </h1>
               <p className='max-w-md mx-auto mt-3 text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl'>
                 Draft, Design and Issue Certificates, Badges and any type of Credential to Individuals as Non Fungible

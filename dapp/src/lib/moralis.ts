@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
+/* We instantiate an instance of Moralis that works in Nodejs and browser env */
 import { MORALIS_APP_ID, MORALIS_SERVER_URL } from '@/config/constants';
 import MoralisType from 'moralis';
 
@@ -16,12 +17,18 @@ export default function withMoralis() {
 
   // Moralis Initialization
   let Moralis;
-  if (typeof window !== `undefined`) {
-    const Moralis = require('moralis') as MoralisType;
+  if (typeof window !== 'undefined') {
+    Moralis = require('moralis') as MoralisType;
     Moralis.initialize(MORALIS_APP_ID);
     Moralis.serverURL = MORALIS_SERVER_URL;
     Moralis.start({ serverUrl: MORALIS_SERVER_URL, appId: MORALIS_APP_ID });
   }
+
+  /* Setup for Nodejs and return */
+  Moralis = require('moralis/node') as MoralisType;
+  Moralis.initialize(MORALIS_APP_ID);
+  Moralis.serverURL = MORALIS_SERVER_URL;
+  Moralis.start({ serverUrl: MORALIS_SERVER_URL, appId: MORALIS_APP_ID });
 
   return { Moralis };
 }

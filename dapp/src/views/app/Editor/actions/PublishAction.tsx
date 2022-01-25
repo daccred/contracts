@@ -1,22 +1,26 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import ABI from '@/lib/abis';
-import { DACRED_ROUTER_ROPSTEN, DACRED_ROUTER_HARMONY, DACRED_ROUTER_GANACHE } from '@/config/constants';
-import { useMoralis, useNewMoralisObject, useWeb3ExecuteFunction } from 'react-moralis';
+import {
+  DACRED_ROUTER_ROPSTEN,
+  MORALIS_DB_CREDENTIALS,
+  DACRED_ROUTER_HARMONY,
+  DACRED_ROUTER_GANACHE,
+  LF_EDITOR_VAR,
+} from '@/config/constants';
+import { useMoralis, useMoralisQuery, useNewMoralisObject, useWeb3ExecuteFunction } from 'react-moralis';
 import Button from '@/components/buttons/Button';
 import { observer } from 'mobx-react-lite';
 import { StoreType } from 'realmono/model/store';
 import { useState, useEffect } from 'react';
+import useStore from '@/lib/store';
 import { Moralis } from 'moralis';
+import localforage from 'localforage';
 
-const options = {
+const web3ExecOptions = {
   abi: ABI.leanRouter,
   contractAddress: DACRED_ROUTER_HARMONY,
   functionName: 'createContractForClient',
-  params: {
-    name: 'Var School Fall 2020',
-    certId: 'VSF20',
-  },
 };
 
 interface PublishActionProps {
@@ -27,27 +31,44 @@ interface PublishActionProps {
 
 export default function PublishAction({ store, handlePublish }: PublishActionProps) {
   /* ================================================================================================ */
-  // const [response, setResponse] = useState<any>({})
+  const [submitting, setSubmitting] = useState<boolean>(false);
+  const document = useStore((slice) => slice.document);
+  const dispatchLoadingAction = useStore((slice) => slice.dispatchPublicationLoading);
 
-  const { data, error, fetch, isFetching, isLoading } = useWeb3ExecuteFunction(options);
-  const { isSaving, error: objError, save } = useNewMoralisObject('Credentials');
-  // const [moralisSaveOp, setMoralisSaveOp] = useState<any>()
-  // const { Moralis } = withMoralis()
+  const { data, error, fetch, isFetching, isLoading } = useWeb3ExecuteFunction(web3ExecOptions);
+  // const { isSaving, error: objError, save } = useNewMoralisObject(MORALIS_DB_CREDENTIALS);
+  // const {
+  //   fetch: fetchCredentials,
+  //   data: certQueryData,
+  //   error: queryError,
+  //   isLoading: queryLoading,
+  // } = useMoralisQuery(MORALIS_DB_CREDENTIALS, (query) => query.equalTo('slug', document.data?.slug), [1], {autoFetch: false});
+
+  // eslint-disable-next-line no-console
+  // console.log(response);
 
   const {
-    web3,
+    // web3,
     enableWeb3,
     // isWeb3Enabled, isWeb3EnableLoading, web3EnableError
   } = useMoralis();
 
   useEffect(() => {
     enableWeb3();
+    // Set the response from moralis query
+    // setResponse(certQueryData[0])
   }, []);
 
   const _handlePublishAction = async (result: any) => {
     try {
-      // const contractEvents = result.events['NewContractCreated']
-      const preview = await store.toDataURL();
+      /* Heuristics ....___ Prepare state */
+      // await fetchCredentials()
+      dispatchLoadingAction();
+
+      /* Get Schema from Local Forage */
+      const documentSchema = await localforage.getItem(LF_EDITOR_VAR);
+
+      const preview = await store.toDataURL({ pixelRatio: 0.3 });
 
       // eslint-disable-next-line no-console
       console.warn(preview, 'toDataURL');
@@ -61,22 +82,53 @@ export default function PublishAction({ store, handlePublish }: PublishActionPro
       const file = new Moralis.File('certificate.png', { base64: preview.split(',')[1] });
 
       // eslint-disable-next-line no-console
-      console.log(file, 'file on IPFS');
+      console.log(file, 'file on IPFS', document.data);
 
       /* Save credential information to Moralis */
-      const moralisOperation = {
-        name: 'Smart Farm DAO',
-        certId: '9y8szTm57lmgWxdhY5YJMGx8',
-        thumbnail: preview,
-        file: file,
-      };
-      await save(moralisOperation);
+      // const moralisOperation = {
+      //   file: file,
+      //   thumbnail: preview,
+      //   name: document.data.name,
+      //   slug: document.data.slug,
+      //   certId: document.data.slug,
+      //   description: document.data.description,
+      //   schema: JSON.stringify(documentSchema),
+      // };
+      /* --------------- Moralis Reflect ---------------- */
+      // const moralisReflect = await save({...result.data.result})
+      const Credentials = Moralis.Object.extend(MORALIS_DB_CREDENTIALS);
+
+      const moralisDocument = new Moralis.Query(Credentials);
+      moralisDocument.equalTo('slug', document.data.slug as string);
+      const queryResult = await moralisDocument.find();
+      const certificate = queryResult[0];
+
+      certificate.set('file', file);
+      certificate.set('thumbnail', preview);
+      certificate.set('isPublished', true);
+      certificate.set('blockHash', result.blockHash);
+      certificate.set('parentContract', result.to);
+      certificate.set('gasUsed', result.gasUsed);
+      certificate.set('gasLimit', result.cumulativeGasUsed);
+      certificate.set('transactionHash', result.transactionHash);
+      certificate.set('contractAddress', result.events.NewContractCreated.returnValues.contractAddress);
+      certificate.set('isPublished', true);
+      certificate.set('certId', document.data.slug);
+      certificate.set('description', document.data.description);
+      certificate.set('schema', JSON.stringify(documentSchema));
+
+      // eslint-disable-next-line no-console
+      console.log(certificate, 'MORALIS Query Result Augmentation');
+
+      const saveOp = await certificate.save();
+      /* --------------- Moralis Reflect ---------------- */
 
       // await setMoralisSaveOp(moralisOperation)
-      handlePublish && handlePublish({ moralisOperation, result });
+      handlePublish && handlePublish({ moralisOperation: saveOp, result });
+      setSubmitting(false);
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.error(error, 'from Publish action');
+      console.error(error, '[PublishAction: Deploy Certifate action]');
       // alert(JSON.stringify(error));
     }
   };
@@ -87,9 +139,30 @@ export default function PublishAction({ store, handlePublish }: PublishActionPro
   return (
     <div className='flex'>
       <Button
-        onClick={() => fetch({ onSuccess: (result) => _handlePublishAction(result) })}
+        onClick={() => {
+          /* Heuristics ....___ Prepare state */
+          setSubmitting(true);
+          if (document.data.isPublished) alert('Already published');
+
+          /* ------------------- Web3 Execute Transaction ------------------- */
+          fetch({
+            params: {
+              ...web3ExecOptions,
+              params: {
+                name: document.data.name,
+                certId: document.data.slug,
+              },
+            },
+            onSuccess: async (results) => {
+              // eslint-disable-next-line no-console
+              console.log(JSON.stringify(results));
+              _handlePublishAction(results);
+            },
+          });
+          /* ------------------- Web3 Execute Transaction ------------------- */
+        }}
         disabled={!!data || isFetching}
-        isLoading={isLoading || isSaving}
+        isLoading={submitting}
         className='w-full'
       >
         Publish

@@ -12,6 +12,13 @@ import { destroyCookie, parseCookies, setCookie } from 'nookies';
 
 import { AUTH as config } from '@/config/constants';
 type ContextArg = Partial<NextPageContext>;
+type TAuthUser = MoralisType.User<MoralisType.Attributes>['attributes'];
+export interface NextAuthHandlerRequestProps {
+  ctx: ContextArg;
+  target?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  props?: any;
+}
 
 export const redirect = (target = config.loginRoute) => {
   return {
@@ -22,19 +29,33 @@ export const redirect = (target = config.loginRoute) => {
   };
 };
 
-export const login = async (payload: MoralisType.User, target = config.rootRoute) => {
+export const login = async (payload: TAuthUser, target = config.rootRoute) => {
+  /* Payload consists of Auth Token and user data from Moralis */
+  /* We need them separately to manage requests */
+  const { token, ...rest } = payload;
+
   // Sign in a user by setting the cookie with the token received from Login Auth Request
-  const userCookie = encode(JSON.stringify(payload));
-  setCookie(null, config.key, userCookie, {
+  const userCookie = encode(JSON.stringify(rest));
+
+  /* Set Cookie for User with profile Key */
+  await setCookie(null, config.key, userCookie, {
     sameSite: 'lax',
     maxAge: 2 * 24 * 60 * 60,
   });
+
+  /* Set Cookie for User Auth Token */
+  await setCookie(null, config.token, token, {
+    sameSite: 'lax',
+    maxAge: 2 * 24 * 60 * 60,
+  });
+
   window.location.replace(target);
 };
 
 export const logoutUser = (ctx: ContextArg | null, target = config.loginRoute) => {
   // Sign out user by removing the cookie from the broswer session
   destroyCookie(ctx, config.key);
+  destroyCookie(ctx, config.token);
   redirect(target);
 };
 
@@ -59,8 +80,8 @@ export const isAuthenticated = async (ctx: ContextArg) => {
   try {
     // Fetch the auth token for a user
     const cookies = await parseCookies(ctx);
-    const userCookie = cookies[config.key];
-    if (userCookie == undefined) return false;
+    const authCookie = cookies[config.token];
+    if (authCookie == undefined) return false;
 
     /* Return truthy */
     return true;
@@ -71,17 +92,22 @@ export const isAuthenticated = async (ctx: ContextArg) => {
   }
 };
 
-export const handleAuthenticatedRequest = async (ctx: ContextArg, target = config.defaultRoute) => {
+export const handleAuthenticatedRequest = async ({
+  ctx,
+  target = config.defaultRoute,
+  props = {},
+}: NextAuthHandlerRequestProps) => {
   /* If user is authenticated, get profile from cookies and pass into props */
 
-  const userHasCookie = await isAuthenticated(ctx);
-  if (userHasCookie) {
+  const userHasToken = await isAuthenticated(ctx);
+  if (userHasToken) {
     const userProfile = await getProfile(ctx);
     // eslint-disable-next-line no-console
     console.log('I got here init', userProfile);
     return {
       props: {
         user: userProfile,
+        ...props,
       },
     };
   }
@@ -95,8 +121,8 @@ export const handleAuthenticatedRequest = async (ctx: ContextArg, target = confi
  * @returns returns a redirect props is the user is authenticated in cookies header
  */
 export const redirectAuthenticated = async (ctx: ContextArg) => {
-  const userHasCookie = await isAuthenticated(ctx);
-  if (userHasCookie) {
+  const userHasToken = await isAuthenticated(ctx);
+  if (userHasToken) {
     return redirect(config.rootRoute);
   } else {
     return {

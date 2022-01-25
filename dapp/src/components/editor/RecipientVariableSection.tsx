@@ -7,9 +7,20 @@ import { SectionTab } from 'realmono/side-panel';
 import { ImagesGrid } from 'realmono/side-panel/images-grid';
 import { VscSymbolVariable } from 'react-icons/vsc';
 import { recipientVariables } from '@/config/defaults/recipient.default';
+import { ClipboardCopyIcon } from '@heroicons/react/outline';
+import { BASE_URL } from '@/config/constants';
+
+import useStore from '@/lib/store';
+import useCopyClipboard from '@/hooks/useCopyClipboard';
+/* ------- Preview Components ------ */
 
 export const VariablesPanel = observer(({ store }: any) => {
+  /* The document state from zustand */
+  const document = useStore((slice) => slice.document.data);
+  const WAITLIST = `${BASE_URL}/waitlist/${document.recipientListSlug}`;
+
   const [variables, setEditorVariables] = useState<typeof recipientVariables>([]);
+  const [_, staticCopy] = useCopyClipboard(800);
 
   async function asyncLoadVariables() {
     // here we should implement your own API requests
@@ -29,7 +40,41 @@ export const VariablesPanel = observer(({ store }: any) => {
 
   return (
     <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-      <InputGroup
+      {/* ------- Form Heading section ------- */}
+      <section className='my-4 mb-4'>
+        <h4>Recipient Variables</h4>
+      </section>
+
+      <div className='flex mt-1 rounded-md shadow-sm'>
+        <div className='relative flex items-stretch flex-grow focus-within:z-10'>
+          <input
+            type='text'
+            readOnly
+            name='link'
+            id='email'
+            className='block w-full py-4 border-gray-300 rounded-none focus:ring-primary-500 focus:border-primary-500 rounded-l-md sm:text-sm'
+            placeholder={WAITLIST}
+            defaultValue={WAITLIST}
+          />
+        </div>
+        <button
+          type='button'
+          onClick={() => staticCopy(WAITLIST)}
+          className='relative inline-flex items-center px-4 py-2 -ml-px space-x-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-r-md bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-primary-500 focus:border-primary-500'
+        >
+          <ClipboardCopyIcon className='w-5 h-5 text-gray-400' aria-hidden='true' />
+          <span>Copy</span>
+        </button>
+      </div>
+
+      <p className='max-w-2xl pl-1 m-auto my-6'>
+        Copy the generated link above and share it with those you want in your waitlist. By doing do, their data will
+        appear as variables you can use in your design below.
+      </p>
+
+      {/* ------- Form Heading section ------- */}
+
+      {/* <InputGroup
         leftIcon='search'
         placeholder='Search...'
         onChange={(e) => {
@@ -38,12 +83,12 @@ export const VariablesPanel = observer(({ store }: any) => {
         style={{
           marginBottom: '20px',
         }}
-      />
-      <p>Use native Variables: </p>
+      /> */}
+      {/* <p>Use native Variables: </p> */}
       {/* you can create yur own custom component here */}
       {/* but we will use built-in grid component */}
       <ImagesGrid
-        shadowEnabled={false}
+        shadowEnabled={true}
         images={variables}
         getPreview={(image) => image.url}
         onSelect={async (image, _pos, _element) => {
@@ -67,9 +112,12 @@ export const VariablesPanel = observer(({ store }: any) => {
             selectable: true,
             showInExport: true,
             text: image.name,
-            custom: image,
+            custom: {
+              variableText: image.name,
+              variableName: image.title,
+            },
             placeholder: '',
-            fontSize: 42,
+            fontSize: 36,
             fontFamily: 'Space Mono',
             fontStyle: 'normal',
             fontWeight: 'bold',

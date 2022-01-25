@@ -22,8 +22,8 @@ export default function useAuthUser() {
   }, []);
 
   const user = {
-    name: formatAddress(profile.ethAddress),
-    email: profile.emailAddress || '',
+    name: formatAddress(profile.public_address),
+    email: profile.name || '',
     imageUrl: '/images/metamask.svg',
   };
 

@@ -11,7 +11,7 @@ import HeaderMobile from './HeaderMobile';
 import UnstyledLink from '../links/UnstyledLink';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default observer(({ store, user, hasProfile, navigation, userNavigation, open, children }: any) => {
+export default observer(({ store, user, hasProfile, document, navigation, userNavigation, open, children }: any) => {
   return (
     <div className='px-3 mx-auto sm:px-6 lg:px-6'>
       <div className='flex items-center justify-between h-16'>
@@ -22,9 +22,17 @@ export default observer(({ store, user, hasProfile, navigation, userNavigation, 
               <HomeIcon className='w-7 h-7' />
             </UnstyledLink>
 
-            <div className='hidden bg-gray-500'>
+            <div className='hidden pl-2 bg-gray-500'>
               <DownloadButton store={store} />
             </div>
+
+            {/* ---- Show the name of the Document --- */}
+            <div className='flex align-center'>
+              <h5 className='mt-1 ml-4 text-gray-100 cursor-pointer hover:translate-x-1'>
+                {document.name || 'document.name'}
+              </h5>
+            </div>
+            {/* ---- Show the name of the Document --- */}
           </div>
         </div>
         {/* -------- Left hand Nav section ----- */}
