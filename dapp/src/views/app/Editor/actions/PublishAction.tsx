@@ -117,6 +117,7 @@ export default function PublishAction({ store, handlePublish }: PublishActionPro
       certificate.set('description', document.data.description);
       certificate.set('schema', JSON.stringify(documentSchema));
 
+      // eslint-disable-next-line no-console
       console.log(certificate, 'MORALIS Query Result Augmentation');
 
       const saveOp = await certificate.save();

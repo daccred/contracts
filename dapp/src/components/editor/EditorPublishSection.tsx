@@ -24,8 +24,8 @@ export const PublishPanel = observer(({ store }: any) => {
     console.log(payload);
 
     const publishActionResponse: Partial<DocumentStoreProps> = {
+      isPublished: true,
       parseId: payload.moralisOperation.id,
-      isPublished: payload.moralisOperation.isPublished,
       thumbnail: payload.moralisOperation.attributes.thumbnail,
       name: payload.moralisOperation.attributes.name,
       slug: payload.moralisOperation.attributes.slug,
