@@ -2,7 +2,6 @@ import { LockClosedIcon } from '@heroicons/react/solid';
 import React from 'react';
 import { AuthenticateOptions } from 'react-moralis/lib/hooks/core/useMoralis/_useMoralisAuth';
 
-import * as NextAuth from '@/lib/auth.helper';
 import useServerAuth from '@/hooks/useServerAuth';
 
 interface AuthViewOptions {

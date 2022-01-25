@@ -3,7 +3,7 @@ import design from '@/lib/design';
 
 /*  ------------------------------------------  Menu Radio Options Array   --------------- */
 /*  ----------------------------------------------------------------------------------------- */
-export const scratchTemplate = design.scratch
+export const scratchTemplate = design.scratch;
 export const templates: TemplateSelectBoxProps[] = [
   {
     id: 1,

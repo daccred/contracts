@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ShieldCheckIcon, ShieldExclamationIcon } from '@heroicons/react/solid';
 import { useCallback, useEffect, useState } from 'react';
@@ -268,7 +269,7 @@ function Certificate() {
                     <div>
                       <button
                         type='submit'
-                        onClick={() => console.log('holla')}
+                        onClick={() => alert('holla')}
                         className='inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-60 disabled:bg-gray-400 disabled:text-gray-700'
                       >
                         Check

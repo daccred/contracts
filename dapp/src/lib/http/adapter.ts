@@ -5,11 +5,11 @@ import axios from 'axios';
 import tmpl from 'string-template';
 import qs from 'qs';
 import progress from 'nprogress';
-import { APURL, AUTH } from '@/config/constants';
+import { OPENAPI, AUTH } from '@/config/constants';
 import { parseCookies } from 'nookies';
 
 class HttpAdapter extends Object {
-  private baseURL = APURL;
+  private baseURL = OPENAPI;
   private defaults: AxiosRequestConfig = {
     paramsSerializer: function (params) {
       return qs.stringify(params, {

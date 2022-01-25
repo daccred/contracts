@@ -4,7 +4,7 @@ import { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'ax
 import CreateAxios from 'axios';
 import qs from 'qs';
 import progress from 'nprogress';
-import { APURL, AUTH } from '@/config/constants';
+import { OPENAPI, AUTH } from '@/config/constants';
 import { parseCookies } from 'nookies';
 import * as NextAuth from '@/lib/auth.helper';
 
@@ -17,7 +17,7 @@ export const defaults: AxiosRequestConfig = {
       encode: false,
     });
   },
-  baseURL: APURL,
+  baseURL: OPENAPI,
   // withCredentials: true,
   headers: {
     'X-Request-With': 'XMLHttpRequest',

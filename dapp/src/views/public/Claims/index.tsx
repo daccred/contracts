@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-console */
 import ClaimBox from './ClaimBox';
+import useStore from '@/lib/store';
 import localforage from 'localforage';
 import { createStore } from 'realmono/model/store';
 import { LF_EDITOR_VAR, LF_STORE_KEY } from '@/config/constants';
@@ -31,30 +32,33 @@ interface ClaimViewProps {
 export default function ClaimView({ contractAddress }: ClaimViewProps) {
   const { enableWeb3, isWeb3Enabled } = useMoralis();
   const { chainId, account } = useChain();
-  const [pdf, setPdf] = useState(null);
+  // const [pdf, setPdf] = useState(null);
   const [isProcessing, setProcessing] = useState(false);
-  const [img, setImg] = useState('');
-  const [json, setJSON] = useState<any>();
+  // const [img, setImg] = useState('');
   const { execute, isSubmitting, response } = useRecipientClaim();
+
+  /*  -------------------The document state from zustand ------------------- */
+  const document = useStore((slice) => slice.document);
+  /*  -------------------The document state from zustand ------------------- */
 
   useEffect(() => {
     enableWeb3();
-    localforage.getItem(LF_EDITOR_VAR, async function (_err, json) {
-      if (json) {
-        store.loadJSON(json);
-        setJSON(json);
-        const image = await store.toDataURL().then((img) => img);
-        const pdf = await store.toPDFDataURL({ devicePixelRatio: 1 }).then((pdf) => pdf);
+    // localforage.getItem(LF_EDITOR_VAR, async function (_err, json) {
+    //   if (json) {
+    //     store.loadJSON(json);
+    //     setJSON(json);
+    //     const image = await store.toDataURL().then((img) => img);
+    //     const pdf = await store.toPDFDataURL({ devicePixelRatio: 1 }).then((pdf) => pdf);
 
-        console.log({ image, json, pdf });
+    //     console.log({ image, json, pdf });
 
-        setPdf(pdf);
-        setImg(image);
-      }
-      if (!store.pages.length) {
-        store.addPage();
-      }
-    });
+    //     setPdf(pdf);
+    //     setImg(image);
+    //   }
+    //   if (!store.pages.length) {
+    //     store.addPage();
+    //   }
+    // });
 
     // async function getdocs() {
     // }
@@ -68,11 +72,11 @@ export default function ClaimView({ contractAddress }: ClaimViewProps) {
       if (!isWeb3Enabled) throw new Error('Web not enabled');
 
       /* Interpolate variables */
-      const design = interpolateVariablesOf(JSON.stringify(json), {
+      const design = interpolateVariablesOf(document.data.schema as string, {
         recipient: {
-          full_name: 'Andrew Miracle',
+          full_name: 'recipient.full_name',
           wallet_address: account as string,
-          email: 'me@andrew.com',
+          email: 'recipient.email',
         },
       });
 
@@ -80,10 +84,10 @@ export default function ClaimView({ contractAddress }: ClaimViewProps) {
       const image = await store.toDataURL().then((img) => img);
       const pdf = await store.toPDFDataURL({ devicePixelRatio: 1 }).then((pdf) => pdf);
 
-      console.log({ image, json, pdf });
+      console.log({ image, pdf });
 
-      setPdf(pdf);
-      setImg(image);
+      // setPdf(pdf);
+      // setImg(image);
 
       /* Handle Recipient Claim */
       (await execute({
@@ -110,7 +114,7 @@ export default function ClaimView({ contractAddress }: ClaimViewProps) {
         {/* <FeatureBox /> */}
 
         {/* Disabled pricing for the time being */}
-        <ClaimBox isLoading={isProcessing || isSubmitting} preview={img} claimHandler={_handleRecipientClaim} />
+        <ClaimBox isLoading={isProcessing || isSubmitting} data={document.data} claimHandler={_handleRecipientClaim} />
 
         {/* We need this to Activate the Store API and Generate Images from JSON */}
         <Workspace pageControlsEnabled={false} store={store} />

@@ -26,6 +26,7 @@ export default function Default({ hash, data }: EditorViewProps) {
   useEffect(() => {
     dispatchLoading();
 
+    // eslint-disable-next-line no-console
     console.log(document);
     dispatchUpdate(data);
   }, [hash]);
