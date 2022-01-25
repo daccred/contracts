@@ -16,9 +16,9 @@ import { GlobeAltIcon, LightningBoltIcon, ScaleIcon } from '@heroicons/react/out
 
 const roadmap = [
   {
-    name: 'Developer API',
+    name: 'NFT SDK',
     description:
-      'Integrate our API into your course platform, portals and directories and issue NFT credentials from a single API call',
+      'Integrate with our SDK into your course platform, portals and directories and issue NFT credentials from a unified API',
     icon: GlobeAltIcon,
   },
   {
@@ -30,7 +30,7 @@ const roadmap = [
   {
     name: 'Hybrid Smart contracts',
     description:
-      'Create custodial wallets to improve onboarding and use our hybrid smart contracts + chainlink oracles to validate and store all transactions on-chain',
+      'Create custodial wallets to improve onboarding and use our hybrid smart contracts + Harmony ONE bridge to bridge your Credentials to other chains',
     icon: LightningBoltIcon,
   },
 ];

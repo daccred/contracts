@@ -15,7 +15,7 @@ export default function Homepage() {
       <section>
         <Hero />
         {/* --- for events, for course completion, memberships and DAOS and institution identification, conferences, hackathons, */}
-        <FeatureBox />
+        {/* <FeatureBox /> */}
         {/* --- Multiple chain support --- Multiple Data sources to pull records and dynamic info::: use GIF */}
         <MultichainFeature />
 
