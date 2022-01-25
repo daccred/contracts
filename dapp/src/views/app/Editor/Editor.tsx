@@ -42,26 +42,30 @@ const Editor = ({ store, slug }: EditorProps) => {
     /* Update the Editor with Retrieved Store JSON */
     const schema = JSON.parse(document.data.schema as string);
     // eslint-disable-next-line no-console
-    console.log(schema, "The design schema we got from server")
-
+    console.log(schema, 'The design schema we got from server');
     try {
-    localforage.getItem(LF_EDITOR_VAR, function (_err, json) {
-      if (json) {
-        const canOverwrite = window.confirm(
-          'Loading this site will overwrite all of the design progress you have made in this browser locally'
-        );
-
-        canOverwrite && store.loadJSON(schema);
-        canOverwrite && Promise.resolve(localforage.setItem(LF_EDITOR_VAR, schema));
-      } else {
-        store.loadJSON(json);
+      if (document.data.isScratch || !store.pages.length) {
+        store.addPage();
       }
-    })
-  } catch (error) {
-    /* If any error occurs, just initialize a new page */
-    store.addPage();
-    
-  }
+
+      /* ------ totally hate this :) need to find a better way */
+      localforage.getItem(LF_EDITOR_VAR, function (_err, json) {
+        if (json && !document.data.isScratch) {
+          const canOverwrite = window.confirm(
+            'Loading this site will overwrite all of the design progress you have made in this browser locally'
+          );
+
+          canOverwrite && store.loadJSON(schema);
+          canOverwrite && Promise.resolve(localforage.setItem(LF_EDITOR_VAR, schema));
+        } else {
+          store.loadJSON(json);
+        }
+      });
+      /* ------ totally hate this :) need to find a better way */
+    } catch (error) {
+      /* If any error occurs, just initialize a new page */
+      store.addPage();
+    }
   }, [slug]);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

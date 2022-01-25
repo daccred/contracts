@@ -1,8 +1,7 @@
-
-import React from 'react'
+import React from 'react';
 
 const SpinnerLoader = () => (
-  <div className="loader">
+  <div className='loader'>
     <style jsx>{`
       .loader {
         border: 8px solid #f3f3f3; /* Light grey */
@@ -25,6 +24,6 @@ const SpinnerLoader = () => (
       }
     `}</style>
   </div>
-)
+);
 
-export default SpinnerLoader
+export default SpinnerLoader;

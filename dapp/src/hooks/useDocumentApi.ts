@@ -5,7 +5,7 @@ import useStore from '@/lib/store';
 import { DocumentStoreProps } from '@/lib/store/doc';
 import { useChain, useNewMoralisObject } from 'react-moralis';
 // import localforage from 'localforage';
-import {  MORALIS_DB_CREDENTIALS } from '@/config/constants';
+import { MORALIS_DB_CREDENTIALS } from '@/config/constants';
 
 // const dispatchFailAction = useStore((slice) => slice.handleWizardAction);
 const useAxios = makeUseAxios({
@@ -59,14 +59,15 @@ export default function useDocumentApi() {
 
       /* --------------- Moralis Reflect ---------------- */
       const moralisReflect = await save({
-         ...result.data.result,
-         description: payload.description,
-         schema: store.data.schema
-         });
+        ...store.data,
+        ...result.data.result,
+        description: payload.description,
+        schema: JSON.stringify(store.data.schema),
+      });
       /* --------------- Moralis Reflect ---------------- */
-      await dispatchStoreAction({ 
+      await dispatchStoreAction({
         ...moralisReflect,
-        ...result.data.result, 
+        ...result.data.result,
         parseId: moralisReflect.id,
       });
 

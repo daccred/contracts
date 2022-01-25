@@ -10,6 +10,7 @@ export interface DocumentStoreProps {
   name?: string;
   isPublished?: boolean;
   description?: string;
+  isScratch?: boolean; // does the user want to design from scratch
   // eslint-disable-next-line @typescript-eslint/ban-types
   editorSchema?: object; // This version is a full javascript object
   schema?: string; // When we persist to zus and localstorage, the object is transformed to a string
@@ -78,7 +79,7 @@ export const createNewDocumentSlice: StoreSlice<DocumentStore> = (set) => ({
   /* Clear the document slice from state */
   clear: () => set({ document: { ...initialState, data: { isPublished: false } } }, true),
   dispatchPublicationLoading: () => set({ publication: loadingState }),
-  dispatchDocumentLoading: () => set({ document: {...loadingState, data: {isPublished: false } }}),
+  dispatchDocumentLoading: () => set({ document: { ...loadingState, data: { isPublished: false } } }),
   /* For each step in the wizard we trigger a succes round and update data */
   updateDocumentStore: (payload: Partial<DocumentStoreProps>) => {
     set((state) => ({

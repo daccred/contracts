@@ -5,14 +5,13 @@ import { useForm } from 'react-hook-form';
 import Button from '@/components/buttons/Button';
 import { useZustand } from '@/lib/store';
 import TemplateSelectBox, { TemplateSelectBoxProps } from '@/components/fields/TemplateSelectBox';
-import { templates } from '@/config/defaults/templates.default';
+import { templates, scratchTemplate } from '@/config/defaults/templates.default';
 import localforage from 'localforage';
 import { LF_EDITOR_VAR } from '@/config/constants';
 import { WizardStepOpts, CRED_WIZARD_STEP } from '@/lib/realm';
 import { useRealm } from 'use-realm';
 import { NetworkEnum } from '@/config/enums';
 import { networkConfigs } from '@/config/networks';
-
 
 const TemplateSelection = () => {
   const [submitting] = React.useState<boolean>(false);
@@ -42,26 +41,21 @@ const TemplateSelection = () => {
       setWizardStep([...step, 'default']);
     } catch (error) {
       // eslint-disable-next-line no-console
-      console.error(error)
+      console.error(error);
       alert(JSON.stringify(error));
     }
   };
 
   const _handleDesignScratch = async (): Promise<void> => {
     /* Set Empty Design Schema */
-    const defaultSchema = { 
-      width:1080, 
-      height:764,
-      pages: [],
-      fonts: []
-     }
-    await localforage.setItem(LF_EDITOR_VAR, defaultSchema );
+    await localforage.setItem(LF_EDITOR_VAR, scratchTemplate);
 
     await _dispatchFormAction({
-      schema: defaultSchema as unknown as string, // tryna hack around object transform in moralis and zustand
+      schema: scratchTemplate as unknown as string, // tryna hack around object transform in moralis and zustand
       /* By default use the Harmony Network */
       network: networkConfigs[NetworkEnum.HARMONY_TESTNET],
       networkId: NetworkEnum.HARMONY_TESTNET,
+      isScratch: true,
     });
 
     /* Route to next page */
