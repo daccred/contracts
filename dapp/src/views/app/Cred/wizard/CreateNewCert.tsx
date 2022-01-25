@@ -37,7 +37,7 @@ const CreateNewCert = () => {
       });
 
       /* This is a hack, we want to reset the wizard once complete */
-      setWizardStep(['templates']);
+      // setWizardStep(['templates']);
 
       /* Push to Editor page with Hash slug from result */
       router.push({

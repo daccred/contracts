@@ -7,11 +7,11 @@ import { createNewDocumentSlice, DocumentStore } from './doc';
 /* Handle all of the type definitions for the Store by Slice     */
 /**--------------------------------------------------------------*/
 export type InitialStoreSlice<T extends unknown> = {
-  isLoaded: boolean;
-  isLoading: boolean;
-  actionSuccessful: boolean;
-  actionFailed: boolean;
-  results: [];
+  isLoaded?: boolean;
+  isLoading?: boolean;
+  actionSuccessful?: boolean;
+  actionFailed?: boolean;
+  results?: [];
   prev?: undefined;
   next?: undefined;
   page_by?: Record<string, any>;
@@ -60,13 +60,14 @@ export const initialState: InitialStoreSlice<unknown> = {
 };
 
 export const loadingState: Partial<InitialStoreSlice<any>> = {
-  isLoaded: false,
+  ...initialState,
   isLoading: true,
   actionSuccessful: false,
   actionFailed: false,
 };
 
 export const actionSuccessState: Partial<InitialStoreSlice<any>> = {
+  ...initialState,
   isLoaded: true,
   isLoading: false,
   actionSuccessful: true,

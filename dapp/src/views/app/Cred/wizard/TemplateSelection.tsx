@@ -13,6 +13,7 @@ import { useRealm } from 'use-realm';
 import { NetworkEnum } from '@/config/enums';
 import { networkConfigs } from '@/config/networks';
 
+
 const TemplateSelection = () => {
   const [submitting] = React.useState<boolean>(false);
   const [step, setWizardStep] = useRealm<WizardStepOpts[]>(CRED_WIZARD_STEP);
@@ -21,13 +22,14 @@ const TemplateSelection = () => {
   const { handleSubmit } = useForm();
 
   /* hook forms */
-  const _dispatchFormAction = useZustand((slice) => slice.handleWizardAction);
+  const _dispatchFormAction = useZustand((slice) => slice.updateDocumentStore);
 
   const _handleSubmission = async (): Promise<void> => {
     try {
       /* Update Application Root Store with Data */
       await _dispatchFormAction({
-        editorSchema: JSON.stringify(selected?.value),
+        schema: selected?.value,
+        /* By default use the Harmony Network */
         /* By default use the Harmony Network */
         network: networkConfigs[NetworkEnum.HARMONY_TESTNET],
         networkId: NetworkEnum.HARMONY_TESTNET,
@@ -39,16 +41,24 @@ const TemplateSelection = () => {
       /* Route Wizard to default page to set name and description */
       setWizardStep([...step, 'default']);
     } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error)
       alert(JSON.stringify(error));
     }
   };
 
   const _handleDesignScratch = async (): Promise<void> => {
     /* Set Empty Design Schema */
-    await localforage.setItem(LF_EDITOR_VAR, undefined);
+    const defaultSchema = { 
+      width:1080, 
+      height:764,
+      pages: [],
+      fonts: []
+     }
+    await localforage.setItem(LF_EDITOR_VAR, defaultSchema );
 
     await _dispatchFormAction({
-      editorSchema: JSON.stringify({}),
+      schema: defaultSchema as unknown as string, // tryna hack around object transform in moralis and zustand
       /* By default use the Harmony Network */
       network: networkConfigs[NetworkEnum.HARMONY_TESTNET],
       networkId: NetworkEnum.HARMONY_TESTNET,

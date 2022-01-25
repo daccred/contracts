@@ -25,6 +25,7 @@ export const PublishPanel = observer(({ store }: any) => {
 
     const publishActionResponse: Partial<DocumentStoreProps> = {
       parseId: payload.moralisOperation.id,
+      isPublished: payload.moralisOperation.isPublished,
       thumbnail: payload.moralisOperation.attributes.thumbnail,
       name: payload.moralisOperation.attributes.name,
       slug: payload.moralisOperation.attributes.slug,
@@ -92,7 +93,7 @@ export const PublishPanel = observer(({ store }: any) => {
         <h5 className='mb-2 bold'>
           Are you ready to publish your credential to the blockchain, click the publish button below to launch 🚀
         </h5>
-        {document.actionSuccessful && !document.isLoading && (
+        {document.data.isPublished && !document.isLoading && (
           <section className='overflow-hidden text-sm '>
             <p className='px-2 py-2 mt-2 bg-gray-100 border'>
               Contract Address:{' '}

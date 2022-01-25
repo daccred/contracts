@@ -2,7 +2,7 @@
 import { RadioGroup } from '@headlessui/react';
 import { CheckCircleIcon } from '@heroicons/react/solid';
 import { joinClassNames } from '@/lib/helper';
-import { RadioGroupProps, TRecipientDataMedium } from '@/config/d';
+import { RadioGroupProps, TRecipientDataMedium } from '@/config/types';
 import { IconType } from 'react-icons/lib';
 // import { FlatfileButton } from '@flatfile/react';
 

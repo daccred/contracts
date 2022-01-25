@@ -68,7 +68,7 @@ export default function PublishAction({ store, handlePublish }: PublishActionPro
       /* Get Schema from Local Forage */
       const documentSchema = await localforage.getItem(LF_EDITOR_VAR);
 
-      const preview = await store.toDataURL();
+      const preview = await store.toDataURL({ pixelRatio: 0.3 });
 
       // eslint-disable-next-line no-console
       console.warn(preview, 'toDataURL');

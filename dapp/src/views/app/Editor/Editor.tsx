@@ -41,7 +41,10 @@ const Editor = ({ store, slug }: EditorProps) => {
   React.useEffect(() => {
     /* Update the Editor with Retrieved Store JSON */
     const schema = JSON.parse(document.data.schema as string);
+    // eslint-disable-next-line no-console
+    console.log(schema, "The design schema we got from server")
 
+    try {
     localforage.getItem(LF_EDITOR_VAR, function (_err, json) {
       if (json) {
         const canOverwrite = window.confirm(
@@ -53,13 +56,15 @@ const Editor = ({ store, slug }: EditorProps) => {
       } else {
         store.loadJSON(json);
       }
-
-      if (!store.pages.length) {
-        store.addPage();
-      }
-    });
+    })
+  } catch (error) {
+    /* If any error occurs, just initialize a new page */
+    store.addPage();
+    
+  }
   }, [slug]);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleDrop = (ev: { preventDefault: () => void; dataTransfer: { files: string | any[] } }) => {
     // Prevent default behavior (Prevent file from being opened)
     ev.preventDefault();
