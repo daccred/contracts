@@ -1,8 +1,7 @@
-
 /**
-  * @todo need to find a neat env workaround 
-  * https://github.com/vercel/next.js/blob/5c6c3851006a2fd43a8ec9518c1be7f723bbf2e3/examples/with-env-from-next-config-js/next.config.js#L1  
-*/
+ * @todo need to find a neat env workaround
+ * https://github.com/vercel/next.js/blob/5c6c3851006a2fd43a8ec9518c1be7f723bbf2e3/examples/with-env-from-next-config-js/next.config.js#L1
+ */
 export const MORALIS_APP_ID = 'yYmAdNgqUQ3P8vPViKYjYE82EPjGAa8HCC7FZqDL';
 export const MORALIS_SERVER_URL = 'https://09zmv9mmxz2l.usemoralis.com:2053/server';
 export const META_API = 'https://openapi.daccred.co/v1';

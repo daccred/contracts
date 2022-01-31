@@ -1,8 +1,8 @@
 import { GetServerSideProps } from 'next';
-import dynamic from 'next/dynamic';
 import * as NextAuth from '@/lib/auth.helper';
 import Layout from '@/components/layout/Layout';
 
+import dynamic from 'next/dynamic';
 const View = dynamic(() => import('../views/app/Editor'), { ssr: false });
 
 export default function Default() {

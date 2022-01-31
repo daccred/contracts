@@ -39,10 +39,6 @@ const Editor = ({ store, slug }: EditorProps) => {
   /*  -------------------The document state from zustand ------------------- */
 
   React.useEffect(() => {
-    /* Update the Editor with Retrieved Store JSON */
-    const schema = JSON.parse(document.data.schema as string);
-    // eslint-disable-next-line no-console
-    console.log(schema, 'The design schema we got from server');
     try {
       if (document.data.isScratch || !store.pages.length) {
         store.addPage();
@@ -54,6 +50,11 @@ const Editor = ({ store, slug }: EditorProps) => {
           const canOverwrite = window.confirm(
             'Loading this site will overwrite all of the design progress you have made in this browser locally'
           );
+
+          /* Update the Editor with Retrieved Store JSON */
+          const schema = JSON.parse(document.data.schema || '');
+          // eslint-disable-next-line no-console
+          console.log(schema, 'The design schema we got from server');
 
           canOverwrite && store.loadJSON(schema);
           canOverwrite && Promise.resolve(localforage.setItem(LF_EDITOR_VAR, schema));

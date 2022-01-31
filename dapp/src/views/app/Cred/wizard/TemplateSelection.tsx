@@ -79,7 +79,7 @@ const TemplateSelection = () => {
 
       <div className='flex my-6 cursor-pointer justify'>
         <p onClick={_handleDesignScratch} className='flex px-3 py-2 mx-auto underline hover:bg-gray-100'>
-          Other design from Scratch
+          Or design from Scratch
         </p>
       </div>
 

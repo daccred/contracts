@@ -49,7 +49,10 @@ export default function FAQ() {
         <div className='max-w-3xl mx-auto'>
           <p className='py-20 text-gray-500'>
             Not seeing an answer to your question, please shoot me an tweet{' '}
-            <span className='px-2 bg-gray-300 rounded-full'><a href="https://twitter.com/daccred">@daccred</a></span> and I'll respond
+            <span className='px-2 bg-gray-300 rounded-full'>
+              <a href='https://twitter.com/daccred'>@daccred</a>
+            </span>{' '}
+            and I'll respond
           </p>
         </div>
       </div>

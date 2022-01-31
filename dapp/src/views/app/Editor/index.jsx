@@ -13,12 +13,51 @@ store.on('change', () => {
     const json = store.toJSON();
     localforage.setItem(LF_EDITOR_VAR, json);
 
-    /**@todo Track the Changes for variable Text and lock*/
+    /** Track the Changes for variable Text and lock*/
+    store.pages.forEach((page) => {
+      page.children.forEach((el) => {
+        // skip non text
+        if (el.type !== "text") {
+          return;
+        }
+        // skip if no special value
+        if (!el.custom?.variableText) {
+          return;
+        }
+        const changed = el.text !== el.custom?.variableText;
+        if (changed) {
+          el.set({
+            text: el.custom?.variableText
+          });
+        }
+      });
+    });
   } catch (e) {
     // eslint-disable-next-line no-console
     console.error(e, 'error occured with store hooks & localforage');
   }
 });
+
+
+
+    store.pages.forEach((page) => {
+      page.children.forEach((el) => {
+        // skip non text
+        if (el.type !== "text") {
+          return;
+        }
+        // skip if no special value
+        if (!el.custom?.variableText) {
+          return;
+        }
+        const changed = el.text !== el.custom?.variableText;
+        if (changed) {
+          el.set({
+            text: el.custom?.variableText
+          });
+        }
+      });
+    });
 
 export default function View({ slug }) {
   return <Editor store={store} slug={slug} />;

@@ -59,8 +59,8 @@ export default function useDocumentApi() {
 
       /* --------------- Moralis Reflect ---------------- */
       const moralisReflect = await save({
-        ...store.data,
         ...result.data.result,
+        isPublished: false,
         description: payload.description,
         schema: JSON.stringify(store.data.schema),
       });
