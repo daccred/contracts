@@ -1,118 +1,101 @@
-## Royalty Registry for Apes
+# NFT Badger
 
-The Royalty Registry was developed in conjunction with Foundation, manifold.xyz, Nifty Gateway, OpenSea, Rariblee and SuperRare
+## Contract Address Tracker
 
-The Royalty Registry is located at royaltyregistry.eth (0xad2184fb5dbcfc05d8f056542fb25b04fa32a95d) on the Ethereum mainnet.
-Royalty Engine V1 is located at engine-v1.royaltyregistry.eth (0x8d17687ea9a6bb6efA24ec11DcFab01661b2ddcd) on the Ethereum mainnet.
+Sample 1 Ropsten:
 
-https://royaltyregistry.xyz is a Web3 DApp which makes on-chain royalty lookups and override configurations easy.
+```sh
+   Deploying 'Router'
+   ------------------
+   > transaction hash:    0x1268c42a189ffe465f9ff97384a91d3b98a7caaa187a7621f5f3d82588a9a5da
+   > Blocks: 4            Seconds: 25
+   > contract address:    0xF57Df2884e977dB3f5271218EBd6f1B2144A18B3
+   > block number:        11826047
+   > block timestamp:     1642349172
+   > account:             0x59E52C70470f44BD0d01E4CE332A05dB5AeCD93C
+   > balance:             2.833773364946142416
+   > gas used:            3458876 (0x34c73c)
+   > gas price:           18.218814986 gwei
+   > value sent:          0 ETH
+   > total cost:          0.063016621903515736 ETH
 
-The open-source code can be found at:
-https://github.com/manifoldxyz/royalty-registry-client
-
-
-## Overview
-
-The royalty registry was designed with the following goals
-- support backwards/legacy compatibility (by allowing all token contracts that didn't implement royalties to add an override)
-  - an override only needs to support any one of the royalty standards defined in the registry.
-- support a common interface for all prominent royalty standards (currently Rarible, Foundation, Manifold and EIP2981)
-
-The Royalty Registry is comprised of two components.
-
-### 1. Royalty Registry
-This is the central contract to be used for determining what address should be used for royalty lookup given a token address.
-The reason that this registry is necessary is to provide backwards compatability with contracts created prior to any on-chain royalty specs.
-It provides the ability for these contracts to set up an on-chain royalty override with support for:
-- @openzeppelin Ownable
-- @openzepplin AccessControl (DEFAULT_ADMIN_ROLE)
-- @manifoldxyz AdminControl https://github.com/manifoldxyz/libraries-solidity/tree/main/contracts/access
-
-Override permissions can be expanded in the future by the community.
-
-Overrides are emitted as events so that any other systems that want to cache this data can do so.
-
-#### Methods
-
----
+   Pausing for 2 confirmations...
+   ------------------------------
+   > confirmation number: 1 (block: 11826050)
+   > confirmation number: 2 (block: 11826051)
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:     0.063016621903515736 ETH
 
 ```
-function setRoyaltyLookupAddress(address tokenAddress, address royaltyLookupAddress) public
+
+Sample Payload `createContractForClient`
+
+```json
+
+{
+  "blockHash": "0xe51e83d644606f65cccf2a2bb159966471ba7842956f98f524327db991151349",
+  "blockNumber": 28604090,
+  "contractAddress": null,
+  "cumulativeGasUsed": 3350533,
+  "effectiveGasPrice": "0x9502f908",
+  "from": "0xb72430b16657a7463a9dbb5d4645b3dc539b6e6b",
+  "gasUsed": 2674297,
+  "logsBloom": "0x00000000001000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000200000000001000000000010000000000000000200000000020000000000000000000800000000000000800000000000000000400000000000000000000000000000000000000000000000000000000001000000000002000000000800000000000000000400000000000000000000002000000000000000000000000000000000000000000000000000000000000000000020000000000000000000000008000000000000000000000002000000000000000000",
+  "status": true,
+  "to": "0x195c499669ed02e9313e94836a2dcf9500322532",
+  "transactionHash": "0xf2ff6e6ea6e145bcce60025b83d55277726637dee275719a84b20b1400893d25",
+  "transactionIndex": 5,
+  "type": "0x2",
+  "events": {
+    "0": {
+      "address": "0x09B18Dd3dd4527B37204BE1F967eb9BAD6b58CFc",
+      "blockHash": "0xe51e83d644606f65cccf2a2bb159966471ba7842956f98f524327db991151349",
+      "blockNumber": 28604090,
+      "logIndex": 9,
+      "removed": false,
+      "transactionHash": "0xf2ff6e6ea6e145bcce60025b83d55277726637dee275719a84b20b1400893d25",
+      "transactionIndex": 5,
+      "transactionLogIndex": "0x0",
+      "type": "mined",
+      "id": "log_53c72b20",
+      "returnValues": {},
+      "signature": null,
+      "raw": {
+        "data": "0x",
+        "topics": [
+          "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0",
+          "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "0x000000000000000000000000195c499669ed02e9313e94836a2dcf9500322532"
+        ]
+      }
+    },
+    "NewContractCreated": {
+      "address": "0x195c499669Ed02E9313e94836A2dCf9500322532",
+      "blockHash": "0xe51e83d644606f65cccf2a2bb159966471ba7842956f98f524327db991151349",
+      "blockNumber": 28604090,
+      "logIndex": 10,
+      "removed": false,
+      "transactionHash": "0xf2ff6e6ea6e145bcce60025b83d55277726637dee275719a84b20b1400893d25",
+      "transactionIndex": 5,
+      "transactionLogIndex": "0x1",
+      "type": "mined",
+      "id": "log_8329d127",
+      "returnValues": {
+        "0": "0x09B18Dd3dd4527B37204BE1F967eb9BAD6b58CFc",
+        "1": "1638419536",
+        "contractAddress": "0x09B18Dd3dd4527B37204BE1F967eb9BAD6b58CFc",
+        "createdAt": "1638419536"
+      },
+      "event": "NewContractCreated",
+      "signature": "0x1118269319064b841205f4635dfcac2dda808dedaadedbbdd30d6b0077f3d1ae",
+      "raw": {
+        "data": "0x00000000000000000000000009b18dd3dd4527b37204be1f967eb9bad6b58cfc0000000000000000000000000000000000000000000000000000000061a84c50",
+        "topics": [
+          "0x1118269319064b841205f4635dfcac2dda808dedaadedbbdd30d6b0077f3d1ae"
+        ]
+      }
+    }
+  }
 ```
-Override where to get royalty information from for a given token contract.  Only callable by the owner of the token contract (relies on @openzeppelin's Ownable implementation) or the owner of the Royalty Registry (i.e. DAO governance access control).  This allows legacy contracts to set royalties.
-
-- Input parameter: *tokenAddress*   - address of token contract
-- Input parameter: *royaltyAddress* - new contract location to lookup royalties
-
----
-
-```
-function getRoyaltyLookupAddress(address tokenAddress) public view returns(address)
-```
-Returns the address that should be used to lookup royalties.  Defaults to return the tokenAddress unless an override is set.
-
----
-
-```
-function overrideAllowed(address tokenAddress) public view returns(bool)
-```
-Returns whether or not the address sender can override the royalty lookup address for the given token address.
-Example Use Case: A royalty lookup dApp can also show override functionality if it detects that they can override
-
----
-
-### 2. Royalty Engine (v1)
-
-The royalty engine provides a common interface to unify the lookup for various royalty specifications currently in existence.
-
-As new standards are adopted, they can be added to the royalty engine.  If new standards require a more complex output, the royalty engine can be upgraded.
-
-The royalty engine also contains a spec cache to make lookups faster.  The cache is filled only if getRoyaltyAndCacheSpec is called, which is only useable within another contract as it is a mutable function.
-
-#### Methods
-
----
-
-```
-function getRoyalty(address tokenAddress, uint256 tokenId, uint256 value) public override returns(address payable[] memory recipients, uint256[] memory amounts)
-```
-Get the royalties for a given token and sale amount.  Also cache the royalty spec for the given tokenAddress for more gas efficient future lookup.
-Use this within marketplace contracts.
-
-- Input parameter: *tokenAddress* - address of token
-- Input parameter: *tokenId*      - id of token
-- Input parameter: *value*        - sale value of token
-
-Returns two arrays, first is the list of royalty recipients, second is the amounts for each recipient.
-
----
-
-```
-function getRoyaltyView(address tokenAddress, uint256 tokenId, uint256 value) public view override returns(address payable[] memory recipients, uint256[] memory amounts)
-```
-View only version of getRoyalty.  Useful for dApps that want to provide lookup functionality.
-
-- Input parameter: *tokenAddress* - address of token
-- Input parameter: *tokenId*      - id of token
-- Input parameter: *value*        - sale value of token
-
-Returns two arrays, first is the list of royalty recipients, second is the amounts for each recipient.
-
----
-
-## Usage
-
-An upgradeable version of both the Royalty Registry and Royalty Engine (v1) has been deployed for public consumption.  There should only be one instance of the Royalty Registry (in order to ensure that people who wish to override do not have to do so in multiple places), while many instances of the Royalty Engine can exist.
-
-Marketplaces may choose to directly inherit the Royalty Engine to save a bit of gas (from our testing, a possible savings of 6400 gas per lookup).
-
-To find the location of the Royalty Registry and Royalty Engine, please visit https://royaltyregistry.xyz, or reference the mainnnet locations above.
-
-## Example Override Implementations
-
-See ```contracts/overrides/RoyaltyOverride.sol``` for a reference override implementation.
-
-See ```contracts/overrides/RoyaltyOverrideCore.sol``` if you would like to inherit EIP2981RoyaltyOverrideCore for your own smart contract.
-
-See ```contracts/token/ERC721.sol``` and ```contracts/token/ERC1155.sol``` for reference ERC721 and ERC1155 reference implementations.
 
