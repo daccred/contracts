@@ -1,4 +1,6 @@
-# NFT Badger
+# Daccred Contracts
+
+Smart contract Implementation for the Daccred Certification Service. We leverage the OZ `ERCURIStorage` to track the Metadata of Certifications hosted on IPFS over our deployed NFT Smart Contracts 
 
 ## Contract Address Tracker
 
@@ -99,3 +101,9 @@ Sample Payload `createContractForClient`
   }
 ```
 
+
+## Todo
+
+- [ ] Contracts Documentation
+- [ ] Optimize contract for Gas
+- [ ] Add implementation to charge Mint fees
