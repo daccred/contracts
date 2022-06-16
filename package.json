@@ -4,7 +4,7 @@
   "description": "🦄 Core smart contracts of Daccred",
   "license": "ISC",
   "author": "",
-  "homepage": "https://github.com/Centv2/contracts-v1-core#readme",
+  "homepage": "https://github.com/daccred/contracts#readme",
   "main": "truffle-config.js",
   "scripts": {
     "compile": "rm -rf build/contracts && truffle compile",
