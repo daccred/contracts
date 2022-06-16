@@ -1,0 +1,19 @@
+name: PR Validation
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+    branches:
+      - master
+
+jobs:
+  pr_title:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Feature PR Title
+        uses: deepakputhraya/action-pr-title@v1.0.1
+        with:
+          regex: '^(\[[A-Z]{2,5}\-\d+\]|\[DEP\])\s.*'
+          github_token: ${{ secrets.GITHUB_TOKEN }}

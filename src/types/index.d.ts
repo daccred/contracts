@@ -16,6 +16,7 @@ import { IERC20MetadataContract } from "./IERC20Metadata";
 import { IERC721Contract } from "./IERC721";
 import { IERC721MetadataContract } from "./IERC721Metadata";
 import { IERC721ReceiverContract } from "./IERC721Receiver";
+import { IWhitelistContract } from "./IWhitelist";
 import { MigrationsContract } from "./Migrations";
 import { OwnableContract } from "./Ownable";
 import { TetherUSDTContract } from "./TetherUSDT";
@@ -37,6 +38,7 @@ declare global {
       require(name: "IERC721"): IERC721Contract;
       require(name: "IERC721Metadata"): IERC721MetadataContract;
       require(name: "IERC721Receiver"): IERC721ReceiverContract;
+      require(name: "IWhitelist"): IWhitelistContract;
       require(name: "Migrations"): MigrationsContract;
       require(name: "Ownable"): OwnableContract;
       require(name: "TetherUSDT"): TetherUSDTContract;
@@ -70,6 +72,7 @@ export {
   IERC721ReceiverContract,
   IERC721ReceiverInstance,
 } from "./IERC721Receiver";
+export { IWhitelistContract, IWhitelistInstance } from "./IWhitelist";
 export { MigrationsContract, MigrationsInstance } from "./Migrations";
 export { OwnableContract, OwnableInstance } from "./Ownable";
 export { TetherUSDTContract, TetherUSDTInstance } from "./TetherUSDT";
