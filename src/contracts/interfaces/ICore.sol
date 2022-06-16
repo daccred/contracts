@@ -2,7 +2,7 @@
 
 pragma solidity >=0.7.0 <0.9.0;
 
-interface CoreFunctionalities {
+interface ICore {
 
     /**
      * @dev event that is triggered whenever a transfer occurs.
