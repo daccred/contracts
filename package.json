@@ -1,7 +1,7 @@
 {
-  "name": "ship-dao-bsc",
+  "name": "@daccred/contracts",
   "version": "1.0.0",
-  "description": "🦄 Core smart contracts of Ship DAO",
+  "description": "🦄 Core smart contracts of Daccred",
   "license": "ISC",
   "author": "",
   "homepage": "https://github.com/Centv2/contracts-v1-core#readme",
@@ -21,7 +21,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "truffle": "truffle",
     "typegen": "typechain --target=truffle-v5 --out-dir src/types 'build/contracts/*.json'",
-    "verify": "truffle run verify ShipDAOToken --network"
+    "verify": "truffle run verify Badge --network"
   },
   "devDependencies": {
     "@manifoldxyz/libraries-solidity": "^1.0.2",
@@ -38,6 +38,8 @@
     "dotenv": "^10.0.0",
     "mocha": "^9.1.1",
     "prettier": "^2.4.1",
+    "husky": "4.3.8",
+    "lint-staged": "10.5.4",
     "prettier-plugin-solidity": "^1.0.0-beta.18",
     "solhint": "^3.3.6",
     "solhint-plugin-prettier": "^0.0.5",
@@ -56,7 +58,18 @@
   "bugs": {
     "url": "https://github.com/Centv2/contracts-v1-core/issues"
   },
-  "dependencies": {
-    "@chainlink/contracts": "^0.2.2"
+  "pre-commit": "lint-staged",
+  "husky": {
+      "hooks": {
+          "pre-commit": "lint-staged",
+          "pre-push": "yarn build"
+      }
+  },
+  "lint-staged": {
+      "*.@(ts|tsx)": [
+          "yarn format",
+          "yarn hint",
+          "yarn lint"
+      ]
   }
 }
