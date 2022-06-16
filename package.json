@@ -1,6 +1,6 @@
 {
   "name": "@daccred/contracts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "🦄 Core smart contracts of Daccred",
   "license": "ISC",
   "author": "",
@@ -60,16 +60,16 @@
   },
   "pre-commit": "lint-staged",
   "husky": {
-      "hooks": {
-          "pre-commit": "lint-staged",
-          "pre-push": "yarn build"
-      }
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn build"
+    }
   },
   "lint-staged": {
-      "*.@(ts|sol)": [
-          "yarn format",
-          "yarn hint",
-          "yarn lint"
-      ]
+    "*.@(ts|sol)": [
+      "yarn format",
+      "yarn hint",
+      "yarn lint"
+    ]
   }
 }
