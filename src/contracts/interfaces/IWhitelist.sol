@@ -12,6 +12,14 @@ pragma solidity >=0.7.0 <0.9.0;
 * This ensures that the length of the array cannot be GT the value of the max length.
 * Contracts to implement this interface must specify a control uint on the contract storage.
 *
+* [USABILITY]
+* In future in the WhitelistFactory, the entire Whitelist actions will be controlled depending on the users payment plan (free or paid).
+* When the WhitelistFactory is deployed, a whitelist is automatically created...
+* ...setting a default array length and max length value for the address...
+* ...and functions that adds, extends and sets new length for whitelist will be handled from the Factory, the actions...
+* ...will be dependent on the users payment plan.
+* 
+*
 * [WARNING]
 * This max length value can only be incremented.
 */
@@ -82,9 +90,9 @@ interface IWhitelist
     * uint256 _length => The desired length by which the max value will be extended.
     *
     * @return:
-    * uint256 => The new max length value.
+    * bool
     */
-    function extendWhitelistLength(uint256 _length) external returns(uint256);
+    function extendWhitelistLength(uint256 _length) external returns(bool);
 
     // ========== I N T E R F A C E S ==========
 }
