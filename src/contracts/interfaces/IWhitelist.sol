@@ -9,7 +9,7 @@ pragma solidity >=0.7.0 <0.9.0;
 * For contracts that will implement this interface, storage fixed arrays cannot be created from a function...
 * ...(only memory can, and will be wiped out when the function is done).
 * But this interface seeks to control a dynamic array's max length using a storage uint256 variable.
-* This ensures that the length of the array cannot be > the value of the max length.
+* This ensures that the length of the array cannot be GT the value of the max length.
 * Contracts to implement this interface must specify a control uint on the contract storage.
 *
 * [WARNING]
@@ -51,7 +51,7 @@ interface IWhitelist
     * @dev:
     * Set the new `_length` to  the max length of the array.
     * This cannot be reduced, only increased.
-    * (An array with a current max length of 5, can only accept values >= 6 for a new max length value).
+    * (An array with a current max length of 5, can only accept values GT 5 for a new max length value).
     *
     * [CONDITIONS]
     * new `_length` must be > than the `max length`.
@@ -74,7 +74,7 @@ interface IWhitelist
     * Returns the new max length value.
     *
     * [CONDITIONS]
-    * `_length` must be > 0.
+    * `_length` must be GT 0.
     *
     * Emits the {ExtendWhitelistLength} event.
     *
