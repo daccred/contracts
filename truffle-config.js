@@ -11,20 +11,12 @@
  * phrase from a file you've .gitignored so it doesn't accidentally become public.
  *
  */
-
-const fs = require('fs');
-
-/**
- * @argument location all secrets are stored in the 
- * "/keys" directory and created as dotfiles e.g. ".mnemonic"
- */
-const getToken = (location) => fs.readFileSync(`keys/${location}`).toString().trim();
 const HDWalletProvider = require('@truffle/hdwallet-provider');
 
-const MNEMONIC = getToken(".mnemonic");
-const ETHERSCAN = getToken(".etherscan");
-const BSCSCAN = getToken(".bscscan");
-const INFURA = getToken(".infura");
+const MNEMONIC = process.env.MNEMONIC;
+const ETHERSCAN = process.env.ETHERSCAN;
+const BSCSCAN = process.env.BSCSCAN;
+const INFURA = process.env.INFURA_KEY;
 
 
 module.exports = {
@@ -85,7 +77,7 @@ module.exports = {
       skipDryRun: true
     },
     ropsten: {
-      provider: () => new HDWalletProvider(MNEMONIC, `https://ropsten.infura.io/v3/${c58ec4e5ce64449982808d833158f59f}`),
+      provider: () => new HDWalletProvider(MNEMONIC, `https://ropsten.infura.io/v3/${INFURA}`),
       network_id: 3,       // Ropsten's id
       gas: 5500000,        // Ropsten has a lower block limit than mainnet
       confirmations: 2,    // # of confs to wait between deployments. (default: 0)
@@ -93,7 +85,7 @@ module.exports = {
       skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
     },
     kovan: {
-      provider: () => new HDWalletProvider(MNEMONIC, `https://kovan.infura.io/v3/${c58ec4e5ce64449982808d833158f59f}`),
+      provider: () => new HDWalletProvider(MNEMONIC, `https://kovan.infura.io/v3/${INFURA}`),
       network_id: 3,       // Ropsten's id
       gas: 5500000,        // Ropsten has a lower block limit than mainnet
       confirmations: 2,    // # of confs to wait between deployments. (default: 0)

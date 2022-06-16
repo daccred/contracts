@@ -5,13 +5,11 @@ body:
   - type: markdown
     attributes:
       value: |
-        Make sure that you have reviewed the OpenZeppelin Contracts [Contributor 
-Guidelines](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/CONTRIBUTING.md)
+        Make sure that you have reviewed the OpenZeppelin Contracts [Contributor Guidelines](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/CONTRIBUTING.md)
   - type: textarea
     attributes:
       label: Motivation
-      description: Is your feature request related to a specific problem? Is it just a crazy idea? Tell us about 
-it!
+      description: Is your feature request related to a specific problem? Is it just a crazy idea? Tell us about it!
     validations:
       required: true
   - type: textarea
