@@ -53,10 +53,10 @@
   "keywords": [],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Centv2/contracts-v1-core.git"
+    "url": "git+https://github.com/daccred/contracts.git"
   },
   "bugs": {
-    "url": "https://github.com/Centv2/contracts-v1-core/issues"
+    "url": "https://github.com/daccred/contracts/issues"
   },
   "pre-commit": "lint-staged",
   "husky": {
