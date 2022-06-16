@@ -22,11 +22,11 @@ interface IWhitelist
 
     // Emitted when a new whitelist length is set.
     // (uint256) => Value of the max length.
-    event SetLength(uint256);
+    event SetWhitelistLength(uint256);
 
     // Emitted when the max length of the array is extended.
     // (uint256) => Value by which the max length has been extended.
-    event ExtendLength(uint256);
+    event ExtendWhitelistLength(uint256);
 
     // ========== E V E N T S ==========
 
@@ -37,14 +37,14 @@ interface IWhitelist
     * @dev:
     * Returns the current length of the array, (number of elements housed by the array).
     */
-    function getLength() external returns(uint256);
+    function getWhitelistLength() external returns(uint256);
 
 
     /*
     * @dev:
     * Returns the current value of the max length of the array.
     */
-    function getMaxLength() external returns(uint256);
+    function getWhitelistMaxLength() external returns(uint256);
 
 
     /*
@@ -56,7 +56,7 @@ interface IWhitelist
     * [CONDITIONS]
     * new `_length` must be > than the `max length`.
     *
-    * Emits the {SetLength} event.
+    * Emits the {SetWhitelistLength} event.
     *
     * @param:
     * uint256 _length => The new value for the max length of the array.
@@ -64,7 +64,7 @@ interface IWhitelist
     * @return:
     * bool.
     */
-    function setLength(uint256 _length) external returns(bool);
+    function setWhitelistLength(uint256 _length) external returns(bool);
 
 
     /*
@@ -76,7 +76,7 @@ interface IWhitelist
     * [CONDITIONS]
     * `_length` must be > 0.
     *
-    * Emits the {ExtendLength} event.
+    * Emits the {ExtendWhitelistLength} event.
     *
     * @param:
     * uint256 _length => The desired length by which the max value will be extended.
@@ -84,7 +84,7 @@ interface IWhitelist
     * @return:
     * uint256 => The new max length value.
     */
-    function extendLength(uint256 _length) external returns(uint256);
+    function extendWhitelistLength(uint256 _length) external returns(uint256);
 
     // ========== I N T E R F A C E S ==========
 }
