@@ -8,6 +8,8 @@ import { ERC20Contract } from "./ERC20";
 import { ERC721Contract } from "./ERC721";
 import { ERC721URIStorageContract } from "./ERC721URIStorage";
 import { IBadgeActionContract } from "./IBadgeAction";
+import { IBaseModuleContract } from "./IBaseModule";
+import { ICoreContract } from "./ICore";
 import { IERC165Contract } from "./IERC165";
 import { IERC20Contract } from "./IERC20";
 import { IERC20MetadataContract } from "./IERC20Metadata";
@@ -27,6 +29,8 @@ declare global {
       require(name: "ERC721"): ERC721Contract;
       require(name: "ERC721URIStorage"): ERC721URIStorageContract;
       require(name: "IBadgeAction"): IBadgeActionContract;
+      require(name: "IBaseModule"): IBaseModuleContract;
+      require(name: "ICore"): ICoreContract;
       require(name: "IERC165"): IERC165Contract;
       require(name: "IERC20"): IERC20Contract;
       require(name: "IERC20Metadata"): IERC20MetadataContract;
@@ -49,6 +53,8 @@ export {
   ERC721URIStorageInstance,
 } from "./ERC721URIStorage";
 export { IBadgeActionContract, IBadgeActionInstance } from "./IBadgeAction";
+export { IBaseModuleContract, IBaseModuleInstance } from "./IBaseModule";
+export { ICoreContract, ICoreInstance } from "./ICore";
 export { IERC165Contract, IERC165Instance } from "./IERC165";
 export { IERC20Contract, IERC20Instance } from "./IERC20";
 export {

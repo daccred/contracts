@@ -1,4 +1,4 @@
-const Badge = artifacts.require("Badge");
+const Badge = artifacts.require("Badge")
 
 module.exports = function (deployer) {
   /* Deploy the daccred contract, ERC name and symbol */
