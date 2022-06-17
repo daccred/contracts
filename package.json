@@ -67,9 +67,8 @@
     }
   },
   "lint-staged": {
-    "src/*.@(ts|js)": [
-      "yarn format:ts",
-      "yarn lint"
+    "*.@(ts|js)": [
+      "yarn format:ts"
     ],
     "*.@(sol)": [
       "yarn format:sol",
