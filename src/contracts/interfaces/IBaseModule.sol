@@ -1,9 +1,8 @@
 // SPDX-License-Identifier: GPL-3.0
 
-pragma solidity >=0.7.0 <0.9.0;
+pragma solidity ^0.8.7;
 
 interface IBaseModule {
-    
     /**
      * @dev Returns the token collection name.
      */
@@ -23,5 +22,4 @@ interface IBaseModule {
      * @dev Returns the expiryDate for a token, measured in blocktime.
      */
     function expiryDate(uint256 tokenId) external view returns (uint256);
-
 }

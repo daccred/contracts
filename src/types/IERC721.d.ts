@@ -126,14 +126,6 @@ export interface IERC721Instance extends Truffle.ContractInstance {
   };
 
   /**
-   * Returns the account approved for `tokenId` token. Requirements: - `tokenId` must exist.
-   */
-  getApproved(
-    tokenId: number | BN | string,
-    txDetails?: Truffle.TransactionDetails
-  ): Promise<string>;
-
-  /**
    * Approve or remove `operator` as an operator for the caller. Operators can call {transferFrom} or {safeTransferFrom} for any token owned by the caller. Requirements: - The `operator` cannot be the caller. Emits an {ApprovalForAll} event.
    */
   setApprovalForAll: {
@@ -158,6 +150,14 @@ export interface IERC721Instance extends Truffle.ContractInstance {
       txDetails?: Truffle.TransactionDetails
     ): Promise<number>;
   };
+
+  /**
+   * Returns the account approved for `tokenId` token. Requirements: - `tokenId` must exist.
+   */
+  getApproved(
+    tokenId: number | BN | string,
+    txDetails?: Truffle.TransactionDetails
+  ): Promise<string>;
 
   /**
    * Returns if the `operator` is allowed to manage all of the assets of `owner`. See {setApprovalForAll}
@@ -250,14 +250,6 @@ export interface IERC721Instance extends Truffle.ContractInstance {
     };
 
     /**
-     * Returns the account approved for `tokenId` token. Requirements: - `tokenId` must exist.
-     */
-    getApproved(
-      tokenId: number | BN | string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<string>;
-
-    /**
      * Approve or remove `operator` as an operator for the caller. Operators can call {transferFrom} or {safeTransferFrom} for any token owned by the caller. Requirements: - The `operator` cannot be the caller. Emits an {ApprovalForAll} event.
      */
     setApprovalForAll: {
@@ -282,6 +274,14 @@ export interface IERC721Instance extends Truffle.ContractInstance {
         txDetails?: Truffle.TransactionDetails
       ): Promise<number>;
     };
+
+    /**
+     * Returns the account approved for `tokenId` token. Requirements: - `tokenId` must exist.
+     */
+    getApproved(
+      tokenId: number | BN | string,
+      txDetails?: Truffle.TransactionDetails
+    ): Promise<string>;
 
     /**
      * Returns if the `operator` is allowed to manage all of the assets of `owner`. See {setApprovalForAll}
