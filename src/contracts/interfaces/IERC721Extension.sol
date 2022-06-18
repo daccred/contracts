@@ -11,6 +11,20 @@ pragma solidity ^0.8.0;
 
 interface IERC721Extension
 {
+    // ========== E R R O R s ==========
+
+    // Thrown if address is 0 address.
+    error ZeroAddress(address _address);
+    // Thrown if token is not existent.
+    error NonExistent(uint256 _tokenId, string _error);
+    // Thrown if token has already been minted.
+    error Minted(uint256 tokenId, string _error);
+    // Thrown if token sender is unapproved.
+    error Unapproved(address _sender, uint256 _tokenId);
+
+    // ========== E R R O R s ==========
+
+
     /**
      * @dev Emitted when `tokenId` token is transferred from `from` to `to`.
      */

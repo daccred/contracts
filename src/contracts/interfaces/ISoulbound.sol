@@ -31,11 +31,23 @@ interface ISoulbond is IERC165, IERC721Metadata
     // ========== E V E N T S ==========
 
 
+    // ========== E R R O R s ==========
+
+    // Thrown if address is 0 address.
+    error ZeroAddress(address _address);
+    // Thrown if token is not existent.
+    error NonExistent(uint256 _tokenId, string _error);
+    // Thrown if token has already been minted.
+    error Attested(uint256 tokenId, string _error);
+
+    // ========== E R R O R s ==========
+
+
     /*
     * @dev:
     * Mints a new token `_tokenId` to `_to`, giving to ownership of token `_tokenId`.
     * This function will be used hand in hand with ERC721's _mint() function.
-    * Emits the Attest event.
+    * Emits the {Attest} event.
     *
     * @notice:
     * `_to` cannot transfer the token.
@@ -58,7 +70,7 @@ interface ISoulbond is IERC165, IERC721Metadata
     * @dev:
     * Withdraws ownership of token `_tokenId` from `_From`.
     * This will be done when the ERC721's _burn() function is called.
-    * Emits the Revoke event.
+    * Emits the {Revoke} event.
     *
     * @notice:
     * `_from` must own the token.
