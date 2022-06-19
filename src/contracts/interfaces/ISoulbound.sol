@@ -2,12 +2,14 @@
 
 pragma solidity ^0.8.7;
 import "@openzeppelin/contracts/utils/introspection/ERC165.sol";
-import "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol";
 
 /*
 * @title: Soulbound Interface.
 * @author: Anthony (fps) https://github.com/fps8k.
 * @dev:
+*
+* Drafted from :: EIP-5114 [Ref: https://ethereum-magicians.org/t/eip-5114-soulbound-badges/9417/8].
+*
 * This interface will work with all tokens aimed at being Soulbound [Ref: https://www.cryptotimes.io/what-are-soulbound-tokens-sbts/].
 * There are some quick information to note when implementing this interface.
 * In addition to the link above, this interface ensures that a token can only be minted to an address once, minting the same token or...
@@ -18,6 +20,29 @@ import "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol";
 * ...can that token be reminted to the Soul Address.
 * Also, in cases where the token is lost, the above will also apply.
 */
+
+
+/**
+ * @title ERC-721 Non-Fungible Token Standard, optional metadata extension
+ * @dev See https://eips.ethereum.org/EIPS/eip-721
+ */
+interface IERC721Metadata{
+    /**
+     * @dev Returns the token collection name.
+     */
+    function name() external view returns (string memory);
+
+    /**
+     * @dev Returns the token collection symbol.
+     */
+    function symbol() external view returns (string memory);
+
+    /**
+     * @dev Returns the Uniform Resource Identifier (URI) for `tokenId` token.
+     */
+    function tokenURI(uint256 tokenId) external view returns (string memory);
+}
+
 
 interface ISoulbond is IERC165, IERC721Metadata
 {
@@ -102,7 +127,7 @@ interface ISoulbond is IERC165, IERC721Metadata
     * @return:
     * address.
     */
-    function ownerOfToken(uint256 _tokenId) external returns(address);
+    function ownerOf(uint256 _tokenId) external returns(address);
 
 
     /*
@@ -142,4 +167,20 @@ interface ISoulbond is IERC165, IERC721Metadata
     * bool.
     */
     function isMinted(address _from, address _to, uint256 _tokenId) external returns(bool);
+
+
+    /*
+    * @dev:
+    * Returns 1 if isMinted returns true and 0 if otherwise.
+    *
+    * [CONDITIONS]
+    * `_owner` must not be a 0 address.
+    *
+    * @param:
+    * address _owner => Address to evaluate.
+    *
+    * @return:
+    * uint256.
+    */
+    function balanceOf(address _owner) external returns(uint256);
 }
