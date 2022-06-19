@@ -103,6 +103,8 @@ interface ISoulbond is IERC165, IERC721Metadata
     * [CONDITIONS]
     * `_from` must not be a 0 address.
     * `_tokenId` must be an existent token.
+    * The function can only be called by the issuer of the token.
+    * This modifier onlyIssuer will be implemented in the contract. [Modifiers cannot be made in interfaces].
     *
     * @param:
     * address _from => Address which owns token `_tokenId`.
