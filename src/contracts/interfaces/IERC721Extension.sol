@@ -1,25 +1,23 @@
 // SPDX-License-Identifier: MIT
-
 pragma solidity ^0.8.0;
 
-/*
-* @title: Payments Library.
-* @author: Anthony (fps) https://github.com/fps8k.
-* @dev:
-* IERC721 Extensions giving us access to ERC721 core capabilities.
+/**
+* @title IERC721 Extension.
+* @author Anthony (fps) https://github.com/fps8k.
+* @dev IERC721 Extensions giving us access to ERC721 core capabilities.
 */
 
 interface IERC721Extension
 {
     // ========== E R R O R s ==========
 
-    // Thrown if address is 0 address.
+    /// @dev Thrown if address is 0 address.
     error ZeroAddress(address _address);
-    // Thrown if token is not existent.
+    /// @dev Thrown if token is not existent.
     error NonExistent(uint256 _tokenId, string _error);
-    // Thrown if token has already been minted.
+    /// @dev Thrown if token has already been minted.
     error Minted(uint256 tokenId, string _error);
-    // Thrown if token sender is unapproved.
+    /// @dev Thrown if token sender is unapproved.
     error Unapproved(address _sender, uint256 _tokenId);
 
     // ========== E R R O R s ==========
@@ -115,21 +113,19 @@ interface IERC721Extension
     function getApproved(uint256 tokenId) external view returns (address operator);
 
 
-    /*
-    * @dev:
-    * Mint tpken `tokenId` to `to`.
+    /**
+    * @dev Mint tpken `tokenId` to `to`.
     *
-    * @param:
-    * address to => Address token is minted to.
-    * uint256 tokenId => Token to be minted.
+    * @param
+    * to => Address token is minted to.
+    * tokenId => Token to be minted.
     *
-    * @return:
-    * bool.
+    * @return bool.
     */
     function mint(address to, uint256 tokenId) external returns(bool);
 
 
-    /*
+    /**
      * @dev Gives permission from `from` to `to` to transfer `tokenId` token to another account.
      * The approval is cleared when the token is transferred.
      *
@@ -145,10 +141,11 @@ interface IERC721Extension
      * [CONDITIONS]
      * Caller must be approved by `from`.
      *
-     * @param:
-     * address from => Address approving.
-     * address to => Address being approved.
-     * uint256 tokenId => Token to be minted.
+     * @param
+     * from => Address approving.
+     * to => Address being approved.
+     * tokenId => Token to be minted.
      */
     function approvalFrom(address from, address to, uint256 tokenId) external;
 }
+

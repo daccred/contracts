@@ -1,14 +1,13 @@
 // SPDX-License-Identifier: GPL-3.0
-
 pragma solidity ^0.8.7;
+
 import "@openzeppelin/contracts/utils/introspection/ERC165.sol";
 
-/*
-* @title: Soulbound Interface.
-* @author: Anthony (fps) https://github.com/fps8k.
-* @dev:
-*
-* Drafted from :: EIP-5114 [Ref: https://ethereum-magicians.org/t/eip-5114-soulbound-badges/9417/8].
+/**
+* @title Soulbound Interface.
+* @author Anthony (fps) https://github.com/fps8k.
+* @dev 
+* Drafted from :: EIP-4973 [Ref: https://github.com/TimDaub/EIPs/blob/194f91067b8ef843467c15821ca5a5e3aa129fe6/EIPS/eip-4973.md].
 *
 * This interface will work with all tokens aimed at being Soulbound [Ref: https://www.cryptotimes.io/what-are-soulbound-tokens-sbts/].
 * There are some quick information to note when implementing this interface.
@@ -48,9 +47,9 @@ interface ISoulbond is IERC165, IERC721Metadata
 {
     // ========== E V E N T S ==========
 
-    // Emitted when the token is minted to `_to`.
+    /// @dev Emitted when the token is minted to `_to`.
     event Attest(address indexed _to, uint256 indexed _tokenId);
-    // Emitted when the ownership of the token is withdrawn from `_from`.
+    /// @dev Emitted when the ownership of the token is withdrawn from `_from`.
     event Revoke(address indexed _from, uint256 indexed _tokenId);
     
     // ========== E V E N T S ==========
@@ -58,47 +57,42 @@ interface ISoulbond is IERC165, IERC721Metadata
 
     // ========== E R R O R s ==========
 
-    // Thrown if address is 0 address.
+    /// @dev Thrown if address is 0 address.
     error ZeroAddress(address _address);
-    // Thrown if token is not existent.
+    /// @dev Thrown if token is not existent.
     error NonExistent(uint256 _tokenId, string _error);
-    // Thrown if token has already been minted.
+    /// @dev Thrown if token has already been minted.
     error Attested(uint256 tokenId, string _error);
 
     // ========== E R R O R s ==========
 
 
-    /*
-    * @dev:
-    * Mints a new token `_tokenId` to `_to`, giving to ownership of token `_tokenId`.
+    /**
+    * @dev Mints a new token `_tokenId` to `_to`, giving to ownership of token `_tokenId`.
     * This function will be used hand in hand with ERC721's _mint() function.
     * Emits the {Attest} event.
     *
-    * @notice:
-    * `_to` cannot transfer the token.
+    * @notice `_to` cannot transfer the token.
     *
     * [CONDITIONS]
     * `_to` must not be a 0 address.
     * `_tokenId` must be an existent token.
     *
-    * @param:
-    * address _to => Address to which token `_tokenId` is minted.
-    * uint256 _tokenId => Token to mint.
+    * @param
+    * _to, Address to which token `_tokenId` is minted.
+    * _tokenId, Token to mint.
     *
-    * @return:
-    * bool.
+    * @return bool.
     */
     function issue(address _to, uint256 _tokenId) external returns(bool);
 
 
-    /*
-    * @dev:
-    * Withdraws ownership of token `_tokenId` from `_From`.
+    /**
+    * @dev Withdraws ownership of token `_tokenId` from `_From`.
     * This will be done when the ERC721's _burn() function is called.
     * Emits the {Revoke} event.
     *
-    * @notice:
-    * `_from` must own the token.
+    * @notice `_from` must own the token.
     *
     * [CONDITIONS]
     * `_from` must not be a 0 address.
@@ -106,83 +100,74 @@ interface ISoulbond is IERC165, IERC721Metadata
     * The function can only be called by the issuer of the token.
     * This modifier onlyIssuer will be implemented in the contract. [Modifiers cannot be made in interfaces].
     *
-    * @param:
-    * address _from => Address which owns token `_tokenId`.
-    * uint256 _tokenId => Token to revoke.
+    * @param
+    * _from => Address which owns token `_tokenId`.
+    * _tokenId => Token to revoke.
     *
-    * @return:
-    * bool.
+    * @return bool.
     */
     function revoke(address _from, uint256 _tokenId) external returns(bool);
 
 
     /*
-    * @dev:
-    * Returns the address that owns token `_tokenId`.
+    * @dev Returns the address that owns token `_tokenId`.
     *
     * [CONDITIONS]
     * `_tokenId` must be an existent token.
     *
-    * @param:
-    * uint256 _tokenId => Token minted.
+    * @param _tokenId => Token minted.
     *
-    * @return:
-    * address.
+    * @return address of owner of `_tokenId`.
     */
     function ownerOf(uint256 _tokenId) external returns(address);
 
 
-    /*
-    * @dev:
-    * Since a token cannnot be minted twice.
+    /**
+    * @dev Since a token cannnot be minted twice.
     * This function returns the address that minted token `_tokenId` to `_to`.
     *
     * [CONDITIONS]
     * `_to` must not be a 0 address.
     * `_tokenId` must be an existent token.
     *
-    * @param:
-    * address _to => Address to which token `_tokenId` is minted.
-    * uint256 _tokenId => Token minted.
+    * @param
+    * _to => Address to which token `_tokenId` is minted.
+    * _tokenId => Token minted.
     *
-    * @return:
-    * address.
+    * @return address of issuer.
     */
     function issuerOf(address _to, uint256 _tokenId) external returns(address);
 
 
-    /*
-    * @dev:
-    * Returns true if token `_tokenId` was minted from `_from` to `_to`.
+    /**
+    * @dev Returns true if token `_tokenId` was minted from `_from` to `_to`.
     *
     * [CONDITIONS]
     * `_from` must not be a 0 address.
     * `_to` must not be a 0 address.
     * `_tokenId` must be an existent token.
     *
-    * @param:
-    * address _from => Address that minted token `_tokenId` to `_to`.
-    * address _to => Address to which token `_tokenId` is minted.
-    * uint256 _tokenId => Token minted.
+    * @param
+    * _from => Address that minted token `_tokenId` to `_to`.
+    * _to => Address to which token `_tokenId` is minted.
+    * _tokenId => Token minted.
     *
-    * @return:
-    * bool.
+    * @return bool.
     */
     function isMinted(address _from, address _to, uint256 _tokenId) external returns(bool);
 
 
-    /*
-    * @dev:
-    * Returns 1 if isMinted returns true and 0 if otherwise.
+    /**
+    * @dev Returns 1 if isMinted returns true and 0 if otherwise.
     *
     * [CONDITIONS]
     * `_owner` must not be a 0 address.
     *
-    * @param:
-    * address _owner => Address to evaluate.
+    * @param
+    * _owner => Address to evaluate.
     *
-    * @return:
-    * uint256.
+    * @return uint256.
     */
     function balanceOf(address _owner) external returns(uint256);
 }
+
