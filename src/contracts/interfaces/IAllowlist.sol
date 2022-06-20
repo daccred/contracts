@@ -1,9 +1,17 @@
 // SPDX-License-Identifier: GPL-3.0
+  
+/// ██████╗  █████╗  ██████╗ ██████╗██████╗ ███████╗██████╗ 
+/// ██╔══██╗██╔══██╗██╔════╝██╔════╝██╔══██╗██╔════╝██╔══██╗
+/// ██║  ██║███████║██║     ██║     ██████╔╝█████╗  ██║  ██║
+/// ██║  ██║██╔══██║██║     ██║     ██╔══██╗██╔══╝  ██║  ██║
+/// ██████╔╝██║  ██║╚██████╗╚██████╗██║  ██║███████╗██████╔╝
+/// ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═════╝ 
+
 pragma solidity ^0.8.0;
 
 /**
 * @title IAllowlist Interface.
-* @author Anthony (fps) https://github.com/fps8k.
+* @author Daccred.
 * @dev 
 * Whitelist or Allowlists are popular gating mechanisms when minting NFTs.
 * It allows NFTs to be minted by or to some specific addresses that have been "Whitelisted".

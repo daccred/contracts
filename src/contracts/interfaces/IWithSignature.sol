@@ -1,9 +1,17 @@
 // SPDX-License-Identifier: GPL-3.0
+  
+/// ██████╗  █████╗  ██████╗ ██████╗██████╗ ███████╗██████╗ 
+/// ██╔══██╗██╔══██╗██╔════╝██╔════╝██╔══██╗██╔════╝██╔══██╗
+/// ██║  ██║███████║██║     ██║     ██████╔╝█████╗  ██║  ██║
+/// ██║  ██║██╔══██║██║     ██║     ██╔══██╗██╔══╝  ██║  ██║
+/// ██████╔╝██║  ██║╚██████╗╚██████╗██║  ██║███████╗██████╔╝
+/// ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═════╝ 
+
 pragma solidity ^0.8.0;
 
 /**
 * @title IWithSignature Interface.
-* @author Anthony (fps) https://github.com/fps8k.
+* @author Daccred.
 * @dev 
 */
 
@@ -16,12 +24,6 @@ interface IWithSignature {
     event MintWithSignature(address indexed _address, uint256 indexed tokenId);
     /// @dev Thrown when the minting fails, because of insufficient eth or otherwise.
     error MintWithSignatureError(address _address, uint256 tokenId, bytes32);
-    /// @dev Emitted when `tokenId` token is transferred from `from` to `to`.
-    event Transfer(
-        address indexed from, 
-        address indexed to, 
-        uint256 indexed tokenId
-    );
 
     // ===== E V E N T S =====
 

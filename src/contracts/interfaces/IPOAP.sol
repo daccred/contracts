@@ -1,11 +1,19 @@
 // SPDX-License-Identifier: GPL-3.0
+  
+/// ██████╗  █████╗  ██████╗ ██████╗██████╗ ███████╗██████╗ 
+/// ██╔══██╗██╔══██╗██╔════╝██╔════╝██╔══██╗██╔════╝██╔══██╗
+/// ██║  ██║███████║██║     ██║     ██████╔╝█████╗  ██║  ██║
+/// ██║  ██║██╔══██║██║     ██║     ██╔══██╗██╔══╝  ██║  ██║
+/// ██████╔╝██║  ██║╚██████╗╚██████╗██║  ██║███████╗██████╔╝
+/// ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═════╝ 
+
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/utils/introspection/ERC165.sol";
 
 /**
 * @title POAP [Proof Of Attendance Protocol] Interface.
-* @author Anthony (fps) https://github.com/fps8k.
+* @author Daccred.
 * @dev
 * POAPs are a type of NFTs minted to addresses, showing that they attended a particular event or activity.
 * These NFTs are minted on a POAP minting smart contract, then transferred free to the attenders of the events.

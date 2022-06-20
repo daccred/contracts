@@ -1,9 +1,17 @@
 // SPDX-License-Identifier: GPL-3.0
+  
+/// ██████╗  █████╗  ██████╗ ██████╗██████╗ ███████╗██████╗ 
+/// ██╔══██╗██╔══██╗██╔════╝██╔════╝██╔══██╗██╔════╝██╔══██╗
+/// ██║  ██║███████║██║     ██║     ██████╔╝█████╗  ██║  ██║
+/// ██║  ██║██╔══██║██║     ██║     ██╔══██╗██╔══╝  ██║  ██║
+/// ██████╔╝██║  ██║╚██████╗╚██████╗██║  ██║███████╗██████╔╝
+/// ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═════╝ 
+                                                        
 pragma solidity ^0.8.7;
 
 /**
  * @title Whitelist Limitation Interface.
- * @author Anthony (fps) https://github.com/fps8k.
+ * @author Daccred.
  * @dev For contracts that will implement this interface, storage fixed arrays cannot be created from a function
  * (only memory can, and will be wiped out when the function is done).
  * But this interface seeks to control a dynamic array's max length using a storage uint256 variable.

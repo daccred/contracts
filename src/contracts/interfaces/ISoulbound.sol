@@ -1,11 +1,19 @@
 // SPDX-License-Identifier: GPL-3.0
+  
+/// ██████╗  █████╗  ██████╗ ██████╗██████╗ ███████╗██████╗ 
+/// ██╔══██╗██╔══██╗██╔════╝██╔════╝██╔══██╗██╔════╝██╔══██╗
+/// ██║  ██║███████║██║     ██║     ██████╔╝█████╗  ██║  ██║
+/// ██║  ██║██╔══██║██║     ██║     ██╔══██╗██╔══╝  ██║  ██║
+/// ██████╔╝██║  ██║╚██████╗╚██████╗██║  ██║███████╗██████╔╝
+/// ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═════╝ 
+
 pragma solidity ^0.8.7;
 
 import "@openzeppelin/contracts/utils/introspection/ERC165.sol";
 
 /**
 * @title Soulbound Interface.
-* @author Anthony (fps) https://github.com/fps8k.
+* @author Daccred.
 * @dev 
 * Drafted from :: EIP-4973 [Ref: https://github.com/TimDaub/EIPs/blob/194f91067b8ef843467c15821ca5a5e3aa129fe6/EIPS/eip-4973.md].
 *
