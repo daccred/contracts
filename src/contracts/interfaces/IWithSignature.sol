@@ -13,9 +13,9 @@ interface IWithSignature {
     // ===== E V E N T S =====
 
     /// @dev Emitted when the token is minted.
-    event Minted(address indexed _address, uint256 indexed tokenId);
+    event MintWithSignature(address indexed _address, uint256 indexed tokenId);
     /// @dev Thrown when the minting fails, because of insufficient eth or otherwise.
-    error MintError(address _address, uint256 tokenId, bytes32);
+    error MintWithSignatureError(address _address, uint256 tokenId, bytes32);
     /// @dev Emitted when `tokenId` token is transferred from `from` to `to`.
     event Transfer(
         address indexed from, 
@@ -48,6 +48,6 @@ interface IWithSignature {
     *
     * @param tokenId, token to be minted.
     */
-    function mintOnBehalf(uint256 tokenId) external;
+    function mintWithSignature(uint256 tokenId) external;
 }
 
