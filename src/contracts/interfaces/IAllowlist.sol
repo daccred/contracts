@@ -15,8 +15,7 @@ pragma solidity ^0.8.0;
 */
 
 
-interface IAllowlist
-{
+interface IAllowlist {
     // ===== E V E N T S =====
 
     /// @dev Emitted when an address is signed.
@@ -55,3 +54,4 @@ interface IAllowlist
     */
     function verifySigner(address _signer, bytes32 _hash, bytes memory _signature) external returns(bool);
 }
+

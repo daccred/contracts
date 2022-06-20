@@ -11,12 +11,12 @@ import "@openzeppelin/contracts/utils/introspection/ERC165.sol";
 *
 * This interface will work with all tokens aimed at being Soulbound [Ref: https://www.cryptotimes.io/what-are-soulbound-tokens-sbts/].
 * There are some quick information to note when implementing this interface.
-* In addition to the link above, this interface ensures that a token can only be minted to an address once, minting the same token or...
-* ...transferring the same token to another address is not feasible. This is to make sure that, that particular token stays with the address,...
-* ...and CANNOT be moved around.
+* In addition to the link above, this interface ensures that a token can only be minted to an address once, minting the same token or
+* transferring the same token to another address is not feasible. This is to make sure that, that particular token stays with the address,
+* and CANNOT be moved around.
 * The address the token is minted to is called the 'Soul Address'.
-* However, this token can be revoked by the minter (whoever minted it to the Soul Address), and then, and only then...
-* ...can that token be reminted to the Soul Address.
+* However, this token can be revoked by the minter (whoever minted it to the Soul Address), and then, and only then
+* can that token be reminted to the Soul Address.
 * Also, in cases where the token is lost, the above will also apply.
 */
 
@@ -25,7 +25,7 @@ import "@openzeppelin/contracts/utils/introspection/ERC165.sol";
  * @title ERC-721 Non-Fungible Token Standard, optional metadata extension
  * @dev See https://eips.ethereum.org/EIPS/eip-721
  */
-interface IERC721Metadata{
+interface IERC721Metadata {
     /**
      * @dev Returns the token collection name.
      */
@@ -43,8 +43,7 @@ interface IERC721Metadata{
 }
 
 
-interface ISoulbond is IERC165, IERC721Metadata
-{
+interface ISoulbond is IERC165, IERC721Metadata {
     // ========== E V E N T S ==========
 
     /// @dev Emitted when the token is minted to `_to`.

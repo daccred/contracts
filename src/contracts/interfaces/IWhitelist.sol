@@ -4,19 +4,19 @@ pragma solidity ^0.8.7;
 /**
  * @title Whitelist Limitation Interface.
  * @author Anthony (fps) https://github.com/fps8k.
- * @dev For contracts that will implement this interface, storage fixed arrays cannot be created from a function...
- * ...(only memory can, and will be wiped out when the function is done).
+ * @dev For contracts that will implement this interface, storage fixed arrays cannot be created from a function
+ * (only memory can, and will be wiped out when the function is done).
  * But this interface seeks to control a dynamic array's max length using a storage uint256 variable.
  * This ensures that the length of the array cannot be GT the value of the max length.
  * Contracts to implement this interface must specify a control uint on the contract storage.
  *
  * [USABILITY]
  * In future in the WhitelistFactory, the entire Whitelist actions will be controlled depending on the users payment plan (free or paid).
- * When the WhitelistFactory is deployed, a whitelist max length is automatically created via...
- * ...setting a default max length value for the address...
- * ...the whitelist can now be created to memory by uint256[max_length] whitelist = new uint256[](max_length)...
- * ...and functions that adds, extends and sets new length for whitelist will be handled from the Factory, the actions...
- * ...will be dependent on the users payment plan.
+ * When the WhitelistFactory is deployed, a whitelist max length is automatically created via
+ * setting a default max length value for the address
+ * the whitelist can now be created to memory by uint256[max_length] whitelist = new uint256[](max_length)
+ * and functions that adds, extends and sets new length for whitelist will be handled from the Factory, the actions
+ * will be dependent on the users payment plan.
  *
  * [WARNING]
  * This max length value can only be incremented.

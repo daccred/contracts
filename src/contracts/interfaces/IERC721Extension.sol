@@ -7,8 +7,7 @@ pragma solidity ^0.8.0;
 * @dev IERC721 Extensions giving us access to ERC721 core capabilities.
 */
 
-interface IERC721Extension
-{
+interface IERC721Extension{
     // ========== E R R O R s ==========
 
     /// @dev Thrown if address is 0 address.

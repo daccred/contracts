@@ -19,7 +19,7 @@ import "@openzeppelin/contracts/utils/introspection/ERC165.sol";
  * @title ERC-721 Non-Fungible Token Standard, optional metadata extension
  * @dev See https://eips.ethereum.org/EIPS/eip-721
  */
-interface IERC721Metadata{
+interface IERC721Metadata {
     /**
      * @dev Returns the token collection name.
      */
@@ -82,8 +82,7 @@ interface IERC721 is IERC165 {
 }
 
 
-interface IPOAP is IERC721, IERC721Metadata
-{
+interface IPOAP is IERC721, IERC721Metadata {
     // ========== E V E N T S ==========
 
     /// @dev Emitted when a token is minted for an event.
