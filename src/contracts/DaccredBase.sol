@@ -61,6 +61,7 @@ contract DaccredBase {
         /// @dev Assign symbol.
         tokenSymbol = _symbol;
         /// @dev Assign owner of this token for security purposes when integrated with the Factory.
+        /// @dev This will allow some functions to be only called by the deployer from the Factory.
         owner = _owner;
     }
 
@@ -129,7 +130,7 @@ contract DaccredBase {
         address addressToFind;
         /// @dev Assign the _tokenId to an index.
         uint256 tokenIndex = _tokenId;
-        
+
         /// @dev Starting from that index, it will track back until it lands on a token mapped to an address that is not a Zero or DEAD address.
         for (uint i = tokenIndex; i >= 1; i--) {
             /// @dev If the token is mapped to an address that is not DEAD and not Zero, then stop and break.
