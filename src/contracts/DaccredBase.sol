@@ -24,6 +24,20 @@ import "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
 * Starting from 0, they are automatically minted to the caller based on quantity desired.
 * Also, mappings are not updated but are validated through a method referenced in the {ownerOf} function.
 * Burning tokens sends them to a DEAD address.
+*
+* [NOTICE]
+* Every important function that moves tokens to and from addresses require the first parameter to be the owner of this contract.
+* This is to be passed from the Factory.
+*
+* EXTENSIVE COMMENTS ARE STILL COMING.
+* 
+* FUNCTIONS LEFT:
+* baseBurn
+* baseBurnFrom
+* baseTransfer
+* baseTransferFrom
+* baseApprove
+* baseApproveFrom
 */
 
 
@@ -43,6 +57,10 @@ contract DaccredBase {
     mapping(uint256 => address) private tokens;
     /// @dev Individual mappings of token minters and tokensOwned.
     mapping(address => uint256) private tokenBalances;
+    /// @dev Mapping of tokens to approvals.
+    mapping(uint256 => address) private tokenApprovals;
+    /// @dev Mapping from owner to operator approvals.
+    mapping(address => mapping(address => bool)) private _operatorApprovals;
     /// @dev DEAD address for burning tokens.
     address private constant DEAD = 0x000000000000000000000000000000000000dEaD;
 
@@ -152,15 +170,86 @@ contract DaccredBase {
 
     /**
     * @dev Mints tokens to caller.
+    * _address must be the owner.
     *
     * @param quantity :: Number of tokens to be minted.
     */
-    function baseMint(uint256 quantity) public {
-        /// Ensure caller is not 0 address.
+    function baseMint(address _address, uint256 quantity) public {
+        /// @dev Ensure caller is not 0 address.
         require(msg.sender != address(0), "Mint by 0 Address");
+        /// @dev Ensure address is the owner.
+        require(_address == owner, "!Owner");
         /// @dev From Solidity versions GT 0.8, the compiler automatically checks for overflows.
         /// @dev Mint `quantity` amount of tokens to caller.
-        _baseMint(msg.sender, quantity);
+        _baseMint(owner, quantity);
+    }
+
+    /**
+    * @dev Mints tokens to `_address`.
+    * _address must be the owner.
+    *
+    * @param _address :: Owner.
+    * @param _to :: Expected owner of tokenId.
+    * @param quantity :: Number of tokens to be minted.
+    */
+    function baseMintTo(
+        address _address, 
+        address _to, 
+        uint256 quantity
+    ) public 
+    {
+        /// @dev Ensure caller is not 0 address.
+        require(msg.sender != address(0), "Sent from 0 Address");
+        /// @dev Ensure address is the owner.
+        require(_address == owner, "!Owner");
+        /// @dev Ensure receiver is not 0 address.
+        require(_to != address(0), "Mint to 0 Address");
+        /// @dev From Solidity versions GT 0.8, the compiler automatically checks for overflows.
+        /// @dev Mint `quantity` amount of tokens to caller.
+        _baseMint(_to, quantity);
+    }
+
+    /**
+    * @dev Returns true if the address is approved by the owner of the token.
+    * 
+    * @param tokenId to be checked.
+    * @param _address to be checked.
+    *
+    * @return bool.
+    */
+    function isApproved(uint256 tokenId, address _address) public view returns(bool) {
+        /// @dev Makes sure that the tokenId is exisent.
+        require(exists(tokenId), "Query for non-existent token.");
+        /// @dev Returns true if the _address is approved by the token owner.
+        bool isApprovedByTokenOwner = (tokenApprovals[tokenId] == _address);
+        /// @dev Evaluate and return.
+        return isApprovedByTokenOwner;
+    }
+
+    /**
+    * @dev Returns true if the address is approved by the operator for all tokens not owned by the owner of the token.
+    * 
+    * @param _address to be checked.
+    *
+    * @return bool.
+    */
+    function isApprovedForAll(address _address) public view returns(bool) {
+        /// @dev Returns true if the owner of the token has approved him to send all.
+        bool isApprovedByOperator = (_operatorApprovals[owner][_address]);
+        /// @dev Evaluate and return.
+        return isApprovedByOperator;
+    }
+
+    /**
+    * @dev Returns True if the token in question is owned by the owner of the contract.
+    *
+    * @param tokenId to search for.
+    *
+    * @return bool.
+    */
+    function isOwnedByOwner(uint256 tokenId) public view returns(bool) {
+        /// @dev Evaluate that the owner of the tokenId is the owner of the contract.
+        return (ownerOf(tokenId) == owner);
     }
 
     /**
