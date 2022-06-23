@@ -103,8 +103,10 @@ contract DaccredBase {
         tokenName = _name;
         /// @dev Assign symbol.
         tokenSymbol = _symbol;
-        /// @dev Assign owner of this token for security purposes when integrated with the Factory.
-        /// @dev This will allow some functions to be only called by the deployer from the Factory.
+        /// @dev    Assign owner of this token for security purposes whenintegrated
+        ///         with the Factory.
+        ///         This will allow some functions to be only called by the deployer 
+        ///         from the Factory.
         owner = _owner;
     }
 
@@ -184,16 +186,17 @@ contract DaccredBase {
 
     /**
     * @dev  Returns the owner of a particular token.
-    *       The ownership of a particular token is not made explicit, rather, the owner owns
-    *       a chronological number of tokens, starting from the mint.
+    *       The ownership of a particular token is not made explicit, rather, 
+    *       the owner owns a chronological number of tokens, starting from the mint.
     *       What does this mean?
-    *       If Alice wants to mint 5 tokens, the contract automatically maps the tokenId of the
-    *       current starting token number to her, and increments her token mints by her quantity.
-    *       Meaning that Alice explicitly owns token #1, #2, #3, #4, #5. But in the map she is only
-    *       mapped to token #1. [Ref DaccredBase - mint].
-    *       Should we look for the owner of token #5, we simply iterate down until a valid address
-    *       that is not a DEAD address is found. That address, owns every token infront of it, until
-    *       another valid address mints, and it goes on.
+    *       If Alice wants to mint 5 tokens, the contract automatically maps the tokenId
+    *       of the current starting token number to her, and increments her token mints 
+    *       by her quantity.
+    *       Meaning that Alice explicitly owns token #1, #2, #3, #4, #5. But in the map 
+    *       she is only mapped to token #1. [Ref DaccredBase - mint].
+    *       Should we look for the owner of token #5, we simply iterate down until a 
+    *       valid address that is not a DEAD address is found. That address, owns every 
+    *       token infront of it, until another valid address mints, and it goes on.
     *
     * @param _tokenId The token Id to return the owner.
     */
@@ -205,10 +208,11 @@ contract DaccredBase {
         /// @dev Assign the _tokenId to an index.
         uint256 tokenIndex = _tokenId;
 
-        /// @dev    Starting from that index, it will iterate back until it lands on a token mapped to
-        ///         an address that is not a Zero or DEAD address.
+        /// @dev    Starting from that index, it will iterate back until it lands on a 
+        ///         token mapped to an address that is not a Zero or DEAD address.
         for (uint i = tokenIndex; i >= 1; i--) {
-            /// @dev If the token is mapped to an address that is not DEAD and not Zero, then break.
+            /// @dev    If the token is mapped to an address that is not DEAD and not Zero,
+            ///         then break.
             if ((tokens[i] != DEAD) && (tokens[i] != address(0))) {
                 /// @dev Assign that address to the address to be found.
                 addressToFind = tokens[i];
@@ -226,10 +230,10 @@ contract DaccredBase {
     }
 
     /**
-    * @dev  When the owner creates his own contract, he might decide to choose to mint some tokens
+    * @dev  When the owner creates his own contract, he might decide to choose
     *       to himself, this function does that.
-    *       Verifying that the first address is the owner of the contract it mints `quantity`
-    *       number of tokens to the owner of the contract.
+    *       Verifying that the first address is the owner of the contract it 
+    *       mints `quantity` number of tokens to the owner of the contract.
     *       
     * @notice _address must be the owner.
     *
@@ -250,10 +254,11 @@ contract DaccredBase {
     }
 
     /**
-    * @dev  When the owner creates his own contract, he might decide to choose to mint some tokens
-    *       to a particular address, this function does that.
-    *       Verifying that the first address is the owner of the contract it mints `quantity`
-    *       number of tokens to the address specified as the second argument of the contract function.
+    * @dev  When the owner creates his own contract, he might decide to choose to 
+    *       mint some tokens to a particular address, this function does that.
+    *       Verifying that the first address is the owner of the contract it mints 
+    *       `quantity` number of tokens to the address specified as the second 
+    *       argument of the contract function.
     *       
     * @notice _address must be the owner.
     *
@@ -275,18 +280,20 @@ contract DaccredBase {
         require(_to != address(0), "Mint to 0 Address");
         /// @dev Ensure the quantity is GT 0.
         require(quantity != 0, "Minting 0 tokens");
-        /// @dev From Solidity versions GT 0.8, the compiler automatically checks for overflows.
-        /// @dev Mint `quantity` amount of tokens to caller.
-        /// @dev Should the owner pass his address as `_to`, it should mint to that address.
+        /// @dev    From Solidity versions GT 0.8, the compiler automatically checks
+        ///         for overflows.
+        ///         Mint `quantity` amount of tokens to caller. Should the owner pass
+        ///         his address as `_to`, it should mint to that address.
         _mint(_to, quantity);
     }
 
     /**
-    * @dev  Returns true if the `_address` is approved by the owner of the contract to transfer
-    *       Token `tokenId`.
+    * @dev  Returns true if the `_address` is approved by the owner of the 
+    *       contract to transfer Token `tokenId`.
     * 
     * @param tokenId    Token to check its approval.
-    * @param _address   Address to check if it is approved to spend or transfer token `tokenId`.
+    * @param _address   Address to check if it is approved to spend or transfer 
+    *                   token `tokenId`.
     *
     * @return bool.
     */
@@ -300,10 +307,11 @@ contract DaccredBase {
     }
 
     /**
-    * @dev  Returns true if the `_address` is approved by the owner of the contract to transfer
-    *       all tokens owned by owner.
+    * @dev  Returns true if the `_address` is approved by the owner of the 
+    *       contract to transfer all tokens owned by owner.
     * 
-    * @param _address Address to check if it is approved to spend or transfer all tokens.
+    * @param _address   Address to check if it is approved to spend or transfer
+    *                   all tokens.
     *
     * @return bool.
     */
@@ -336,7 +344,8 @@ contract DaccredBase {
     function exists(uint256 tokenId) private view returns(bool) {
         /// @dev Require that the tokenId passed is less than the number of tokens minted.
         bool isValidTokenNumber = (tokenId > 0) && (tokenId <= tokensMinted);
-        /// @dev Require that the address owning the tokenId is not a DEAD address, meaning that the token was burnt and doesn't exist.
+        /// @dev    Require that the address owning the tokenId is not a DEAD address,
+        ///         meaning that the token was burnt and doesn't exist
         bool isAlive = tokens[tokenId] != DEAD;
         /// @dev All checks passed.
         return isValidTokenNumber && isAlive;
@@ -344,8 +353,8 @@ contract DaccredBase {
 
     /**
     * @dev  Mints `_quantity` amount of tokens to `_to`.
-    *       Prior to this function call, `_to` must have been checked to be a valid address.
-    *       Also, quantity have been checked to be GT 0.
+    *       Prior to this function call, `_to` must have been checked to be
+    *       a valid address. Also, quantity have been checked to be GT 0.
     * 
     * @param _to        Address to mint to.
     * @param _quantity  Quantity to be minted.
