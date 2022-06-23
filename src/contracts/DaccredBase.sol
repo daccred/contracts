@@ -74,6 +74,16 @@ contract DaccredBase {
     /// @dev Emitted when `owner` enables or disables (`approved`) `operator` to manage all of its assets.
     event ApprovalForAll(address indexed owner, address indexed operator, bool approved);
 
+    /// @dev    Validates that the address allowed to access the function is the
+    ///         of the contract. Functions marked with this modifier can only
+    ///         be called by the owner of the contract.
+    modifier onlyOwner(address _address) {
+        /// @dev Ensure address is the owner.
+        require(_address == owner, "!Owner");
+        /// @dev Continue.
+        _;
+    }
+
     /**
     * @dev  When deployed from the Factory, the three params passed are
     *       the token name, the symbol and the address of the owner of
@@ -241,11 +251,9 @@ contract DaccredBase {
     *                   This will be passed from the Factory e.g `mint(msg.sender, 6);`.
     * @param quantity   Number of tokens to be minted.
     */
-    function mint(address _address, uint256 quantity) public {
+    function mint(address _address, uint256 quantity) public onlyOwner(_address) {
         /// @dev Ensure caller is not 0 address.
         require(msg.sender != address(0), "Mint by 0 Address");
-        /// @dev Ensure address is the owner.
-        require(_address == owner, "!Owner");
         /// @dev Ensure the quantity is GT 0.
         require(quantity != 0, "Minting 0 tokens");
         /// @dev From Solidity versions GT 0.8, the compiler automatically checks for overflows.
@@ -270,12 +278,10 @@ contract DaccredBase {
         address _address, 
         address _to, 
         uint256 quantity
-    ) public 
+    ) public onlyOwner(_address)
     {
         /// @dev Ensure caller is not 0 address.
         require(msg.sender != address(0), "Sent from 0 Address");
-        /// @dev Ensure address is the owner.
-        require(_address == owner, "!Owner");
         /// @dev Ensure receiver is not 0 address.
         require(_to != address(0), "Mint to 0 Address");
         /// @dev Ensure the quantity is GT 0.
