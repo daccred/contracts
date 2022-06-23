@@ -9,35 +9,39 @@
 
 pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/utils/introspection/ERC165.sol";
+/// @dev Import the IERC721 Interface as well.
 import "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol";
+import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
+import "@openzeppelin/contracts/utils/introspection/ERC165.sol";
 
 /**
 * @title Daccred Base.
 * @author Anthony (fps) https://github.com/fps8k.
-* @dev Inspired by https://github.com/chiru-labs/ERC721A/blob/main/contracts/ERC721A.sol.
-* This contract allows the caller the ability to mint multiple Tokens at the gas cost of one token.
-* Large number of tokens minted using the OpenZeppelin contracts are minted one at a time, compounding gas.
-* Minters also have to go through the hassle of verifying if a tokenId is already minted or in some cases don't.
-* But in this case, the token Ids are already generated.
-* Starting from 0, they are automatically minted to the caller based on quantity desired.
-* Also, mappings are not updated but are validated through a method referenced in the {ownerOf} function.
-* Burning tokens sends them to a DEAD address.
+* @dev  Inspired by https://github.com/chiru-labs/ERC721A/blob/main/contracts/ERC721A.sol.
+*       This contract allows the caller the ability to mint multiple Tokens at the gas cost of one token.
+*       Large number of tokens minted using the OpenZeppelin contracts are minted one at a time, compounding gas.
+*       Minters also have to go through the hassle of verifying if a tokenId is already minted or in some cases don't.
+*       But in this case, the token Ids are already generated.
+*       Starting from 0, they are automatically minted to the caller based on quantity desired.
+*       Also, mappings are not updated but are validated through a method referenced in the {ownerOf} function.
+*       Burning tokens sends them to a DEAD address.
 *
-* [NOTICE]
-* Every important function that moves tokens to and from addresses require the first parameter to be the owner of this contract.
-* This is to be passed from the Factory.
+*       [NOTICE]
+*       Every important function that moves tokens to and from addresses require the first parameter to be the owner of this contract.
+*       This is to be passed from the Factory.
 *
-* EXTENSIVE COMMENTS ARE STILL COMING.
+*       EXTENSIVE COMMENTS ARE STILL COMING.
 * 
-* FUNCTIONS LEFT:
-* baseBurn
-* baseBurnFrom
-* baseTransfer
-* baseTransferFrom
-* baseApprove
-* baseApproveFrom
+*       FUNCTIONS LEFT:
+*       baseBurn
+*       baseBurnFrom
+*       baseTransfer
+*       baseTransferFrom
+*       baseApprove
+*       baseApproveFrom
+*
+*       THIS CONTRACT IS UNFINISHED.
 */
 
 
@@ -124,8 +128,8 @@ contract DaccredBase {
     }
 
     /**
-    * @dev See {IERC165-supportsInterface}.
-    * Copied from https://github.com/chiru-labs/ERC721A/blob/main/contracts/ERC721A.sol.
+    * @dev  See {IERC165-supportsInterface}.
+    *       Copied from https://github.com/chiru-labs/ERC721A/blob/main/contracts/ERC721A.sol.
     */
     function supportsInterface(bytes4 interfaceId) public pure returns (bool) {
         // The interface IDs are constants representing the first 4 bytes of the XOR of
@@ -138,8 +142,8 @@ contract DaccredBase {
     }
 
     /**
-    * @dev Returns the owner of a particular token.
-    * There are a bit of functions that shall be made clear here.
+    * @dev  Returns the owner of a particular token.
+    *       There are a bit of functions that shall be made clear here.
     *
     * @param _tokenId :: The token Id to return the owner.
     */
@@ -169,8 +173,8 @@ contract DaccredBase {
     }
 
     /**
-    * @dev Mints tokens to caller.
-    * _address must be the owner.
+    * @dev  Mints tokens to caller.
+    *       _address must be the owner.
     *
     * @param quantity :: Number of tokens to be minted.
     */
@@ -185,12 +189,12 @@ contract DaccredBase {
     }
 
     /**
-    * @dev Mints tokens to `_address`.
-    * _address must be the owner.
+    * @dev  Mints tokens to `_address`.
+    *       _address must be the owner.
     *
-    * @param _address :: Owner.
-    * @param _to :: Expected owner of tokenId.
-    * @param quantity :: Number of tokens to be minted.
+    * @param _address   Owner.
+    * @param _to        Expected owner of tokenId.
+    * @param quantity   Number of tokens to be minted.
     */
     function baseMintTo(
         address _address, 
@@ -212,8 +216,8 @@ contract DaccredBase {
     /**
     * @dev Returns true if the address is approved by the owner of the token.
     * 
-    * @param tokenId to be checked.
-    * @param _address to be checked.
+    * @param tokenId    to be checked.
+    * @param _address   to be checked.
     *
     * @return bool.
     */
@@ -227,9 +231,9 @@ contract DaccredBase {
     }
 
     /**
-    * @dev Returns true if the address is approved by the operator for all tokens not owned by the owner of the token.
+    * @dev  Returns true if the address is approved by the operator for all tokens not owned by the owner of the token.
     * 
-    * @param _address to be checked.
+    * @param _address   to be checked.
     *
     * @return bool.
     */
@@ -241,9 +245,9 @@ contract DaccredBase {
     }
 
     /**
-    * @dev Returns True if the token in question is owned by the owner of the contract.
+    * @dev  Returns True if the token in question is owned by the owner of the contract.
     *
-    * @param tokenId to search for.
+    * @param tokenId    to search for.
     *
     * @return bool.
     */
@@ -255,9 +259,9 @@ contract DaccredBase {
     /**
     * @dev Returns true if the `tokenId` passed exists.
     *
-    * @param tokenId :: Token to valdate.
+    * @param tokenId    Token to valdate.
     *
-    * @return uint256 :: true or false.
+    * @return uint256   true or false.
     */
     function exists(uint256 tokenId) private view returns(bool) {
         /// @dev Require that the tokenId passed is less than the number of tokens minted.
@@ -269,10 +273,10 @@ contract DaccredBase {
     }
 
     /**
-    * @dev Mints tokens to caller.
+    * @dev  Mints tokens to caller.
     * 
-    * @param _to :: Address to mint to.
-    * @param _quantity to be minted.
+    * @param _to        Address to mint to.
+    * @param _quantity  to be minted.
     */
     function _baseMint(address _to, uint256 _quantity) private {
         /// @dev Get the current next number to be minted.
@@ -287,3 +291,4 @@ contract DaccredBase {
         emit BaseMint(address(0), _to);
     }
 }
+
