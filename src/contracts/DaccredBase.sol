@@ -16,7 +16,7 @@ import "@openzeppelin/contracts/utils/introspection/ERC165.sol";
 
 /**
 * @title Daccred Base.
-* @author Anthony (fps) https://github.com/fps8k.
+* @author Daccred.
 * @dev  Inspired by https://github.com/chiru-labs/ERC721A/blob/main/contracts/ERC721A.sol.
 *       This contract allows the caller the ability to mint multiple Tokens
 *       at the gas cost of one token.
@@ -153,7 +153,8 @@ contract DaccredBase {
     * @return uint256 Token total supply.
     */
     function totalSupply() public view returns(uint256) {
-        /// @dev Returns the value of the number of tokens minted - the number of tokens burned.
+        /// @dev    Returns the value of 
+        ///         the number of tokens minted - the number of tokens burned.
         return (tokensMinted - tokensBurned);
     }
 
