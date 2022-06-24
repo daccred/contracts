@@ -83,12 +83,6 @@ contract DaccredBase {
         address indexed approved, 
         uint256 indexed tokenId
     );
-    /// @dev Emitted when `owner` enables or disables (`approved`) `operator` to manage all of its assets.
-    event ApprovalForAll(
-        address indexed owner, 
-        address indexed operator, 
-        bool approved
-    );
 
     /// @dev    Validates that the address allowed to access the function is the
     ///         of the contract. Functions marked with this modifier can only
@@ -251,7 +245,7 @@ contract DaccredBase {
 
         /// @dev    Starting from that index, it will iterate back until it lands on a 
         ///         token mapped to an address that is not a Zero or DEAD address.
-        for (uint i = tokenIndex; i >= 1; i--) {
+        for (uint256 i = tokenIndex; i >= 1; i--) {
             /// @dev    If the token is mapped to an address that is not DEAD and not Zero,
             ///         then break.
             if ((tokens[i] != DEAD) && (tokens[i] != address(0))) {
@@ -398,6 +392,55 @@ contract DaccredBase {
     }
 
     /**
+    * @dev  Transfers token `tokenId` from `from` to `to`.
+    *       The token `tokenId` must be owned by the `from`.
+    *       The receiving address must also be a valid address.
+    *       From the factory, the `from` address passed will be the msg.sender.
+    *       Emits the {Transfer} event.
+    *
+    * @param from The owner of the token.
+    * @param to   Receiver.
+    * @param tokenId    Token owned.
+    */
+    function transfer(address from, address to, uint256 tokenId) public {
+        /// @dev Require the token exists.
+        require(exists(tokenId), "Transfer of inexistent token.");
+        /// @dev Require the receiver is not a zero address.
+        require(to != address(0), "Transfer to zero address");
+        /// @dev Ensure that the owner of the token is the from.
+        require(isAllowed(from, tokenId), "Transfer of unowned token");
+        /// @dev Transfer.
+        _transfer(from, to, tokenId);
+    }
+
+    /**
+    * @dev  Approves `spender` by giving the address the right to spend
+    *       token `tokenId`. The `tokenOwner` will be passed from the 
+    *       Factory and must be the owner of `tokenId`.
+    * 
+    * @notice   This might be changed.
+    *           An approved address cannot approve another address, and
+    *           Approving another address on a token, replaces the old
+    *           spender.
+    *
+    * @param tokenOwner     Owner of the token.
+    * @param spender        Spender to be approved.
+    * @param tokenId        Token Id to be approved.
+    */
+    function approve(address tokenOwner, address spender, uint256 tokenId) public {
+        /// @dev Require the token exists.
+        require(exists(tokenId), "Approval of inexistent token.");
+        /// @dev    Because approved addresses cannot approve, the use of the 
+        ///         isAllowed function will be odd. The ownerOf function
+        ///         will be used instead.
+        require(ownerOf(tokenId) == tokenOwner, "Approval from non-owner.");
+        /// @dev Require the receiver is not a zero address.
+        require(spender != address(0), "Approval to zero address");
+        /// @dev Approve.
+        _approve(tokenOwner, spender, tokenId);
+    }
+
+    /**
     * @dev Returns true if the `tokenId` passed exists.
     *
     * @param tokenId Token to valdate.
@@ -448,7 +491,7 @@ contract DaccredBase {
         /// @dev    The token has been found to exist, according to the calling
         ///         function. Validates that the owner of the token is the `_address`.
         ///         Return true if true.
-        bool ownsToken = (tokens[tokenId] == _address);
+        bool ownsToken = (ownerOf(tokenId) == _address);
         /// @dev    Validates that the owner is approved to send token `tokenId`.
         ///         Return true if true.
         /// @notice Only one address can be approved at a time to a token.
@@ -474,6 +517,57 @@ contract DaccredBase {
         tokensBurned += 1;
         /// @dev Emit the {BaseBurn} event.
         emit BaseBurn(_address, DEAD);
+    }
+
+    /**
+    * @dev  Transfers token `tokenId` from `from` to `to`.
+    *       The token `tokenId` must be owned by the `from`.
+    *       The receiving address must also be a valid address.
+    *       From the factory, the `from` address passed will be the msg.sender.
+    *       Emits the {Transfer} event.
+    *       Subsequently, it decreases and increases the total tokens owned by
+    *       `from` and `to` respectively.
+    *
+    * @param from The owner of the token.
+    * @param to   Receiver.
+    * @param tokenId    Token owned.
+    */
+    function _transfer(address from, address to, uint256 tokenId) private {
+        /// @dev    Prior checks have been made by the transfer function.
+        ///         Transfer token.
+        tokens[tokenId] = to;
+        /// @dev Decrement the count of tokens owned by `from`.
+        tokenBalances[from] -= 1;
+        /// @dev Increment the count of tokens owned by `to`.
+        tokenBalances[to] += 1;
+        /// @dev Emit the {Transfer} event.
+        emit Transfer(
+            from, 
+            to, 
+            tokenId
+        );
+    }
+
+    /**
+    * @dev  Approves `spender` by giving the address the right to spend
+    *       token `tokenId`. The `tokenOwner` will be passed from the 
+    *       Factory and must be the owner of `tokenId`.
+    *
+    * @param tokenOwner     Owner of the token.
+    * @param spender        Spender to be approved.
+    * @param tokenId        Token Id to be approved.
+    */
+    function _approve(address tokenOwner, address spender, uint256 tokenId) public {
+        /// @dev    Sets a new spender for token tokenId.
+        ///         In situations where the token already has a spender,
+        ///         it replaces that spender.
+        tokenApprovals[tokenId] = spender;
+        /// @dev Emit the {Approval} event.
+        emit Approval(
+            tokenOwner, 
+            spender, 
+            tokenId
+        );
     }
 }
 
