@@ -55,7 +55,7 @@ contract DaccredBase {
     uint256 private tokensBurned;
     /// @dev Mapping of minted tokens.
     mapping(uint256 => address) private tokens;
-    /// @dev Individual mappings of token minters and tokensOwned.
+    /// @dev Individual mappings of token minters to number of tokensOwned.
     mapping(address => uint256) private tokenBalances;
     /// @dev Mapping of tokens to approvals.
     mapping(uint256 => address) private tokenApprovals;
@@ -69,10 +69,26 @@ contract DaccredBase {
 
     /// @dev Emitted when user mints a token.
     event BaseMint(address indexed from, address indexed to);
+    /// @dev Emitted when user burns a token.
+    event BaseBurn(address indexed from, address indexed to);
+    /// @dev Emitted when a token is transferred from an address to another address.
+    event Transfer(
+        address indexed from, 
+        address indexed to, 
+        uint256 tokenId
+    );
     /// @dev Emitted when `owner` enables `approved` to manage the `tokenId` token.
-    event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);
+    event Approval(
+        address indexed owner, 
+        address indexed approved, 
+        uint256 indexed tokenId
+    );
     /// @dev Emitted when `owner` enables or disables (`approved`) `operator` to manage all of its assets.
-    event ApprovalForAll(address indexed owner, address indexed operator, bool approved);
+    event ApprovalForAll(
+        address indexed owner, 
+        address indexed operator, 
+        bool approved
+    );
 
     /// @dev    Validates that the address allowed to access the function is the
     ///         of the contract. Functions marked with this modifier can only
@@ -181,6 +197,21 @@ contract DaccredBase {
     }
 
     /**
+    * @dev Returns the total tokens owned by `_address`.
+    *      Address must not be a 0 address.
+    *
+    * @param _address Token owner.
+    *
+    * @return uint256.
+    */
+    function balanceOf(address _address) public view returns(uint256) {
+        /// @dev Require the address is valid.
+        require(_address != address(0), "Zero address");
+        /// @dev Returns the absolute token total.
+        return tokenBalances[_address];
+    }
+
+    /**
     * @dev  [Ref IERC165 - supportsInterface].
     *       Copied from https://github.com/chiru-labs/ERC721A/blob/main/contracts/ERC721A.sol.
     */
@@ -256,8 +287,9 @@ contract DaccredBase {
         require(msg.sender != address(0), "Mint by 0 Address");
         /// @dev Ensure the quantity is GT 0.
         require(quantity != 0, "Minting 0 tokens");
-        /// @dev From Solidity versions GT 0.8, the compiler automatically checks for overflows.
-        /// @dev Mint `quantity` amount of tokens to caller.
+        /// @dev    From Solidity versions GT 0.8, the compiler automatically checks for overflows.
+        ///         Mint `quantity` amount of tokens to caller.
+        ///         In this case, owner == _address. 
         _mint(owner, quantity);
     }
 
@@ -323,9 +355,9 @@ contract DaccredBase {
     */
     function approvedForAll(address _address) public view returns(bool) {
         /// @dev Returns true if the owner of the token has approved him to send all.
-        bool isApprovedByOperator = (_operatorApprovals[owner][_address]);
+        bool isApprovedByOperatorForAll = (_operatorApprovals[owner][_address]);
         /// @dev Evaluate and return.
-        return isApprovedByOperator;
+        return isApprovedByOperatorForAll;
     }
 
     /**
@@ -338,6 +370,31 @@ contract DaccredBase {
     function isOwnedByOwner(uint256 tokenId) public view returns(bool) {
         /// @dev Evaluate that the owner of the tokenId is the owner of the contract.
         return (ownerOf(tokenId) == owner);
+    }
+
+    /**
+    * @dev  Deletes token `tokenId` by sending it to a DEAD address, the dead address
+    *       has been specified above. When a token is burnt, it doesn't exist anymore
+    *       and the count of `tokensBurned` is incremented.
+    *       To save gas, tokens can only be burnt one at a time.
+    *       WILL THIS BE CHANGED?
+    *       This function can only be called by the owner of the token or someone
+    *       approved to handle the token by the token owner.
+    *       Addresses that have access to all tokens via operatorApprovals cannot
+    *       call this function due to security checks.
+    *       IS THAT OPERATOR APPROVALS TO HANDLE ALL TOKENS EVEN NECESSARY?
+    *
+    * @param _address   Presumed owner of the token, passed from the Factory.
+    * @param tokenId    Token to be burnt.
+    */
+    function burn(address _address, uint256 tokenId) public {
+        /// @dev Ensure that the _address owns the token or is approved to use it.
+        require(exists(tokenId), "Query for non-existent token.");
+        /// @dev Ensure that the user is allowed or can spend the token.
+        require(isAllowed(_address, tokenId), "Call to unowned or unapproved token.");
+        /// @dev    If the address can spend that token, either by owning it or
+        ///         Being approved to spend it, then proceed.
+        _burn(_address, tokenId);
     }
 
     /**
@@ -376,6 +433,47 @@ contract DaccredBase {
         tokenBalances[msg.sender] += _quantity;
         /// @dev Emit the {Mint} event.
         emit BaseMint(address(0), _to);
+    }
+
+    /**
+    * @dev  Checks if `_address` owns the token `tokenId` or is allowed to 
+    *       spend the token.
+    *
+    * @param _address   Address to check.
+    * @param tokenId    Token to check.
+    *
+    * @return bool.
+    */
+    function isAllowed(address _address, uint256 tokenId) private view returns(bool) {
+        /// @dev    The token has been found to exist, according to the calling
+        ///         function. Validates that the owner of the token is the `_address`.
+        ///         Return true if true.
+        bool ownsToken = (tokens[tokenId] == _address);
+        /// @dev    Validates that the owner is approved to send token `tokenId`.
+        ///         Return true if true.
+        /// @notice Only one address can be approved at a time to a token.
+        bool canSpendToken = (tokenApprovals[tokenId] == _address);
+        /// @dev Evaluate and return logic.
+        return (ownsToken || canSpendToken);
+    }
+
+    /**
+    * @dev  Burns token `tokenId`.
+    *       Decrements the total token balance of the burner.
+    *       Increment the `totalBurned`.
+    * 
+    * @param _address   Address verfied to be in ownership or approved for the token.
+    * @param tokenId    Token to be burnt.
+    */
+    function _burn(address _address, uint256 tokenId) private {
+        /// @dev Send the tokeId to the DEAD address.
+        tokens[tokenId] = DEAD;
+        /// @dev Decrement the balance of the `_address` by 1.
+        tokenBalances[_address] -= 1;
+        /// @dev Increment the total tokens burnt by 1.
+        tokensBurned += 1;
+        /// @dev Emit the {BaseBurn} event.
+        emit BaseBurn(_address, DEAD);
     }
 }
 
