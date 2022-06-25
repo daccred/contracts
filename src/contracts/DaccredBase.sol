@@ -557,7 +557,7 @@ contract DaccredBase {
     * @param spender        Spender to be approved.
     * @param tokenId        Token Id to be approved.
     */
-    function _approve(address tokenOwner, address spender, uint256 tokenId) public {
+    function _approve(address tokenOwner, address spender, uint256 tokenId) private {
         /// @dev    Sets a new spender for token tokenId.
         ///         In situations where the token already has a spender,
         ///         it replaces that spender.
