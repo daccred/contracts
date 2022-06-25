@@ -89,7 +89,7 @@ contract DaccredBase {
     ///         be called by the owner of the contract.
     modifier onlyOwner(address _address) {
         /// @dev Ensure address is the owner.
-        require(_address == owner, "!Owner");
+        require(_address == owner, "!Owner.");
         /// @dev Continue.
         _;
     }
@@ -200,7 +200,7 @@ contract DaccredBase {
     */
     function balanceOf(address _address) public view returns(uint256) {
         /// @dev Require the address is valid.
-        require(_address != address(0), "Zero address");
+        require(_address != address(0), "Zero address.");
         /// @dev Returns the absolute token total.
         return tokenBalances[_address];
     }
@@ -237,7 +237,7 @@ contract DaccredBase {
     */
     function ownerOf(uint256 _tokenId) public view returns(address ownerOfToken) {
         /// @dev Require that the tokenId exists.
-        require(exists(_tokenId), "Query for non-existent token");
+        require(exists(_tokenId), "Query for non-existent token.");
         /// @dev This address holds the address we shall return.
         address addressToFind;
         /// @dev Assign the _tokenId to an index.
@@ -278,9 +278,9 @@ contract DaccredBase {
     */
     function mint(address _address, uint256 quantity) public onlyOwner(_address) {
         /// @dev Ensure caller is not 0 address.
-        require(msg.sender != address(0), "Mint by 0 Address");
+        require(msg.sender != address(0), "Mint by 0 Address.");
         /// @dev Ensure the quantity is GT 0.
-        require(quantity != 0, "Minting 0 tokens");
+        require(quantity != 0, "Minting 0 tokens.");
         /// @dev    From Solidity versions GT 0.8, the compiler automatically checks for overflows.
         ///         Mint `quantity` amount of tokens to caller.
         ///         In this case, owner == _address. 
@@ -307,11 +307,11 @@ contract DaccredBase {
     ) public onlyOwner(_address)
     {
         /// @dev Ensure caller is not 0 address.
-        require(msg.sender != address(0), "Sent from 0 Address");
+        require(msg.sender != address(0), "Sent from 0 Address.");
         /// @dev Ensure receiver is not 0 address.
-        require(_to != address(0), "Mint to 0 Address");
+        require(_to != address(0), "Mint to 0 Address.");
         /// @dev Ensure the quantity is GT 0.
-        require(quantity != 0, "Minting 0 tokens");
+        require(quantity != 0, "Minting 0 tokens.");
         /// @dev    From Solidity versions GT 0.8, the compiler automatically checks
         ///         for overflows.
         ///         Mint `quantity` amount of tokens to caller. Should the owner pass
@@ -413,11 +413,13 @@ contract DaccredBase {
         /// @dev Require the token exists.
         require(exists(tokenId), "Transfer of inexistent token.");
         /// @dev Require the receiver is not a zero address.
-        require(to != address(0), "Transfer to zero address");
+        require(to != address(0), "Transfer to zero address.");
         /// @dev Ensure that the owner of the token is the from.
-        require(isAllowed(from, tokenId), "Transfer of unowned token");
+        require(isAllowed(from, tokenId), "Transfer of unowned token.");
         /// @dev Get the actual owner of the token.
         address tokenOwner = ownerOf(tokenId);
+        /// @dev Require that the token owner is not the receiver.
+        require(tokenOwner != to, "Transfer to token owner.");
         /// @dev Transfer.
         _transfer(tokenOwner, to, tokenId);
     }
@@ -449,7 +451,7 @@ contract DaccredBase {
         ///         will be used instead.
         require(ownerOf(tokenId) == tokenOwner, "Approval from non-owner.");
         /// @dev Require the receiver is not a zero address.
-        require(spender != address(0), "Approval to zero address");
+        require(spender != address(0), "Approval to zero address.");
         /// @dev Approve.
         _approve(tokenOwner, spender, tokenId);
     }
