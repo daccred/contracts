@@ -386,9 +386,11 @@ contract DaccredBase {
         require(exists(tokenId), "Query for non-existent token.");
         /// @dev Ensure that the user is allowed or can spend the token.
         require(isAllowed(_address, tokenId), "Call to unowned or unapproved token.");
+        /// @dev Get the owner of the token.
+        address tokenOwner = ownerOf(tokenId);
         /// @dev    If the address can spend that token, either by owning it or
         ///         Being approved to spend it, then proceed.
-        _burn(_address, tokenId);
+        _burn(tokenOwner, tokenId);
     }
 
     /**
@@ -402,15 +404,22 @@ contract DaccredBase {
     * @param to   Receiver.
     * @param tokenId    Token owned.
     */
-    function transfer(address from, address to, uint256 tokenId) public {
+    function transfer(
+        address from, 
+        address to, 
+        uint256 tokenId
+    ) public 
+    {
         /// @dev Require the token exists.
         require(exists(tokenId), "Transfer of inexistent token.");
         /// @dev Require the receiver is not a zero address.
         require(to != address(0), "Transfer to zero address");
         /// @dev Ensure that the owner of the token is the from.
         require(isAllowed(from, tokenId), "Transfer of unowned token");
+        /// @dev Get the actual owner of the token.
+        address tokenOwner = ownerOf(tokenId);
         /// @dev Transfer.
-        _transfer(from, to, tokenId);
+        _transfer(tokenOwner, to, tokenId);
     }
 
     /**
@@ -427,7 +436,12 @@ contract DaccredBase {
     * @param spender        Spender to be approved.
     * @param tokenId        Token Id to be approved.
     */
-    function approve(address tokenOwner, address spender, uint256 tokenId) public {
+    function approve(
+        address tokenOwner, 
+        address spender, 
+        uint256 tokenId
+    ) public 
+    {
         /// @dev Require the token exists.
         require(exists(tokenId), "Approval of inexistent token.");
         /// @dev    Because approved addresses cannot approve, the use of the 
@@ -473,7 +487,7 @@ contract DaccredBase {
         /// @dev Increment the tokensMinted and add the `_quantity` minted.
         tokensMinted += _quantity;
         /// @dev Increment the callers totalBalance of tokens.
-        tokenBalances[msg.sender] += _quantity;
+        tokenBalances[_to] += _quantity;
         /// @dev Emit the {Mint} event.
         emit BaseMint(address(0), _to);
     }
@@ -515,6 +529,8 @@ contract DaccredBase {
         tokenBalances[_address] -= 1;
         /// @dev Increment the total tokens burnt by 1.
         tokensBurned += 1;
+        /// @dev Remove the approved token owner.
+        tokenApprovals[tokenId] = address(0);
         /// @dev Emit the {BaseBurn} event.
         emit BaseBurn(_address, DEAD);
     }
@@ -528,11 +544,16 @@ contract DaccredBase {
     *       Subsequently, it decreases and increases the total tokens owned by
     *       `from` and `to` respectively.
     *
-    * @param from The owner of the token.
-    * @param to   Receiver.
+    * @param from       The owner of the token.
+    * @param to         Receiver.
     * @param tokenId    Token owned.
     */
-    function _transfer(address from, address to, uint256 tokenId) private {
+    function _transfer(
+        address from, 
+        address to, 
+        uint256 tokenId
+    ) private 
+    {
         /// @dev    Prior checks have been made by the transfer function.
         ///         Transfer token.
         tokens[tokenId] = to;
@@ -540,6 +561,8 @@ contract DaccredBase {
         tokenBalances[from] -= 1;
         /// @dev Increment the count of tokens owned by `to`.
         tokenBalances[to] += 1;
+        /// @dev Remove the approved token owner.
+        tokenApprovals[tokenId] = address(0);
         /// @dev Emit the {Transfer} event.
         emit Transfer(
             from, 
@@ -557,7 +580,12 @@ contract DaccredBase {
     * @param spender        Spender to be approved.
     * @param tokenId        Token Id to be approved.
     */
-    function _approve(address tokenOwner, address spender, uint256 tokenId) private {
+    function _approve(
+        address tokenOwner, 
+        address spender, 
+        uint256 tokenId
+    ) private 
+    {
         /// @dev    Sets a new spender for token tokenId.
         ///         In situations where the token already has a spender,
         ///         it replaces that spender.
