@@ -64,9 +64,6 @@ contract DaccredBase {
     /// @dev DEAD address for burning tokens.
     address private constant DEAD = 0x000000000000000000000000000000000000dEaD;
 
-    // Test
-    // Token, TKN, 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4
-
     /// @dev Emitted when user mints a token.
     event BaseMint(address indexed from, address indexed to);
     /// @dev Emitted when user burns a token.
