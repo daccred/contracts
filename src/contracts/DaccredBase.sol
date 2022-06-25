@@ -559,6 +559,28 @@ contract DaccredBase {
         /// @dev    Prior checks have been made by the transfer function.
         ///         Transfer token.
         tokens[tokenId] = to;
+
+        /**
+        * @dev  Prior to this transfer, the address `from` owns all tokens mapped
+        *       to a 0 address infront of it, based on the quantity minted to it.
+        *       This if block, after transferring, checks if the next token on the
+        *       map is set to a 0 address, meaning, it was owned by the `from` prior
+        *       to the transfer.
+        *       If the address owning the next token is a 0 address, then it maps that
+        *       token to the `from`, maintaing the ownership of those tokens.
+        *       Without this code block, when an address transfers a token to another,
+        *       The new address owns every token infront of that tokenId.
+        */
+        /// @dev If the next tokenId is still within bounds.
+        if ((tokenId + 1) <= tokensMinted) {
+            /// @dev If the next token is owned by a 0 address.
+            if (tokens[tokenId + 1] == address(0)) {
+                /// @dev    This implies that pbefore the transfer, the token was owned
+                ///         by `from`. It maps that token to the `from`.
+                tokens[tokenId + 1] = from;
+            }
+        }
+        
         /// @dev Decrement the count of tokens owned by `from`.
         tokenBalances[from] -= 1;
         /// @dev Increment the count of tokens owned by `to`.
