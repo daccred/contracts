@@ -525,9 +525,9 @@ contract DaccredBase {
     * @param tokenId    Token to be burnt.
     */
     function _burn(address _address, uint256 tokenId) private {
-        /// @dev Send the tokeId to the DEAD address.
+        /// @dev Send the tokenId to the DEAD address.
         tokens[tokenId] = DEAD;
-        /// @dev Decrement the balance of the `_address` by 1.
+        /// @dev Decrement the balance of the `_address` [Owner] by 1.
         tokenBalances[_address] -= 1;
         /// @dev Increment the total tokens burnt by 1.
         tokensBurned += 1;
