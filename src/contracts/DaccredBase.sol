@@ -36,8 +36,6 @@ import "@openzeppelin/contracts/utils/introspection/ERC165.sol";
 * @notice   Every important function that moves tokens to and from addresses 
 *           require the first parameter to be the owner of this contract.
 *           This is to be passed from the Factory.
-*
-* THIS CONTRACT IS UNFINISHED.
 */
 
 
