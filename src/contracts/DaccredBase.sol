@@ -53,11 +53,11 @@ contract DaccredBase {
     uint256 private tokensMinted;
     /// @dev Stores the number of tokens burned.
     uint256 private tokensBurned;
-    /// @dev Mapping of minted tokens.
+    /// @dev Mapping of tokenIds to token owners.
     mapping(uint256 => address) private tokens;
-    /// @dev Individual mappings of token minters to number of tokensOwned.
+    /// @dev Individual mappings of addresses to number of tokens owned.
     mapping(address => uint256) private tokenBalances;
-    /// @dev Mapping of tokens to approvals.
+    /// @dev Mapping of tokens to approved addresses to spend them.
     mapping(uint256 => address) private tokenApprovals;
     /// @dev Mapping from owner to operator approvals.
     mapping(address => mapping(address => bool)) private _operatorApprovals;
