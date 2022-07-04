@@ -24,6 +24,8 @@ interface IWithSignature {
     event MintWithSignature(address indexed _address, uint256 indexed tokenId);
     /// @dev Thrown when the minting fails, because of insufficient eth or otherwise.
     error MintWithSignatureError(address _address, uint256 tokenId, bytes32);
+    /// @dev Emitted when the token is revoked.
+    event RevokeWithSignature(address indexed _address, uint256 indexed tokenId);
 
     // ===== E V E N T S =====
 
@@ -51,5 +53,12 @@ interface IWithSignature {
     * @param tokenId, token to be minted.
     */
     function mintWithSignature(uint256 tokenId) external;
+
+    /**
+    * @dev Revokes the user's token ownership by burning.
+    *
+    * @param tokenId, token to be minted.
+    */
+    function revokeWithSignature(uint256 tokenId) external;
 }
 
