@@ -57,8 +57,6 @@ contract Allowlist is Ownable {
         return allowlistOwner;
     }
 
-    bool public J;
-
     /**
     * @dev  Evaluate and return that a particular address message
     *       was signed by the allowlistOwner.
@@ -99,7 +97,6 @@ contract Allowlist is Ownable {
         /// @dev Emit the {VerifySignature} event.
         emit VerifySignature(hash, signerIsAllowlistOwner);
         /// @dev Return the result.
-        J = signerIsAllowlistOwner;
         return signerIsAllowlistOwner;
     }
 
