@@ -76,7 +76,7 @@ contract Allowlist is Ownable {
     * @param sig    Signature of the transaction, made offchain.
     */
     function verifySignature(bytes32 hash, bytes memory sig)
-    public
+    internal
     onlyOwner
     returns(bool)
     {
