@@ -21,9 +21,9 @@ interface IWithSignature {
     // ===== E V E N T S =====
 
     /// @dev Emitted when the token is minted.
-    event MintWithSignature(address indexed _address, uint256 indexed tokenId);
+    event IssueWithSignature(address indexed _address, uint256 indexed tokenId);
     /// @dev Thrown when the minting fails, because of insufficient eth or otherwise.
-    error MintWithSignatureError(address _address, uint256 tokenId, bytes32);
+    error IssueWithSignatureError(address _address, uint256 tokenId, bytes32);
     /// @dev Emitted when the token is revoked.
     event RevokeWithSignature(address indexed _address, uint256 indexed tokenId);
 
@@ -44,15 +44,15 @@ interface IWithSignature {
     function verifySignature(bytes32 _hash, bytes memory _signature) external returns(bool);
 
     /**
-    * @dev Mints a token on behalf of the user.
-    * The user interacts with this function.
-    * The function mints the token to itself.
-    * Then transfers to the user.
-    * Emits the {Minted} and {Transfer} event.
+    * @dev  Mints `quantity` number of tokens to `to`.
+    *       On the condition that the hash of `to`, has 
+    *       been verified with Signature.
+    * Emits the {IssueWithSignature} event.
     *
-    * @param tokenId, token to be minted.
+    * @param to         Address of receiver.
+    * @param quantity   Amount to mint to `to`.
     */
-    function mintWithSignature(uint256 tokenId) external;
+    function issueWithSignature(address to, uint256 quantity) external;
 
     /**
     * @dev Revokes the user's token ownership by burning.
