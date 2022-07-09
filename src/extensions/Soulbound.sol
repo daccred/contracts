@@ -21,7 +21,6 @@ import "erc721a/contracts/ERC721A.sol";
 *       Soulbound tokens are tokens that cannot be transferred when 
 *       minted to a particular address.
 */
-
 contract Soulbound is ERC721A {
     /// @dev Allows the deployer to set a name and a symbol for the token.
     constructor(string memory name, string memory symbol) ERC721A(name, symbol) {}
