@@ -28,7 +28,7 @@ contract SoulboundCore is Ownable, Soulbound, Allowlist {
     Allowlist(_allowlistOwner) {}
 
     /// @dev Emitted when a token is minted from Signature.
-    event IssueWithSignature(address indexed to, uint256 indexed quantity);
+    event IssueWithSignature(address indexed to, uint256 indexed tokenId);
     /// @dev Emitted when a token is revoked with Signature.
     event RevokeWithSignature(uint256 indexed tokenId);
 
@@ -42,32 +42,32 @@ contract SoulboundCore is Ownable, Soulbound, Allowlist {
     * @param addr       Address to mint tokens to.
     * @param hash       Hashed message by the allowlistOwner.
     * @param sig        Signature, signed by the allowlistOwner.
-    * @param quantity   Quantity of the tokens to mint to the `addr`.
+    * @param tokenId    Id of the tokens to mint to the `addr`.
+    * @param tokenURI   URI of the token to be minted.
     */
     function issueWithSignature(
         address addr,
         bytes32 hash,
         bytes memory sig,
-        uint256 quantity
+        uint256 tokenId,
+        string memory tokenURI
     ) public
     {
         /// @dev Require that the address is not a zero address.
-        require(addr != address(0), "ERC721:: Mint to zero address.");
+        require(addr != address(0), "Mint to zero address.");
         /// @dev    Require that the hash is actually 32 [64 characters]
         ///         in length.
-        require(hash.length == 32, "ERC721:: Invalid hash.");
+        require(hash.length == 32, "Invalid hash.");
         /// @dev Require the length of the signature is 65.
-        require(sig.length == 65, "ERC721:: Invalid signature length");
-        /// @dev Require that the quantity is GT 0.
-        require(quantity != 0, "ERC721:: Mint of zero tokens.");
+        require(sig.length == 65, "Invalid signature length");
         /// @dev    Verifies that the address was actually signed by the
         ///         allowlistOwner.
-        require(verifySignature(hash, sig), "ERC721:: Hash not signed by owner.");
+        require(verifySignature(hash, sig), "Hash not signed by owner.");
         /// @dev    Mint the tokens to address.
         ///         [Ref Soulbound.sol].
-        mintSoulboundToken(addr, quantity);
+        mintSoulboundToken(addr, tokenId, tokenURI);
         /// @dev Emit the IssueWithSignature event.
-        emit IssueWithSignature(addr, quantity);
+        emit IssueWithSignature(addr, tokenId);
     }
 
     /**
@@ -87,15 +87,15 @@ contract SoulboundCore is Ownable, Soulbound, Allowlist {
     ) public
     {
         /// @dev Require that the token exists.
-        require(_exists(tokenId), "ERC721:: Revoke of inexistent token.");
+        require(_exists(tokenId), "Revoke of inexistent token.");
         /// @dev    Require that the hash is actually 32 [64 characters]
         ///         in length.
-        require(hash.length == 32, "ERC721:: Invalid hash.");
+        require(hash.length == 32, "Invalid hash.");
         /// @dev Require the length of the signature is 65.
-        require(sig.length == 65, "ERC721:: Invalid signature length");
+        require(sig.length == 65, "Invalid signature length");
         /// @dev    Verifies that the address was actually signed by the
         ///         allowlistOwner.
-        require(verifySignature(hash, sig), "ERC721:: Hash not signed by owner.");
+        require(verifySignature(hash, sig), "Hash not signed by owner.");
         /// @dev    Mint the tokens to address.
         ///         [Ref Soulbound.sol].
         burnSoulboundToken(tokenId);
