@@ -17,21 +17,18 @@ import "./SoulboundCore.sol";
 *
 */
 contract SoulboundWithSignature is SoulboundCore {
-    uint256 internal immutable CAP;
-    /// @dev    With every issue and revoke, this value
-    ///         increases and reduces.
-    ///         It cannot be GT the cap.
-    uint256 internal capControl;
-
     constructor(
         string memory name, 
         string memory symbol,
         address _allowlistOwner,
-        uint256 cap
+        uint256 totalSupply
     )
-    SoulboundCore(name, symbol, _allowlistOwner) {
-        CAP = cap;
-    }
+    SoulboundCore(
+        name, 
+        symbol, 
+        _allowlistOwner, 
+        totalSupply
+    ) {}
 
     /**
     * @dev Ref SoulboundCore.sol issueWithSignature
@@ -48,8 +45,8 @@ contract SoulboundWithSignature is SoulboundCore {
         string memory tokenURI
     ) public onlyOwner
     {
-        /// @dev Ensure that the cap is not crossed.
-        require(capControl <= CAP, "Issue Cap Reached.");
+        /// @dev Ensure that the supply is not crossed.
+        require(supply <= TOTAL_SUPPLY, "Issue Cap Reached.");
         /// @dev Issue With Signature.
         issueWithSignature(
             addr,
@@ -73,10 +70,10 @@ contract SoulboundWithSignature is SoulboundCore {
         uint256 tokenId
     ) public onlyOwner
     {
-        /// @dev    If the cap control is not 0,
-        ///         decrement the capControl.
-        if (capControl != 0) {
-            capControl--;
+        /// @dev    If the supply control is not 0,
+        ///         decrement the supply.
+        if (supply != 0) {
+            supply--;
         }
 
         /// @dev Revoke With Signature.

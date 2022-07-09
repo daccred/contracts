@@ -25,7 +25,8 @@ pragma solidity ^0.8.7;
 * can that token be reminted to the Soul Address.
 * Also, in cases where the token is lost, the above will also apply.
 */
-interface ISoulbound {
+
+interface ISoulbond {
     // ========== E V E N T S ==========
 
     /// @dev Emitted when the token is minted to `_to`.
