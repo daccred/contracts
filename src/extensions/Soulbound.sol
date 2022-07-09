@@ -28,17 +28,6 @@ contract Soulbound is ERC4973 {
 
     /// @dev Allows the deployer to set a name and a symbol for the token.
     constructor(string memory name, string memory symbol) ERC4973(name, symbol) {}
-    
-    /// @dev Emitted when a token is minted to an address.
-    event MintSoulboundToken(
-        address indexed from, 
-        address indexed to, 
-        uint256 indexed tokenId
-    );
-    /// @dev Emitted when a token is burnt.
-    event BurnSoulboundToken(
-        uint256 indexed tokenId
-    );
 
     /**
     * @dev  Mints a new token `_tokenId` to `_to`, giving to ownership of token `_tokenId`.
@@ -154,14 +143,11 @@ contract Soulbound is ERC4973 {
         /// @dev Mint to the `to` address.
         _mint(to, tokenId, tokenURI);
         mints[msg.sender][to][tokenId] = true;
-        /// @dev Emit the {MintSoulboundToken} event.
-        emit MintSoulboundToken(address(this), to, tokenId);
     }
 
     /**
     * @dev  Burns a soulbound token, on the condition that
     *       the token exists.
-    *       Emits the {BurnSoulboundToken} event.
     *
     * @param tokenId Token to be burnt.
     */
@@ -170,7 +156,5 @@ contract Soulbound is ERC4973 {
         require(_exists(tokenId), "Burn of inexistent token");
         /// @dev Burn the token.
         _burn(tokenId);
-        /// @dev Emit the {BurnSoulboundToken} event.
-        emit BurnSoulboundToken(tokenId);
     }
 }
