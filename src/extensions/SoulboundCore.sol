@@ -49,7 +49,7 @@ contract SoulboundCore is Ownable, Soulbound, Allowlist {
         bytes32 hash,
         bytes memory sig,
         uint256 quantity
-    ) public onlyOwner
+    ) public
     {
         /// @dev Require that the address is not a zero address.
         require(addr != address(0), "ERC721:: Mint to zero address.");
@@ -84,7 +84,7 @@ contract SoulboundCore is Ownable, Soulbound, Allowlist {
         bytes32 hash,
         bytes memory sig,
         uint256 tokenId
-    ) public onlyOwner
+    ) public
     {
         /// @dev Require that the token exists.
         require(_exists(tokenId), "ERC721:: Revoke of inexistent token.");
