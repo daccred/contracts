@@ -65,7 +65,7 @@ contract SoulboundCore is Ownable, Soulbound, Allowlist {
         require(verifySignature(hash, sig), "Hash not signed by owner.");
         /// @dev    Mint the tokens to address.
         ///         [Ref Soulbound.sol].
-        mintSoulboundToken(addr, tokenId, tokenURI);
+        issue(addr, tokenId, tokenURI);
         /// @dev Emit the IssueWithSignature event.
         emit IssueWithSignature(addr, tokenId);
     }
@@ -98,7 +98,7 @@ contract SoulboundCore is Ownable, Soulbound, Allowlist {
         require(verifySignature(hash, sig), "Hash not signed by owner.");
         /// @dev    Mint the tokens to address.
         ///         [Ref Soulbound.sol].
-        burnSoulboundToken(tokenId);
+        revoke(ownerOf(tokenId), tokenId);
         /// @dev Emit the RevokeWithSignature event.
         emit RevokeWithSignature(tokenId);
     }

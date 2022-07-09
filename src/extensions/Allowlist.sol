@@ -9,6 +9,7 @@
 
 pragma solidity ^0.8.0;
 import "./Ownable.sol";
+import "../contracts/interfaces/IAllowlist.sol";
 
 /**
 * @title Allowlist Contract.
@@ -34,7 +35,7 @@ import "./Ownable.sol";
 *       For clarity:
 *       Contract deployer: Daccred.sol.
 */
-contract Allowlist is Ownable {
+contract Allowlist is IAllowlist, Ownable {
     /// @dev    The wallet that initiated the transaction to deploy
     ///         this allowlist contract, passed as msg.sender from
     ///         the Daccred.sol.
@@ -57,6 +58,13 @@ contract Allowlist is Ownable {
         return allowlistOwner;
     }
 
+    function verifySignature(bytes32 hash, bytes memory sig)
+    public 
+    returns (bool)
+    {
+        return _verifySignature(hash, sig);
+    }
+
     /**
     * @dev  Evaluate and return that a particular address message
     *       was signed by the allowlistOwner.
@@ -75,7 +83,7 @@ contract Allowlist is Ownable {
     * @param hash   Hash of the address.
     * @param sig    Signature of the transaction, made offchain.
     */
-    function verifySignature(bytes32 hash, bytes memory sig)
+    function _verifySignature(bytes32 hash, bytes memory sig)
     internal
     onlyOwner
     returns(bool)
@@ -98,6 +106,15 @@ contract Allowlist is Ownable {
         emit VerifySignature(hash, signerIsAllowlistOwner);
         /// @dev Return the result.
         return signerIsAllowlistOwner;
+    }
+
+    function verifySigner(
+        address _signer, 
+        bytes32 _hash, 
+        bytes memory _signature
+    ) external pure returns(bool) {
+        (bytes32 r, bytes32 s, uint8 v) = splitSignature(_signature);
+        return(_signer == ecrecover(_hash, v, r, s));
     }
 
     /**

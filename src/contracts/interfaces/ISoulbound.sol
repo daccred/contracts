@@ -9,8 +9,6 @@
 
 pragma solidity ^0.8.7;
 
-import "@openzeppelin/contracts/utils/introspection/ERC165.sol";
-
 /**
 * @title Soulbound Interface.
 * @author Daccred.
@@ -27,31 +25,7 @@ import "@openzeppelin/contracts/utils/introspection/ERC165.sol";
 * can that token be reminted to the Soul Address.
 * Also, in cases where the token is lost, the above will also apply.
 */
-
-
-/**
- * @title ERC-721 Non-Fungible Token Standard, optional metadata extension
- * @dev See https://eips.ethereum.org/EIPS/eip-721
- */
-interface IERC721Metadata {
-    /**
-     * @dev Returns the token collection name.
-     */
-    function name() external view returns (string memory);
-
-    /**
-     * @dev Returns the token collection symbol.
-     */
-    function symbol() external view returns (string memory);
-
-    /**
-     * @dev Returns the Uniform Resource Identifier (URI) for `tokenId` token.
-     */
-    function tokenURI(uint256 tokenId) external view returns (string memory);
-}
-
-
-interface ISoulbond is IERC165, IERC721Metadata {
+interface ISoulbound {
     // ========== E V E N T S ==========
 
     /// @dev Emitted when the token is minted to `_to`.
@@ -91,7 +65,7 @@ interface ISoulbond is IERC165, IERC721Metadata {
     *
     * @return bool.
     */
-    function issue(address _to, uint256 _tokenId) external returns(bool);
+    function issue(address _to, uint256 _tokenId, string memory tokenURI) external returns(bool);
 
 
     /**
@@ -150,18 +124,16 @@ interface ISoulbond is IERC165, IERC721Metadata {
     * @dev Returns true if token `_tokenId` was minted from `_from` to `_to`.
     *
     * [CONDITIONS]
-    * `_from` must not be a 0 address.
     * `_to` must not be a 0 address.
     * `_tokenId` must be an existent token.
     *
     * @param
-    * _from => Address that minted token `_tokenId` to `_to`.
     * _to => Address to which token `_tokenId` is minted.
     * _tokenId => Token minted.
     *
     * @return bool.
     */
-    function isMinted(address _from, address _to, uint256 _tokenId) external returns(bool);
+    function isMinted(address _to, uint256 _tokenId) external returns(bool);
 
 
     /**
