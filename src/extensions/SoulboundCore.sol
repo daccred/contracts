@@ -18,24 +18,25 @@ import "./Allowlist.sol";
 * @dev Soulbound Core template.
 */
 contract SoulboundCore is Ownable, Soulbound, Allowlist {
-    uint256 internal TOTAL_SUPPLY;
+    uint256 internal totalSupply;
     /// @dev    With every issue and revoke, this value
     ///         increases and reduces.
-    ///         It cannot be GT the TOTAL_SUPPLY.
+    ///         It cannot be GT the totalSupply.
     uint256 internal supply;
     /// @dev Deploys the 3 contracts inherited by the SoulboundCore.
     constructor(
         string memory name, 
         string memory symbol,
         address _allowlistOwner,
-        uint256 totalSupply
+        uint256 currentSupply
     )
     Soulbound(name, symbol)
-    Allowlist(_allowlistOwner) {
-        if (totalSupply == 0) {
-            TOTAL_SUPPLY = 1e6;
+    Allowlist(_allowlistOwner)
+    {
+        if (currentSupply == 0) {
+            totalSupply = 1e6;
         } else {
-            TOTAL_SUPPLY = totalSupply;
+            totalSupply = currentSupply;
         }
     }
 

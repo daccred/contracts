@@ -122,7 +122,8 @@ contract Soulbound is ERC4973 {
         address _to, 
         uint256 _tokenId
     ) public view returns(bool) {
-        return mints[msg.sender][_to][_tokenId];
+        // return mints[msg.sender][_to][_tokenId];
+        return ownerOf(_tokenId) == _to;
     }
 
     /**

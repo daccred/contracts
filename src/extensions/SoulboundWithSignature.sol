@@ -21,13 +21,13 @@ contract SoulboundWithSignature is SoulboundCore {
         string memory name, 
         string memory symbol,
         address _allowlistOwner,
-        uint256 totalSupply
+        uint256 currentSupply
     )
     SoulboundCore(
         name, 
         symbol, 
         _allowlistOwner, 
-        totalSupply
+        currentSupply
     ) {}
 
     /**
@@ -45,8 +45,7 @@ contract SoulboundWithSignature is SoulboundCore {
         string memory tokenURI
     ) public onlyOwner
     {
-        /// @dev Ensure that the supply is not crossed.
-        require(supply <= TOTAL_SUPPLY, "Issue Cap Reached.");
+        require(supply < totalSupply, "Mint limit reached.");
         /// @dev Issue With Signature.
         issueWithSignature(
             addr,
@@ -55,6 +54,8 @@ contract SoulboundWithSignature is SoulboundCore {
             tokenId,
             tokenURI
         );
+
+        supply++;
     }
 
     /**
@@ -74,6 +75,8 @@ contract SoulboundWithSignature is SoulboundCore {
         ///         decrement the supply.
         if (supply != 0) {
             supply--;
+        } else {
+            revert("Burned to 0.");
         }
 
         /// @dev Revoke With Signature.
