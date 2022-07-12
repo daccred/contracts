@@ -78,7 +78,11 @@ contract SoulboundCore is Ownable, Soulbound, Allowlist {
         require(verifySignature(hash, sig), "Hash not signed by owner.");
         /// @dev    Mint the tokens to address.
         ///         [Ref Soulbound.sol].
-        issue(addr, tokenId, tokenURI);
+        issue(
+            addr, 
+            tokenId, 
+            tokenURI
+        );
         /// @dev Emit the IssueWithSignature event.
         emit IssueWithSignature(addr, tokenId);
     }

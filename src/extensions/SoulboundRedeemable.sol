@@ -54,4 +54,26 @@ contract SoulboundRedeemable is IsValidWithDate, SoulboundWithSignature {
         require(verifySignature(hash, sig), "Unsigned signature");
         extendExpiry(tokenId, extensionTime);
     }
+
+    function issueTokenWthExpiry(
+        uint256 tokenId,
+        address tokenOwner,
+        string memory tokenURI,
+        uint256 expiryDate
+    ) public
+    {
+        require(!_exists(tokenId), "Mint of existent token.");
+
+        if (expiryDate == 0) {
+            extendExpiry(tokenId, 36500 days);
+        } else {
+            extendExpiry(tokenId, expiryDate);
+        }
+        
+        issue(
+            addr, 
+            tokenId, 
+            tokenURI
+        );
+    }
 }
