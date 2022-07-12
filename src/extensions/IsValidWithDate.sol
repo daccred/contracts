@@ -10,35 +10,34 @@
 pragma solidity ^0.8.0;
 
 /**
-* @title IsValidWithTime contract.
+* @title IsValidWithDate contract.
 * @author Daccred.
 * @dev 
 */
-contract IsValisWithDate {
-    uint256 internal expiryDate;
+contract IsValidWithDate {
+    mapping(uint256 => uint256) internal tokenExpiryDate;
     /// @dev    Constructor deploys the SoulboundCore and
     ///         sets a totalSupply.
-    constructor(uint256 desiredExpiry) {
-        if (desiredExpiry != 0) {
-            expiryDate = block.timestamp + desiredExpiry;
-        } else {
-            expiryDate = block.timestamp + 36500 days;
-        }
+
+    function extendExpiry(uint256 tokenId, uint256 newExpiryDate) 
+    public
+    {
+        tokenExpiryDate[tokenId] = block.timestamp + newExpiryDate;
     }
 
-    function getExpiryDate() public view returns(uint256) {
-        return expiryDate;
+    function getExpiryDate(uint256 tokenId) public view returns(uint256) {
+        return tokenExpiryDate[tokenId];
     }
 
-    function isExpired() public view returns(bool) {
-        return block.timestamp > expiryDate;
+    function isValid(uint256 tokenId) public view returns(bool) {
+        return block.timestamp <= getExpiryDate(tokenId);
     }
 
-    function getTimeLeft() public view returns(uint256) {
-        if (block.timestamp > expiryDate) {
+    function getTimeLeft(uint256 tokenId) public view returns(uint256) {
+        if (block.timestamp > getExpiryDate(tokenId)) {
             return 0;
         } else {
-            return expiryDate - block.timestamp;
+            return getExpiryDate(tokenId) - block.timestamp;
         }
     }
 }
