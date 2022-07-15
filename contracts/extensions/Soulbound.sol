@@ -9,7 +9,7 @@
 
 pragma solidity ^0.8.8;
 import "../contracts/interfaces/ISoulbound.sol";
-import "https://github.com/ethereum/EIPs/blob/master/assets/eip-4973/ERC-4973.sol";
+import "../eips/ERC-4973.sol";
 
 /**
 * @title Soulbound Token Contract.
