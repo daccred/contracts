@@ -37,8 +37,9 @@ import "../contracts/interfaces/IAllowlist.sol";
 */
 contract Allowlist is IAllowlist, Ownable {
     /// @dev    The wallet that initiated the transaction to deploy
-    ///         this allowlist contract, passed as msg.sender from
-    ///         the Daccred.sol.
+    ///         this allowlist contract
+    ///         [And other subsequent ones inheriting this], 
+    ///         passed as msg.sender from the Daccred.sol.
     address private allowlistOwner;
 
     /// @dev constructor, setting the allowlistOwner.
@@ -53,11 +54,23 @@ contract Allowlist is IAllowlist, Ownable {
 
     /**
     * @dev Return the allowlistOwner.
+    *
+    * @notice Callable by anyone.
+    *
+    * @return address of allowlistOwner.
     */
     function getAllowlistOwner() public view returns(address) {
         return allowlistOwner;
     }
 
+    /**
+    * @dev  Returns true if the signer of signature `sig` is the `allowlistOwner`.
+    *       And false if otherwise.
+    *
+    * @notice Callable by anyone.
+    *
+    * @return bool true or false.
+    */
     function verifySignature(bytes32 hash, bytes memory sig)
     public 
     returns (bool)
@@ -80,8 +93,12 @@ contract Allowlist is IAllowlist, Ownable {
     *       the function.
     *       Or using the getAllowlistOwner() for validations.
     *
+    * @notice Callable by this or inheriting contract.
+    *
     * @param hash   Hash of the address.
     * @param sig    Signature of the transaction, made offchain.
+    *
+    * @return bool true or false.
     */
     function _verifySignature(bytes32 hash, bytes memory sig)
     internal
@@ -108,11 +125,18 @@ contract Allowlist is IAllowlist, Ownable {
         return signerIsAllowlistOwner;
     }
 
+    /**
+    * @dev Returns true if the signer of `_signature` is `_signer`.
+    *
+    * @notice Callable by anyone.
+    *
+    * @return bool true or false.
+    */
     function verifySigner(
         address _signer, 
         bytes32 _hash, 
         bytes memory _signature
-    ) external pure returns(bool) {
+    ) public pure returns(bool) {
         (bytes32 r, bytes32 s, uint8 v) = splitSignature(_signature);
         return(_signer == ecrecover(_hash, v, r, s));
     }

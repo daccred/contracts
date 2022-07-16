@@ -13,21 +13,23 @@ import "./SoulboundCore.sol";
 /**
 * @title SoulboundWithSignature.
 * @author Anthony (fps) https://github.com/fps8k.
-* @dev 
-*
+* @dev  SoulboundWithSignature contract template allows freedom of
+*       issuing and revoking tokens with Signature while controlling
+*       the totalSupply of the token.
 */
 contract SoulboundWithSignature is SoulboundCore {
+    /// @dev Deploys inherited contract and sub contracts.
     constructor(
         string memory name, 
         string memory symbol,
         address _allowlistOwner,
-        uint256 totalSupply
+        uint256 _totalSupply
     )
     SoulboundCore(
         name, 
         symbol, 
         _allowlistOwner, 
-        totalSupply
+        _totalSupply
     ) {}
 
     /**
@@ -36,6 +38,17 @@ contract SoulboundWithSignature is SoulboundCore {
     *       deployer of the contract, unlike the core
     *       that allows the function for anyone who has a
     *       signature signed by the allowlistOwner.
+    *       This contract can be called by the deployer of the
+    *       contract [DaccredDeployer] but is also protected
+    *       as to the allowlistOwner must be the signer of the `sig.`
+    *
+    * @notice Callable by the deployer of this contract [DaccredDeployer].
+    *
+    * @param addr       Address to be minted to.
+    * @param hash       Hash of message signed.
+    * @param sig        Signature.
+    * @param tokenId    TokenId to be issued.
+    * @param tokenURI   URI of token to be issued.
     */
     function ownerIssueWithSignature(
         address addr,
@@ -46,7 +59,10 @@ contract SoulboundWithSignature is SoulboundCore {
     ) public onlyOwner
     {
         /// @dev Ensure that the supply is not crossed.
-        require(supply <= TOTAL_SUPPLY, "Issue Cap Reached.");
+        /// @dev    Should all soulbound tokens need to be limited,
+        ///         copy this code and paste in Soulboundcore.sol
+        ///         issueWithSignature function.
+        require(supply < totalSupply, "Issue Cap Reached.");
         /// @dev Issue With Signature.
         issueWithSignature(
             addr,
@@ -55,6 +71,8 @@ contract SoulboundWithSignature is SoulboundCore {
             tokenId,
             tokenURI
         );
+        /// @dev Incrememt supply on successful issue.
+        supply++;
     }
 
     /**
@@ -63,6 +81,15 @@ contract SoulboundWithSignature is SoulboundCore {
     *       deployer of the contract, unlike the core
     *       that allows the function for anyone who has a
     *       signature signed by the allowlistOwner.
+    *       This contract can be called by the deployer of the
+    *       contract [DaccredDeployer] but is also protected
+    *       as to the allowlistOwner must be the signer of the `sig.`
+    *
+    * @notice Callable by the deployer of this contract [DaccredDeployer].
+    *
+    * @param hash       Hash of message signed.
+    * @param sig        Signature.
+    * @param tokenId    TokenId to be issued.
     */
     function ownerRevokeWithSignature(
         bytes32 hash,
@@ -72,8 +99,15 @@ contract SoulboundWithSignature is SoulboundCore {
     {
         /// @dev    If the supply control is not 0,
         ///         decrement the supply.
+        ///         Should all soulbound tokens need to be limited,
+        ///         copy this code and paste in Soulboundcore.sol
+        ///         revokeWithSignature function.
         if (supply != 0) {
+            /// @dev Decrement supply.
             supply--;
+        } else {
+            /// @dev Throw error if 0 is reached.
+            revert("Lowest limit reached.");
         }
 
         /// @dev Revoke With Signature.
