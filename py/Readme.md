@@ -1,7 +1,7 @@
 # Python Test Suite
 
 ### Using the Python Brownie Framework.
-### Install Brownie using `pip instal eth-brownie`.
+### Install Brownie using `pip install eth-brownie`.
 ### Open empty repository.
 ### Run `brownie init`.
 ### Move all contracts to `contracts/` folder.
