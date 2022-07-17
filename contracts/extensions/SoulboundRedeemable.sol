@@ -14,7 +14,7 @@ import "./IsValidWithDate.sol";
 
 /**
 * @title Soulbound Redeemable.
-* @author Anthony (fps) https://github.com/fps8k.
+* @author Daccred.
 * @dev  An instance of the Soulbound token with capped supply
 *       and tokens having their own individual expiry date.
 *       Tokens are minted to and are pendng until receivers
