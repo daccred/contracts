@@ -8,12 +8,11 @@
 /// ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═════╝ 
 
 pragma solidity ^0.8.0;
-
 import "./SoulboundCore.sol";
 
 /**
 * @title SoulboundWithSignature.
-* @author Daccred.
+* @author Anthony (fps) https://github.com/fps8k.
 * @dev  SoulboundWithSignature contract template allows freedom of
 *       issuing and revoking tokens with Signature while controlling
 *       the totalSupply of the token.
