@@ -30,8 +30,7 @@
         "test": "npx hardhat test",
         "compile": "npx hardhat compile",
         "clean": "npx hardhat clean",
-        "deploy_velastest": "npx hardhat run --network velastest scripts/deploy.js",
-        "deploy_fantomtest": "npx hardhat run --network fantomtestnet scripts/deploy.js"
+        "deploy_fantomtest": "npx hardhat run --network fantomtest scripts/1_deploy.js"
     },
     "repository": {
         "type": "git",
