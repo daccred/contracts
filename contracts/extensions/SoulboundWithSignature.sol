@@ -12,7 +12,7 @@ import "./SoulboundCore.sol";
 
 /**
 * @title SoulboundWithSignature.
-* @author Anthony (fps) https://github.com/fps8k.
+* @author Daccred.
 * @dev  SoulboundWithSignature contract template allows freedom of
 *       issuing and revoking tokens with Signature while controlling
 *       the totalSupply of the token.
