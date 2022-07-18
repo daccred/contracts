@@ -1,0 +1,3746 @@
+{
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "time",
+          "type": "uint256"
+        }
+      ],
+      "name": "Extended",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "time",
+          "type": "uint256"
+        }
+      ],
+      "name": "extendExpiry",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getExpiryDate",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getTimeLeft",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "isValid",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "allSourcePaths": {
+    "4": "contracts/extensions/IsValidWithDate.sol"
+  },
+  "ast": {
+    "absolutePath": "contracts/extensions/IsValidWithDate.sol",
+    "exportedSymbols": {
+      "IsValidWithDate": [
+        757
+      ]
+    },
+    "id": 758,
+    "license": "GPL-3.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 664,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "36:23:4"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IsValidWithDate",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": {
+          "id": 665,
+          "nodeType": "StructuredDocumentation",
+          "src": "61:112:4",
+          "text": " @title IsValidWithDate contract.\n @author Daccred.\n @dev Controls time for minted tokens till expiry."
+        },
+        "fullyImplemented": true,
+        "id": 757,
+        "linearizedBaseContracts": [
+          757
+        ],
+        "name": "IsValidWithDate",
+        "nameLocation": "183:15:4",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "documentation": {
+              "id": 666,
+              "nodeType": "StructuredDocumentation",
+              "src": "205:57:4",
+              "text": "@dev Mapping individual tokens to their expiry dates."
+            },
+            "id": 670,
+            "mutability": "mutable",
+            "name": "tokenExpiryDate",
+            "nameLocation": "304:15:4",
+            "nodeType": "VariableDeclaration",
+            "scope": 757,
+            "src": "267:52:4",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_uint256_$",
+              "typeString": "mapping(uint256 => uint256)"
+            },
+            "typeName": {
+              "id": 669,
+              "keyType": {
+                "id": 667,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "275:7:4",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "267:27:4",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_uint256_$",
+                "typeString": "mapping(uint256 => uint256)"
+              },
+              "valueType": {
+                "id": 668,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "286:7:4",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              }
+            },
+            "visibility": "internal"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 671,
+              "nodeType": "StructuredDocumentation",
+              "src": "326:56:4",
+              "text": "@dev Emitted when a token is extended by redemption."
+            },
+            "id": 677,
+            "name": "Extended",
+            "nameLocation": "393:8:4",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 676,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 673,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nameLocation": "410:7:4",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 677,
+                  "src": "402:15:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 672,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "402:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 675,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "time",
+                  "nameLocation": "427:4:4",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 677,
+                  "src": "419:12:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 674,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "419:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "401:31:4"
+            },
+            "src": "387:46:4"
+          },
+          {
+            "body": {
+              "id": 699,
+              "nodeType": "Block",
+              "src": "971:189:4",
+              "statements": [
+                {
+                  "documentation": "@dev Set expiry to new time.",
+                  "expression": {
+                    "id": 692,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "baseExpression": {
+                        "id": 685,
+                        "name": "tokenExpiryDate",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 670,
+                        "src": "1022:15:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_uint256_$_t_uint256_$",
+                          "typeString": "mapping(uint256 => uint256)"
+                        }
+                      },
+                      "id": 687,
+                      "indexExpression": {
+                        "id": 686,
+                        "name": "tokenId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 680,
+                        "src": "1038:7:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "1022:24:4",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "commonType": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      },
+                      "id": 691,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "leftExpression": {
+                        "expression": {
+                          "id": 688,
+                          "name": "block",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": -4,
+                          "src": "1049:5:4",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_block",
+                            "typeString": "block"
+                          }
+                        },
+                        "id": 689,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "timestamp",
+                        "nodeType": "MemberAccess",
+                        "src": "1049:15:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "nodeType": "BinaryOperation",
+                      "operator": "+",
+                      "rightExpression": {
+                        "id": 690,
+                        "name": "time",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 682,
+                        "src": "1067:4:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "src": "1049:22:4",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "1022:49:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 693,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1022:49:4"
+                },
+                {
+                  "documentation": "@dev Emit the {Extended} event.",
+                  "eventCall": {
+                    "arguments": [
+                      {
+                        "id": 695,
+                        "name": "tokenId",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 680,
+                        "src": "1139:7:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "id": 696,
+                        "name": "time",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 682,
+                        "src": "1148:4:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 694,
+                      "name": "Extended",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 677,
+                      "src": "1130:8:4",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_uint256_$_t_uint256_$returns$__$",
+                        "typeString": "function (uint256,uint256)"
+                      }
+                    },
+                    "id": 697,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1130:23:4",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 698,
+                  "nodeType": "EmitStatement",
+                  "src": "1125:28:4"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 678,
+              "nodeType": "StructuredDocumentation",
+              "src": "439:458:4",
+              "text": " @dev  On every successful redemption or mint of token the\n       expiry of the token is extended by the duration passed\n       in the contract.\n       This should be called on expired tokens.\n @notice   This function is expected to be called by the\n           SoulboundRedeemable on every mint.\n @param tokenId    Token to extend its expiry.\n @param time       Length of time to extend it with."
+            },
+            "functionSelector": "c3cab38a",
+            "id": 700,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "extendExpiry",
+            "nameLocation": "911:12:4",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 683,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 680,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nameLocation": "932:7:4",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 700,
+                  "src": "924:15:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 679,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "924:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 682,
+                  "mutability": "mutable",
+                  "name": "time",
+                  "nameLocation": "949:4:4",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 700,
+                  "src": "941:12:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 681,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "941:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "923:31:4"
+            },
+            "returnParameters": {
+              "id": 684,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "971:0:4"
+            },
+            "scope": 757,
+            "src": "902:258:4",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 712,
+              "nodeType": "Block",
+              "src": "1427:48:4",
+              "statements": [
+                {
+                  "expression": {
+                    "baseExpression": {
+                      "id": 708,
+                      "name": "tokenExpiryDate",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 670,
+                      "src": "1444:15:4",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_uint256_$_t_uint256_$",
+                        "typeString": "mapping(uint256 => uint256)"
+                      }
+                    },
+                    "id": 710,
+                    "indexExpression": {
+                      "id": 709,
+                      "name": "tokenId",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 703,
+                      "src": "1460:7:4",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "1444:24:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 707,
+                  "id": 711,
+                  "nodeType": "Return",
+                  "src": "1437:31:4"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 701,
+              "nodeType": "StructuredDocumentation",
+              "src": "1166:187:4",
+              "text": " @dev Returns the expiry date of `tokenId`.\n @notice Callable by anyone.\n @param tokenId Token to get its expiry.\n @return time of expiry."
+            },
+            "functionSelector": "6833f200",
+            "id": 713,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getExpiryDate",
+            "nameLocation": "1367:13:4",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 704,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 703,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nameLocation": "1389:7:4",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 713,
+                  "src": "1381:15:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 702,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1381:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1380:17:4"
+            },
+            "returnParameters": {
+              "id": 707,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 706,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 713,
+                  "src": "1418:7:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 705,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1418:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1417:9:4"
+            },
+            "scope": 757,
+            "src": "1358:117:4",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 728,
+              "nodeType": "Block",
+              "src": "1760:65:4",
+              "statements": [
+                {
+                  "expression": {
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 726,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "expression": {
+                        "id": 721,
+                        "name": "block",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": -4,
+                        "src": "1777:5:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_block",
+                          "typeString": "block"
+                        }
+                      },
+                      "id": 722,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "timestamp",
+                      "nodeType": "MemberAccess",
+                      "src": "1777:15:4",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "<=",
+                    "rightExpression": {
+                      "arguments": [
+                        {
+                          "id": 724,
+                          "name": "tokenId",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 716,
+                          "src": "1810:7:4",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        ],
+                        "id": 723,
+                        "name": "getExpiryDate",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 713,
+                        "src": "1796:13:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_internal_view$_t_uint256_$returns$_t_uint256_$",
+                          "typeString": "function (uint256) view returns (uint256)"
+                        }
+                      },
+                      "id": 725,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "1796:22:4",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "1777:41:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "functionReturnParameters": 720,
+                  "id": 727,
+                  "nodeType": "Return",
+                  "src": "1770:48:4"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 714,
+              "nodeType": "StructuredDocumentation",
+              "src": "1481:214:4",
+              "text": " @dev Return true if the token is expired or false if otherwise.\n @notice Callable by anyone.\n @param tokenId Token to check if expired.\n @return bool true or false."
+            },
+            "functionSelector": "f577a500",
+            "id": 729,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isValid",
+            "nameLocation": "1709:7:4",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 717,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 716,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nameLocation": "1725:7:4",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 729,
+                  "src": "1717:15:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 715,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1717:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1716:17:4"
+            },
+            "returnParameters": {
+              "id": 720,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 719,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 729,
+                  "src": "1754:4:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 718,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1754:4:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1753:6:4"
+            },
+            "scope": 757,
+            "src": "1700:125:4",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 755,
+              "nodeType": "Block",
+              "src": "2104:381:4",
+              "statements": [
+                {
+                  "condition": {
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 742,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "expression": {
+                        "id": 737,
+                        "name": "block",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": -4,
+                        "src": "2223:5:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_block",
+                          "typeString": "block"
+                        }
+                      },
+                      "id": 738,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "timestamp",
+                      "nodeType": "MemberAccess",
+                      "src": "2223:15:4",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": ">",
+                    "rightExpression": {
+                      "arguments": [
+                        {
+                          "id": 740,
+                          "name": "tokenId",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 732,
+                          "src": "2255:7:4",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        ],
+                        "id": 739,
+                        "name": "getExpiryDate",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 713,
+                        "src": "2241:13:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_function_internal_view$_t_uint256_$returns$_t_uint256_$",
+                          "typeString": "function (uint256) view returns (uint256)"
+                        }
+                      },
+                      "id": 741,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "functionCall",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "2241:22:4",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "2223:40:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "documentation": "@dev    If the current time has passed the mapped expiry \n         time of token.",
+                  "falseBody": {
+                    "id": 753,
+                    "nodeType": "Block",
+                    "src": "2335:144:4",
+                    "statements": [
+                      {
+                        "documentation": "@dev    Else,\n         Return time left.",
+                        "expression": {
+                          "commonType": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          "id": 751,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftExpression": {
+                            "arguments": [
+                              {
+                                "id": 747,
+                                "name": "tokenId",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 732,
+                                "src": "2442:7:4",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              }
+                            ],
+                            "expression": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                }
+                              ],
+                              "id": 746,
+                              "name": "getExpiryDate",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 713,
+                              "src": "2428:13:4",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_function_internal_view$_t_uint256_$returns$_t_uint256_$",
+                                "typeString": "function (uint256) view returns (uint256)"
+                              }
+                            },
+                            "id": 748,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "kind": "functionCall",
+                            "lValueRequested": false,
+                            "names": [],
+                            "nodeType": "FunctionCall",
+                            "src": "2428:22:4",
+                            "tryCall": false,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "nodeType": "BinaryOperation",
+                          "operator": "-",
+                          "rightExpression": {
+                            "expression": {
+                              "id": 749,
+                              "name": "block",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": -4,
+                              "src": "2453:5:4",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_magic_block",
+                                "typeString": "block"
+                              }
+                            },
+                            "id": 750,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberName": "timestamp",
+                            "nodeType": "MemberAccess",
+                            "src": "2453:15:4",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_uint256",
+                              "typeString": "uint256"
+                            }
+                          },
+                          "src": "2428:40:4",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "functionReturnParameters": 736,
+                        "id": 752,
+                        "nodeType": "Return",
+                        "src": "2421:47:4"
+                      }
+                    ]
+                  },
+                  "id": 754,
+                  "nodeType": "IfStatement",
+                  "src": "2219:260:4",
+                  "trueBody": {
+                    "id": 745,
+                    "nodeType": "Block",
+                    "src": "2265:64:4",
+                    "statements": [
+                      {
+                        "documentation": "@dev Return 0.",
+                        "expression": {
+                          "hexValue": "30",
+                          "id": 743,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "number",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "2317:1:4",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_rational_0_by_1",
+                            "typeString": "int_const 0"
+                          },
+                          "value": "0"
+                        },
+                        "functionReturnParameters": 736,
+                        "id": 744,
+                        "nodeType": "Return",
+                        "src": "2310:8:4"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "documentation": {
+              "id": 730,
+              "nodeType": "StructuredDocumentation",
+              "src": "1831:201:4",
+              "text": " @dev Returns the time left for a token to expire.\n @notice Callable by anyone.\n @param tokenId Token to get its expiry.\n @return time left till expiry."
+            },
+            "functionSelector": "e8c58763",
+            "id": 756,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getTimeLeft",
+            "nameLocation": "2046:11:4",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 733,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 732,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nameLocation": "2066:7:4",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 756,
+                  "src": "2058:15:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 731,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2058:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2057:17:4"
+            },
+            "returnParameters": {
+              "id": 736,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 735,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 756,
+                  "src": "2095:7:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 734,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2095:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2094:9:4"
+            },
+            "scope": 757,
+            "src": "2037:448:4",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 758,
+        "src": "174:2313:4",
+        "usedErrors": []
+      }
+    ],
+    "src": "36:2452:4"
+  },
+  "bytecode": "608060405234801561001057600080fd5b5061022b806100206000396000f3fe608060405234801561001057600080fd5b506004361061004c5760003560e01c80636833f20014610051578063c3cab38a14610084578063e8c5876314610099578063f577a500146100ac575b600080fd5b61007161005f366004610175565b60009081526020819052604090205490565b6040519081526020015b60405180910390f35b61009761009236600461018e565b6100df565b005b6100716100a7366004610175565b610137565b6100cf6100ba366004610175565b60009081526020819052604090205442111590565b604051901515815260200161007b565b6100e981426101c6565b600083815260208181526040918290209290925580518481529182018390527f41a73beb1018a8b63e0f451a8a4f483806142cf14be45b1a58a23776a1e9b4bc910160405180910390a15050565b60008181526020819052604081205442111561015557506000919050565b60008281526020819052604090205461016f9042906101de565b92915050565b60006020828403121561018757600080fd5b5035919050565b600080604083850312156101a157600080fd5b50508035926020909101359150565b634e487b7160e01b600052601160045260246000fd5b600082198211156101d9576101d96101b0565b500190565b6000828210156101f0576101f06101b0565b50039056fea264697066735822122094ff4d00d0e978dc986d010f23d1b998e8faf7bd7ba8c6c39088c585040b6f1364736f6c634300080c0033",
+  "bytecodeSha1": "67fe842c4073c6e48d213685bf4aa3589531317c",
+  "compiler": {
+    "evm_version": "istanbul",
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "version": "0.8.12+commit.f00d7308"
+  },
+  "contractName": "IsValidWithDate",
+  "coverageMap": {
+    "branches": {
+      "4": {
+        "IsValidWithDate.getTimeLeft": {
+          "6": [
+            2223,
+            2263,
+            false
+          ]
+        }
+      }
+    },
+    "statements": {
+      "4": {
+        "IsValidWithDate.extendExpiry": {
+          "2": [
+            1022,
+            1071
+          ],
+          "3": [
+            1125,
+            1153
+          ]
+        },
+        "IsValidWithDate.getExpiryDate": {
+          "0": [
+            1437,
+            1468
+          ]
+        },
+        "IsValidWithDate.getTimeLeft": {
+          "4": [
+            2310,
+            2318
+          ],
+          "5": [
+            2421,
+            2468
+          ]
+        },
+        "IsValidWithDate.isValid": {
+          "1": [
+            1770,
+            1818
+          ]
+        }
+      }
+    }
+  },
+  "dependencies": [],
+  "deployedBytecode": "608060405234801561001057600080fd5b506004361061004c5760003560e01c80636833f20014610051578063c3cab38a14610084578063e8c5876314610099578063f577a500146100ac575b600080fd5b61007161005f366004610175565b60009081526020819052604090205490565b6040519081526020015b60405180910390f35b61009761009236600461018e565b6100df565b005b6100716100a7366004610175565b610137565b6100cf6100ba366004610175565b60009081526020819052604090205442111590565b604051901515815260200161007b565b6100e981426101c6565b600083815260208181526040918290209290925580518481529182018390527f41a73beb1018a8b63e0f451a8a4f483806142cf14be45b1a58a23776a1e9b4bc910160405180910390a15050565b60008181526020819052604081205442111561015557506000919050565b60008281526020819052604090205461016f9042906101de565b92915050565b60006020828403121561018757600080fd5b5035919050565b600080604083850312156101a157600080fd5b50508035926020909101359150565b634e487b7160e01b600052601160045260246000fd5b600082198211156101d9576101d96101b0565b500190565b6000828210156101f0576101f06101b0565b50039056fea264697066735822122094ff4d00d0e978dc986d010f23d1b998e8faf7bd7ba8c6c39088c585040b6f1364736f6c634300080c0033",
+  "deployedSourceMap": "174:2313:4:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1358:117;;;;;;:::i;:::-;1418:7;1444:24;;;;;;;;;;;;1358:117;;;;345:25:10;;;333:2;318:18;1358:117:4;;;;;;;;902:258;;;;;;:::i;:::-;;:::i;:::-;;2037:448;;;;;;:::i;:::-;;:::i;1700:125::-;;;;;;:::i;:::-;1754:4;1444:24;;;;;;;;;;;1777:15;:41;;;1700:125;;;;799:14:10;;792:22;774:41;;762:2;747:18;1700:125:4;634:187:10;902:258:4;1049:22;1067:4;1049:15;:22;:::i;:::-;1022:15;:24;;;;;;;;;;;;:49;;;;1130:23;;1265:25:10;;;1306:18;;;1299:34;;;1130:23:4;;1238:18:10;1130:23:4;;;;;;;902:258;;:::o;2037:448::-;2095:7;1444:24;;;;;;;;;;;2223:15;:40;2219:260;;;-1:-1:-1;2317:1:4;;2037:448;-1:-1:-1;2037:448:4:o;2219:260::-;1418:7;1444:24;;;;;;;;;;;2428:40;;2453:15;;2428:40;:::i;:::-;2421:47;2037:448;-1:-1:-1;;2037:448:4:o;14:180:10:-;73:6;126:2;114:9;105:7;101:23;97:32;94:52;;;142:1;139;132:12;94:52;-1:-1:-1;165:23:10;;14:180;-1:-1:-1;14:180:10:o;381:248::-;449:6;457;510:2;498:9;489:7;485:23;481:32;478:52;;;526:1;523;516:12;478:52;-1:-1:-1;;549:23:10;;;619:2;604:18;;;591:32;;-1:-1:-1;381:248:10:o;826:127::-;887:10;882:3;878:20;875:1;868:31;918:4;915:1;908:15;942:4;939:1;932:15;958:128;998:3;1029:1;1025:6;1022:1;1019:13;1016:39;;;1035:18;;:::i;:::-;-1:-1:-1;1071:9:10;;958:128::o;1344:125::-;1384:4;1412:1;1409;1406:8;1403:34;;;1417:18;;:::i;:::-;-1:-1:-1;1454:9:10;;1344:125::o",
+  "language": "Solidity",
+  "natspec": {
+    "author": "Daccred.",
+    "details": "Controls time for minted tokens till expiry.",
+    "events": {
+      "Extended(uint256,uint256)": {
+        "details": "Emitted when a token is extended by redemption."
+      }
+    },
+    "kind": "dev",
+    "methods": {
+      "extendExpiry(uint256,uint256)": {
+        "details": "On every successful redemption or mint of token the       expiry of the token is extended by the duration passed       in the contract.       This should be called on expired tokens.",
+        "notice": "This function is expected to be called by the           SoulboundRedeemable on every mint.",
+        "params": {
+          "time": "Length of time to extend it with.",
+          "tokenId": "Token to extend its expiry."
+        }
+      },
+      "getExpiryDate(uint256)": {
+        "details": "Returns the expiry date of `tokenId`.",
+        "notice": "Callable by anyone.",
+        "params": {
+          "tokenId": "Token to get its expiry."
+        },
+        "returns": {
+          "_0": "time of expiry."
+        }
+      },
+      "getTimeLeft(uint256)": {
+        "details": "Returns the time left for a token to expire.",
+        "notice": "Callable by anyone.",
+        "params": {
+          "tokenId": "Token to get its expiry."
+        },
+        "returns": {
+          "_0": "time left till expiry."
+        }
+      },
+      "isValid(uint256)": {
+        "details": "Return true if the token is expired or false if otherwise.",
+        "notice": "Callable by anyone.",
+        "params": {
+          "tokenId": "Token to check if expired."
+        },
+        "returns": {
+          "_0": "bool true or false."
+        }
+      }
+    },
+    "stateVariables": {
+      "tokenExpiryDate": {
+        "details": "Mapping individual tokens to their expiry dates."
+      }
+    },
+    "title": "IsValidWithDate contract.",
+    "version": 1
+  },
+  "offset": [
+    174,
+    2487
+  ],
+  "opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE CALLVALUE DUP1 ISZERO PUSH2 0x10 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP PUSH1 0x4 CALLDATASIZE LT PUSH2 0x4C JUMPI PUSH1 0x0 CALLDATALOAD PUSH1 0xE0 SHR DUP1 PUSH4 0x6833F200 EQ PUSH2 0x51 JUMPI DUP1 PUSH4 0xC3CAB38A EQ PUSH2 0x84 JUMPI DUP1 PUSH4 0xE8C58763 EQ PUSH2 0x99 JUMPI DUP1 PUSH4 0xF577A500 EQ PUSH2 0xAC JUMPI JUMPDEST PUSH1 0x0 DUP1 REVERT JUMPDEST PUSH2 0x71 PUSH2 0x5F CALLDATASIZE PUSH1 0x4 PUSH2 0x175 JUMP JUMPDEST PUSH1 0x0 SWAP1 DUP2 MSTORE PUSH1 0x20 DUP2 SWAP1 MSTORE PUSH1 0x40 SWAP1 KECCAK256 SLOAD SWAP1 JUMP JUMPDEST PUSH1 0x40 MLOAD SWAP1 DUP2 MSTORE PUSH1 0x20 ADD JUMPDEST PUSH1 0x40 MLOAD DUP1 SWAP2 SUB SWAP1 RETURN JUMPDEST PUSH2 0x97 PUSH2 0x92 CALLDATASIZE PUSH1 0x4 PUSH2 0x18E JUMP JUMPDEST PUSH2 0xDF JUMP JUMPDEST STOP JUMPDEST PUSH2 0x71 PUSH2 0xA7 CALLDATASIZE PUSH1 0x4 PUSH2 0x175 JUMP JUMPDEST PUSH2 0x137 JUMP JUMPDEST PUSH2 0xCF PUSH2 0xBA CALLDATASIZE PUSH1 0x4 PUSH2 0x175 JUMP JUMPDEST PUSH1 0x0 SWAP1 DUP2 MSTORE PUSH1 0x20 DUP2 SWAP1 MSTORE PUSH1 0x40 SWAP1 KECCAK256 SLOAD TIMESTAMP GT ISZERO SWAP1 JUMP JUMPDEST PUSH1 0x40 MLOAD SWAP1 ISZERO ISZERO DUP2 MSTORE PUSH1 0x20 ADD PUSH2 0x7B JUMP JUMPDEST PUSH2 0xE9 DUP2 TIMESTAMP PUSH2 0x1C6 JUMP JUMPDEST PUSH1 0x0 DUP4 DUP2 MSTORE PUSH1 0x20 DUP2 DUP2 MSTORE PUSH1 0x40 SWAP2 DUP3 SWAP1 KECCAK256 SWAP3 SWAP1 SWAP3 SSTORE DUP1 MLOAD DUP5 DUP2 MSTORE SWAP2 DUP3 ADD DUP4 SWAP1 MSTORE PUSH32 0x41A73BEB1018A8B63E0F451A8A4F483806142CF14BE45B1A58A23776A1E9B4BC SWAP2 ADD PUSH1 0x40 MLOAD DUP1 SWAP2 SUB SWAP1 LOG1 POP POP JUMP JUMPDEST PUSH1 0x0 DUP2 DUP2 MSTORE PUSH1 0x20 DUP2 SWAP1 MSTORE PUSH1 0x40 DUP2 KECCAK256 SLOAD TIMESTAMP GT ISZERO PUSH2 0x155 JUMPI POP PUSH1 0x0 SWAP2 SWAP1 POP JUMP JUMPDEST PUSH1 0x0 DUP3 DUP2 MSTORE PUSH1 0x20 DUP2 SWAP1 MSTORE PUSH1 0x40 SWAP1 KECCAK256 SLOAD PUSH2 0x16F SWAP1 TIMESTAMP SWAP1 PUSH2 0x1DE JUMP JUMPDEST SWAP3 SWAP2 POP POP JUMP JUMPDEST PUSH1 0x0 PUSH1 0x20 DUP3 DUP5 SUB SLT ISZERO PUSH2 0x187 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP CALLDATALOAD SWAP2 SWAP1 POP JUMP JUMPDEST PUSH1 0x0 DUP1 PUSH1 0x40 DUP4 DUP6 SUB SLT ISZERO PUSH2 0x1A1 JUMPI PUSH1 0x0 DUP1 REVERT JUMPDEST POP POP DUP1 CALLDATALOAD SWAP3 PUSH1 0x20 SWAP1 SWAP2 ADD CALLDATALOAD SWAP2 POP JUMP JUMPDEST PUSH4 0x4E487B71 PUSH1 0xE0 SHL PUSH1 0x0 MSTORE PUSH1 0x11 PUSH1 0x4 MSTORE PUSH1 0x24 PUSH1 0x0 REVERT JUMPDEST PUSH1 0x0 DUP3 NOT DUP3 GT ISZERO PUSH2 0x1D9 JUMPI PUSH2 0x1D9 PUSH2 0x1B0 JUMP JUMPDEST POP ADD SWAP1 JUMP JUMPDEST PUSH1 0x0 DUP3 DUP3 LT ISZERO PUSH2 0x1F0 JUMPI PUSH2 0x1F0 PUSH2 0x1B0 JUMP JUMPDEST POP SUB SWAP1 JUMP INVALID LOG2 PUSH5 0x6970667358 0x22 SLT KECCAK256 SWAP5 SELFDESTRUCT 0x4D STOP 0xD0 0xE9 PUSH25 0xDC986D010F23D1B998E8FAF7BD7BA8C6C39088C585040B6F13 PUSH5 0x736F6C6343 STOP ADDMOD 0xC STOP CALLER ",
+  "pcMap": {
+    "0": {
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "PUSH1",
+      "path": "4",
+      "value": "0x80"
+    },
+    "2": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "PUSH1",
+      "path": "4",
+      "value": "0x40"
+    },
+    "4": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "MSTORE",
+      "path": "4"
+    },
+    "5": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "CALLVALUE",
+      "path": "4"
+    },
+    "6": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "DUP1",
+      "path": "4"
+    },
+    "7": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "ISZERO",
+      "path": "4"
+    },
+    "8": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "PUSH2",
+      "path": "4",
+      "value": "0x10"
+    },
+    "11": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "JUMPI",
+      "path": "4"
+    },
+    "12": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "PUSH1",
+      "path": "4",
+      "value": "0x0"
+    },
+    "14": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "DUP1",
+      "path": "4"
+    },
+    "15": {
+      "dev": "Cannot send ether to nonpayable function",
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "REVERT",
+      "path": "4"
+    },
+    "16": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "JUMPDEST",
+      "path": "4"
+    },
+    "17": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "POP",
+      "path": "4"
+    },
+    "18": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "PUSH1",
+      "path": "4",
+      "value": "0x4"
+    },
+    "20": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "CALLDATASIZE",
+      "path": "4"
+    },
+    "21": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "LT",
+      "path": "4"
+    },
+    "22": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "PUSH2",
+      "path": "4",
+      "value": "0x4C"
+    },
+    "25": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "JUMPI",
+      "path": "4"
+    },
+    "26": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "PUSH1",
+      "path": "4",
+      "value": "0x0"
+    },
+    "28": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "CALLDATALOAD",
+      "path": "4"
+    },
+    "29": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "PUSH1",
+      "path": "4",
+      "value": "0xE0"
+    },
+    "31": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "SHR",
+      "path": "4"
+    },
+    "32": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "DUP1",
+      "path": "4"
+    },
+    "33": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "PUSH4",
+      "path": "4",
+      "value": "0x6833F200"
+    },
+    "38": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "EQ",
+      "path": "4"
+    },
+    "39": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "PUSH2",
+      "path": "4",
+      "value": "0x51"
+    },
+    "42": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "JUMPI",
+      "path": "4"
+    },
+    "43": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "DUP1",
+      "path": "4"
+    },
+    "44": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "PUSH4",
+      "path": "4",
+      "value": "0xC3CAB38A"
+    },
+    "49": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "EQ",
+      "path": "4"
+    },
+    "50": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "PUSH2",
+      "path": "4",
+      "value": "0x84"
+    },
+    "53": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "JUMPI",
+      "path": "4"
+    },
+    "54": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "DUP1",
+      "path": "4"
+    },
+    "55": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "PUSH4",
+      "path": "4",
+      "value": "0xE8C58763"
+    },
+    "60": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "EQ",
+      "path": "4"
+    },
+    "61": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "PUSH2",
+      "path": "4",
+      "value": "0x99"
+    },
+    "64": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "JUMPI",
+      "path": "4"
+    },
+    "65": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "DUP1",
+      "path": "4"
+    },
+    "66": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "PUSH4",
+      "path": "4",
+      "value": "0xF577A500"
+    },
+    "71": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "EQ",
+      "path": "4"
+    },
+    "72": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "PUSH2",
+      "path": "4",
+      "value": "0xAC"
+    },
+    "75": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "JUMPI",
+      "path": "4"
+    },
+    "76": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "JUMPDEST",
+      "path": "4"
+    },
+    "77": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "PUSH1",
+      "path": "4",
+      "value": "0x0"
+    },
+    "79": {
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "DUP1",
+      "path": "4"
+    },
+    "80": {
+      "first_revert": true,
+      "fn": null,
+      "offset": [
+        174,
+        2487
+      ],
+      "op": "REVERT",
+      "path": "4"
+    },
+    "81": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1358,
+        1475
+      ],
+      "op": "JUMPDEST",
+      "path": "4"
+    },
+    "82": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1358,
+        1475
+      ],
+      "op": "PUSH2",
+      "path": "4",
+      "value": "0x71"
+    },
+    "85": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1358,
+        1475
+      ],
+      "op": "PUSH2",
+      "path": "4",
+      "value": "0x5F"
+    },
+    "88": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1358,
+        1475
+      ],
+      "op": "CALLDATASIZE",
+      "path": "4"
+    },
+    "89": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1358,
+        1475
+      ],
+      "op": "PUSH1",
+      "path": "4",
+      "value": "0x4"
+    },
+    "91": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1358,
+        1475
+      ],
+      "op": "PUSH2",
+      "path": "4",
+      "value": "0x175"
+    },
+    "94": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "jump": "i",
+      "offset": [
+        1358,
+        1475
+      ],
+      "op": "JUMP",
+      "path": "4"
+    },
+    "95": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1358,
+        1475
+      ],
+      "op": "JUMPDEST",
+      "path": "4"
+    },
+    "96": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1418,
+        1425
+      ],
+      "op": "PUSH1",
+      "path": "4",
+      "value": "0x0"
+    },
+    "98": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "SWAP1",
+      "path": "4",
+      "statement": 0
+    },
+    "99": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "DUP2",
+      "path": "4"
+    },
+    "100": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "MSTORE",
+      "path": "4"
+    },
+    "101": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "PUSH1",
+      "path": "4",
+      "value": "0x20"
+    },
+    "103": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "DUP2",
+      "path": "4"
+    },
+    "104": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "SWAP1",
+      "path": "4"
+    },
+    "105": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "MSTORE",
+      "path": "4"
+    },
+    "106": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "PUSH1",
+      "path": "4",
+      "value": "0x40"
+    },
+    "108": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "SWAP1",
+      "path": "4"
+    },
+    "109": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "KECCAK256",
+      "path": "4"
+    },
+    "110": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "SLOAD",
+      "path": "4"
+    },
+    "111": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "SWAP1",
+      "path": "4"
+    },
+    "112": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1358,
+        1475
+      ],
+      "op": "JUMP",
+      "path": "4"
+    },
+    "113": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1358,
+        1475
+      ],
+      "op": "JUMPDEST",
+      "path": "4"
+    },
+    "114": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1358,
+        1475
+      ],
+      "op": "PUSH1",
+      "path": "4",
+      "value": "0x40"
+    },
+    "116": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1358,
+        1475
+      ],
+      "op": "MLOAD",
+      "path": "4"
+    },
+    "117": {
+      "op": "SWAP1"
+    },
+    "118": {
+      "op": "DUP2"
+    },
+    "119": {
+      "op": "MSTORE"
+    },
+    "120": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "122": {
+      "op": "ADD"
+    },
+    "123": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1358,
+        1475
+      ],
+      "op": "JUMPDEST",
+      "path": "4"
+    },
+    "124": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1358,
+        1475
+      ],
+      "op": "PUSH1",
+      "path": "4",
+      "value": "0x40"
+    },
+    "126": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1358,
+        1475
+      ],
+      "op": "MLOAD",
+      "path": "4"
+    },
+    "127": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1358,
+        1475
+      ],
+      "op": "DUP1",
+      "path": "4"
+    },
+    "128": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1358,
+        1475
+      ],
+      "op": "SWAP2",
+      "path": "4"
+    },
+    "129": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1358,
+        1475
+      ],
+      "op": "SUB",
+      "path": "4"
+    },
+    "130": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1358,
+        1475
+      ],
+      "op": "SWAP1",
+      "path": "4"
+    },
+    "131": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1358,
+        1475
+      ],
+      "op": "RETURN",
+      "path": "4"
+    },
+    "132": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        902,
+        1160
+      ],
+      "op": "JUMPDEST",
+      "path": "4"
+    },
+    "133": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        902,
+        1160
+      ],
+      "op": "PUSH2",
+      "path": "4",
+      "value": "0x97"
+    },
+    "136": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        902,
+        1160
+      ],
+      "op": "PUSH2",
+      "path": "4",
+      "value": "0x92"
+    },
+    "139": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        902,
+        1160
+      ],
+      "op": "CALLDATASIZE",
+      "path": "4"
+    },
+    "140": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        902,
+        1160
+      ],
+      "op": "PUSH1",
+      "path": "4",
+      "value": "0x4"
+    },
+    "142": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        902,
+        1160
+      ],
+      "op": "PUSH2",
+      "path": "4",
+      "value": "0x18E"
+    },
+    "145": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "jump": "i",
+      "offset": [
+        902,
+        1160
+      ],
+      "op": "JUMP",
+      "path": "4"
+    },
+    "146": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        902,
+        1160
+      ],
+      "op": "JUMPDEST",
+      "path": "4"
+    },
+    "147": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        902,
+        1160
+      ],
+      "op": "PUSH2",
+      "path": "4",
+      "value": "0xDF"
+    },
+    "150": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "jump": "i",
+      "offset": [
+        902,
+        1160
+      ],
+      "op": "JUMP",
+      "path": "4"
+    },
+    "151": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        902,
+        1160
+      ],
+      "op": "JUMPDEST",
+      "path": "4"
+    },
+    "152": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        902,
+        1160
+      ],
+      "op": "STOP",
+      "path": "4"
+    },
+    "153": {
+      "fn": "IsValidWithDate.getTimeLeft",
+      "offset": [
+        2037,
+        2485
+      ],
+      "op": "JUMPDEST",
+      "path": "4"
+    },
+    "154": {
+      "fn": "IsValidWithDate.getTimeLeft",
+      "offset": [
+        2037,
+        2485
+      ],
+      "op": "PUSH2",
+      "path": "4",
+      "value": "0x71"
+    },
+    "157": {
+      "fn": "IsValidWithDate.getTimeLeft",
+      "offset": [
+        2037,
+        2485
+      ],
+      "op": "PUSH2",
+      "path": "4",
+      "value": "0xA7"
+    },
+    "160": {
+      "fn": "IsValidWithDate.getTimeLeft",
+      "offset": [
+        2037,
+        2485
+      ],
+      "op": "CALLDATASIZE",
+      "path": "4"
+    },
+    "161": {
+      "fn": "IsValidWithDate.getTimeLeft",
+      "offset": [
+        2037,
+        2485
+      ],
+      "op": "PUSH1",
+      "path": "4",
+      "value": "0x4"
+    },
+    "163": {
+      "fn": "IsValidWithDate.getTimeLeft",
+      "offset": [
+        2037,
+        2485
+      ],
+      "op": "PUSH2",
+      "path": "4",
+      "value": "0x175"
+    },
+    "166": {
+      "fn": "IsValidWithDate.getTimeLeft",
+      "jump": "i",
+      "offset": [
+        2037,
+        2485
+      ],
+      "op": "JUMP",
+      "path": "4"
+    },
+    "167": {
+      "fn": "IsValidWithDate.getTimeLeft",
+      "offset": [
+        2037,
+        2485
+      ],
+      "op": "JUMPDEST",
+      "path": "4"
+    },
+    "168": {
+      "fn": "IsValidWithDate.getTimeLeft",
+      "offset": [
+        2037,
+        2485
+      ],
+      "op": "PUSH2",
+      "path": "4",
+      "value": "0x137"
+    },
+    "171": {
+      "fn": "IsValidWithDate.getTimeLeft",
+      "jump": "i",
+      "offset": [
+        2037,
+        2485
+      ],
+      "op": "JUMP",
+      "path": "4"
+    },
+    "172": {
+      "fn": "IsValidWithDate.isValid",
+      "offset": [
+        1700,
+        1825
+      ],
+      "op": "JUMPDEST",
+      "path": "4"
+    },
+    "173": {
+      "fn": "IsValidWithDate.isValid",
+      "offset": [
+        1700,
+        1825
+      ],
+      "op": "PUSH2",
+      "path": "4",
+      "value": "0xCF"
+    },
+    "176": {
+      "fn": "IsValidWithDate.isValid",
+      "offset": [
+        1700,
+        1825
+      ],
+      "op": "PUSH2",
+      "path": "4",
+      "value": "0xBA"
+    },
+    "179": {
+      "fn": "IsValidWithDate.isValid",
+      "offset": [
+        1700,
+        1825
+      ],
+      "op": "CALLDATASIZE",
+      "path": "4"
+    },
+    "180": {
+      "fn": "IsValidWithDate.isValid",
+      "offset": [
+        1700,
+        1825
+      ],
+      "op": "PUSH1",
+      "path": "4",
+      "value": "0x4"
+    },
+    "182": {
+      "fn": "IsValidWithDate.isValid",
+      "offset": [
+        1700,
+        1825
+      ],
+      "op": "PUSH2",
+      "path": "4",
+      "value": "0x175"
+    },
+    "185": {
+      "fn": "IsValidWithDate.isValid",
+      "jump": "i",
+      "offset": [
+        1700,
+        1825
+      ],
+      "op": "JUMP",
+      "path": "4"
+    },
+    "186": {
+      "fn": "IsValidWithDate.isValid",
+      "offset": [
+        1700,
+        1825
+      ],
+      "op": "JUMPDEST",
+      "path": "4"
+    },
+    "187": {
+      "fn": "IsValidWithDate.isValid",
+      "offset": [
+        1754,
+        1758
+      ],
+      "op": "PUSH1",
+      "path": "4",
+      "value": "0x0"
+    },
+    "189": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "SWAP1",
+      "path": "4"
+    },
+    "190": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "DUP2",
+      "path": "4"
+    },
+    "191": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "MSTORE",
+      "path": "4"
+    },
+    "192": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "PUSH1",
+      "path": "4",
+      "value": "0x20"
+    },
+    "194": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "DUP2",
+      "path": "4"
+    },
+    "195": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "SWAP1",
+      "path": "4"
+    },
+    "196": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "MSTORE",
+      "path": "4"
+    },
+    "197": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "PUSH1",
+      "path": "4",
+      "value": "0x40"
+    },
+    "199": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "SWAP1",
+      "path": "4"
+    },
+    "200": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "KECCAK256",
+      "path": "4"
+    },
+    "201": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "SLOAD",
+      "path": "4"
+    },
+    "202": {
+      "fn": "IsValidWithDate.isValid",
+      "offset": [
+        1777,
+        1792
+      ],
+      "op": "TIMESTAMP",
+      "path": "4",
+      "statement": 1
+    },
+    "203": {
+      "fn": "IsValidWithDate.isValid",
+      "offset": [
+        1777,
+        1818
+      ],
+      "op": "GT",
+      "path": "4"
+    },
+    "204": {
+      "fn": "IsValidWithDate.isValid",
+      "offset": [
+        1777,
+        1818
+      ],
+      "op": "ISZERO",
+      "path": "4"
+    },
+    "205": {
+      "fn": "IsValidWithDate.isValid",
+      "offset": [
+        1777,
+        1818
+      ],
+      "op": "SWAP1",
+      "path": "4"
+    },
+    "206": {
+      "fn": "IsValidWithDate.isValid",
+      "offset": [
+        1700,
+        1825
+      ],
+      "op": "JUMP",
+      "path": "4"
+    },
+    "207": {
+      "fn": "IsValidWithDate.isValid",
+      "offset": [
+        1700,
+        1825
+      ],
+      "op": "JUMPDEST",
+      "path": "4"
+    },
+    "208": {
+      "fn": "IsValidWithDate.isValid",
+      "offset": [
+        1700,
+        1825
+      ],
+      "op": "PUSH1",
+      "path": "4",
+      "value": "0x40"
+    },
+    "210": {
+      "fn": "IsValidWithDate.isValid",
+      "offset": [
+        1700,
+        1825
+      ],
+      "op": "MLOAD",
+      "path": "4"
+    },
+    "211": {
+      "op": "SWAP1"
+    },
+    "212": {
+      "op": "ISZERO"
+    },
+    "213": {
+      "op": "ISZERO"
+    },
+    "214": {
+      "op": "DUP2"
+    },
+    "215": {
+      "op": "MSTORE"
+    },
+    "216": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "218": {
+      "op": "ADD"
+    },
+    "219": {
+      "fn": "IsValidWithDate.isValid",
+      "offset": [
+        1700,
+        1825
+      ],
+      "op": "PUSH2",
+      "path": "4",
+      "value": "0x7B"
+    },
+    "222": {
+      "op": "JUMP"
+    },
+    "223": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        902,
+        1160
+      ],
+      "op": "JUMPDEST",
+      "path": "4"
+    },
+    "224": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        1049,
+        1071
+      ],
+      "op": "PUSH2",
+      "path": "4",
+      "statement": 2,
+      "value": "0xE9"
+    },
+    "227": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        1067,
+        1071
+      ],
+      "op": "DUP2",
+      "path": "4"
+    },
+    "228": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        1049,
+        1064
+      ],
+      "op": "TIMESTAMP",
+      "path": "4"
+    },
+    "229": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        1049,
+        1071
+      ],
+      "op": "PUSH2",
+      "path": "4",
+      "value": "0x1C6"
+    },
+    "232": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "jump": "i",
+      "offset": [
+        1049,
+        1071
+      ],
+      "op": "JUMP",
+      "path": "4"
+    },
+    "233": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        1049,
+        1071
+      ],
+      "op": "JUMPDEST",
+      "path": "4"
+    },
+    "234": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        1022,
+        1037
+      ],
+      "op": "PUSH1",
+      "path": "4",
+      "value": "0x0"
+    },
+    "236": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        1022,
+        1046
+      ],
+      "op": "DUP4",
+      "path": "4"
+    },
+    "237": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        1022,
+        1046
+      ],
+      "op": "DUP2",
+      "path": "4"
+    },
+    "238": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        1022,
+        1046
+      ],
+      "op": "MSTORE",
+      "path": "4"
+    },
+    "239": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        1022,
+        1046
+      ],
+      "op": "PUSH1",
+      "path": "4",
+      "value": "0x20"
+    },
+    "241": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        1022,
+        1046
+      ],
+      "op": "DUP2",
+      "path": "4"
+    },
+    "242": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        1022,
+        1046
+      ],
+      "op": "DUP2",
+      "path": "4"
+    },
+    "243": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        1022,
+        1046
+      ],
+      "op": "MSTORE",
+      "path": "4"
+    },
+    "244": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        1022,
+        1046
+      ],
+      "op": "PUSH1",
+      "path": "4",
+      "value": "0x40"
+    },
+    "246": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        1022,
+        1046
+      ],
+      "op": "SWAP2",
+      "path": "4"
+    },
+    "247": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        1022,
+        1046
+      ],
+      "op": "DUP3",
+      "path": "4"
+    },
+    "248": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        1022,
+        1046
+      ],
+      "op": "SWAP1",
+      "path": "4"
+    },
+    "249": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        1022,
+        1046
+      ],
+      "op": "KECCAK256",
+      "path": "4"
+    },
+    "250": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        1022,
+        1071
+      ],
+      "op": "SWAP3",
+      "path": "4"
+    },
+    "251": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        1022,
+        1071
+      ],
+      "op": "SWAP1",
+      "path": "4"
+    },
+    "252": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        1022,
+        1071
+      ],
+      "op": "SWAP3",
+      "path": "4"
+    },
+    "253": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        1022,
+        1071
+      ],
+      "op": "SSTORE",
+      "path": "4"
+    },
+    "254": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        1130,
+        1153
+      ],
+      "op": "DUP1",
+      "path": "4",
+      "statement": 3
+    },
+    "255": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        1130,
+        1153
+      ],
+      "op": "MLOAD",
+      "path": "4"
+    },
+    "256": {
+      "op": "DUP5"
+    },
+    "257": {
+      "op": "DUP2"
+    },
+    "258": {
+      "op": "MSTORE"
+    },
+    "259": {
+      "op": "SWAP2"
+    },
+    "260": {
+      "op": "DUP3"
+    },
+    "261": {
+      "op": "ADD"
+    },
+    "262": {
+      "op": "DUP4"
+    },
+    "263": {
+      "op": "SWAP1"
+    },
+    "264": {
+      "op": "MSTORE"
+    },
+    "265": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        1130,
+        1153
+      ],
+      "op": "PUSH32",
+      "path": "4",
+      "value": "0x41A73BEB1018A8B63E0F451A8A4F483806142CF14BE45B1A58A23776A1E9B4BC"
+    },
+    "298": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        1130,
+        1153
+      ],
+      "op": "SWAP2",
+      "path": "4"
+    },
+    "299": {
+      "op": "ADD"
+    },
+    "300": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        1130,
+        1153
+      ],
+      "op": "PUSH1",
+      "path": "4",
+      "value": "0x40"
+    },
+    "302": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        1130,
+        1153
+      ],
+      "op": "MLOAD",
+      "path": "4"
+    },
+    "303": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        1130,
+        1153
+      ],
+      "op": "DUP1",
+      "path": "4"
+    },
+    "304": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        1130,
+        1153
+      ],
+      "op": "SWAP2",
+      "path": "4"
+    },
+    "305": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        1130,
+        1153
+      ],
+      "op": "SUB",
+      "path": "4"
+    },
+    "306": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        1130,
+        1153
+      ],
+      "op": "SWAP1",
+      "path": "4"
+    },
+    "307": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        1130,
+        1153
+      ],
+      "op": "LOG1",
+      "path": "4"
+    },
+    "308": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        902,
+        1160
+      ],
+      "op": "POP",
+      "path": "4"
+    },
+    "309": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "offset": [
+        902,
+        1160
+      ],
+      "op": "POP",
+      "path": "4"
+    },
+    "310": {
+      "fn": "IsValidWithDate.extendExpiry",
+      "jump": "o",
+      "offset": [
+        902,
+        1160
+      ],
+      "op": "JUMP",
+      "path": "4"
+    },
+    "311": {
+      "fn": "IsValidWithDate.getTimeLeft",
+      "offset": [
+        2037,
+        2485
+      ],
+      "op": "JUMPDEST",
+      "path": "4"
+    },
+    "312": {
+      "fn": "IsValidWithDate.getTimeLeft",
+      "offset": [
+        2095,
+        2102
+      ],
+      "op": "PUSH1",
+      "path": "4",
+      "value": "0x0"
+    },
+    "314": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "DUP2",
+      "path": "4"
+    },
+    "315": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "DUP2",
+      "path": "4"
+    },
+    "316": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "MSTORE",
+      "path": "4"
+    },
+    "317": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "PUSH1",
+      "path": "4",
+      "value": "0x20"
+    },
+    "319": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "DUP2",
+      "path": "4"
+    },
+    "320": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "SWAP1",
+      "path": "4"
+    },
+    "321": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "MSTORE",
+      "path": "4"
+    },
+    "322": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "PUSH1",
+      "path": "4",
+      "value": "0x40"
+    },
+    "324": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "DUP2",
+      "path": "4"
+    },
+    "325": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "KECCAK256",
+      "path": "4"
+    },
+    "326": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "SLOAD",
+      "path": "4"
+    },
+    "327": {
+      "fn": "IsValidWithDate.getTimeLeft",
+      "offset": [
+        2223,
+        2238
+      ],
+      "op": "TIMESTAMP",
+      "path": "4"
+    },
+    "328": {
+      "branch": 6,
+      "fn": "IsValidWithDate.getTimeLeft",
+      "offset": [
+        2223,
+        2263
+      ],
+      "op": "GT",
+      "path": "4"
+    },
+    "329": {
+      "fn": "IsValidWithDate.getTimeLeft",
+      "offset": [
+        2219,
+        2479
+      ],
+      "op": "ISZERO",
+      "path": "4"
+    },
+    "330": {
+      "fn": "IsValidWithDate.getTimeLeft",
+      "offset": [
+        2219,
+        2479
+      ],
+      "op": "PUSH2",
+      "path": "4",
+      "value": "0x155"
+    },
+    "333": {
+      "branch": 6,
+      "fn": "IsValidWithDate.getTimeLeft",
+      "offset": [
+        2219,
+        2479
+      ],
+      "op": "JUMPI",
+      "path": "4"
+    },
+    "334": {
+      "op": "POP"
+    },
+    "335": {
+      "fn": "IsValidWithDate.getTimeLeft",
+      "offset": [
+        2317,
+        2318
+      ],
+      "op": "PUSH1",
+      "path": "4",
+      "statement": 4,
+      "value": "0x0"
+    },
+    "337": {
+      "fn": "IsValidWithDate.getTimeLeft",
+      "offset": [
+        2317,
+        2318
+      ],
+      "op": "SWAP2",
+      "path": "4"
+    },
+    "338": {
+      "fn": "IsValidWithDate.getTimeLeft",
+      "offset": [
+        2037,
+        2485
+      ],
+      "op": "SWAP1",
+      "path": "4"
+    },
+    "339": {
+      "op": "POP"
+    },
+    "340": {
+      "fn": "IsValidWithDate.getTimeLeft",
+      "jump": "o",
+      "offset": [
+        2037,
+        2485
+      ],
+      "op": "JUMP",
+      "path": "4"
+    },
+    "341": {
+      "fn": "IsValidWithDate.getTimeLeft",
+      "offset": [
+        2219,
+        2479
+      ],
+      "op": "JUMPDEST",
+      "path": "4"
+    },
+    "342": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1418,
+        1425
+      ],
+      "op": "PUSH1",
+      "path": "4",
+      "value": "0x0"
+    },
+    "344": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "DUP3",
+      "path": "4"
+    },
+    "345": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "DUP2",
+      "path": "4"
+    },
+    "346": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "MSTORE",
+      "path": "4"
+    },
+    "347": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "PUSH1",
+      "path": "4",
+      "value": "0x20"
+    },
+    "349": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "DUP2",
+      "path": "4"
+    },
+    "350": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "SWAP1",
+      "path": "4"
+    },
+    "351": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "MSTORE",
+      "path": "4"
+    },
+    "352": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "PUSH1",
+      "path": "4",
+      "value": "0x40"
+    },
+    "354": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "SWAP1",
+      "path": "4"
+    },
+    "355": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "KECCAK256",
+      "path": "4"
+    },
+    "356": {
+      "fn": "IsValidWithDate.getExpiryDate",
+      "offset": [
+        1444,
+        1468
+      ],
+      "op": "SLOAD",
+      "path": "4"
+    },
+    "357": {
+      "fn": "IsValidWithDate.getTimeLeft",
+      "offset": [
+        2428,
+        2468
+      ],
+      "op": "PUSH2",
+      "path": "4",
+      "statement": 5,
+      "value": "0x16F"
+    },
+    "360": {
+      "fn": "IsValidWithDate.getTimeLeft",
+      "offset": [
+        2428,
+        2468
+      ],
+      "op": "SWAP1",
+      "path": "4"
+    },
+    "361": {
+      "fn": "IsValidWithDate.getTimeLeft",
+      "offset": [
+        2453,
+        2468
+      ],
+      "op": "TIMESTAMP",
+      "path": "4"
+    },
+    "362": {
+      "fn": "IsValidWithDate.getTimeLeft",
+      "offset": [
+        2453,
+        2468
+      ],
+      "op": "SWAP1",
+      "path": "4"
+    },
+    "363": {
+      "fn": "IsValidWithDate.getTimeLeft",
+      "offset": [
+        2428,
+        2468
+      ],
+      "op": "PUSH2",
+      "path": "4",
+      "value": "0x1DE"
+    },
+    "366": {
+      "fn": "IsValidWithDate.getTimeLeft",
+      "jump": "i",
+      "offset": [
+        2428,
+        2468
+      ],
+      "op": "JUMP",
+      "path": "4"
+    },
+    "367": {
+      "fn": "IsValidWithDate.getTimeLeft",
+      "offset": [
+        2428,
+        2468
+      ],
+      "op": "JUMPDEST",
+      "path": "4"
+    },
+    "368": {
+      "fn": "IsValidWithDate.getTimeLeft",
+      "offset": [
+        2421,
+        2468
+      ],
+      "op": "SWAP3",
+      "path": "4"
+    },
+    "369": {
+      "fn": "IsValidWithDate.getTimeLeft",
+      "offset": [
+        2037,
+        2485
+      ],
+      "op": "SWAP2",
+      "path": "4"
+    },
+    "370": {
+      "op": "POP"
+    },
+    "371": {
+      "op": "POP"
+    },
+    "372": {
+      "fn": "IsValidWithDate.getTimeLeft",
+      "jump": "o",
+      "offset": [
+        2037,
+        2485
+      ],
+      "op": "JUMP",
+      "path": "4"
+    },
+    "373": {
+      "op": "JUMPDEST"
+    },
+    "374": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "376": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "378": {
+      "op": "DUP3"
+    },
+    "379": {
+      "op": "DUP5"
+    },
+    "380": {
+      "op": "SUB"
+    },
+    "381": {
+      "op": "SLT"
+    },
+    "382": {
+      "op": "ISZERO"
+    },
+    "383": {
+      "op": "PUSH2",
+      "value": "0x187"
+    },
+    "386": {
+      "op": "JUMPI"
+    },
+    "387": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "389": {
+      "op": "DUP1"
+    },
+    "390": {
+      "op": "REVERT"
+    },
+    "391": {
+      "op": "JUMPDEST"
+    },
+    "392": {
+      "op": "POP"
+    },
+    "393": {
+      "op": "CALLDATALOAD"
+    },
+    "394": {
+      "op": "SWAP2"
+    },
+    "395": {
+      "op": "SWAP1"
+    },
+    "396": {
+      "op": "POP"
+    },
+    "397": {
+      "jump": "o",
+      "op": "JUMP"
+    },
+    "398": {
+      "op": "JUMPDEST"
+    },
+    "399": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "401": {
+      "op": "DUP1"
+    },
+    "402": {
+      "op": "PUSH1",
+      "value": "0x40"
+    },
+    "404": {
+      "op": "DUP4"
+    },
+    "405": {
+      "op": "DUP6"
+    },
+    "406": {
+      "op": "SUB"
+    },
+    "407": {
+      "op": "SLT"
+    },
+    "408": {
+      "op": "ISZERO"
+    },
+    "409": {
+      "op": "PUSH2",
+      "value": "0x1A1"
+    },
+    "412": {
+      "op": "JUMPI"
+    },
+    "413": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "415": {
+      "op": "DUP1"
+    },
+    "416": {
+      "op": "REVERT"
+    },
+    "417": {
+      "op": "JUMPDEST"
+    },
+    "418": {
+      "op": "POP"
+    },
+    "419": {
+      "op": "POP"
+    },
+    "420": {
+      "op": "DUP1"
+    },
+    "421": {
+      "op": "CALLDATALOAD"
+    },
+    "422": {
+      "op": "SWAP3"
+    },
+    "423": {
+      "op": "PUSH1",
+      "value": "0x20"
+    },
+    "425": {
+      "op": "SWAP1"
+    },
+    "426": {
+      "op": "SWAP2"
+    },
+    "427": {
+      "op": "ADD"
+    },
+    "428": {
+      "op": "CALLDATALOAD"
+    },
+    "429": {
+      "op": "SWAP2"
+    },
+    "430": {
+      "op": "POP"
+    },
+    "431": {
+      "jump": "o",
+      "op": "JUMP"
+    },
+    "432": {
+      "op": "JUMPDEST"
+    },
+    "433": {
+      "op": "PUSH4",
+      "value": "0x4E487B71"
+    },
+    "438": {
+      "op": "PUSH1",
+      "value": "0xE0"
+    },
+    "440": {
+      "op": "SHL"
+    },
+    "441": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "443": {
+      "op": "MSTORE"
+    },
+    "444": {
+      "op": "PUSH1",
+      "value": "0x11"
+    },
+    "446": {
+      "op": "PUSH1",
+      "value": "0x4"
+    },
+    "448": {
+      "op": "MSTORE"
+    },
+    "449": {
+      "op": "PUSH1",
+      "value": "0x24"
+    },
+    "451": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "453": {
+      "op": "REVERT"
+    },
+    "454": {
+      "op": "JUMPDEST"
+    },
+    "455": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "457": {
+      "op": "DUP3"
+    },
+    "458": {
+      "op": "NOT"
+    },
+    "459": {
+      "op": "DUP3"
+    },
+    "460": {
+      "op": "GT"
+    },
+    "461": {
+      "op": "ISZERO"
+    },
+    "462": {
+      "op": "PUSH2",
+      "value": "0x1D9"
+    },
+    "465": {
+      "op": "JUMPI"
+    },
+    "466": {
+      "op": "PUSH2",
+      "value": "0x1D9"
+    },
+    "469": {
+      "op": "PUSH2",
+      "value": "0x1B0"
+    },
+    "472": {
+      "jump": "i",
+      "op": "JUMP"
+    },
+    "473": {
+      "op": "JUMPDEST"
+    },
+    "474": {
+      "op": "POP"
+    },
+    "475": {
+      "op": "ADD"
+    },
+    "476": {
+      "op": "SWAP1"
+    },
+    "477": {
+      "jump": "o",
+      "op": "JUMP"
+    },
+    "478": {
+      "op": "JUMPDEST"
+    },
+    "479": {
+      "op": "PUSH1",
+      "value": "0x0"
+    },
+    "481": {
+      "op": "DUP3"
+    },
+    "482": {
+      "op": "DUP3"
+    },
+    "483": {
+      "op": "LT"
+    },
+    "484": {
+      "op": "ISZERO"
+    },
+    "485": {
+      "op": "PUSH2",
+      "value": "0x1F0"
+    },
+    "488": {
+      "op": "JUMPI"
+    },
+    "489": {
+      "op": "PUSH2",
+      "value": "0x1F0"
+    },
+    "492": {
+      "op": "PUSH2",
+      "value": "0x1B0"
+    },
+    "495": {
+      "jump": "i",
+      "op": "JUMP"
+    },
+    "496": {
+      "op": "JUMPDEST"
+    },
+    "497": {
+      "op": "POP"
+    },
+    "498": {
+      "op": "SUB"
+    },
+    "499": {
+      "op": "SWAP1"
+    },
+    "500": {
+      "jump": "o",
+      "op": "JUMP"
+    }
+  },
+  "sha1": "9e39d3ecd9f9d22539cf27f5b8df6d0ec00e1154",
+  "source": "// SPDX-License-Identifier: GPL-3.0\npragma solidity ^0.8.0;\n\n/**\n* @title IsValidWithDate contract.\n* @author Daccred.\n* @dev Controls time for minted tokens till expiry.\n*/\ncontract IsValidWithDate {\n    /// @dev Mapping individual tokens to their expiry dates.\n    mapping(uint256 => uint256) internal tokenExpiryDate;\n\n    /// @dev Emitted when a token is extended by redemption.\n    event Extended(uint256 tokenId, uint256 time);\n\n    /**\n    * @dev  On every successful redemption or mint of token the\n    *       expiry of the token is extended by the duration passed\n    *       in the contract.\n    *       This should be called on expired tokens.\n    *\n    * @notice   This function is expected to be called by the\n    *           SoulboundRedeemable on every mint.\n    *\n    * @param tokenId    Token to extend its expiry.\n    * @param time       Length of time to extend it with.\n    */\n    function extendExpiry(uint256 tokenId, uint256 time) \n    public\n    {\n        /// @dev Set expiry to new time.\n        tokenExpiryDate[tokenId] = block.timestamp + time;\n        /// @dev Emit the {Extended} event.\n        emit Extended(tokenId, time);\n    }\n\n    /**\n    * @dev Returns the expiry date of `tokenId`.\n    *\n    * @notice Callable by anyone.\n    *\n    * @param tokenId Token to get its expiry.\n    *\n    * @return time of expiry.\n    */\n    function getExpiryDate(uint256 tokenId) public view returns(uint256) {\n        return tokenExpiryDate[tokenId];\n    }\n\n    /**\n    * @dev Return true if the token is expired or false if otherwise.\n    *\n    * @notice Callable by anyone.\n    *\n    * @param tokenId Token to check if expired.\n    *\n    * @return bool true or false.\n    */\n    function isValid(uint256 tokenId) public view returns(bool) {\n        return block.timestamp <= getExpiryDate(tokenId);\n    }\n\n    /**\n    * @dev Returns the time left for a token to expire.\n    *\n    * @notice Callable by anyone.\n    *\n    * @param tokenId Token to get its expiry.\n    *\n    * @return time left till expiry.\n    */\n    function getTimeLeft(uint256 tokenId) public view returns(uint256) {\n        /// @dev    If the current time has passed the mapped expiry \n        ///         time of token.\n        if (block.timestamp > getExpiryDate(tokenId)) {\n            /// @dev Return 0.\n            return 0;\n        } else {\n            /// @dev    Else,\n            ///         Return time left.\n            return getExpiryDate(tokenId) - block.timestamp;\n        }\n    }\n}\n",
+  "sourceMap": "174:2313:4:-:0;;;;;;;;;;;;;;;;;;;",
+  "sourcePath": "contracts/extensions/IsValidWithDate.sol",
+  "type": "contract"
+}

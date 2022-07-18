@@ -1,0 +1,21 @@
+{
+  "contracts": {
+    "Allowlist": "4cb55ed56d5bc7297cfd70820f6d2bcc4f83a640",
+    "IsValidWithDate": "67fe842c4073c6e48d213685bf4aa3589531317c",
+    "Ownable": "369e52a292af054f336349ca0496d52a8d559ef4",
+    "Soulbound": "7bfb658c83d02297e9cbbef45272cd96f06eaa62",
+    "SoulboundCore": "8b7c5d369c492f66dea52938ddeca23b14b7d5c6",
+    "SoulboundRedeemable": "38a42224979649d453d8237329a442073c36394f",
+    "SoulboundWithSignature": "977b4259c35c66e4b6e5ba86160dc470410d7a73"
+  },
+  "tests": {
+    "tests/test_deploy.py": {
+      "coverage": false,
+      "isolated": false,
+      "results": ".",
+      "sha1": "5af075099499f5eb5a374cca693c5856a05c084b",
+      "txhash": []
+    }
+  },
+  "tx": {}
+}
