@@ -31,4 +31,8 @@ contract ERC721ExtensionCore is ERC721A, Ownable{
     function updateMintFee(uint256 _mintFee) external onlyOwner{
         mintFee = _mintFee;
     }
+
+    function withDraw() external onlyOwner{
+        payable(owner()).transfer(address(this).balance);
+    }
 }
