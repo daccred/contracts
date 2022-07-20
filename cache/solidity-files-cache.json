@@ -39,8 +39,8 @@
       ]
     },
     "E:\\Work\\2022.7.11\\contracts\\node_modules\\erc721a\\contracts\\ERC721A.sol": {
-      "lastModificationDate": 1657632929238,
-      "contentHash": "0929176c19b5d411ffebff3f46a597d4",
+      "lastModificationDate": 1658307037532,
+      "contentHash": "4e1e03605be2eaa8f08fa49b3d437638",
       "sourceName": "erc721a/contracts/ERC721A.sol",
       "solcConfig": {
         "version": "0.8.9",
@@ -66,19 +66,23 @@
         }
       },
       "imports": [
-        "./IERC721A.sol"
+        "./IERC721A.sol",
+        "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol",
+        "@openzeppelin/contracts/utils/Address.sol",
+        "@openzeppelin/contracts/utils/Context.sol",
+        "@openzeppelin/contracts/utils/Strings.sol",
+        "@openzeppelin/contracts/utils/introspection/ERC165.sol"
       ],
       "versionPragmas": [
         "^0.8.4"
       ],
       "artifacts": [
-        "ERC721A",
-        "ERC721A__IERC721Receiver"
+        "ERC721A"
       ]
     },
     "E:\\Work\\2022.7.11\\contracts\\node_modules\\erc721a\\contracts\\IERC721A.sol": {
-      "lastModificationDate": 1657632929236,
-      "contentHash": "194e5fab2c9227ff81112b88b7063061",
+      "lastModificationDate": 1658307037533,
+      "contentHash": "f0a577a6e7c8283ef7cd353fe760608c",
       "sourceName": "erc721a/contracts/IERC721A.sol",
       "solcConfig": {
         "version": "0.8.9",
@@ -103,7 +107,10 @@
           }
         }
       },
-      "imports": [],
+      "imports": [
+        "@openzeppelin/contracts/token/ERC721/IERC721.sol",
+        "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol"
+      ],
       "versionPragmas": [
         "^0.8.4"
       ],
@@ -587,7 +594,7 @@
       ]
     },
     "E:\\Work\\2022.7.11\\contracts\\node_modules\\@openzeppelin\\contracts\\utils\\introspection\\ERC165.sol": {
-      "lastModificationDate": 1657632919310,
+      "lastModificationDate": 1658307012119,
       "contentHash": "0e7db055ce108f9da7bb6686a00287c0",
       "sourceName": "@openzeppelin/contracts/utils/introspection/ERC165.sol",
       "solcConfig": {
@@ -624,7 +631,7 @@
       ]
     },
     "E:\\Work\\2022.7.11\\contracts\\node_modules\\@openzeppelin\\contracts\\utils\\introspection\\IERC165.sol": {
-      "lastModificationDate": 1657632919309,
+      "lastModificationDate": 1658307012125,
       "contentHash": "03e6768535ac4da0e9756f1d8a4a018a",
       "sourceName": "@openzeppelin/contracts/utils/introspection/IERC165.sol",
       "solcConfig": {
@@ -659,7 +666,7 @@
       ]
     },
     "E:\\Work\\2022.7.11\\contracts\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\ERC721.sol": {
-      "lastModificationDate": 1657632919327,
+      "lastModificationDate": 1658307013084,
       "contentHash": "79ff1a7eb801a525aa315fb7a679eede",
       "sourceName": "@openzeppelin/contracts/token/ERC721/ERC721.sol",
       "solcConfig": {
@@ -702,7 +709,7 @@
       ]
     },
     "E:\\Work\\2022.7.11\\contracts\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\IERC721.sol": {
-      "lastModificationDate": 1657632919328,
+      "lastModificationDate": 1658307013082,
       "contentHash": "ec99d946db3685a3630554aa6055bd7f",
       "sourceName": "@openzeppelin/contracts/token/ERC721/IERC721.sol",
       "solcConfig": {
@@ -739,7 +746,7 @@
       ]
     },
     "E:\\Work\\2022.7.11\\contracts\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\IERC721Receiver.sol": {
-      "lastModificationDate": 1657632919329,
+      "lastModificationDate": 1658307013083,
       "contentHash": "c22d4395e33763de693fd440c6fd10e1",
       "sourceName": "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol",
       "solcConfig": {
@@ -774,7 +781,7 @@
       ]
     },
     "E:\\Work\\2022.7.11\\contracts\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\extensions\\IERC721Metadata.sol": {
-      "lastModificationDate": 1657632919331,
+      "lastModificationDate": 1658307013089,
       "contentHash": "efbc0d15b80a74e34dbe8da0f3e879bb",
       "sourceName": "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol",
       "solcConfig": {
@@ -811,7 +818,7 @@
       ]
     },
     "E:\\Work\\2022.7.11\\contracts\\node_modules\\@openzeppelin\\contracts\\utils\\Address.sol": {
-      "lastModificationDate": 1657632919302,
+      "lastModificationDate": 1658307012319,
       "contentHash": "c476b3895a94798b88a4bb97399e6dfe",
       "sourceName": "@openzeppelin/contracts/utils/Address.sol",
       "solcConfig": {
@@ -846,7 +853,7 @@
       ]
     },
     "E:\\Work\\2022.7.11\\contracts\\node_modules\\@openzeppelin\\contracts\\utils\\Context.sol": {
-      "lastModificationDate": 1657632919301,
+      "lastModificationDate": 1658307012322,
       "contentHash": "5f2c5c4b6af2dd4551027144797bc8be",
       "sourceName": "@openzeppelin/contracts/utils/Context.sol",
       "solcConfig": {
@@ -881,7 +888,7 @@
       ]
     },
     "E:\\Work\\2022.7.11\\contracts\\node_modules\\@openzeppelin\\contracts\\utils\\Strings.sol": {
-      "lastModificationDate": 1657632919303,
+      "lastModificationDate": 1658307012338,
       "contentHash": "cf46906c4035f51639a22265066a9e78",
       "sourceName": "@openzeppelin/contracts/utils/Strings.sol",
       "solcConfig": {
@@ -916,7 +923,7 @@
       ]
     },
     "E:\\Work\\2022.7.11\\contracts\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\ERC20.sol": {
-      "lastModificationDate": 1657632919341,
+      "lastModificationDate": 1658307013057,
       "contentHash": "af7bd64e1cfefbf6cb07f2adc1a25392",
       "sourceName": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
       "solcConfig": {
@@ -955,7 +962,7 @@
       ]
     },
     "E:\\Work\\2022.7.11\\contracts\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\IERC20.sol": {
-      "lastModificationDate": 1657632919340,
+      "lastModificationDate": 1658307013057,
       "contentHash": "ad7c2d0af148c8f9f097d65deeb4da6b",
       "sourceName": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
       "solcConfig": {
@@ -990,7 +997,7 @@
       ]
     },
     "E:\\Work\\2022.7.11\\contracts\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\extensions\\IERC20Metadata.sol": {
-      "lastModificationDate": 1657632919349,
+      "lastModificationDate": 1658307013065,
       "contentHash": "909ab67fc5c25033fe6cd364f8c056f9",
       "sourceName": "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol",
       "solcConfig": {
@@ -1064,7 +1071,7 @@
       ]
     },
     "E:\\Work\\2022.7.11\\contracts\\node_modules\\@openzeppelin\\contracts\\access\\Ownable.sol": {
-      "lastModificationDate": 1657632919111,
+      "lastModificationDate": 1658307012981,
       "contentHash": "e436cea06129be2c73cda4b1acc848b5",
       "sourceName": "@openzeppelin/contracts/access/Ownable.sol",
       "solcConfig": {
@@ -1140,7 +1147,7 @@
       ]
     },
     "E:\\Work\\2022.7.11\\contracts\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\extensions\\ERC721URIStorage.sol": {
-      "lastModificationDate": 1657632919330,
+      "lastModificationDate": 1658307013090,
       "contentHash": "8af32effd0536e2971ff8496812a5016",
       "sourceName": "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol",
       "solcConfig": {
@@ -1177,7 +1184,7 @@
       ]
     },
     "E:\\Work\\2022.7.11\\contracts\\node_modules\\@openzeppelin\\contracts\\utils\\Counters.sol": {
-      "lastModificationDate": 1657632919301,
+      "lastModificationDate": 1658307012336,
       "contentHash": "74654e3ae5d7f39555055dfe244dab7a",
       "sourceName": "@openzeppelin/contracts/utils/Counters.sol",
       "solcConfig": {
@@ -1428,8 +1435,8 @@
       ]
     },
     "E:\\Work\\2022.7.11\\contracts\\contracts\\extensions\\ERC721ExtensionCore.sol": {
-      "lastModificationDate": 1658148993318,
-      "contentHash": "21dae5cc34599e46c9a905f38d5fd0ca",
+      "lastModificationDate": 1658181099042,
+      "contentHash": "296a5bc27878ffd4687f6231fd32b65b",
       "sourceName": "contracts/extensions/ERC721ExtensionCore.sol",
       "solcConfig": {
         "version": "0.8.9",
@@ -1455,7 +1462,7 @@
         }
       },
       "imports": [
-        "erc721a/contracts/ERC721A.sol",
+        "./ERC721AURIStorage.sol",
         "@openzeppelin/contracts/access/Ownable.sol",
         "@openzeppelin/contracts/utils/Counters.sol"
       ],
@@ -1464,6 +1471,44 @@
       ],
       "artifacts": [
         "ERC721ExtensionCore"
+      ]
+    },
+    "E:\\Work\\2022.7.11\\contracts\\contracts\\extensions\\ERC721AURIStorage.sol": {
+      "lastModificationDate": 1658181543045,
+      "contentHash": "4aca3339ee7285f930ea6e61e7d95101",
+      "sourceName": "contracts/extensions/ERC721AURIStorage.sol",
+      "solcConfig": {
+        "version": "0.8.9",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "erc721a/contracts/ERC721A.sol",
+        "@openzeppelin/contracts/utils/Strings.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ERC721AURIStorage"
       ]
     }
   }

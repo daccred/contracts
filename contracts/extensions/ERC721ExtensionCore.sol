@@ -1,15 +1,15 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "erc721a/contracts/ERC721A.sol";
+import "./ERC721AURIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
-contract ERC721ExtensionCore is ERC721A, Ownable{
+contract ERC721ExtensionCore is ERC721AURIStorage, Ownable{
     uint256 public mintFee = 0;
     uint256 public maxSupply = 1000000;
 
-    constructor(string memory name, string memory symbol) ERC721A(name, symbol) {}
+    constructor(string memory name, string memory symbol) ERC721AURIStorage(name, symbol) {}
 
     function mint(address tokenReceiver, uint256 quantity) public payable{
         require(msg.value >= mintFee, "Insufficient mint fee.");
