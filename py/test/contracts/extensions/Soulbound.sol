@@ -156,6 +156,9 @@ contract Soulbound is ERC4973 {
     {
         /// @dev Require the address receiving is not a zero address.
         require(to != address(0), "Mint to zero address.");
+        /// @dev    ERC-4973 doesn't include checks for empty tokenURIs
+        ///         but they should be necessary.
+        require(bytes(tokenURI).length != 0, "Empty tokenURI.");
         /// @dev    Mint to the `to` address.
         ///         ERC4973 runs check for existent token.
         _mint(to, tokenId, tokenURI);

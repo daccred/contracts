@@ -98,15 +98,15 @@
     "absolutePath": "contracts/contracts/interfaces/IAllowlist.sol",
     "exportedSymbols": {
       "IAllowlist": [
-        40
+        1813
       ]
     },
-    "id": 41,
+    "id": 1814,
     "license": "GPL-3.0",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1,
+        "id": 1774,
         "literals": [
           "solidity",
           "^",
@@ -114,7 +114,7 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "36:23:0"
+        "src": "37:23:0"
       },
       {
         "abstract": false,
@@ -123,46 +123,46 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "documentation": {
-          "id": 2,
+          "id": 1775,
           "nodeType": "StructuredDocumentation",
-          "src": "61:699:0",
+          "src": "64:710:0",
           "text": " @title IAllowlist Interface.\n @author Daccred.\n @dev \n Whitelist or Allowlists are popular gating mechanisms when minting NFTs.\n It allows NFTs to be minted by or to some specific addresses that have been \"Whitelisted\".\n To make sure that the minting addresses are verified, there are some validation methods put in place.\n The one to be used here is the Public Signature Mechanics Method (ECDSA).\n [Ref:: https://medium.com/donkeverse/hardcore-gas-savings-in-nft-minting-part-2-signatures-vs-merkle-trees-917c43c59b07].\n This interface contains functions that verifies that the caller [contract] has signed the whitelisted address.\n This is more gas efficient. [Ref:: Link above]."
         },
         "fullyImplemented": false,
-        "id": 40,
+        "id": 1813,
         "linearizedBaseContracts": [
-          40
+          1813
         ],
         "name": "IAllowlist",
-        "nameLocation": "773:10:0",
+        "nameLocation": "790:10:0",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "anonymous": false,
             "documentation": {
-              "id": 3,
+              "id": 1776,
               "nodeType": "StructuredDocumentation",
-              "src": "822:43:0",
+              "src": "842:43:0",
               "text": "@dev Emitted when an address is signed."
             },
-            "id": 7,
+            "id": 1780,
             "name": "Signed",
-            "nameLocation": "876:6:0",
+            "nameLocation": "897:6:0",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 6,
+              "id": 1779,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 5,
+                  "id": 1778,
                   "indexed": true,
                   "mutability": "mutable",
                   "name": "_address",
-                  "nameLocation": "899:8:0",
+                  "nameLocation": "920:8:0",
                   "nodeType": "VariableDeclaration",
-                  "scope": 7,
-                  "src": "883:24:0",
+                  "scope": 1780,
+                  "src": "904:24:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -170,10 +170,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 4,
+                    "id": 1777,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "883:7:0",
+                    "src": "904:7:0",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -183,36 +183,36 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "882:26:0"
+              "src": "903:26:0"
             },
-            "src": "870:39:0"
+            "src": "891:39:0"
           },
           {
             "anonymous": false,
             "documentation": {
-              "id": 8,
+              "id": 1781,
               "nodeType": "StructuredDocumentation",
-              "src": "914:77:0",
+              "src": "936:77:0",
               "text": "@dev Emitted when the address passed to the verify function returns true."
             },
-            "id": 12,
+            "id": 1785,
             "name": "Verified",
-            "nameLocation": "1002:8:0",
+            "nameLocation": "1025:8:0",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 11,
+              "id": 1784,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 10,
+                  "id": 1783,
                   "indexed": true,
                   "mutability": "mutable",
                   "name": "_address",
-                  "nameLocation": "1027:8:0",
+                  "nameLocation": "1050:8:0",
                   "nodeType": "VariableDeclaration",
-                  "scope": 12,
-                  "src": "1011:24:0",
+                  "scope": 1785,
+                  "src": "1034:24:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -220,10 +220,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 9,
+                    "id": 1782,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1011:7:0",
+                    "src": "1034:7:0",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -233,34 +233,34 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1010:26:0"
+              "src": "1033:26:0"
             },
-            "src": "996:41:0"
+            "src": "1019:41:0"
           },
           {
             "documentation": {
-              "id": 13,
+              "id": 1786,
               "nodeType": "StructuredDocumentation",
-              "src": "1042:77:0",
+              "src": "1066:77:0",
               "text": "@dev Thrown when the address passed to the verify function is not signed."
             },
-            "id": 17,
+            "id": 1790,
             "name": "Unsigned",
-            "nameLocation": "1130:8:0",
+            "nameLocation": "1155:8:0",
             "nodeType": "ErrorDefinition",
             "parameters": {
-              "id": 16,
+              "id": 1789,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 15,
+                  "id": 1788,
                   "mutability": "mutable",
                   "name": "_address",
-                  "nameLocation": "1147:8:0",
+                  "nameLocation": "1172:8:0",
                   "nodeType": "VariableDeclaration",
-                  "scope": 17,
-                  "src": "1139:16:0",
+                  "scope": 1790,
+                  "src": "1164:16:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -268,10 +268,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 14,
+                    "id": 1787,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1139:7:0",
+                    "src": "1164:7:0",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -281,38 +281,38 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1138:18:0"
+              "src": "1163:18:0"
             },
-            "src": "1124:33:0"
+            "src": "1149:33:0"
           },
           {
             "documentation": {
-              "id": 18,
+              "id": 1791,
               "nodeType": "StructuredDocumentation",
-              "src": "1195:384:0",
+              "src": "1224:394:0",
               "text": " @dev Verifies that the public key that signed `_signature` is the caller of the function.\n Emits the {Verified} event.\n In error cases, throw the {Unsigned} error.\n @param\n _hash, hash of the address signed off-chain.\n _signature, signature to verify.\n @return bool, true if the signer is the contract and false if otherwise."
             },
             "functionSelector": "daca6f78",
-            "id": 27,
+            "id": 1800,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "verifySignature",
-            "nameLocation": "1593:15:0",
+            "nameLocation": "1633:15:0",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 23,
+              "id": 1796,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 20,
+                  "id": 1793,
                   "mutability": "mutable",
                   "name": "_hash",
-                  "nameLocation": "1617:5:0",
+                  "nameLocation": "1657:5:0",
                   "nodeType": "VariableDeclaration",
-                  "scope": 27,
-                  "src": "1609:13:0",
+                  "scope": 1800,
+                  "src": "1649:13:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -320,10 +320,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 19,
+                    "id": 1792,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1609:7:0",
+                    "src": "1649:7:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -333,13 +333,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 22,
+                  "id": 1795,
                   "mutability": "mutable",
                   "name": "_signature",
-                  "nameLocation": "1637:10:0",
+                  "nameLocation": "1677:10:0",
                   "nodeType": "VariableDeclaration",
-                  "scope": 27,
-                  "src": "1624:23:0",
+                  "scope": 1800,
+                  "src": "1664:23:0",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -347,10 +347,10 @@
                     "typeString": "bytes"
                   },
                   "typeName": {
-                    "id": 21,
+                    "id": 1794,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1624:5:0",
+                    "src": "1664:5:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes_storage_ptr",
                       "typeString": "bytes"
@@ -359,21 +359,21 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1608:40:0"
+              "src": "1648:40:0"
             },
             "returnParameters": {
-              "id": 26,
+              "id": 1799,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 25,
+                  "id": 1798,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 27,
-                  "src": "1666:4:0",
+                  "scope": 1800,
+                  "src": "1706:4:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -381,10 +381,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 24,
+                    "id": 1797,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1666:4:0",
+                    "src": "1706:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -393,42 +393,42 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1665:6:0"
+              "src": "1705:6:0"
             },
-            "scope": 40,
-            "src": "1584:88:0",
+            "scope": 1813,
+            "src": "1624:88:0",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           },
           {
             "documentation": {
-              "id": 28,
+              "id": 1801,
               "nodeType": "StructuredDocumentation",
-              "src": "1682:410:0",
+              "src": "1724:421:0",
               "text": " @dev Verifies that the public key that signed `_signature` is the `_signer`.\n Emits the {Verified} event.\n In error cases, throw the {Unsigned} error.\n @param\n _signer, address to be verified.\n _hash, hash of the address signed off-chain.\n _signature, signature to verify.\n @return bool, true if the signer is the contract and false if otherwise."
             },
             "functionSelector": "e92b0842",
-            "id": 39,
+            "id": 1812,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "verifySigner",
-            "nameLocation": "2106:12:0",
+            "nameLocation": "2160:12:0",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 35,
+              "id": 1808,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 30,
+                  "id": 1803,
                   "mutability": "mutable",
                   "name": "_signer",
-                  "nameLocation": "2127:7:0",
+                  "nameLocation": "2181:7:0",
                   "nodeType": "VariableDeclaration",
-                  "scope": 39,
-                  "src": "2119:15:0",
+                  "scope": 1812,
+                  "src": "2173:15:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -436,10 +436,10 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 29,
+                    "id": 1802,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2119:7:0",
+                    "src": "2173:7:0",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -450,13 +450,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 32,
+                  "id": 1805,
                   "mutability": "mutable",
                   "name": "_hash",
-                  "nameLocation": "2144:5:0",
+                  "nameLocation": "2198:5:0",
                   "nodeType": "VariableDeclaration",
-                  "scope": 39,
-                  "src": "2136:13:0",
+                  "scope": 1812,
+                  "src": "2190:13:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -464,10 +464,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 31,
+                    "id": 1804,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2136:7:0",
+                    "src": "2190:7:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -477,13 +477,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 34,
+                  "id": 1807,
                   "mutability": "mutable",
                   "name": "_signature",
-                  "nameLocation": "2164:10:0",
+                  "nameLocation": "2218:10:0",
                   "nodeType": "VariableDeclaration",
-                  "scope": 39,
-                  "src": "2151:23:0",
+                  "scope": 1812,
+                  "src": "2205:23:0",
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -491,10 +491,10 @@
                     "typeString": "bytes"
                   },
                   "typeName": {
-                    "id": 33,
+                    "id": 1806,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2151:5:0",
+                    "src": "2205:5:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes_storage_ptr",
                       "typeString": "bytes"
@@ -503,21 +503,21 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2118:57:0"
+              "src": "2172:57:0"
             },
             "returnParameters": {
-              "id": 38,
+              "id": 1811,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 37,
+                  "id": 1810,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 39,
-                  "src": "2193:4:0",
+                  "scope": 1812,
+                  "src": "2247:4:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -525,10 +525,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 36,
+                    "id": 1809,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2193:4:0",
+                    "src": "2247:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -537,23 +537,23 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2192:6:0"
+              "src": "2246:6:0"
             },
-            "scope": 40,
-            "src": "2097:102:0",
+            "scope": 1813,
+            "src": "2151:102:0",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 41,
-        "src": "763:1438:0",
+        "scope": 1814,
+        "src": "780:1476:0",
         "usedErrors": [
-          17
+          1790
         ]
       }
     ],
-    "src": "36:2166:0"
+    "src": "37:2221:0"
   },
   "bytecode": "",
   "bytecodeSha1": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
@@ -617,8 +617,8 @@
     "version": 1
   },
   "offset": [
-    763,
-    2201
+    780,
+    2256
   ],
   "opcodes": "",
   "pcMap": {},
