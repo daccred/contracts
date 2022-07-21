@@ -1,14 +1,8 @@
 // SPDX-License-Identifier: GPL-3.0
-
-// 	 _____     ______     ______     ______     ______     ______     _____
-//  /\  __-.  /\  __ \   /\  ___\   /\  ___\   /\  == \   /\  ___\   /\  __-.
-//  \ \ \/\ \ \ \  __ \  \ \ \____  \ \ \____  \ \  __<   \ \  __\   \ \ \/\ \
-//   \ \____-  \ \_\ \_\  \ \_____\  \ \_____\  \ \_\ \_\  \ \_____\  \ \____-
-//    \/____/   \/_/\/_/   \/_____/   \/_____/   \/_/ /_/   \/_____/   \/____/
-
 pragma solidity ^0.8.0;
+
 import "./Ownable.sol";
-import "../contracts/interfaces/IAllowlist.sol";
+import "../interfaces/IAllowlist.sol";
 
 /**
  * @title Allowlist Contract.
@@ -70,7 +64,10 @@ contract Allowlist is IAllowlist, Ownable {
      *
      * @return bool true or false.
      */
-    function verifySignature(bytes32 hash, bytes memory sig) public returns (bool) {
+    function verifySignature(bytes32 hash, bytes memory sig)
+        public
+        returns (bool)
+    {
         return _verifySignature(hash, sig);
     }
 
@@ -96,10 +93,17 @@ contract Allowlist is IAllowlist, Ownable {
      *
      * @return bool true or false.
      */
-    function _verifySignature(bytes32 hash, bytes memory sig) internal onlyOwner returns (bool) {
+    function _verifySignature(bytes32 hash, bytes memory sig)
+        internal
+        onlyOwner
+        returns (bool)
+    {
         /// @dev    Require that the caller is the owner [deployer]
         ///         of the contract, [the Daccred.sol].
-        require(_msgSender() == owner(), "ERC721:: Call to contract made by non-owner");
+        require(
+            _msgSender() == owner(),
+            "ERC721:: Call to contract made by non-owner"
+        );
         /// @dev Require the length of the signature is 65.
         require(sig.length == 65, "Err:: Invalid signature length");
         /// @dev Use assembly to get the 3 sections of a signature.

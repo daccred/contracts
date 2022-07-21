@@ -1,15 +1,8 @@
 // SPDX-License-Identifier: GPL-3.0
-
-///  _____     ______     ______     ______     ______     ______     _____
-/// /\  __-.  /\  __ \   /\  ___\   /\  ___\   /\  == \   /\  ___\   /\  __-.
-/// \ \ \/\ \ \ \  __ \  \ \ \____  \ \ \____  \ \  __<   \ \  __\   \ \ \/\ \
-///  \ \____-  \ \_\ \_\  \ \_____\  \ \_____\  \ \_\ \_\  \ \_____\  \ \____-
-///   \/____/   \/_/\/_/   \/_____/   \/_____/   \/_/ /_/   \/_____/   \/____/
-
 pragma solidity ^0.8.8;
 
-import "../contracts/interfaces/ISoulbound.sol";
-import "../eips/ERC-4973.sol";
+import "../interfaces/ISoulbound.sol";
+import "./eips/ERC-4973.sol";
 
 /**
  * @title Soulbound Token Contract.
@@ -38,7 +31,9 @@ contract Soulbound is ERC4973 {
     mapping(address => mapping(uint256 => bool)) private mints;
 
     /// @dev Allows the deployer to set a name and a symbol for the token.
-    constructor(string memory name, string memory symbol) ERC4973(name, symbol) {}
+    constructor(string memory name, string memory symbol)
+        ERC4973(name, symbol)
+    {}
 
     /**
      * @dev  Mints a new token `_tokenId` to `_to`, giving to ownership of token `_tokenId`.
@@ -113,7 +108,11 @@ contract Soulbound is ERC4973 {
      *
      * @return address of issuer.
      */
-    function issuerOf(address _to, uint256 _tokenId) public view returns (address) {
+    function issuerOf(address _to, uint256 _tokenId)
+        public
+        view
+        returns (address)
+    {
         /// @dev Require _to is not a zero address.
         require(_to != address(0), "Query for zero address.");
         /// @dev Require token exists.
@@ -136,7 +135,11 @@ contract Soulbound is ERC4973 {
      *
      * @return bool true or false.
      */
-    function isMinted(address _to, uint256 _tokenId) public view returns (bool) {
+    function isMinted(address _to, uint256 _tokenId)
+        public
+        view
+        returns (bool)
+    {
         return mints[_to][_tokenId];
     }
 

@@ -14,26 +14,31 @@ contract ERC721ExtensionSignature is ERC721URIStorage, Ownable {
     uint256 public currentSupply = 0;
     uint256 public mintFee = 0;
     uint256 public cappedSupply;
-    constructor(string memory _name, string memory _symbol, uint256 _cappedSupply) ERC721(_name, _symbol) {
+
+    constructor(
+        string memory _name,
+        string memory _symbol,
+        uint256 _cappedSupply
+    ) ERC721(_name, _symbol) {
         require(_cappedSupply > 0, "Invalid max supply");
         cappedSupply = _cappedSupply;
     }
 
-    function updateMaxSupply(uint256 _maxSupply) external onlyOwner{
+    function updateMaxSupply(uint256 _maxSupply) external onlyOwner {
         require(_maxSupply > 0 && _maxSupply >= currentSupply, "Invalid max supply");
         maxSupply = _maxSupply;
     }
 
-    function updateMintFee(uint256 _mintFee) external onlyOwner{
+    function updateMintFee(uint256 _mintFee) external onlyOwner {
         mintFee = _mintFee;
     }
 
-    function mint(string memory tokenURI) external payable{
+    function mint(string memory tokenURI) external payable {
         require(msg.value >= mintFee, "Insufficient mint fee.");
         mintTo(tokenURI, msg.sender);
     }
 
-    function mintTo(string memory tokenURI, address recipient) internal returns(uint256) {
+    function mintTo(string memory tokenURI, address recipient) internal returns (uint256) {
         require(balanceOf(recipient) < cappedSupply, "You can't mint anymore.");
         require(currentSupply < maxSupply, "Max supply reached");
 
@@ -53,7 +58,7 @@ contract ERC721ExtensionSignature is ERC721URIStorage, Ownable {
         bytes32 hash,
         bytes memory sig,
         string memory tokenURI
-    ) external onlyOwner{
+    ) external onlyOwner {
         /// @dev Require that the address is not a zero address.
         require(addr != address(0), "Mint to zero address.");
         /// @dev    Require that the hash is actually 32 [64 characters]
@@ -69,29 +74,32 @@ contract ERC721ExtensionSignature is ERC721URIStorage, Ownable {
     }
 
     function verifySigner(
-        address _signer, 
-        bytes32 _hash, 
+        address _signer,
+        bytes32 _hash,
         bytes memory _signature
-    ) internal pure returns(bool) {
+    ) internal pure returns (bool) {
         (bytes32 r, bytes32 s, uint8 v) = splitSignature(_signature);
-        return(_signer == ecrecover(_hash, v, r, s));
+        return (_signer == ecrecover(_hash, v, r, s));
     }
-    
-    function splitSignature(bytes memory sig) private pure returns(
-        bytes32 r,
-        bytes32 s,
-        uint8 v
-    )
+
+    function splitSignature(bytes memory sig)
+        private
+        pure
+        returns (
+            bytes32 r,
+            bytes32 s,
+            uint8 v
+        )
     {
         assembly {
             /**
-            * @dev  Copied from https://solidity-by-example.org/signature.
-            *       First 32 bytes stores the length of the signature
-            *       add(sig, 32) = pointer of sig + 32
-            *       effectively, skips first 32 bytes of signature
-            *       mload(p) loads next 32 bytes starting at the memory 
-            *       address p into memory.
-            */
+             * @dev  Copied from https://solidity-by-example.org/signature.
+             *       First 32 bytes stores the length of the signature
+             *       add(sig, 32) = pointer of sig + 32
+             *       effectively, skips first 32 bytes of signature
+             *       mload(p) loads next 32 bytes starting at the memory
+             *       address p into memory.
+             */
 
             /// @dev First 32 bytes, after the length prefix.
             r := mload(add(sig, 32))
@@ -100,10 +108,9 @@ contract ERC721ExtensionSignature is ERC721URIStorage, Ownable {
             /// @dev Final byte (first byte of the next 32 bytes).
             v := byte(0, mload(add(sig, 96)))
         }
-
     }
 
-    function withDraw() external onlyOwner{
+    function withdraw() external onlyOwner {
         payable(owner()).transfer(address(this).balance);
     }
 }

@@ -46,6 +46,24 @@
 =======
   "name": "@daccred/contracts",
   "private": true,
+  "scripts": {
+    "nx": "nx",
+    "run": "lerna run",
+    "visualize": "nx graph",
+    "install": "lerna exec -- yarn add",
+    "postinstall": "lerna bootstrap && lerna link && yarn compile",
+    "format": "nx run-many --target=format --all",
+    "format:sol": "prettier --write '**/*.sol'",
+    "format:ts": "prettier --write **/*.{ts,js}",
+    "lint": "nx run-many --target=lint:fix --all",
+    "publish": "lerna publish from-package",
+    "release:patch": "lerna version patch",
+    "release:prerelease": "lerna version prerelease --no-push",
+    "compile": "nx run-many --target=compile --all",
+    "package": "lerna add",
+    "test": "nx run-many --target=test --all",
+    "hint": "solhint '**/*.sol'"
+  },
   "devDependencies": {
     "@ethersproject/abi": "^5.6.4",
     "@ethersproject/providers": "^5.6.8",
@@ -60,11 +78,17 @@
     "@types/chai": "^4.3.1",
     "@types/mocha": "^9.1.1",
     "chai": "^4.3.6",
+    "dotenv": "^16.0.1",
     "ethers": "^5.6.9",
     "hardhat-gas-reporter": "^1.0.8",
     "lerna": "^5.1.8",
     "nx": "14.1.9",
+    "prettier": "^2.7.1",
+    "prettier-plugin-solidity": "^1.0.0-dev.23",
+    "solhint": "^3.3.7",
+    "solhint-plugin-prettier": "^0.0.5",
     "solidity-coverage": "^0.7.21",
+    "ts-node": "^10.9.1",
     "typechain": "^8.1.0"
   },
   "workspaces": {

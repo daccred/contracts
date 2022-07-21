@@ -5,41 +5,13 @@
 import BN from "bn.js";
 import { EventData, PastEventOptions } from "web3-eth-contract";
 
-export interface IBaseModuleContract
-  extends Truffle.Contract<IBaseModuleInstance> {
-  "new"(meta?: Truffle.TransactionDetails): Promise<IBaseModuleInstance>;
+export interface IBaseModuleContract extends Truffle.Contract<IBaseModuleInstance> {
+    "new"(meta?: Truffle.TransactionDetails): Promise<IBaseModuleInstance>;
 }
 
 type AllEvents = never;
 
 export interface IBaseModuleInstance extends Truffle.ContractInstance {
-  /**
-   * Returns the token collection name.
-   */
-  name(txDetails?: Truffle.TransactionDetails): Promise<string>;
-
-  /**
-   * Returns the token collection symbol.
-   */
-  symbol(txDetails?: Truffle.TransactionDetails): Promise<string>;
-
-  /**
-   * Returns the Uniform Resource Identifier (URI) for `tokenId` token.
-   */
-  tokenURI(
-    tokenId: number | BN | string,
-    txDetails?: Truffle.TransactionDetails
-  ): Promise<string>;
-
-  /**
-   * Returns the expiryDate for a token, measured in blocktime.
-   */
-  expiryDate(
-    tokenId: number | BN | string,
-    txDetails?: Truffle.TransactionDetails
-  ): Promise<BN>;
-
-  methods: {
     /**
      * Returns the token collection name.
      */
@@ -53,29 +25,37 @@ export interface IBaseModuleInstance extends Truffle.ContractInstance {
     /**
      * Returns the Uniform Resource Identifier (URI) for `tokenId` token.
      */
-    tokenURI(
-      tokenId: number | BN | string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<string>;
+    tokenURI(tokenId: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<string>;
 
     /**
      * Returns the expiryDate for a token, measured in blocktime.
      */
-    expiryDate(
-      tokenId: number | BN | string,
-      txDetails?: Truffle.TransactionDetails
-    ): Promise<BN>;
-  };
+    expiryDate(tokenId: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<BN>;
 
-  getPastEvents(event: string): Promise<EventData[]>;
-  getPastEvents(
-    event: string,
-    options: PastEventOptions,
-    callback: (error: Error, event: EventData) => void
-  ): Promise<EventData[]>;
-  getPastEvents(event: string, options: PastEventOptions): Promise<EventData[]>;
-  getPastEvents(
-    event: string,
-    callback: (error: Error, event: EventData) => void
-  ): Promise<EventData[]>;
+    methods: {
+        /**
+         * Returns the token collection name.
+         */
+        name(txDetails?: Truffle.TransactionDetails): Promise<string>;
+
+        /**
+         * Returns the token collection symbol.
+         */
+        symbol(txDetails?: Truffle.TransactionDetails): Promise<string>;
+
+        /**
+         * Returns the Uniform Resource Identifier (URI) for `tokenId` token.
+         */
+        tokenURI(tokenId: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<string>;
+
+        /**
+         * Returns the expiryDate for a token, measured in blocktime.
+         */
+        expiryDate(tokenId: number | BN | string, txDetails?: Truffle.TransactionDetails): Promise<BN>;
+    };
+
+    getPastEvents(event: string): Promise<EventData[]>;
+    getPastEvents(event: string, options: PastEventOptions, callback: (error: Error, event: EventData) => void): Promise<EventData[]>;
+    getPastEvents(event: string, options: PastEventOptions): Promise<EventData[]>;
+    getPastEvents(event: string, callback: (error: Error, event: EventData) => void): Promise<EventData[]>;
 }

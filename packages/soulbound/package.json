@@ -16,8 +16,9 @@
     "test": "test"
   },
   "files": [
-    "/contracts/**/*.sol",
-    "/build/contracts/*.json",
+    "./contracts/**/*.sol",
+    "./types",
+    "./build/contracts/*.json",
     "!/contracts/mocks/**/*"
   ],
   "publishConfig": {
@@ -28,7 +29,11 @@
     "url": "git+https://github.com/daccred/contracts.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "test": "brownie test --coverage",
+    "test:gas": "brownie test --gas",
+    "compile": "brownie compile",
+    "hint": "solhint 'contracts/**/*.sol'",
+    "console": "brownie console --network hardhat"
   },
   "bugs": {
     "url": "https://github.com/daccred/contracts/issues"

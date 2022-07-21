@@ -10,7 +10,6 @@
 - Merge branch 'main' into ERC721-Contracts ([@koolamusic](https://github.com/koolamusic))
 - cleanup repository and setup for v2 ([@koolamusic](https://github.com/koolamusic))
 - add git ignore ([@koolamusic](https://github.com/koolamusic))
-- ERC721 basemodule and core functionalaities ([@NatX223](https://github.com/NatX223))
 - add issue templates ([@koolamusic](https://github.com/koolamusic))
 - add daccred screenshot to use as opengraph ([@koolamusic](https://github.com/koolamusic))
 - update readme with quick overview ([@koolamusic](https://github.com/koolamusic))
@@ -120,6 +119,5 @@
 
 #### Authors: 3
 
-- [@NatX223](https://github.com/NatX223)
 - Lotanna Victor Nwose ([@viclotana](https://github.com/viclotana))
 - U.M Andrew ([@koolamusic](https://github.com/koolamusic))

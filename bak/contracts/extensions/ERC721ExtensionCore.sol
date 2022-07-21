@@ -5,7 +5,7 @@ import "./ERC721AURIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
-contract ERC721ExtensionCore is ERC721AURIStorage, Ownable{
+contract ERC721ExtensionCore is ERC721AURIStorage, Ownable {
     uint256 public mintFee = 0;
     uint256 public maxSupply = 1000000;
 

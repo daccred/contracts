@@ -1,18 +1,18 @@
 // SPDX-License-Identifier: GPL-3.0
 
-// 	 _____     ______     ______     ______     ______     ______     _____    
-//  /\  __-.  /\  __ \   /\  ___\   /\  ___\   /\  == \   /\  ___\   /\  __-.  
-//  \ \ \/\ \ \ \  __ \  \ \ \____  \ \ \____  \ \  __<   \ \  __\   \ \ \/\ \ 
-//   \ \____-  \ \_\ \_\  \ \_____\  \ \_____\  \ \_\ \_\  \ \_____\  \ \____- 
-//    \/____/   \/_/\/_/   \/_____/   \/_____/   \/_/ /_/   \/_____/   \/____/ 
+// 	 _____     ______     ______     ______     ______     ______     _____
+//  /\  __-.  /\  __ \   /\  ___\   /\  ___\   /\  == \   /\  ___\   /\  __-.
+//  \ \ \/\ \ \ \  __ \  \ \ \____  \ \ \____  \ \  __<   \ \  __\   \ \ \/\ \
+//   \ \____-  \ \_\ \_\  \ \_____\  \ \_____\  \ \_\ \_\  \ \_____\  \ \____-
+//    \/____/   \/_/\/_/   \/_____/   \/_____/   \/_/ /_/   \/_____/   \/____/
 
 pragma solidity ^0.8.0;
 
 /**
-* @title IERC721 Extension.
-* @author Daccred.
-* @dev IERC721 Extensions giving us access to ERC721 core capabilities.
-*/
+ * @title IERC721 Extension.
+ * @author Daccred.
+ * @dev IERC721 Extensions giving us access to ERC721 core capabilities.
+ */
 
 interface IERC721Extension {
     // ========== E R R O R s ==========
@@ -27,7 +27,6 @@ interface IERC721Extension {
     error Unapproved(address _sender, uint256 _tokenId);
 
     // ========== E R R O R s ==========
-
 
     /**
      * @dev Emitted when `tokenId` token is transferred from `from` to `to`.
@@ -52,7 +51,6 @@ interface IERC721Extension {
      * - `tokenId` must exist.
      */
     function ownerOf(uint256 tokenId) external view returns (address owner);
-
 
     /**
      * @dev Safely transfers `tokenId` token from `from` to `to`, checking first that contract recipients
@@ -118,18 +116,16 @@ interface IERC721Extension {
      */
     function getApproved(uint256 tokenId) external view returns (address operator);
 
-
     /**
-    * @dev Mint tpken `tokenId` to `to`.
-    *
-    * @param
-    * to => Address token is minted to.
-    * tokenId => Token to be minted.
-    *
-    * @return bool.
-    */
-    function mint(address to, uint256 tokenId) external returns(bool);
-
+     * @dev Mint tpken `tokenId` to `to`.
+     *
+     * @param
+     * to => Address token is minted to.
+     * tokenId => Token to be minted.
+     *
+     * @return bool.
+     */
+    function mint(address to, uint256 tokenId) external returns (bool);
 
     /**
      * @dev Gives permission from `from` to `to` to transfer `tokenId` token to another account.
@@ -152,6 +148,9 @@ interface IERC721Extension {
      * to => Address being approved.
      * tokenId => Token to be minted.
      */
-    function approvalFrom(address from, address to, uint256 tokenId) external;
+    function approvalFrom(
+        address from,
+        address to,
+        uint256 tokenId
+    ) external;
 }
-
