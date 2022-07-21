@@ -102,4 +102,8 @@ contract ERC721ExtensionSignature is ERC721URIStorage, Ownable {
         }
 
     }
+
+    function withDraw() external onlyOwner{
+        payable(owner()).transfer(address(this).balance);
+    }
 }
