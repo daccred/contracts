@@ -15,7 +15,7 @@ def test_deploy():
 	assert C != "0x0000000000000000000000000000000000000000"
 
 '''
-ownerIssueWithSignature test
+ownerIssueWithSignature test.
 '''
 def test_ownerIssueWithSignature():
 	C = deploy(2)
