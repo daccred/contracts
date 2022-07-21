@@ -1,0 +1,23 @@
+{
+    "name": "@daccred/contracts-core",
+    "version": "0.0.0",
+    "description": "Core Smart Contracts for Daccred",
+    "directories": {
+        "test": "test"
+    },
+    "dependencies": {
+        "@openzeppelin/contracts": "^4.7.0"
+    },
+    "devDependencies": {
+        "@nomiclabs/hardhat-etherscan": "^2.1.7",
+        "@nomicfoundation/hardhat-toolbox": "^1.0.2"
+    },
+    "scripts": {
+        "test": "hardhat test",
+        "compile": "hardhat compile",
+        "clean": "hardhat clean",
+        "test:gas": "hardhat test --gas",
+        "hint": "solhint 'contracts/**/*.sol'",
+        "console": "hardhat node"
+    }
+}

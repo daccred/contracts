@@ -3,19 +3,23 @@
   "version": "0.0.0",
   "description": "The Daccred ERC721 contract extensions",
   "keywords": [
+    "daccred",
+    "soulbound",
     "nft",
-    "daccred"
+    "ethereum"
   ],
   "author": "Andrew Miracle <me@andrewmiracle.com>",
   "homepage": "https://github.com/daccred/contracts#readme",
-  "license": "ISC",
-  "main": "lib/nft-contracts.js",
+  "license": "MIT",
   "directories": {
-    "lib": "lib",
-    "test": "__tests__"
+    "lib": "contracts",
+    "test": "test"
   },
   "files": [
-    "lib"
+    "./contracts/**/*.sol",
+    "./types",
+    "./build/contracts/*.json",
+    "!/contracts/mocks/**/*"
   ],
   "publishConfig": {
     "access": "public"
@@ -25,7 +29,11 @@
     "url": "git+https://github.com/daccred/contracts.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "test": "brownie test --coverage",
+    "test:gas": "brownie test --gas",
+    "compile": "brownie compile",
+    "hint": "solhint 'contracts/**/*.sol'",
+    "console": "brownie console --network hardhat"
   },
   "bugs": {
     "url": "https://github.com/daccred/contracts/issues"

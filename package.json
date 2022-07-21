@@ -1,49 +1,4 @@
 {
-<<<<<<< HEAD
-    "name": "olympus-contracts",
-    "version": "1.0.0",
-    "description": "Smart Contracts for Olympus",
-    "directories": {
-        "test": "test"
-    },
-    "dependencies": {
-        "@nomiclabs/hardhat-etherscan": "^2.1.7",
-        "@openzeppelin/contracts": "^4.7.0",
-        "@openzeppelin/contracts-upgradeable": "^3.4.0",
-        "colors": "^1.4.0",
-        "dotenv": "^10.0.0"
-    },
-    "devDependencies": {
-        "@nomiclabs/hardhat-ethers": "^2.0.2",
-        "@nomiclabs/hardhat-waffle": "^2.0.1",
-        "@openzeppelin/test-helpers": "^0.5.12",
-        "chai": "^4.3.4",
-        "erc721a": "^3.3.0",
-        "ethereum-waffle": "^3.4.0",
-        "ethers": "^5.4.1",
-        "hardhat": "^2.5.0",
-        "prettier": "^2.3.2",
-        "prettier-plugin-solidity": "^1.0.0-beta.17",
-        "solhint": "^3.3.6",
-        "solhint-plugin-prettier": "0.0.5"
-    },
-    "scripts": {
-        "test": "npx hardhat test",
-        "compile": "npx hardhat compile",
-        "clean": "npx hardhat clean",
-        "deploy_fantomtest": "npx hardhat run --network fantomtest scripts/1_deploy.ts"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/OlympusDAO/olympus-contracts.git"
-    },
-    "author": "",
-    "bugs": {
-        "url": "https://github.com/OlympusDAO/olympus-contracts/issues"
-    },
-    "homepage": "https://github.com/OlympusDAO/olympus-contracts#readme"
-}
-=======
   "name": "@daccred/contracts",
   "private": true,
   "scripts": {
@@ -52,17 +7,17 @@
     "visualize": "nx graph",
     "install": "lerna exec -- yarn add",
     "postinstall": "lerna bootstrap && lerna link && yarn compile",
-    "format": "nx run-many --target=format --all",
+    "format": "yarn format:sol && yarn format:ts",
     "format:sol": "prettier --write '**/*.sol'",
-    "format:ts": "prettier --write **/*.{ts,js}",
+    "format:ts": "prettier --write **/*.{ts,js,json}",
+    "hint": "nx run-many --target=hint --all",
     "lint": "nx run-many --target=lint:fix --all",
     "publish": "lerna publish from-package",
     "release:patch": "lerna version patch",
     "release:prerelease": "lerna version prerelease --no-push",
     "compile": "nx run-many --target=compile --all",
     "package": "lerna add",
-    "test": "nx run-many --target=test --all",
-    "hint": "solhint '**/*.sol'"
+    "test": "nx run-many --target=test --all"
   },
   "devDependencies": {
     "@ethersproject/abi": "^5.6.4",
@@ -103,4 +58,3 @@
     "typescript": "^4.7.4"
   }
 }
->>>>>>> b50a2c6 (checkpoint: code review 0.0.1)
