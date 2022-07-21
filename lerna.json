@@ -1,0 +1,15 @@
+{
+  "npmClient": "yarn",
+  "useNx": false,
+  "useWorkspaces": true,
+  "packages": [
+    "packages/*",
+    "core"
+  ],
+  "command": {
+    "publish": {
+      "message": "chore(release): publish - ci skip"
+    }
+  },
+  "version": "0.0.0"
+}

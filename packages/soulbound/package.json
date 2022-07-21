@@ -1,0 +1,36 @@
+{
+  "name": "@daccred/soulbound-contracts",
+  "version": "0.0.0",
+  "description": "The soulbound extension templates for daccred",
+  "keywords": [
+    "daccred",
+    "soulbound",
+    "nft",
+    "ethereum"
+  ],
+  "author": "Andrew Miracle <me@andrewmiracle.com>",
+  "homepage": "https://github.com/daccred/contracts#readme",
+  "license": "MIT",
+  "directories": {
+    "lib": "contracts",
+    "test": "test"
+  },
+  "files": [
+    "/contracts/**/*.sol",
+    "/build/contracts/*.json",
+    "!/contracts/mocks/**/*"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daccred/contracts.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/daccred/contracts/issues"
+  }
+}

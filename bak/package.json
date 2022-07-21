@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
     "name": "olympus-contracts",
     "version": "1.0.0",
     "description": "Smart Contracts for Olympus",
@@ -18,7 +17,7 @@
         "@nomiclabs/hardhat-waffle": "^2.0.1",
         "@openzeppelin/test-helpers": "^0.5.12",
         "chai": "^4.3.4",
-        "erc721a": "^3.3.0",
+        "erc721a": "^4.1.0",
         "ethereum-waffle": "^3.4.0",
         "ethers": "^5.4.1",
         "hardhat": "^2.5.0",
@@ -31,7 +30,8 @@
         "test": "npx hardhat test",
         "compile": "npx hardhat compile",
         "clean": "npx hardhat clean",
-        "deploy_fantomtest": "npx hardhat run --network fantomtest scripts/1_deploy.ts"
+        "deploy_velastest": "npx hardhat run --network velastest scripts/deploy.js",
+        "deploy_fantomtest": "npx hardhat run --network fantomtestnet scripts/deploy.js"
     },
     "repository": {
         "type": "git",
@@ -43,40 +43,3 @@
     },
     "homepage": "https://github.com/OlympusDAO/olympus-contracts#readme"
 }
-=======
-  "name": "@daccred/contracts",
-  "private": true,
-  "devDependencies": {
-    "@ethersproject/abi": "^5.6.4",
-    "@ethersproject/providers": "^5.6.8",
-    "@nomicfoundation/hardhat-chai-matchers": "^1.0.2",
-    "@nomicfoundation/hardhat-network-helpers": "^1.0.3",
-    "@nomicfoundation/hardhat-toolbox": "^1.0.2",
-    "@nomiclabs/hardhat-ethers": "^2.1.0",
-    "@nomiclabs/hardhat-etherscan": "^3.1.0",
-    "@nrwl/nx-cloud": "latest",
-    "@typechain/ethers-v5": "^10.1.0",
-    "@typechain/hardhat": "^6.1.2",
-    "@types/chai": "^4.3.1",
-    "@types/mocha": "^9.1.1",
-    "chai": "^4.3.6",
-    "ethers": "^5.6.9",
-    "hardhat-gas-reporter": "^1.0.8",
-    "lerna": "^5.1.8",
-    "nx": "14.1.9",
-    "solidity-coverage": "^0.7.21",
-    "typechain": "^8.1.0"
-  },
-  "workspaces": {
-    "packages": [
-      "packages/*",
-      "core"
-    ]
-  },
-  "dependencies": {
-    "@types/node": "^18.0.6",
-    "hardhat": "^2.10.1",
-    "typescript": "^4.7.4"
-  }
-}
->>>>>>> b50a2c6 (checkpoint: code review 0.0.1)
