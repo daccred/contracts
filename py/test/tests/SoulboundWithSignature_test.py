@@ -1,4 +1,4 @@
-from brownie import SoulboundWithSignature,accounts, config, network, reverts
+from brownie import SoulboundWithSignature, accounts, config, network, reverts
 
 def owner():
 	return "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4"
@@ -117,3 +117,4 @@ def test_ownerRevokeWithSignature():
 
 	hasEvent = 'RevokeWithSignature' in eventHolder.events
 	assert hasEvent == True
+	assert C.balanceOf(accounts[1]) == 0
