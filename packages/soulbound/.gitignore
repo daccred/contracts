@@ -1,0 +1,23 @@
+.py*
+build
+__pycache__
+*.error
+*.log
+
+node_modules
+.env
+coverage
+coverage.json
+typechain
+typechain-types
+
+#Hardhat files
+cache
+artifacts
+
+
+.py*
+build
+__pycache__
+*.error
+*.log
