@@ -51,6 +51,11 @@ contract SoulboundRedeemable is IsValidWithDate, SoulboundWithSignature {
         /// @dev Set individual token price.
         tokenPrice = _tokenPrice;
     }
+    
+    /// @dev Receive function.
+    receive() external payable {}
+    /// @dev Fallback function.
+    fallback() external payable {}
 
     /**
      * @dev Protect against Re-Entrancy.
