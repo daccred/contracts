@@ -1,10 +1,21 @@
-// SPDX-License-Identifier: MIT
-// ERC721A Contracts v3.3.0
-// Creator: Chiru Labs
+// SPDX-License-Identifier: GPL-3.0
+
+// 	 _____     ______     ______     ______     ______     ______     _____
+//  /\  __-.  /\  __ \   /\  ___\   /\  ___\   /\  == \   /\  ___\   /\  __-.
+//  \ \ \/\ \ \ \  __ \  \ \ \____  \ \ \____  \ \  __<   \ \  __\   \ \ \/\ \
+//   \ \____-  \ \_\ \_\  \ \_____\  \ \_____\  \ \_\ \_\  \ \_____\  \ \____-
+//    \/____/   \/_/\/_/   \/_____/   \/_____/   \/_/ /_/   \/_____/   \/____/
 
 pragma solidity ^0.8.4;
 
+/**
+ * @title IERC721 Extension.
+ * @author Daccred.
+ * @dev IERC721 Extensions giving us access to ERC721 core capabilities.
+ */
+
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
+import "@openzeppelin/contracts/utils/introspection/ERC165.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol";
 
 /**
