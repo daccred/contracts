@@ -32,7 +32,7 @@
     "test": "brownie test --coverage",
     "test:gas": "brownie test --gas",
     "compile": "brownie compile",
-    "hint": "solhint 'contracts/**/*.sol'",
+    "lint:sol": "solhint 'contracts/**/*.sol'",
     "console": "brownie console --network hardhat"
   },
   "bugs": {

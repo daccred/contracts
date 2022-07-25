@@ -1,10 +1,17 @@
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+// SPDX-License-Identifier: GPL-3.0
 
-import "erc721a/contracts/ERC721A.sol";
+// 	 _____     ______     ______     ______     ______     ______     _____
+//  /\  __-.  /\  __ \   /\  ___\   /\  ___\   /\  == \   /\  ___\   /\  __-.
+//  \ \ \/\ \ \ \  __ \  \ \ \____  \ \ \____  \ \  __<   \ \  __\   \ \ \/\ \
+//   \ \____-  \ \_\ \_\  \ \_____\  \ \_____\  \ \_\ \_\  \ \_____\  \ \____-
+//    \/____/   \/_/\/_/   \/_____/   \/_____/   \/_/ /_/   \/_____/   \/____/
+
+pragma solidity ^0.8.4;
+
+import "./ERC721A.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 
-contract ERC721AURIStorage is ERC721A {
+contract ERC721URIStorage is ERC721A {
     using Strings for uint256;
 
     // Optional mapping for token URIs
