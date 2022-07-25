@@ -7,5 +7,4 @@ export { Allowlist__factory } from "./Allowlist__factory";
 export { ERC721A__factory } from "./ERC721A__factory";
 export { ERC721ExtensionCore__factory } from "./ERC721ExtensionCore__factory";
 export { ERC721ExtensionSignature__factory } from "./ERC721ExtensionSignature__factory";
-export { ERC721URIStorage__factory } from "./ERC721URIStorage__factory";
 export { Ownable__factory } from "./Ownable__factory";

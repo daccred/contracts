@@ -15,7 +15,6 @@ pragma solidity ^0.8.4;
  */
 
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
-import "@openzeppelin/contracts/utils/introspection/ERC165.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol";
 
 /**
@@ -87,6 +86,16 @@ interface IERC721A is IERC721, IERC721Metadata {
      */
     error URIQueryForNonexistentToken();
 
+    /**
+     * The token already has an existing
+     */
+    error URIRequestForExistentToken();
+
+    /**
+     * The token already has an existing
+     */
+    error SetURICannotBeEmpty(string reason);
+
     // Compiler will pack this into a single 256bit word.
     struct TokenOwnership {
         // The address of the owner.
@@ -117,13 +126,4 @@ interface IERC721A is IERC721, IERC721Metadata {
      * Burned tokens are calculated here, use `_totalMinted()` if you want to count just minted tokens.
      */
     function totalSupply() external view returns (uint256);
-
-    /**
-     * @dev Burns `tokenId`. See {ERC721A-_burn}.
-     *
-     * Requirements:
-     *
-     * - The caller must own `tokenId` or be an approved operator.
-     */
-    function burn(uint256 tokenId) external;
 }

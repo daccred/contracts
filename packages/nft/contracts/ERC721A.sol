@@ -1,10 +1,6 @@
-// SPDX-License-Identifier: GPL-3.0
-
-// 	 _____     ______     ______     ______     ______     ______     _____
-//  /\  __-.  /\  __ \   /\  ___\   /\  ___\   /\  == \   /\  ___\   /\  __-.
-//  \ \ \/\ \ \ \  __ \  \ \ \____  \ \ \____  \ \  __<   \ \  __\   \ \ \/\ \
-//   \ \____-  \ \_\ \_\  \ \_____\  \ \_____\  \ \_\ \_\  \ \_____\  \ \____-
-//    \/____/   \/_/\/_/   \/_____/   \/_____/   \/_/ /_/   \/_____/   \/____/
+// SPDX-License-Identifier: MIT
+// ERC721A Contracts v3.3.0
+// Creator: Chiru Labs
 
 pragma solidity ^0.8.4;
 
@@ -25,7 +21,7 @@ import "@openzeppelin/contracts/utils/introspection/ERC165.sol";
  *
  * Assumes that the maximum token id cannot exceed 2**256 - 1 (max value of uint256).
  */
-contract ERC721A is Context, ERC165, IERC721A {
+abstract contract ERC721A is Context, ERC165, IERC721A {
     using Address for address;
     using Strings for uint256;
 
@@ -65,17 +61,6 @@ contract ERC721A is Context, ERC165, IERC721A {
      */
     function _startTokenId() internal view virtual returns (uint256) {
         return 0;
-    }
-
-    /**
-     * @dev Burns `tokenId`. See {ERC721A-_burn}.
-     *
-     * Requirements:
-     *
-     * - The caller must own `tokenId` or be an approved operator.
-     */
-    function burn(uint256 tokenId) public virtual override {
-        _burn(tokenId, true);
     }
 
     /**

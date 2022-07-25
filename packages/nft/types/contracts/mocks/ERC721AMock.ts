@@ -32,7 +32,6 @@ export interface ERC721AMockInterface extends utils.Interface {
     "approve(address,uint256)": FunctionFragment;
     "balanceOf(address)": FunctionFragment;
     "baseURI()": FunctionFragment;
-    "burn(uint256)": FunctionFragment;
     "burn(uint256,bool)": FunctionFragment;
     "exists(uint256)": FunctionFragment;
     "getApproved(uint256)": FunctionFragment;
@@ -61,8 +60,7 @@ export interface ERC721AMockInterface extends utils.Interface {
       | "approve"
       | "balanceOf"
       | "baseURI"
-      | "burn(uint256)"
-      | "burn(uint256,bool)"
+      | "burn"
       | "exists"
       | "getApproved"
       | "getAux"
@@ -95,11 +93,7 @@ export interface ERC721AMockInterface extends utils.Interface {
   ): string;
   encodeFunctionData(functionFragment: "baseURI", values?: undefined): string;
   encodeFunctionData(
-    functionFragment: "burn(uint256)",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "burn(uint256,bool)",
+    functionFragment: "burn",
     values: [PromiseOrValue<BigNumberish>, PromiseOrValue<boolean>]
   ): string;
   encodeFunctionData(
@@ -197,14 +191,7 @@ export interface ERC721AMockInterface extends utils.Interface {
   decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "baseURI", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "burn(uint256)",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "burn(uint256,bool)",
-    data: BytesLike
-  ): Result;
+  decodeFunctionResult(functionFragment: "burn", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "exists", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "getApproved",
@@ -349,12 +336,7 @@ export interface ERC721AMock extends BaseContract {
 
     baseURI(overrides?: CallOverrides): Promise<[string]>;
 
-    "burn(uint256)"(
-      tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    "burn(uint256,bool)"(
+    burn(
       tokenId: PromiseOrValue<BigNumberish>,
       approvalCheck: PromiseOrValue<boolean>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -476,12 +458,7 @@ export interface ERC721AMock extends BaseContract {
 
   baseURI(overrides?: CallOverrides): Promise<string>;
 
-  "burn(uint256)"(
-    tokenId: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  "burn(uint256,bool)"(
+  burn(
     tokenId: PromiseOrValue<BigNumberish>,
     approvalCheck: PromiseOrValue<boolean>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -603,12 +580,7 @@ export interface ERC721AMock extends BaseContract {
 
     baseURI(overrides?: CallOverrides): Promise<string>;
 
-    "burn(uint256)"(
-      tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    "burn(uint256,bool)"(
+    burn(
       tokenId: PromiseOrValue<BigNumberish>,
       approvalCheck: PromiseOrValue<boolean>,
       overrides?: CallOverrides
@@ -766,12 +738,7 @@ export interface ERC721AMock extends BaseContract {
 
     baseURI(overrides?: CallOverrides): Promise<BigNumber>;
 
-    "burn(uint256)"(
-      tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    "burn(uint256,bool)"(
+    burn(
       tokenId: PromiseOrValue<BigNumberish>,
       approvalCheck: PromiseOrValue<boolean>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -894,12 +861,7 @@ export interface ERC721AMock extends BaseContract {
 
     baseURI(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    "burn(uint256)"(
-      tokenId: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    "burn(uint256,bool)"(
+    burn(
       tokenId: PromiseOrValue<BigNumberish>,
       approvalCheck: PromiseOrValue<boolean>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }

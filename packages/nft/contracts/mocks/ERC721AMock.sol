@@ -54,6 +54,6 @@ contract ERC721AMock is ERC721A {
     }
 
     function burn(uint256 tokenId, bool approvalCheck) public {
-        _burn(tokenId, approvalCheck);
+        super._burn(tokenId, approvalCheck);
     }
 }

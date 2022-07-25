@@ -9,5 +9,4 @@ export type { Allowlist } from "./Allowlist";
 export type { ERC721A } from "./ERC721A";
 export type { ERC721ExtensionCore } from "./ERC721ExtensionCore";
 export type { ERC721ExtensionSignature } from "./ERC721ExtensionSignature";
-export type { ERC721URIStorage } from "./ERC721URIStorage";
 export type { Ownable } from "./Ownable";

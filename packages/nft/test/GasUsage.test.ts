@@ -1,11 +1,12 @@
+/* always import the initializer [helper.ts] at the top */
+import { deployContract } from './helpers'
 import { ethers } from 'hardhat'
-import { deployContract,  constants } from './helpers'
 
 
 
 describe('ERC721A Gas Usage', function () {
   beforeEach(async function () {
-    this.erc721a = await deployContract('ERC721AGasReporterMock', ['Azuki', 'AZUKI']);
+    this.erc721a = await deployContract('ERC721AGasReporterMock', ['Daccred', 'DCD']);
     const [owner, addr1] = await ethers.getSigners();
     this.owner = owner;
     this.addr1 = addr1;

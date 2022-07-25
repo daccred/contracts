@@ -5,9 +5,9 @@
 import { Contract, Signer, utils } from "ethers";
 import type { Provider } from "@ethersproject/providers";
 import type {
-  IERC721A,
-  IERC721AInterface,
-} from "../../../contracts/interfaces/IERC721A";
+  IERC721ExtensionCore,
+  IERC721ExtensionCoreInterface,
+} from "../../../contracts/interfaces/IERC721ExtensionCore";
 
 const _abi = [
   {
@@ -201,6 +201,19 @@ const _abi = [
       },
     ],
     stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+    ],
+    name: "burn",
+    outputs: [],
+    stateMutability: "nonpayable",
     type: "function",
   },
   {
@@ -436,15 +449,19 @@ const _abi = [
   },
 ];
 
-export class IERC721A__factory {
+export class IERC721ExtensionCore__factory {
   static readonly abi = _abi;
-  static createInterface(): IERC721AInterface {
-    return new utils.Interface(_abi) as IERC721AInterface;
+  static createInterface(): IERC721ExtensionCoreInterface {
+    return new utils.Interface(_abi) as IERC721ExtensionCoreInterface;
   }
   static connect(
     address: string,
     signerOrProvider: Signer | Provider
-  ): IERC721A {
-    return new Contract(address, _abi, signerOrProvider) as IERC721A;
+  ): IERC721ExtensionCore {
+    return new Contract(
+      address,
+      _abi,
+      signerOrProvider
+    ) as IERC721ExtensionCore;
   }
 }

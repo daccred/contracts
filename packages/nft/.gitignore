@@ -14,8 +14,7 @@ src/artifacts
 
 src/**/artifacts
 
-
-node_modules
+# Generated files
 .env
 coverage
 coverage.json
@@ -32,3 +31,4 @@ build
 __pycache__
 *.error
 *.log
+*.out

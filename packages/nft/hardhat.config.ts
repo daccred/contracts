@@ -1,10 +1,19 @@
 require("dotenv").config();
 import { HardhatUserConfig } from "hardhat/config";
-import "@nomicfoundation/hardhat-toolbox";
+
+import '@typechain/hardhat'
 import "@nomiclabs/hardhat-etherscan"
-
-
 import "@nomiclabs/hardhat-waffle"
+
+/* Testing utils */
+import 'hardhat-gas-reporter';
+import 'solidity-coverage'
+// if (process.env.REPORT_GAS) {
+//   }
+  
+//   if (process.env.REPORT_COVERAGE) {
+//   }
+
 // This adds support for typescript paths mappings
 import "tsconfig-paths/register";
 

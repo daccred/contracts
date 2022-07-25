@@ -5,9 +5,9 @@
 import { Contract, Signer, utils } from "ethers";
 import type { Provider } from "@ethersproject/providers";
 import type {
-  IERC721A,
-  IERC721AInterface,
-} from "../../../contracts/interfaces/IERC721A";
+  IPOAP,
+  IPOAPInterface,
+} from "../../../contracts/interfaces/IPOAP";
 
 const _abi = [
   {
@@ -145,6 +145,25 @@ const _abi = [
     anonymous: false,
     inputs: [
       {
+        indexed: false,
+        internalType: "uint256",
+        name: "eventId",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "tokenId",
+        type: "uint256",
+      },
+    ],
+    name: "EventToken",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
         indexed: true,
         internalType: "address",
         name: "from",
@@ -244,6 +263,24 @@ const _abi = [
       },
     ],
     stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_eventId",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "_tokenId",
+        type: "uint256",
+      },
+    ],
+    name: "mintToken",
+    outputs: [],
+    stateMutability: "nonpayable",
     type: "function",
   },
   {
@@ -434,17 +471,37 @@ const _abi = [
     stateMutability: "nonpayable",
     type: "function",
   },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_eventId",
+        type: "uint256",
+      },
+      {
+        internalType: "address",
+        name: "_receiver",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "_tokenId",
+        type: "uint256",
+      },
+    ],
+    name: "transferToken",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
 ];
 
-export class IERC721A__factory {
+export class IPOAP__factory {
   static readonly abi = _abi;
-  static createInterface(): IERC721AInterface {
-    return new utils.Interface(_abi) as IERC721AInterface;
+  static createInterface(): IPOAPInterface {
+    return new utils.Interface(_abi) as IPOAPInterface;
   }
-  static connect(
-    address: string,
-    signerOrProvider: Signer | Provider
-  ): IERC721A {
-    return new Contract(address, _abi, signerOrProvider) as IERC721A;
+  static connect(address: string, signerOrProvider: Signer | Provider): IPOAP {
+    return new Contract(address, _abi, signerOrProvider) as IPOAP;
   }
 }

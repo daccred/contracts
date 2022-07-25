@@ -1,7 +1,8 @@
+/* always import the initializer [helper.ts] at the top */
+import { deployContract,  constants } from '../helpers'
 import { ethers } from 'hardhat'
 import { expect } from 'chai'
 const { ZERO_ADDRESS } = constants;
-import { deployContract,  constants } from '../helpers'
 
 const createTestSuite = ({ contract, constructorArgs }: any) =>
   function () {

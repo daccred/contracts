@@ -8,10 +8,12 @@
 
 pragma solidity ^0.8.4;
 
-import "../ERC721A.sol";
+import "../ERC721ExtensionCore.sol";
 
-contract ERC721ABurnableMock is ERC721A {
-    constructor(string memory name_, string memory symbol_) ERC721A(name_, symbol_) {}
+
+
+contract ERC721ABurnableMock is ERC721ExtensionCore {
+    constructor(string memory name_, string memory symbol_) ERC721ExtensionCore(name_, symbol_) {}
 
     function exists(uint256 tokenId) public view returns (bool) {
         return _exists(tokenId);

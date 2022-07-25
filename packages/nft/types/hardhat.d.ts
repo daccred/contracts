@@ -61,37 +61,21 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.ERC721ExtensionSignature__factory>;
     getContractFactory(
-      name: "ERC721URIStorage",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.ERC721URIStorage__factory>;
-    getContractFactory(
       name: "IAllowlist",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IAllowlist__factory>;
-    getContractFactory(
-      name: "ICore",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.ICore__factory>;
     getContractFactory(
       name: "IERC721A",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IERC721A__factory>;
     getContractFactory(
-      name: "IERC721Extension",
+      name: "IERC721ExtensionCore",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IERC721Extension__factory>;
+    ): Promise<Contracts.IERC721ExtensionCore__factory>;
     getContractFactory(
       name: "IWithPaidExtension",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IWithPaidExtension__factory>;
-    getContractFactory(
-      name: "IERC721",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IERC721__factory>;
-    getContractFactory(
-      name: "IERC721Metadata",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.IERC721Metadata__factory>;
     getContractFactory(
       name: "IPOAP",
       signerOrOptions?: ethers.Signer | FactoryOptions
@@ -202,45 +186,25 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.ERC721ExtensionSignature>;
     getContractAt(
-      name: "ERC721URIStorage",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.ERC721URIStorage>;
-    getContractAt(
       name: "IAllowlist",
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.IAllowlist>;
-    getContractAt(
-      name: "ICore",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.ICore>;
     getContractAt(
       name: "IERC721A",
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.IERC721A>;
     getContractAt(
-      name: "IERC721Extension",
+      name: "IERC721ExtensionCore",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.IERC721Extension>;
+    ): Promise<Contracts.IERC721ExtensionCore>;
     getContractAt(
       name: "IWithPaidExtension",
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.IWithPaidExtension>;
-    getContractAt(
-      name: "IERC721",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.IERC721>;
-    getContractAt(
-      name: "IERC721Metadata",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.IERC721Metadata>;
     getContractAt(
       name: "IPOAP",
       address: string,

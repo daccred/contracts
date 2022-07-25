@@ -8,55 +8,53 @@
 
 pragma solidity ^0.8.4;
 
-import "./ERC721URIStorage.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/utils/Counters.sol";
+import "./ERC721A.sol";
+import "./interfaces/IERC721ExtensionCore.sol";
+import "@openzeppelin/contracts/utils/Strings.sol";
 
-contract ERC721ExtensionCore is ERC721URIStorage, Ownable {
-    uint256 public mintFee = 0;
-    uint256 public maxSupply = 1000000;
-    uint256 public devFee = 150; // 1.5%
-    address public devWallet;
+contract ERC721ExtensionCore is ERC721A,  IERC721ExtensionCore {
+    using Strings for uint256;
 
-    constructor(
-        string memory name,
-        string memory symbol,
-        address _devWallet
-    ) ERC721URIStorage(name, symbol) {
-        require(_devWallet != address(0), "Invalid address.");
-        devWallet = _devWallet;
+    // This mapping enables us to use custom token URI from the daccred client
+    mapping(uint256 => string) private _tokenURIs;
+
+    constructor(string memory name, string memory symbol) ERC721A(name, symbol) {}
+
+    /**
+     * @dev See {IERC721Metadata-tokenURI}.
+     */
+    function tokenURI(uint256 tokenId) public view virtual override(ERC721A, IERC721Metadata) returns (string memory) {
+        if (!_exists(tokenId)) revert URIQueryForNonexistentToken();
+
+        string memory _tokenURI = _tokenURIs[tokenId];
+        string memory base = _baseURI();
+
+        // If there is no base URI, return the token URI.
+        // If both are set, concatenate the baseURI and tokenURI (via abi.encodePacked).
+        return bytes(base).length != 0 ? string(abi.encodePacked(base, _tokenURI)) : _tokenURI;
     }
 
-    function mint(address tokenReceiver, uint256 quantity) public payable {
-        require(msg.value >= mintFee, "Insufficient mint fee.");
-        require(totalSupply() + quantity <= maxSupply, "Max supply reached.");
-        require(tokenReceiver != address(0), "Mint to zero address.");
-        _safeMint(tokenReceiver, quantity);
-        // transfer dev fee
-        uint256 feeValue = (msg.value * devFee) / 10000;
-        payable(devWallet).transfer(feeValue);
+    /**
+     * @dev Sets `_tokenURI` as the tokenURI of `tokenId`.
+     *
+     * Requirements:
+     *
+     * - `tokenId` must exist.
+     */
+    function _setTokenURI(uint256 tokenId, string memory _tokenURI) internal virtual {
+        if (bytes(_tokenURI).length != 0) revert SetURICannotBeEmpty("empty tokenURI");
+        if (_exists(tokenId)) revert URIRequestForExistentToken();
+        _tokenURIs[tokenId] = _tokenURI;
     }
 
-    function updateMaxSupply(uint256 _maxSupply) external onlyOwner {
-        require(_maxSupply > 0 && _maxSupply >= totalSupply(), "Invalid max supply");
-        maxSupply = _maxSupply;
-    }
-
-    function updateMintFee(uint256 _mintFee) external onlyOwner {
-        mintFee = _mintFee;
-    }
-
-    function updateDevWallet(address _devWallet) external onlyOwner {
-        require(_devWallet != address(0), "Invalid address");
-        devWallet = _devWallet;
-    }
-
-    function updateDevFee(uint256 _devFee) external onlyOwner {
-        require(_devFee < 10000, "Invalid value");
-        devFee = _devFee;
-    }
-
-    function withDraw() external onlyOwner {
-        payable(owner()).transfer(address(this).balance);
+    /**
+     * @dev Burns `tokenId`. See {ERC721A-_burn}.
+     *
+     * Requirements:
+     *
+     * - The caller must own `tokenId` or be an approved operator.
+     */
+    function burn(uint256 tokenId) public virtual override {
+        _burn(tokenId, true);
     }
 }

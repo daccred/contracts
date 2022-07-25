@@ -1,7 +1,9 @@
+/* always import the initializer [helper.ts] at the top */
+import { deployContract,  constants } from './helpers'
 import { ethers } from 'hardhat'
 import { expect } from 'chai'
+import { ERC721A } from '../types/contracts/ERC721A';
 const { ZERO_ADDRESS } = constants;
-import { deployContract,  constants } from './helpers'
 
 
 const RECEIVER_MAGIC_VALUE = '0x150b7a02';
@@ -11,7 +13,7 @@ const createTestSuite = ({ contract, constructorArgs }: any) =>
   function () {
     context(`${contract}`, function () {
       beforeEach(async function () {
-        this.erc721a = await deployContract(contract, constructorArgs);
+        this.erc721a = await deployContract(contract, constructorArgs) as ERC721A;
         this.receiver = await deployContract('ERC721ReceiverMock', [RECEIVER_MAGIC_VALUE]);
         this.startTokenId = this.erc721a.startTokenId ? (await this.erc721a.startTokenId()).toNumber() : 0;
       });
@@ -60,11 +62,11 @@ const createTestSuite = ({ contract, constructorArgs }: any) =>
 
         describe('ERC721Metadata support', async function () {
           it('responds with the right name', async function () {
-            expect(await this.erc721a.name()).to.eq('Azuki');
+            expect(await this.erc721a.name()).to.eq('Daccred');
           })
 
           it('responds with the right symbol', async function () {
-            expect(await this.erc721a.symbol()).to.eq('AZUKI');
+            expect(await this.erc721a.symbol()).to.eq('DCD');
           })
 
           describe('tokenURI', async function () {
@@ -197,7 +199,7 @@ const createTestSuite = ({ contract, constructorArgs }: any) =>
         });
 
         context('test transfer functionality', function () {
-          const testSuccessfulTransfer = function (transferFn) {
+          const testSuccessfulTransfer = function (transferFn: string) {
             beforeEach(async function () {
               this.tokenId = this.startTokenId + 1;
 
@@ -233,7 +235,7 @@ const createTestSuite = ({ contract, constructorArgs }: any) =>
             });
           };
 
-          const testUnsuccessfulTransfer = function (transferFn) {
+          const testUnsuccessfulTransfer = function (transferFn: string) {
             beforeEach(function () {
               this.tokenId = this.startTokenId + 1;
             });
@@ -286,22 +288,28 @@ const createTestSuite = ({ contract, constructorArgs }: any) =>
           });
         });
 
+        /* handle other burn scenarios in burn test */
+
         describe('_burn', async function() {
+          let tokenIdToBurn: any;
           beforeEach(function () {
-            this.tokenIdToBurn = this.startTokenId;
+            tokenIdToBurn = this.startTokenId;
           });
 
           it('can burn if approvalCheck is false', async function () {
-            await this.erc721a.connect(this.addr2).burn(this.tokenIdToBurn, false);
-            expect(await this.erc721a.exists(this.tokenIdToBurn)).to.be.false;
+            await this.erc721a.connect(this.addr2).burn(tokenIdToBurn, false);
+            expect(await this.erc721a.exists(tokenIdToBurn)).to.be.false;
           });
 
           it('revert if approvalCheck is true', async function () {
             await expect(
-              this.erc721a.connect(this.addr2).burn(this.tokenIdToBurn, true)
+              this.erc721a.connect(this.addr2).burn(tokenIdToBurn, true)
             ).to.be.revertedWith('TransferCallerNotOwnerNorApproved');
           });
+
         });
+
+
       });
 
       context('mint', async function () {
@@ -396,9 +404,9 @@ const createTestSuite = ({ contract, constructorArgs }: any) =>
     });
   };
 
-describe('ERC721A', createTestSuite({ contract: 'ERC721AMock', constructorArgs: ['Azuki', 'AZUKI'] }));
+describe('ERC721A', createTestSuite({ contract: 'ERC721AMock', constructorArgs: ['Daccred', 'DCD'] }));
 
 describe(
   'ERC721A override _startTokenId()',
-  createTestSuite({ contract: 'ERC721AStartTokenIdMock', constructorArgs: ['Azuki', 'AZUKI', 1] })
+  createTestSuite({ contract: 'ERC721AStartTokenIdMock', constructorArgs: ['Daccred', 'DCD', 1] })
 );
