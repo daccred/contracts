@@ -1,17 +1,24 @@
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+// SPDX-License-Identifier: GPL-3.0
 
-import "./ERC721AURIStorage.sol";
+// 	 _____     ______     ______     ______     ______     ______     _____
+//  /\  __-.  /\  __ \   /\  ___\   /\  ___\   /\  == \   /\  ___\   /\  __-.
+//  \ \ \/\ \ \ \  __ \  \ \ \____  \ \ \____  \ \  __<   \ \  __\   \ \ \/\ \
+//   \ \____-  \ \_\ \_\  \ \_____\  \ \_____\  \ \_\ \_\  \ \_____\  \ \____-
+//    \/____/   \/_/\/_/   \/_____/   \/_____/   \/_/ /_/   \/_____/   \/____/
+
+pragma solidity ^0.8.4;
+
+import "./ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
-contract ERC721ExtensionCore is ERC721AURIStorage, Ownable {
+contract ERC721ExtensionCore is ERC721URIStorage, Ownable {
     uint256 public mintFee = 0;
     uint256 public maxSupply = 1000000;
     uint256 public devFee = 150; // 1.5%
     address public devWallet;
 
-    constructor(string memory name, string memory symbol, address _devWallet) ERC721AURIStorage(name, symbol) {
+    constructor(string memory name, string memory symbol, address _devWallet) ERC721URIStorage(name, symbol) {
         require(_devWallet != address(0), "Invalid address.");
         devWallet = _devWallet;
     }
@@ -24,11 +31,6 @@ contract ERC721ExtensionCore is ERC721AURIStorage, Ownable {
         // transfer dev fee
         uint256 feeValue = msg.value * devFee / 10000;
         payable(devWallet).transfer(feeValue);
-    }
-
-    function burn(address tokenOwner, uint256 tokenId) public {
-        require(tokenOwner != address(0), "Burn from zero address.");
-        _burn(tokenId);
     }
 
     function updateMaxSupply(uint256 _maxSupply) external onlyOwner {

@@ -6,7 +6,7 @@
 //   \ \____-  \ \_\ \_\  \ \_____\  \ \_____\  \ \_\ \_\  \ \_____\  \ \____-
 //    \/____/   \/_/\/_/   \/_____/   \/_____/   \/_/ /_/   \/_____/   \/____/
 
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.4;
 
 /**
  * @dev  Contract module which provides a basic access control mechanism, where

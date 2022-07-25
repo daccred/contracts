@@ -15,12 +15,6 @@
     "lib": "contracts",
     "test": "test"
   },
-  "files": [
-    "./contracts/**/*.sol",
-    "./types",
-    "./build/contracts/*.json",
-    "!/contracts/mocks/**/*"
-  ],
   "publishConfig": {
     "access": "public"
   },
@@ -28,12 +22,27 @@
     "type": "git",
     "url": "git+https://github.com/daccred/contracts.git"
   },
+  "files": [
+    "/contracts/**/*.sol",
+    "./types",
+    "/build/contracts/*.json",
+    "!/contracts/mocks/**/*"
+  ],
   "scripts": {
-    "test": "brownie test --coverage",
-    "test:gas": "brownie test --gas",
-    "compile": "brownie compile",
-    "hint": "solhint 'contracts/**/*.sol'",
-    "console": "brownie console --network hardhat"
+    "node": "hardhat node",
+    "test": "hardhat test",
+    "compile": "hardhat compile",
+    "test:gas": "REPORT_GAS=true npx hardhat test",
+    "coverage": "REPORT_COVERAGE=true npx hardhat coverage",
+    "lint:sol": "solhint 'contracts/**/*.sol'",
+    "lint:es": "eslint --ignore-path .gitignore . --fix"
+  },
+  "devDependencies": {
+    "@openzeppelin/test-helpers": "^0.5.15",
+    "@nomiclabs/hardhat-ethers": "^2.0.4",
+    "@nomiclabs/hardhat-waffle": "^2.0.1",
+    "ethereum-waffle": "^3.4.0",
+    "@typechain/ethers-v5": "^10.1.0"
   },
   "bugs": {
     "url": "https://github.com/daccred/contracts/issues"
