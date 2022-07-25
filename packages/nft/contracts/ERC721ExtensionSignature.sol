@@ -15,18 +15,15 @@ contract ERC721ExtensionSignature is ERC721URIStorage, Ownable {
     uint256 public mintFee = 0;
     uint256 public cappedSupply;
     uint256 public devFee = 150; // 1.5%
-    address public devWallet;
+    address immutable devWallet = address(0);
 
     constructor(
         string memory _name,
         string memory _symbol,
-        uint256 _cappedSupply,
-        address _devWallet
+        uint256 _cappedSupply
     ) ERC721(_name, _symbol) {
         require(_cappedSupply > 0, "Invalid max supply");
         cappedSupply = _cappedSupply;
-        require(_devWallet != address(0), "Invalid address.");
-        devWallet = _devWallet;
     }
 
     function updateMaxSupply(uint256 _maxSupply) external onlyOwner {
@@ -36,11 +33,6 @@ contract ERC721ExtensionSignature is ERC721URIStorage, Ownable {
 
     function updateMintFee(uint256 _mintFee) external onlyOwner {
         mintFee = _mintFee;
-    }
-
-    function updateDevWallet(address _devWallet) external onlyOwner {
-        require(_devWallet != address(0), "Invalid address");
-        devWallet = _devWallet;
     }
 
     function updateDevFee(uint256 _devFee) external onlyOwner {

@@ -9,12 +9,9 @@ contract ERC721ExtensionCore is ERC721AURIStorage, Ownable {
     uint256 public mintFee = 0;
     uint256 public maxSupply = 1000000;
     uint256 public devFee = 150; // 1.5%
-    address public devWallet;
+    address immutable devWallet = address(0);
 
-    constructor(string memory name, string memory symbol, address _devWallet) ERC721AURIStorage(name, symbol) {
-        require(_devWallet != address(0), "Invalid address.");
-        devWallet = _devWallet;
-    }
+    constructor(string memory name, string memory symbol) ERC721AURIStorage(name, symbol) {}
 
     function mint(address tokenReceiver, uint256 quantity) public payable {
         require(msg.value >= mintFee, "Insufficient mint fee.");
@@ -38,11 +35,6 @@ contract ERC721ExtensionCore is ERC721AURIStorage, Ownable {
 
     function updateMintFee(uint256 _mintFee) external onlyOwner {
         mintFee = _mintFee;
-    }
-
-    function updateDevWallet(address _devWallet) external onlyOwner {
-        require(_devWallet != address(0), "Invalid address");
-        devWallet = _devWallet;
     }
 
     function updateDevFee(uint256 _devFee) external onlyOwner {
