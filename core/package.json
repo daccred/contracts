@@ -9,7 +9,7 @@
         "@openzeppelin/contracts": "^4.7.0"
     },
     "devDependencies": {
-        "@nomiclabs/hardhat-etherscan": "^2.1.7",
+        "@nomicfoundation/hardhat-chai-matchers": "^1.0.2",
         "@nomicfoundation/hardhat-toolbox": "^1.0.2"
     },
     "scripts": {

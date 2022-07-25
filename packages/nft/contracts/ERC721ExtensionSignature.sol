@@ -58,7 +58,7 @@ contract ERC721ExtensionSignature is ERC721URIStorage, Ownable {
         require(msg.value >= mintFee, "Insufficient mint fee.");
         mintTo(tokenURI, msg.sender);
         // transfer dev fee
-        uint256 feeValue = msg.value * devFee / 10000;
+        uint256 feeValue = (msg.value * devFee) / 10000;
         payable(devWallet).transfer(feeValue);
     }
 

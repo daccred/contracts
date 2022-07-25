@@ -4,8 +4,8 @@
 
 pragma solidity ^0.8.4;
 
-import '@openzeppelin/contracts/token/ERC721/IERC721.sol';
-import '@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol';
+import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol";
 
 /**
  * @dev Interface of an ERC721A compliant contract.
@@ -102,7 +102,7 @@ interface IERC721A is IERC721, IERC721Metadata {
 
     /**
      * @dev Returns the total amount of tokens stored by the contract.
-     * 
+     *
      * Burned tokens are calculated here, use `_totalMinted()` if you want to count just minted tokens.
      */
     function totalSupply() external view returns (uint256);
@@ -115,5 +115,4 @@ interface IERC721A is IERC721, IERC721Metadata {
      * - The caller must own `tokenId` or be an approved operator.
      */
     function burn(uint256 tokenId) external;
-    
 }

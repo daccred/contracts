@@ -1,11 +1,15 @@
-// SPDX-License-Identifier: MIT
-// ERC721A Contracts v3.3.0
-// Creators: Chiru Labs
+// SPDX-License-Identifier: GPL-3.0
+
+// 	 _____     ______     ______     ______     ______     ______     _____
+//  /\  __-.  /\  __ \   /\  ___\   /\  ___\   /\  == \   /\  ___\   /\  __-.
+//  \ \ \/\ \ \ \  __ \  \ \ \____  \ \ \____  \ \  __<   \ \  __\   \ \ \/\ \
+//   \ \____-  \ \_\ \_\  \ \_____\  \ \_____\  \ \_\ \_\  \ \_____\  \ \____-
+//    \/____/   \/_/\/_/   \/_____/   \/_____/   \/_/ /_/   \/_____/   \/____/
 
 pragma solidity ^0.8.4;
 
-import './ERC721ABurnableMock.sol';
-import './StartTokenIdHelper.sol';
+import "./ERC721ABurnableMock.sol";
+import "./StartTokenIdHelper.sol";
 
 contract ERC721ABurnableStartTokenIdMock is StartTokenIdHelper, ERC721ABurnableMock {
     constructor(

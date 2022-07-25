@@ -18,7 +18,11 @@ contract ERC721ExtensionCore is ERC721URIStorage, Ownable {
     uint256 public devFee = 150; // 1.5%
     address public devWallet;
 
-    constructor(string memory name, string memory symbol, address _devWallet) ERC721URIStorage(name, symbol) {
+    constructor(
+        string memory name,
+        string memory symbol,
+        address _devWallet
+    ) ERC721URIStorage(name, symbol) {
         require(_devWallet != address(0), "Invalid address.");
         devWallet = _devWallet;
     }
@@ -29,7 +33,7 @@ contract ERC721ExtensionCore is ERC721URIStorage, Ownable {
         require(tokenReceiver != address(0), "Mint to zero address.");
         _safeMint(tokenReceiver, quantity);
         // transfer dev fee
-        uint256 feeValue = msg.value * devFee / 10000;
+        uint256 feeValue = (msg.value * devFee) / 10000;
         payable(devWallet).transfer(feeValue);
     }
 

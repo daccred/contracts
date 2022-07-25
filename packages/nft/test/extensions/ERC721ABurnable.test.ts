@@ -1,9 +1,9 @@
-const { deployContract } = require('../helpers.js');
-const { expect } = require('chai');
-const { constants } = require('@openzeppelin/test-helpers');
+import { ethers } from 'hardhat'
+import { expect } from 'chai'
 const { ZERO_ADDRESS } = constants;
+import { deployContract,  constants } from '../helpers'
 
-const createTestSuite = ({ contract, constructorArgs }) =>
+const createTestSuite = ({ contract, constructorArgs }: any) =>
   function () {
     context(`${contract}`, function () {
       beforeEach(async function () {
@@ -163,9 +163,9 @@ const createTestSuite = ({ contract, constructorArgs }) =>
     });
   };
 
-describe('ERC721ABurnable', createTestSuite({ contract: 'ERC721ABurnableMock', constructorArgs: ['Azuki', 'AZUKI'] }));
+describe('ERC721ABurnable', createTestSuite({ contract: 'ERC721ABurnableMock', constructorArgs: ['Daccred', 'DCD'] }));
 
 describe(
   'ERC721ABurnable override _startTokenId()',
-  createTestSuite({ contract: 'ERC721ABurnableStartTokenIdMock', constructorArgs: ['Azuki', 'AZUKI', 1] })
+  createTestSuite({ contract: 'ERC721ABurnableStartTokenIdMock', constructorArgs: ['Daccred', 'DCD', 1] })
 );

@@ -17,7 +17,7 @@ contract ERC721URIStorage is ERC721A {
     // Optional mapping for token URIs
     mapping(uint256 => string) private _tokenURIs;
 
-    constructor(string memory name, string memory symbol) ERC721A(name, symbol) { }
+    constructor(string memory name, string memory symbol) ERC721A(name, symbol) {}
 
     /**
      * @dev See {IERC721Metadata-tokenURI}.

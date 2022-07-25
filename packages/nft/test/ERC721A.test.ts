@@ -1,12 +1,13 @@
-const { deployContract } = require('./helpers.js');
-const { expect } = require('chai');
-const { constants } = require('@openzeppelin/test-helpers');
+import { ethers } from 'hardhat'
+import { expect } from 'chai'
 const { ZERO_ADDRESS } = constants;
+import { deployContract,  constants } from './helpers'
+
 
 const RECEIVER_MAGIC_VALUE = '0x150b7a02';
 const GAS_MAGIC_VALUE = 20000;
 
-const createTestSuite = ({ contract, constructorArgs }) =>
+const createTestSuite = ({ contract, constructorArgs }: any) =>
   function () {
     context(`${contract}`, function () {
       beforeEach(async function () {
