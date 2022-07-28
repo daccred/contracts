@@ -9,10 +9,14 @@
 pragma solidity ^0.8.8;
 
 import {Pausable} from "./Pausable.sol";
+
 import {Soulbound} from "../../packages/soulbound/contracts/Soulbound.sol";
 import {SoulboundCore} from "../../packages/soulbound/contracts/SoulboundCore.sol";
 import {SoulboundWithSignature} from "../../packages/soulbound/contracts/SoulboundWithSignature.sol";
 import {SoulboundRedeemable} from "../../packages/soulbound/contracts/SoulboundRedeemable.sol";
+
+import {ERC721ExtensionCore}  from "../../packages/nft/contracts/ERC721ExtensionCore.sol";
+import {ERC721ExtensionSignature}  from "../../packages/nft/contracts/ERC721ExtensionSignature.sol";
 
 /**
 * @title Daccred Deployer.
@@ -21,20 +25,8 @@ import {SoulboundRedeemable} from "../../packages/soulbound/contracts/SoulboundR
 *       that deploys each imported contract.
 */
 contract DaccredDeployer is Pausable {
-    /// @dev Enum of all listed contract extensions.
-    enum Extensions {
-        Soulbound,
-        SoulboundCore,
-        SoulboundWithSignature,
-        SoulboundRedeemable
-    }
-
-    /// @dev    Mapping of Extension to uint256 to track which 
-    ///         contracts are gettting published the most.
-    mapping(Extensions => uint256) private extensionDeployRate;
-
-    /// @dev Emitted when a new contract is deployed.
-    event Deployed(Extension indexed _extension, address indexed _deployAddress);
+    /// @dev Locked for re-entrancy.
+    bool private locked;
 
     /**
      * @dev Protect against Re-Entrancy.
@@ -56,24 +48,15 @@ contract DaccredDeployer is Pausable {
     * @return contractAddress Deployed address.
     */
     function deploySoulbound(string memory _name, string memory _symbol)
-    external
+    public
     nonReentrant
+    whenNotPaused
     returns(address contractAddress)
     {
-        /// @dev Ensure a valid name and symbol.
-        require(_isNotEmpty(_name, _symbol), "Valid Name or Symbol Required.");
-        /// @dev Random salt.
-        uint256 _salt = block.timestamp + block.number;
-        /// @dev Deploy Soulbound contract using Create2 random salt.
-        Soulbound _soulbound = new Soulbound{
-            salt: keccak256(abi.encodePacked(_salt))
-        }(_name, _symbol);
-        /// @dev Increment Extension Deploy Rate.
-        extensionDeployRate[Extensions.Soulbound]++;
-        /// @dev Emit the {Deployed} event.
-        emit Deployed(Extensions.Soulbound, address(_soulbound));
+        /// @dev Deploy Soulbound contract.
+        Soulbound _soulbound = new Soulbound(_name, _symbol);
         /// @dev Return address.
-        contractAddress address(_soulbound);
+        contractAddress = address(_soulbound);
     }
 
     /**
@@ -93,31 +76,22 @@ contract DaccredDeployer is Pausable {
         address _allowlistOwner,
         uint256 _totalSupply
     )
-    external
+    public
     nonReentrant
+    whenNotPaused
     returns(address contractAddress)
     {
-        /// @dev Ensure a valid name and symbol.
-        require(_isNotEmpty(_name, _symbol), "Valid Name or Symbol Required.");
         /// @dev Ensure allowlistOwner is not a zero address.
-        require(_allowlistOwner != address(0), "AllowlistOwner Is Zero Address");
-        /// @dev Random salt.
-        uint256 _salt = block.timestamp + block.number;
-        /// @dev Deploy Soulbound contract using Create2 random salt.
-        SoulboundCore _soulboundCore = new SoulboundCore{
-            salt: keccak256(abi.encodePacked(_salt))
-        }(
+        require(isValidAddress(_allowlistOwner));
+        /// @dev Deploy SoulboundCore contract.
+        SoulboundCore _soulboundCore = new SoulboundCore(
             _name, 
             _symbol,
             _allowlistOwner,
             _totalSupply
         );
-        /// @dev Increment Extension Deploy Rate.
-        extensionDeployRate[Extensions.SoulboundCore]++;
-        /// @dev Emit the {Deployed} event.
-        emit Deployed(Extensions.SoulboundCore, address(_soulboundCore));
         /// @dev Return address.
-        contractAddress address(_soulboundCore);
+        contractAddress = address(_soulboundCore);
     }
 
     /**
@@ -133,7 +107,7 @@ contract DaccredDeployer is Pausable {
     *
     * @return contractAddress Deployed address.
     */
-    function deploySoulboundCore(
+    function deploySoulboundRedeemable(
         string memory _name, 
         string memory _symbol,
         address _allowlistOwner,
@@ -141,20 +115,15 @@ contract DaccredDeployer is Pausable {
         uint256 _priceLimit,
         uint256 _tokenPrice
     )
-    external
+    public
     nonReentrant
+    whenNotPaused
     returns(address contractAddress)
     {
-        /// @dev Ensure a valid name and symbol.
-        require(_isNotEmpty(_name, _symbol), "Valid Name or Symbol Required.");
         /// @dev Ensure allowlistOwner is not a zero address.
-        require(_allowlistOwner != address(0), "AllowlistOwner Is Zero Address");
-        /// @dev Random salt.
-        uint256 _salt = block.timestamp + block.number;
-        /// @dev Deploy Soulbound contract using Create2 random salt.
-        SoulboundRedeemable _soulboundRedeemable = new SoulboundRedeemable{
-            salt: keccak256(abi.encodePacked(_salt))
-        }(
+        require(isValidAddress(_allowlistOwner));
+        /// @dev Deploy SoulboundRedeemable contract.
+        SoulboundRedeemable _soulboundRedeemable = new SoulboundRedeemable(
             _name, 
             _symbol,
             _allowlistOwner,
@@ -162,12 +131,8 @@ contract DaccredDeployer is Pausable {
             _priceLimit,
             _tokenPrice
         );
-        /// @dev Increment Extension Deploy Rate.
-        extensionDeployRate[Extensions.SoulboundRedeemable]++;
-        /// @dev Emit the {Deployed} event.
-        emit Deployed(Extensions.SoulboundRedeemable, address(_soulboundRedeemable));
         /// @dev Return address.
-        contractAddress address(_soulboundRedeemable);
+        contractAddress = address(_soulboundRedeemable);
     }
 
     /**
@@ -181,55 +146,96 @@ contract DaccredDeployer is Pausable {
     *
     * @return contractAddress Deployed address.
     */
-    function deploySoulboundCore(
+    function deploySoulboundWithSignature(
         string memory _name, 
         string memory _symbol,
         address _allowlistOwner,
         uint256 _totalSupply
     )
-    external
+    public
     nonReentrant
+    whenNotPaused
     returns(address contractAddress)
     {
-        /// @dev Ensure a valid name and symbol.
-        require(_isNotEmpty(_name, _symbol), "Valid Name or Symbol Required.");
         /// @dev Ensure allowlistOwner is not a zero address.
-        require(_allowlistOwner != address(0), "AllowlistOwner Is Zero Address");
-        /// @dev Random salt.
-        uint256 _salt = block.timestamp + block.number;
-        /// @dev Deploy Soulbound contract using Create2 random salt.
-        SoulboundWithSignature _soulboundWithSignature = new SoulboundWithSignature{
-            salt: keccak256(abi.encodePacked(_salt))
-        }(
+        require(isValidAddress(_allowlistOwner));
+        /// @dev Deploy SoulboundWthSignature contract using Create2 random sat.
+        SoulboundWithSignature _soulboundWithSignature = new SoulboundWithSignature(
             _name, 
             _symbol,
             _allowlistOwner,
             _totalSupply
         );
-        /// @dev Increment Extension Deploy Rate.
-        extensionDeployRate[Extensions.SoulboundWithSignature]++;
-        /// @dev Emit the {Deployed} event.
-        emit Deployed(Extensions.SoulboundWithSignature, address(_soulboundWithSignature));
         /// @dev Return address.
-        contractAddress address(_soulboundWithSignature);
+        contractAddress = address(_soulboundWithSignature);
     }
 
     /**
-    * @dev Checks 2 string parameters to ensure that their lengths are not 0.
+    * @dev  Deploys the ERC721ExtensionCore with a set name
+    *       and symbol.
     *
-    * @param _name      Name string passed.
-    * @param _symbol    Symbol string passed.
+    * @param _name      Name of token.
+    * @param _symbol    Desired symbol.
     *
-    * @return notEmpty Bool, true or false.
+    * @return contractAddress Deployed address.
     */
-    function _isNotEmpty(string memory _name, string memory _symbol)
-    private
-    returns(bool notEmpty)
+    function deployERC721ExtensionCore(string memory _name, string memory _symbol)
+    public
+    nonReentrant
+    whenNotPaused
+    returns(address contractAddress)
     {
-        /// @dev Return true if the length of both are not 0.
-        notEmpty = (
-            bytes(_name).length != 0 &&
-            bytes(_symbol).length != 0
+        /// @dev Deploy Soulbound contract.
+        ERC721ExtensionCore _erc721ExtensionCore = new ERC721ExtensionCore(_name, _symbol);
+        /// @dev Return address.
+        contractAddress = address(_erc721ExtensionCore);
+    }
+
+    /**
+    * @dev  Deploys the ERC721ExtensionSignature with a set name
+    *       and symbol.
+    *
+    * @param _name      Name of token.
+    * @param _symbol    Desired symbol.
+    *
+    * @return contractAddress Deployed address.
+    */
+    function deployERC721ExtensionSignature(
+        string memory _name, 
+        string memory _symbol,
+        uint256 _cappedSupply,
+        address _devWallet
+    )
+    public
+    nonReentrant
+    whenNotPaused
+    returns(address contractAddress)
+    {
+        /// @dev Ensure allowlistOwner is not a zero address.
+        require(isValidAddress(_devWallet));
+        /// @dev Deploy Soulbound contract.
+        ERC721ExtensionSignature _erc721ExtensionSignature = new ERC721ExtensionSignature(
+            _name, 
+            _symbol,
+            _cappedSupply,
+            _devWallet
         );
+        /// @dev Return address.
+        contractAddress = address(_erc721ExtensionSignature);
+    }
+
+    /**
+    * @dev Require that the address is not a zero address.
+    *
+    * @param _address Desired address.
+    *
+    * @return bool.
+    */
+    function isValidAddress(address _address)
+    private
+    pure
+    returns(bool)
+    {
+        return _address != address(0);
     }
 }
