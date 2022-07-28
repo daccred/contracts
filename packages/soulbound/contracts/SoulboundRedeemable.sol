@@ -6,7 +6,7 @@
 ///  \ \____-  \ \_\ \_\  \ \_____\  \ \_____\  \ \_\ \_\  \ \_____\  \ \____- 
 ///   \/____/   \/_/\/_/   \/_____/   \/_____/   \/_/ /_/   \/_____/   \/____/ 
 
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.8;
 
 import "./SoulboundWithSignature.sol";
 import "./IsValidWithDate.sol";
