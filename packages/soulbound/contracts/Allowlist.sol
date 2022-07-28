@@ -37,6 +37,8 @@ contract Allowlist is IAllowlist, Ownable {
 
     /// @dev constructor, setting the allowlistOwner.
     constructor(address _allowlistOwner) {
+        /// @dev Require address is valid.
+        require(_allowlistOwner != address(0), "Invalid Address.");
         /// @dev Set the variable name.
         allowlistOwner = _allowlistOwner;
     }

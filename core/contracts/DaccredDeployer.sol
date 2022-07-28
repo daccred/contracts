@@ -81,8 +81,6 @@ contract DaccredDeployer is Pausable {
     whenNotPaused
     returns(address contractAddress)
     {
-        /// @dev Ensure allowlistOwner is not a zero address.
-        require(isValidAddress(_allowlistOwner));
         /// @dev Deploy SoulboundCore contract.
         SoulboundCore _soulboundCore = new SoulboundCore(
             _name, 
@@ -120,8 +118,6 @@ contract DaccredDeployer is Pausable {
     whenNotPaused
     returns(address contractAddress)
     {
-        /// @dev Ensure allowlistOwner is not a zero address.
-        require(isValidAddress(_allowlistOwner));
         /// @dev Deploy SoulboundRedeemable contract.
         SoulboundRedeemable _soulboundRedeemable = new SoulboundRedeemable(
             _name, 
@@ -157,8 +153,6 @@ contract DaccredDeployer is Pausable {
     whenNotPaused
     returns(address contractAddress)
     {
-        /// @dev Ensure allowlistOwner is not a zero address.
-        require(isValidAddress(_allowlistOwner));
         /// @dev Deploy SoulboundWthSignature contract using Create2 random sat.
         SoulboundWithSignature _soulboundWithSignature = new SoulboundWithSignature(
             _name, 
@@ -185,7 +179,7 @@ contract DaccredDeployer is Pausable {
     whenNotPaused
     returns(address contractAddress)
     {
-        /// @dev Deploy Soulbound contract.
+        /// @dev Deploy ERC721ExtensionCore contract.
         ERC721ExtensionCore _erc721ExtensionCore = new ERC721ExtensionCore(_name, _symbol);
         /// @dev Return address.
         contractAddress = address(_erc721ExtensionCore);
@@ -211,9 +205,7 @@ contract DaccredDeployer is Pausable {
     whenNotPaused
     returns(address contractAddress)
     {
-        /// @dev Ensure allowlistOwner is not a zero address.
-        require(isValidAddress(_devWallet));
-        /// @dev Deploy Soulbound contract.
+        /// @dev Deploy ERC721ExtensionSignature contract.
         ERC721ExtensionSignature _erc721ExtensionSignature = new ERC721ExtensionSignature(
             _name, 
             _symbol,
@@ -222,20 +214,5 @@ contract DaccredDeployer is Pausable {
         );
         /// @dev Return address.
         contractAddress = address(_erc721ExtensionSignature);
-    }
-
-    /**
-    * @dev Require that the address is not a zero address.
-    *
-    * @param _address Desired address.
-    *
-    * @return bool.
-    */
-    function isValidAddress(address _address)
-    private
-    pure
-    returns(bool)
-    {
-        return _address != address(0);
     }
 }
