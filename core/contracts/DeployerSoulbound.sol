@@ -15,16 +15,13 @@ import {SoulboundCore} from "../../packages/soulbound/contracts/SoulboundCore.so
 import {SoulboundWithSignature} from "../../packages/soulbound/contracts/SoulboundWithSignature.sol";
 import {SoulboundRedeemable} from "../../packages/soulbound/contracts/SoulboundRedeemable.sol";
 
-import {ERC721ExtensionCore}  from "../../packages/nft/contracts/ERC721ExtensionCore.sol";
-import {ERC721ExtensionSignature}  from "../../packages/nft/contracts/ERC721ExtensionSignature.sol";
-
 /**
-* @title Daccred Deployer.
-* @author Anthony (fps) https://github.com/0xfps.
+* @title Daccred DeployerSoulbound.
+* @author Daccred.
 * @dev  This contracts imports and provides functions
 *       that deploys each imported contract.
 */
-contract DaccredDeployer is Pausable {
+contract DeployerSoulbound is Pausable {
     /// @dev Locked for re-entrancy.
     bool private locked;
 
@@ -153,7 +150,7 @@ contract DaccredDeployer is Pausable {
     whenNotPaused
     returns(address contractAddress)
     {
-        /// @dev Deploy SoulboundWthSignature contract using Create2 random sat.
+        /// @dev Deploy SoulboundWthSignature contract.
         SoulboundWithSignature _soulboundWithSignature = new SoulboundWithSignature(
             _name, 
             _symbol,
@@ -162,57 +159,5 @@ contract DaccredDeployer is Pausable {
         );
         /// @dev Return address.
         contractAddress = address(_soulboundWithSignature);
-    }
-
-    /**
-    * @dev  Deploys the ERC721ExtensionCore with a set name
-    *       and symbol.
-    *
-    * @param _name      Name of token.
-    * @param _symbol    Desired symbol.
-    *
-    * @return contractAddress Deployed address.
-    */
-    function deployERC721ExtensionCore(string memory _name, string memory _symbol)
-    public
-    nonReentrant
-    whenNotPaused
-    returns(address contractAddress)
-    {
-        /// @dev Deploy ERC721ExtensionCore contract.
-        ERC721ExtensionCore _erc721ExtensionCore = new ERC721ExtensionCore(_name, _symbol);
-        /// @dev Return address.
-        contractAddress = address(_erc721ExtensionCore);
-    }
-
-    /**
-    * @dev  Deploys the ERC721ExtensionSignature with a set name
-    *       and symbol.
-    *
-    * @param _name      Name of token.
-    * @param _symbol    Desired symbol.
-    *
-    * @return contractAddress Deployed address.
-    */
-    function deployERC721ExtensionSignature(
-        string memory _name, 
-        string memory _symbol,
-        uint256 _cappedSupply,
-        address _devWallet
-    )
-    public
-    nonReentrant
-    whenNotPaused
-    returns(address contractAddress)
-    {
-        /// @dev Deploy ERC721ExtensionSignature contract.
-        ERC721ExtensionSignature _erc721ExtensionSignature = new ERC721ExtensionSignature(
-            _name, 
-            _symbol,
-            _cappedSupply,
-            _devWallet
-        );
-        /// @dev Return address.
-        contractAddress = address(_erc721ExtensionSignature);
     }
 }
