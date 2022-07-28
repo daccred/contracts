@@ -6,7 +6,7 @@
 //   \ \____-  \ \_\ \_\  \ \_____\  \ \_____\  \ \_\ \_\  \ \_____\  \ \____-
 //    \/____/   \/_/\/_/   \/_____/   \/_____/   \/_/ /_/   \/_____/   \/____/
 
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.4;
 import "./Ownable.sol";
 import "../contracts/interfaces/IAllowlist.sol";
 

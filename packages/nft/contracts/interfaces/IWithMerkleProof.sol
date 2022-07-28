@@ -6,7 +6,7 @@
 //   \ \____-  \ \_\ \_\  \ \_____\  \ \_____\  \ \_\ \_\  \ \_____\  \ \____-
 //    \/____/   \/_/\/_/   \/_____/   \/_____/   \/_/ /_/   \/_____/   \/____/
 
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.4;
 
 /// @dev This library will be used for the proofs.
 // import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";

@@ -15,12 +15,6 @@
     "lib": "contracts",
     "test": "test"
   },
-  "files": [
-    "./contracts/**/*.sol",
-    "./types",
-    "./build/contracts/*.json",
-    "!/contracts/mocks/**/*"
-  ],
   "publishConfig": {
     "access": "public"
   },
@@ -28,12 +22,24 @@
     "type": "git",
     "url": "git+https://github.com/daccred/contracts.git"
   },
+  "files": [
+    "/contracts/**/*.sol",
+    "./types",
+    "/build/contracts/*.json",
+    "!/contracts/mocks/**/*"
+  ],
   "scripts": {
-    "test": "brownie test --coverage",
-    "test:gas": "brownie test --gas",
-    "compile": "brownie compile",
-    "hint": "solhint 'contracts/**/*.sol'",
-    "console": "brownie console --network hardhat"
+    "hh": "hardhat",
+    "node": "hardhat node",
+    "test": "hardhat coverage",
+    "compile": "hardhat compile",
+    "test:gas": "REPORT_GAS=true npx hardhat test",
+    "lint:sol": "solhint 'contracts/**/*.sol'",
+    "lint:es": "eslint --ignore-path .gitignore . --fix"
+  },
+  "devDependencies": {
+    "ethereum-waffle": "^3.4.0",
+    "@nomiclabs/hardhat-waffle": "^2.0.1"
   },
   "bugs": {
     "url": "https://github.com/daccred/contracts/issues"
