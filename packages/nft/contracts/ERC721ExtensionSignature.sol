@@ -62,6 +62,10 @@ contract ERC721ExtensionSignature is ERC721URIStorage, Ownable {
 
         return newItemId;
     }
+    
+    function burn(uint256 tokenId) public virtual override {
+        _burn(tokenId, true);
+    }
 
     function mintWithSignature(
         address addr,
@@ -78,7 +82,11 @@ contract ERC721ExtensionSignature is ERC721URIStorage, Ownable {
         require(sig.length == 65, "Invalid signature length");
         /// @dev    Verifies that the address was actually signed by the
         ///         allowlistOwner.
-        require(verifySigner(owner(), hash, sig), "Hash not signed by owner.");
+        
+        bytes memory prefix = "\x19Ethereum Signed Message:\n32";
+        bytes32 prefixedHashMessage = keccak256(abi.encodePacked(prefix, hash));
+
+        require(verifySigner(owner(), prefixedHashMessage, sig), "Hash not signed by owner.");
 
         mintTo(tokenURI, addr);
     }
