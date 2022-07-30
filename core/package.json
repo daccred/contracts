@@ -14,7 +14,6 @@
     },
     "scripts": {
         "test": "hardhat test",
-        "compile": "hardhat compile",
         "clean": "hardhat clean",
         "test:gas": "hardhat test --gas",
         "hint": "solhint 'contracts/**/*.sol'",

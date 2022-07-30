@@ -5,7 +5,6 @@
     "nx": "nx",
     "run": "lerna run",
     "visualize": "nx graph",
-    "install": "lerna exec -- yarn add",
     "postinstall": "lerna bootstrap && lerna link && yarn compile",
     "format": "yarn format:sol && yarn format:ts",
     "format:sol": "prettier --write '**/*.sol'",
@@ -16,7 +15,7 @@
     "release:patch": "lerna version patch",
     "release:prerelease": "lerna version prerelease --no-push",
     "compile": "nx run-many --target=compile --all",
-    "package": "lerna add",
+    "package": "lerna exec -- yarn add",
     "test": "nx run-many --target=test --all"
   },
   "devDependencies": {
