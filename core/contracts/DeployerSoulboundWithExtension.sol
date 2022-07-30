@@ -10,16 +10,16 @@ pragma solidity ^0.8.8;
 
 import {Pausable} from "./Pausable.sol";
 
-import {Soulbound} from "../../packages/soulbound/contracts/Soulbound.sol";
-import {SoulboundCore} from "../../packages/soulbound/contracts/SoulboundCore.sol";
+import {SoulboundWithSignature} from "../../packages/soulbound/contracts/SoulboundWithSignature.sol";
+import {SoulboundRedeemable} from "../../packages/soulbound/contracts/SoulboundRedeemable.sol";
 
 /**
-* @title Daccred DeployerSoulbound.
+* @title Daccred DeployerSoulboundWithExtension.
 * @author Daccred.
 * @dev  This contracts imports and provides functions
 *       that deploys each imported contract.
 */
-contract DeployerSoulbound is Pausable {
+contract DeployerSoulboundWithExtension is Pausable {
     /// @dev Locked for re-entrancy.
     bool private locked;
 
@@ -34,28 +34,46 @@ contract DeployerSoulbound is Pausable {
     }
 
     /**
-    * @dev  Deploys the Soulbound Contract with a set name
-    *       and symbol.
+    * @dev  Deploys the SoulboundRedeemable Contract with its constructor
+    *       parameters.
     *
-    * @param _name      Name of token.
-    * @param _symbol    Desired symbol.
+    * @param _name              Name of token.
+    * @param _symbol            Desired symbol.
+    * @param _allowlistOwner    Desired owner of the contrat for sigs.
+    * @param _totalSupply       Desired total supply.
+    * @param _priceLimit        Desired price limit.
+    * @param _tokenPrice        Desired token price.
     *
     * @return contractAddress Deployed address.
     */
-    function deploySoulbound(string memory _name, string memory _symbol)
+    function deploySoulboundRedeemable(
+        string memory _name, 
+        string memory _symbol,
+        address _allowlistOwner,
+        uint256 _totalSupply,
+        uint256 _priceLimit,
+        uint256 _tokenPrice
+    )
     public
     nonReentrant
     whenNotPaused
     returns(address contractAddress)
     {
-        /// @dev Deploy Soulbound contract.
-        Soulbound _soulbound = new Soulbound(_name, _symbol);
+        /// @dev Deploy SoulboundRedeemable contract.
+        SoulboundRedeemable _soulboundRedeemable = new SoulboundRedeemable(
+            _name, 
+            _symbol,
+            _allowlistOwner,
+            _totalSupply,
+            _priceLimit,
+            _tokenPrice
+        );
         /// @dev Return address.
-        contractAddress = address(_soulbound);
+        contractAddress = address(_soulboundRedeemable);
     }
 
     /**
-    * @dev  Deploys the SoulboundCore Contract with its constructor
+    * @dev  Deploys the SoulboundWithSignature Contract with its constructor
     *       parameters.
     *
     * @param _name              Name of token.
@@ -65,7 +83,7 @@ contract DeployerSoulbound is Pausable {
     *
     * @return contractAddress Deployed address.
     */
-    function deploySoulboundCore(
+    function deploySoulboundWithSignature(
         string memory _name, 
         string memory _symbol,
         address _allowlistOwner,
@@ -76,14 +94,14 @@ contract DeployerSoulbound is Pausable {
     whenNotPaused
     returns(address contractAddress)
     {
-        /// @dev Deploy SoulboundCore contract.
-        SoulboundCore _soulboundCore = new SoulboundCore(
+        /// @dev Deploy SoulboundWthSignature contract.
+        SoulboundWithSignature _soulboundWithSignature = new SoulboundWithSignature(
             _name, 
             _symbol,
             _allowlistOwner,
             _totalSupply
         );
         /// @dev Return address.
-        contractAddress = address(_soulboundCore);
+        contractAddress = address(_soulboundWithSignature);
     }
 }
