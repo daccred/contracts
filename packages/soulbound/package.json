@@ -31,7 +31,7 @@
   "scripts": {
     "test": "brownie test --coverage",
     "test:gas": "brownie test --gas",
-    "compile": "brownie compile",
+    "compile": "brownie compile --size",
     "lint:sol": "solhint 'contracts/**/*.sol'",
     "console": "brownie console --network hardhat"
   },

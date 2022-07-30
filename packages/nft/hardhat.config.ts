@@ -6,20 +6,16 @@ import "@nomiclabs/hardhat-etherscan"
 import "@nomiclabs/hardhat-waffle"
 
 /* Testing utils */
-import 'hardhat-gas-reporter';
+import 'hardhat-docgen';
 import 'solidity-coverage'
-// if (process.env.REPORT_GAS) {
-//   }
-  
-//   if (process.env.REPORT_COVERAGE) {
-//   }
+import 'hardhat-gas-reporter';
+import 'hardhat-contract-sizer';
 
 // This adds support for typescript paths mappings
 import "tsconfig-paths/register";
 
 const config: HardhatUserConfig = {
     etherscan: {
-        // Your API key for Etherscan
         apiKey: "ECUS9XGPERAY4D5XMM9KE1QZKISJDQESAX",
     },
     solidity: {
@@ -37,6 +33,18 @@ const config: HardhatUserConfig = {
     },
     mocha: {
         timeout: 600000,
+    },
+    docgen: {
+        clear: true,
+        runOnCompile: true,
+    },
+    gasReporter: {
+        enabled: process.env.REPORT_GAS === 'true',
+    },
+    contractSizer: {
+        alphaSort: true,
+        runOnCompile: true,
+        strict: false,
     },
   typechain: {
     outDir: 'types',
