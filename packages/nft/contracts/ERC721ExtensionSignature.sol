@@ -82,11 +82,7 @@ contract ERC721ExtensionSignature is ERC721URIStorage, Ownable {
         require(sig.length == 65, "Invalid signature length");
         /// @dev    Verifies that the address was actually signed by the
         ///         allowlistOwner.
-        
-        bytes memory prefix = "\x19Ethereum Signed Message:\n32";
-        bytes32 prefixedHashMessage = keccak256(abi.encodePacked(prefix, hash));
-
-        require(verifySigner(owner(), prefixedHashMessage, sig), "Hash not signed by owner.");
+        require(verifySigner(owner(), hash, sig), "Hash not signed by owner.");
 
         mintTo(tokenURI, addr);
     }
