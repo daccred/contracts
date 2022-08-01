@@ -24,7 +24,11 @@ const createTestSuite = ({ contract, constructorArgs }: any) =>
         this.hash = await ethers.utils.hashMessage("Minting");
         this.signature = await addr1.signMessage(hash);
         await this.erc721ExtensionWithSignature.connect(this.addr1).mint(this.addr1.address, "test1");
-        await this.erc721ExtensionWithSignature.connect(this.addr2).mintWithSignature(this.addr1.address, this.hash, this.signature, "test2");
+      });
+
+      it('mint with signature', async function () {
+        const query = this.erc721ExtensionWithSignature.connect(this.addr2).mintWithSignature(this.addr1.address, this.hash, this.signature, "test2");
+        await expect(query).to.equal(2);
       });
 
       it('cannot mint to zero address', async function () {
@@ -57,7 +61,7 @@ const createTestSuite = ({ contract, constructorArgs }: any) =>
 
       context('currentSupply()', function () {
         it('has the expected value', async function () {
-          expect(await this.erc721ExtensionWithSignature.currentSupply()).to.equal(2);
+          expect(await this.erc721ExtensionWithSignature.currentSupply()).to.equal(1);
         });
       });
 
