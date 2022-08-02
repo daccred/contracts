@@ -84,7 +84,7 @@ const createTestSuite = ({ contract, constructorArgs }: any) =>
 
       context('balanceOf()', function () {
         it('has the expected value', async function () {
-          expect(await this.erc721ExtensionWithSignature.balanceOf(this.addr1.address)).to.equal(this.owner.address);
+          expect(await this.erc721ExtensionWithSignature.balanceOf(this.addr1.address)).to.equal(1);
         });
       });
     });
