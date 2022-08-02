@@ -14,3 +14,21 @@ src/artifacts
 
 src/**/artifacts
 
+
+# Generated files
+.env
+coverage
+coverage.json
+typechain
+typechain-types
+
+#Hardhat files
+cache
+artifacts
+
+
+.py*
+build
+__pycache__
+*.error
+*.log
