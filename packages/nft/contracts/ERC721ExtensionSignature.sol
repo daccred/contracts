@@ -21,18 +21,17 @@ contract ERC721ExtensionSignature is ERC721URIStorage, Ownable {
     uint256 public mintFee = 0;
     uint256 public cappedSupply;
     uint256 public devFee = 150; // 1.5%
-    address public devWallet;
+    address immutable devWallet = address(0); // set correct dev wallet before launch
 
     constructor(
         string memory _name,
         string memory _symbol,
-        uint256 _cappedSupply,
-        address _devWallet
+        uint256 _cappedSupply
     ) ERC721(_name, _symbol) {
         require(_cappedSupply > 0, "Invalid max supply");
         cappedSupply = _cappedSupply;
-        require(_devWallet != address(0), "Invalid address.");
-        devWallet = _devWallet;
+        // require(_devWallet != address(0), "Invalid address.");
+        // devWallet = _devWallet;
     }
 
     function updateMaxSupply(uint256 _maxSupply) external onlyOwner {
@@ -44,22 +43,28 @@ contract ERC721ExtensionSignature is ERC721URIStorage, Ownable {
         mintFee = _mintFee;
     }
 
-    function updateDevWallet(address _devWallet) external onlyOwner {
-        require(_devWallet != address(0), "Invalid address");
-        devWallet = _devWallet;
-    }
+    // function updateDevWallet(address _devWallet) external onlyOwner {
+    //     require(_devWallet != address(0), "Invalid address");
+    //     devWallet = _devWallet;
+    // }
 
     function updateDevFee(uint256 _devFee) external onlyOwner {
         require(_devFee < 10000, "Invalid value");
         devFee = _devFee;
     }
 
-    function mint(string memory tokenURI) external payable {
+    function mint(string memory tokenURI) external payable returns (uint256){
         require(msg.value >= mintFee, "Insufficient mint fee.");
-        mintTo(tokenURI, msg.sender);
+        uint256 newTokenId = mintTo(tokenURI, msg.sender);
         // transfer dev fee
         uint256 feeValue = (msg.value * devFee) / 10000;
         payable(devWallet).transfer(feeValue);
+        return newTokenId;
+    }
+
+    function burn(uint256 tokenId) external {
+        require(ownerOf(tokenId) == msg.sender,"Caller is not owner of the token.");
+        super._burn(tokenId);
     }
 
     function mintTo(string memory tokenURI, address recipient) internal returns (uint256) {
@@ -92,7 +97,9 @@ contract ERC721ExtensionSignature is ERC721URIStorage, Ownable {
         require(sig.length == 65, "Invalid signature length");
         /// @dev    Verifies that the address was actually signed by the
         ///         allowlistOwner.
-        require(verifySigner(owner(), hash, sig), "Hash not signed by owner.");
+        bytes memory prefix = "\x19Ethereum Signed Message:\n000000";
+        bytes32 prefixedHashMessage = keccak256(abi.encodePacked(prefix, hash));
+        require(verifySigner(owner(), prefixedHashMessage, sig), "Hash not signed by owner.");
 
         mintTo(tokenURI, addr);
     }
