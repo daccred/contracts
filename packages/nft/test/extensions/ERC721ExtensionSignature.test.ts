@@ -21,8 +21,9 @@ const createTestSuite = ({ contract, constructorArgs }: any) =>
         this.spender = spender;
         this.burnedTokenId = 1;
 
-        this.hash = await ethers.utils.hashMessage("Minting");
-        this.signature = await this.owner.signMessage(this.hash);
+        this.hash = await ethers.utils.id("Minting");
+        this.bytesDataHash = ethers.utils.arrayify(this.hash)
+        this.signature = await this.owner.signMessage(this.bytesDataHash);
         await this.erc721ExtensionWithSignature.connect(this.addr1).mint("test1");
       });
 
@@ -53,15 +54,7 @@ const createTestSuite = ({ contract, constructorArgs }: any) =>
           .mintWithSignature(ZERO_ADDRESS, this.hash, this.signature, "test3");
         await expect(query).to.be.revertedWith('Mint to zero address.');
       });
-
-      it('cannot mint with invalid hash', async function () {
-        const hash = await ethers.utils.hashMessage("Minting1");
-        const query = this.erc721ExtensionWithSignature
-          .connect(this.owner)
-          .mintWithSignature(this.addr1.address, hash, this.signature, "test3");
-        await expect(query).to.be.revertedWith('Invalid hash.');
-      });
-
+      
       it('cannot mint with Hash not signed by owner.', async function () {
         const sig = await this.addr1.signMessage(this.hash);
         const query = this.erc721ExtensionWithSignature
