@@ -10,16 +10,16 @@ pragma solidity ^0.8.8;
 
 import {Pausable} from "./Pausable.sol";
 
-import {ERC721ExtensionCore}  from "../../packages/nft/contracts/ERC721ExtensionCore.sol";
-import {ERC721ExtensionSignature}  from "../../packages/nft/contracts/ERC721ExtensionSignature.sol";
+import {Soulbound} from "../../../packages/soulbound/contracts/Soulbound.sol";
+import {SoulboundCore} from "../../../packages/soulbound/contracts/SoulboundCore.sol";
 
 /**
-* @title Daccred Deployer.
+* @title Daccred DeployerSoulbound.
 * @author Daccred.
 * @dev  This contracts imports and provides functions
 *       that deploys each imported contract.
 */
-contract DeployerERC721 is Pausable {
+contract DeployerSoulbound is Pausable {
     /// @dev Locked for re-entrancy.
     bool private locked;
 
@@ -34,7 +34,7 @@ contract DeployerERC721 is Pausable {
     }
 
     /**
-    * @dev  Deploys the ERC721ExtensionCore with a set name
+    * @dev  Deploys the Soulbound Contract with a set name
     *       and symbol.
     *
     * @param _name      Name of token.
@@ -42,46 +42,48 @@ contract DeployerERC721 is Pausable {
     *
     * @return contractAddress Deployed address.
     */
-    function deployERC721ExtensionCore(string memory _name, string memory _symbol)
-    public
+    function deploySoulbound(string memory _name, string memory _symbol)
+    external
     nonReentrant
     whenNotPaused
     returns(address contractAddress)
     {
-        /// @dev Deploy ERC721ExtensionCore contract.
-        ERC721ExtensionCore _erc721ExtensionCore = new ERC721ExtensionCore(_name, _symbol);
+        /// @dev Deploy Soulbound contract.
+        Soulbound _soulbound = new Soulbound(_name, _symbol);
         /// @dev Return address.
-        contractAddress = address(_erc721ExtensionCore);
+        contractAddress = address(_soulbound);
     }
 
     /**
-    * @dev  Deploys the ERC721ExtensionSignature with its constructor
+    * @dev  Deploys the SoulboundCore Contract with its constructor
     *       parameters.
     *
-    * @param _name      Name of token.
-    * @param _symbol    Desired symbol.
+    * @param _name              Name of token.
+    * @param _symbol            Desired symbol.
+    * @param _allowlistOwner    Desired owner of the contrat for sigs.
+    * @param _totalSupply       Desired total supply.
     *
     * @return contractAddress Deployed address.
     */
-    function deployERC721ExtensionSignature(
+    function deploySoulboundCore(
         string memory _name, 
         string memory _symbol,
-        uint256 _cappedSupply,
-        address _devWallet
+        address _allowlistOwner,
+        uint256 _totalSupply
     )
-    public
+    external
     nonReentrant
     whenNotPaused
     returns(address contractAddress)
     {
-        /// @dev Deploy ERC721ExtensionSignature contract.
-        ERC721ExtensionSignature _erc721ExtensionSignature = new ERC721ExtensionSignature(
+        /// @dev Deploy SoulboundCore contract.
+        SoulboundCore _soulboundCore = new SoulboundCore(
             _name, 
             _symbol,
-            _cappedSupply,
-            _devWallet
+            _allowlistOwner,
+            _totalSupply
         );
         /// @dev Return address.
-        contractAddress = address(_erc721ExtensionSignature);
+        contractAddress = address(_soulboundCore);
     }
 }

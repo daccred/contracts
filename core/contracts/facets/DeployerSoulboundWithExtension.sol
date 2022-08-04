@@ -10,8 +10,8 @@ pragma solidity ^0.8.8;
 
 import {Pausable} from "./Pausable.sol";
 
-import {SoulboundWithSignature} from "../../packages/soulbound/contracts/SoulboundWithSignature.sol";
-import {SoulboundRedeemable} from "../../packages/soulbound/contracts/SoulboundRedeemable.sol";
+import {SoulboundWithSignature} from "../../../packages/soulbound/contracts/SoulboundWithSignature.sol";
+import {SoulboundRedeemable} from "../../../packages/soulbound/contracts/SoulboundRedeemable.sol";
 
 /**
 * @title Daccred DeployerSoulboundWithExtension.
@@ -54,7 +54,7 @@ contract DeployerSoulboundWithExtension is Pausable {
         uint256 _priceLimit,
         uint256 _tokenPrice
     )
-    public
+    external
     nonReentrant
     whenNotPaused
     returns(address contractAddress)
@@ -89,7 +89,7 @@ contract DeployerSoulboundWithExtension is Pausable {
         address _allowlistOwner,
         uint256 _totalSupply
     )
-    public
+    external
     nonReentrant
     whenNotPaused
     returns(address contractAddress)
