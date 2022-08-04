@@ -15,7 +15,6 @@ pragma solidity ^0.8.14;
 contract Admin {
     /// @dev Owner address.
     address private owner;
-    address public dep;
     /// @dev Mapping of all function signatures to the addresses
     mapping(bytes4 => address) private deployerSelectors;
 
@@ -41,7 +40,9 @@ contract Admin {
     returns(address)
     {
         bytes4 _selector = bytes4(
-            abi.encodeWithSignature("deployERC721ExtensionCore(string,string)")
+            abi.encodeWithSignature(
+                "deployERC721ExtensionCore(string,string)"
+            )
         );
         require(exists(_selector), "Selector Inexistent.");
         address _delegate = deployerSelectors[_selector];
@@ -68,7 +69,9 @@ contract Admin {
     returns(address)
     {
         bytes4 _selector = bytes4(
-            abi.encodeWithSignature("deployERC721ExtensionSignature(string,string,uint256,address)")
+            abi.encodeWithSignature(
+                "deployERC721ExtensionSignature(string,string,uint256,address)"
+            )
         );
         require(exists(_selector), "Selector Inexistent.");
         address _delegate = deployerSelectors[_selector];
@@ -92,7 +95,9 @@ contract Admin {
     returns(address)
     {
         bytes4 _selector = bytes4(
-            abi.encodeWithSignature("deploySoulbound(string,string)")
+            abi.encodeWithSignature(
+                "deploySoulbound(string,string)"
+            )
         );
         require(exists(_selector), "Selector Inexistent.");
         address _delegate = deployerSelectors[_selector];
@@ -119,7 +124,9 @@ contract Admin {
     returns(address)
     {
         bytes4 _selector = bytes4(
-            abi.encodeWithSignature("deploySoulboundCore(string,string,address,uint256)")
+            abi.encodeWithSignature(
+                "deploySoulboundCore(string,string,address,uint256)"
+            )
         );
         require(exists(_selector), "Selector Inexistent.");
         address _delegate = deployerSelectors[_selector];
@@ -150,7 +157,9 @@ contract Admin {
     returns(address)
     {
         bytes4 _selector = bytes4(
-            abi.encodeWithSignature("deploySoulboundRedeemable(string,string,address,uint256,uint256,uint256)")
+            abi.encodeWithSignature(
+                "deploySoulboundRedeemable(string,string,address,uint256,uint256,uint256)"
+            )
         );
         require(exists(_selector), "Selector Inexistent.");
         address _delegate = deployerSelectors[_selector];
@@ -181,7 +190,9 @@ contract Admin {
     returns(address)
     {
         bytes4 _selector = bytes4(
-            abi.encodeWithSignature("deploySoulboundRedeemable(string,string,address,uint256)")
+            abi.encodeWithSignature(
+                "deploySoulboundRedeemable(string,string,address,uint256)"
+            )
         );
         require(exists(_selector), "Selector Inexistent.");
         address _delegate = deployerSelectors[_selector];
