@@ -2,7 +2,7 @@
 import { deployContract,  constants } from '../helpers'
 import { ethers } from 'hardhat'
 import { expect } from 'chai'
-const { ZERO_ADDRESS } = constants;
+const { ZERO_ADDRESS, BASE_URL } = constants;
 
 const createTestSuite = ({ contract, constructorArgs }: any) =>
   function () {
@@ -28,7 +28,7 @@ const createTestSuite = ({ contract, constructorArgs }: any) =>
       });
 
       it('mint with signature', async function () {
-        await this.erc721ExtensionWithSignature.connect(this.owner).mintWithSignature(this.addr1.address, this.hash, this.signature, "test2");
+        await this.erc721ExtensionWithSignature.connect(this.owner).mintWithSignature(this.addr1.address, this.hash, this.signature, `${BASE_URL}/${this.addr1.address}`);
         expect(await this.erc721ExtensionWithSignature.balanceOf(this.addr1.address)).to.equal(2);
       });
 
@@ -47,6 +47,17 @@ const createTestSuite = ({ contract, constructorArgs }: any) =>
         const query = this.erc721ExtensionWithSignature.connect(this.addr1).mint("test2");
         await expect(query).to.be.revertedWith("You can't mint anymore.");
       });
+
+      it('[TODO]: Token URI is valid URL string', function() {
+        console.log("Token URI is valid URL string when baseURL is not empty by default");
+      })
+
+
+      it('[TODO]: Cannot SetURI for existent Token', function() {
+        console.log("cannot overwrite URI for already minted Token");
+      })
+
+      
 
       it('cannot mint to zero address', async function () {
         const query = this.erc721ExtensionWithSignature
@@ -83,5 +94,5 @@ const createTestSuite = ({ contract, constructorArgs }: any) =>
     });
   };
 
-describe('ERC721ExtensionSignature', createTestSuite({ contract: 'ERC721ExtensionSignature', constructorArgs: ['Daccred', 'DCD', 2 ] }));
+describe('ERC721ExtensionSignature', createTestSuite({ contract: 'ERC721ExtensionSignature', constructorArgs: ['Daccred', 'DCD', 1000, 2, 0 ] }));
 

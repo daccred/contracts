@@ -32,19 +32,18 @@ export interface ERC721ExtensionSignatureInterface extends utils.Interface {
   functions: {
     "approve(address,uint256)": FunctionFragment;
     "balanceOf(address)": FunctionFragment;
+    "burn(uint256)": FunctionFragment;
     "cappedSupply()": FunctionFragment;
-    "currentSupply()": FunctionFragment;
-    "devFee()": FunctionFragment;
-    "devWallet()": FunctionFragment;
     "getApproved(uint256)": FunctionFragment;
     "isApprovedForAll(address,address)": FunctionFragment;
     "maxSupply()": FunctionFragment;
     "mint(string)": FunctionFragment;
-    "mintFee()": FunctionFragment;
     "mintWithSignature(address,bytes32,bytes,string)": FunctionFragment;
+    "modifyTariff(uint256)": FunctionFragment;
     "name()": FunctionFragment;
     "owner()": FunctionFragment;
     "ownerOf(uint256)": FunctionFragment;
+    "redemptionTariff()": FunctionFragment;
     "renounceOwnership()": FunctionFragment;
     "safeTransferFrom(address,address,uint256)": FunctionFragment;
     "safeTransferFrom(address,address,uint256,bytes)": FunctionFragment;
@@ -52,12 +51,10 @@ export interface ERC721ExtensionSignatureInterface extends utils.Interface {
     "supportsInterface(bytes4)": FunctionFragment;
     "symbol()": FunctionFragment;
     "tokenURI(uint256)": FunctionFragment;
+    "totalSupply()": FunctionFragment;
     "transferFrom(address,address,uint256)": FunctionFragment;
     "transferOwnership(address)": FunctionFragment;
-    "updateDevFee(uint256)": FunctionFragment;
-    "updateDevWallet(address)": FunctionFragment;
     "updateMaxSupply(uint256)": FunctionFragment;
-    "updateMintFee(uint256)": FunctionFragment;
     "withdraw()": FunctionFragment;
   };
 
@@ -65,19 +62,18 @@ export interface ERC721ExtensionSignatureInterface extends utils.Interface {
     nameOrSignatureOrTopic:
       | "approve"
       | "balanceOf"
+      | "burn"
       | "cappedSupply"
-      | "currentSupply"
-      | "devFee"
-      | "devWallet"
       | "getApproved"
       | "isApprovedForAll"
       | "maxSupply"
       | "mint"
-      | "mintFee"
       | "mintWithSignature"
+      | "modifyTariff"
       | "name"
       | "owner"
       | "ownerOf"
+      | "redemptionTariff"
       | "renounceOwnership"
       | "safeTransferFrom(address,address,uint256)"
       | "safeTransferFrom(address,address,uint256,bytes)"
@@ -85,12 +81,10 @@ export interface ERC721ExtensionSignatureInterface extends utils.Interface {
       | "supportsInterface"
       | "symbol"
       | "tokenURI"
+      | "totalSupply"
       | "transferFrom"
       | "transferOwnership"
-      | "updateDevFee"
-      | "updateDevWallet"
       | "updateMaxSupply"
-      | "updateMintFee"
       | "withdraw"
   ): FunctionFragment;
 
@@ -103,15 +97,13 @@ export interface ERC721ExtensionSignatureInterface extends utils.Interface {
     values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
+    functionFragment: "burn",
+    values: [PromiseOrValue<BigNumberish>]
+  ): string;
+  encodeFunctionData(
     functionFragment: "cappedSupply",
     values?: undefined
   ): string;
-  encodeFunctionData(
-    functionFragment: "currentSupply",
-    values?: undefined
-  ): string;
-  encodeFunctionData(functionFragment: "devFee", values?: undefined): string;
-  encodeFunctionData(functionFragment: "devWallet", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "getApproved",
     values: [PromiseOrValue<BigNumberish>]
@@ -125,7 +117,6 @@ export interface ERC721ExtensionSignatureInterface extends utils.Interface {
     functionFragment: "mint",
     values: [PromiseOrValue<string>]
   ): string;
-  encodeFunctionData(functionFragment: "mintFee", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "mintWithSignature",
     values: [
@@ -135,11 +126,19 @@ export interface ERC721ExtensionSignatureInterface extends utils.Interface {
       PromiseOrValue<string>
     ]
   ): string;
+  encodeFunctionData(
+    functionFragment: "modifyTariff",
+    values: [PromiseOrValue<BigNumberish>]
+  ): string;
   encodeFunctionData(functionFragment: "name", values?: undefined): string;
   encodeFunctionData(functionFragment: "owner", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "ownerOf",
     values: [PromiseOrValue<BigNumberish>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "redemptionTariff",
+    values?: undefined
   ): string;
   encodeFunctionData(
     functionFragment: "renounceOwnership",
@@ -176,6 +175,10 @@ export interface ERC721ExtensionSignatureInterface extends utils.Interface {
     values: [PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(
+    functionFragment: "totalSupply",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
     functionFragment: "transferFrom",
     values: [
       PromiseOrValue<string>,
@@ -188,35 +191,18 @@ export interface ERC721ExtensionSignatureInterface extends utils.Interface {
     values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
-    functionFragment: "updateDevFee",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "updateDevWallet",
-    values: [PromiseOrValue<string>]
-  ): string;
-  encodeFunctionData(
     functionFragment: "updateMaxSupply",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "updateMintFee",
     values: [PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(functionFragment: "withdraw", values?: undefined): string;
 
   decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "burn", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "cappedSupply",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(
-    functionFragment: "currentSupply",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "devFee", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "devWallet", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "getApproved",
     data: BytesLike
@@ -227,14 +213,21 @@ export interface ERC721ExtensionSignatureInterface extends utils.Interface {
   ): Result;
   decodeFunctionResult(functionFragment: "maxSupply", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "mint", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "mintFee", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "mintWithSignature",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "modifyTariff",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "name", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "ownerOf", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "redemptionTariff",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(
     functionFragment: "renounceOwnership",
     data: BytesLike
@@ -258,6 +251,10 @@ export interface ERC721ExtensionSignatureInterface extends utils.Interface {
   decodeFunctionResult(functionFragment: "symbol", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "tokenURI", data: BytesLike): Result;
   decodeFunctionResult(
+    functionFragment: "totalSupply",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
     functionFragment: "transferFrom",
     data: BytesLike
   ): Result;
@@ -266,19 +263,7 @@ export interface ERC721ExtensionSignatureInterface extends utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "updateDevFee",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "updateDevWallet",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
     functionFragment: "updateMaxSupply",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "updateMintFee",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "withdraw", data: BytesLike): Result;
@@ -382,13 +367,12 @@ export interface ERC721ExtensionSignature extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[BigNumber]>;
 
+    burn(
+      tokenId: PromiseOrValue<BigNumberish>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+
     cappedSupply(overrides?: CallOverrides): Promise<[BigNumber]>;
-
-    currentSupply(overrides?: CallOverrides): Promise<[BigNumber]>;
-
-    devFee(overrides?: CallOverrides): Promise<[BigNumber]>;
-
-    devWallet(overrides?: CallOverrides): Promise<[string]>;
 
     getApproved(
       tokenId: PromiseOrValue<BigNumberish>,
@@ -404,17 +388,20 @@ export interface ERC721ExtensionSignature extends BaseContract {
     maxSupply(overrides?: CallOverrides): Promise<[BigNumber]>;
 
     mint(
-      tokenURI: PromiseOrValue<string>,
+      _tokenURI: PromiseOrValue<string>,
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
-
-    mintFee(overrides?: CallOverrides): Promise<[BigNumber]>;
 
     mintWithSignature(
       addr: PromiseOrValue<string>,
       hash: PromiseOrValue<BytesLike>,
       sig: PromiseOrValue<BytesLike>,
-      tokenURI: PromiseOrValue<string>,
+      _tokenURI: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+
+    modifyTariff(
+      _newTariff: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
@@ -426,6 +413,8 @@ export interface ERC721ExtensionSignature extends BaseContract {
       tokenId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<[string]>;
+
+    redemptionTariff(overrides?: CallOverrides): Promise<[BigNumber]>;
 
     renounceOwnership(
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -442,7 +431,7 @@ export interface ERC721ExtensionSignature extends BaseContract {
       from: PromiseOrValue<string>,
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
-      data: PromiseOrValue<BytesLike>,
+      _data: PromiseOrValue<BytesLike>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
@@ -464,6 +453,8 @@ export interface ERC721ExtensionSignature extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[string]>;
 
+    totalSupply(overrides?: CallOverrides): Promise<[BigNumber]>;
+
     transferFrom(
       from: PromiseOrValue<string>,
       to: PromiseOrValue<string>,
@@ -476,23 +467,8 @@ export interface ERC721ExtensionSignature extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
-    updateDevFee(
-      _devFee: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    updateDevWallet(
-      _devWallet: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
     updateMaxSupply(
       _maxSupply: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    updateMintFee(
-      _mintFee: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
@@ -512,13 +488,12 @@ export interface ERC721ExtensionSignature extends BaseContract {
     overrides?: CallOverrides
   ): Promise<BigNumber>;
 
+  burn(
+    tokenId: PromiseOrValue<BigNumberish>,
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
+
   cappedSupply(overrides?: CallOverrides): Promise<BigNumber>;
-
-  currentSupply(overrides?: CallOverrides): Promise<BigNumber>;
-
-  devFee(overrides?: CallOverrides): Promise<BigNumber>;
-
-  devWallet(overrides?: CallOverrides): Promise<string>;
 
   getApproved(
     tokenId: PromiseOrValue<BigNumberish>,
@@ -534,17 +509,20 @@ export interface ERC721ExtensionSignature extends BaseContract {
   maxSupply(overrides?: CallOverrides): Promise<BigNumber>;
 
   mint(
-    tokenURI: PromiseOrValue<string>,
+    _tokenURI: PromiseOrValue<string>,
     overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
-
-  mintFee(overrides?: CallOverrides): Promise<BigNumber>;
 
   mintWithSignature(
     addr: PromiseOrValue<string>,
     hash: PromiseOrValue<BytesLike>,
     sig: PromiseOrValue<BytesLike>,
-    tokenURI: PromiseOrValue<string>,
+    _tokenURI: PromiseOrValue<string>,
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
+
+  modifyTariff(
+    _newTariff: PromiseOrValue<BigNumberish>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
@@ -556,6 +534,8 @@ export interface ERC721ExtensionSignature extends BaseContract {
     tokenId: PromiseOrValue<BigNumberish>,
     overrides?: CallOverrides
   ): Promise<string>;
+
+  redemptionTariff(overrides?: CallOverrides): Promise<BigNumber>;
 
   renounceOwnership(
     overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -572,7 +552,7 @@ export interface ERC721ExtensionSignature extends BaseContract {
     from: PromiseOrValue<string>,
     to: PromiseOrValue<string>,
     tokenId: PromiseOrValue<BigNumberish>,
-    data: PromiseOrValue<BytesLike>,
+    _data: PromiseOrValue<BytesLike>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
@@ -594,6 +574,8 @@ export interface ERC721ExtensionSignature extends BaseContract {
     overrides?: CallOverrides
   ): Promise<string>;
 
+  totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
+
   transferFrom(
     from: PromiseOrValue<string>,
     to: PromiseOrValue<string>,
@@ -606,23 +588,8 @@ export interface ERC721ExtensionSignature extends BaseContract {
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
-  updateDevFee(
-    _devFee: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  updateDevWallet(
-    _devWallet: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
   updateMaxSupply(
     _maxSupply: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  updateMintFee(
-    _mintFee: PromiseOrValue<BigNumberish>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
@@ -642,13 +609,12 @@ export interface ERC721ExtensionSignature extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
+    burn(
+      tokenId: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
     cappedSupply(overrides?: CallOverrides): Promise<BigNumber>;
-
-    currentSupply(overrides?: CallOverrides): Promise<BigNumber>;
-
-    devFee(overrides?: CallOverrides): Promise<BigNumber>;
-
-    devWallet(overrides?: CallOverrides): Promise<string>;
 
     getApproved(
       tokenId: PromiseOrValue<BigNumberish>,
@@ -664,17 +630,20 @@ export interface ERC721ExtensionSignature extends BaseContract {
     maxSupply(overrides?: CallOverrides): Promise<BigNumber>;
 
     mint(
-      tokenURI: PromiseOrValue<string>,
+      _tokenURI: PromiseOrValue<string>,
       overrides?: CallOverrides
-    ): Promise<void>;
-
-    mintFee(overrides?: CallOverrides): Promise<BigNumber>;
+    ): Promise<BigNumber>;
 
     mintWithSignature(
       addr: PromiseOrValue<string>,
       hash: PromiseOrValue<BytesLike>,
       sig: PromiseOrValue<BytesLike>,
-      tokenURI: PromiseOrValue<string>,
+      _tokenURI: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    modifyTariff(
+      _newTariff: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<void>;
 
@@ -686,6 +655,8 @@ export interface ERC721ExtensionSignature extends BaseContract {
       tokenId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<string>;
+
+    redemptionTariff(overrides?: CallOverrides): Promise<BigNumber>;
 
     renounceOwnership(overrides?: CallOverrides): Promise<void>;
 
@@ -700,7 +671,7 @@ export interface ERC721ExtensionSignature extends BaseContract {
       from: PromiseOrValue<string>,
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
-      data: PromiseOrValue<BytesLike>,
+      _data: PromiseOrValue<BytesLike>,
       overrides?: CallOverrides
     ): Promise<void>;
 
@@ -722,6 +693,8 @@ export interface ERC721ExtensionSignature extends BaseContract {
       overrides?: CallOverrides
     ): Promise<string>;
 
+    totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
+
     transferFrom(
       from: PromiseOrValue<string>,
       to: PromiseOrValue<string>,
@@ -734,23 +707,8 @@ export interface ERC721ExtensionSignature extends BaseContract {
       overrides?: CallOverrides
     ): Promise<void>;
 
-    updateDevFee(
-      _devFee: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    updateDevWallet(
-      _devWallet: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
     updateMaxSupply(
       _maxSupply: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    updateMintFee(
-      _mintFee: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<void>;
 
@@ -813,13 +771,12 @@ export interface ERC721ExtensionSignature extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
+    burn(
+      tokenId: PromiseOrValue<BigNumberish>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
+
     cappedSupply(overrides?: CallOverrides): Promise<BigNumber>;
-
-    currentSupply(overrides?: CallOverrides): Promise<BigNumber>;
-
-    devFee(overrides?: CallOverrides): Promise<BigNumber>;
-
-    devWallet(overrides?: CallOverrides): Promise<BigNumber>;
 
     getApproved(
       tokenId: PromiseOrValue<BigNumberish>,
@@ -835,17 +792,20 @@ export interface ERC721ExtensionSignature extends BaseContract {
     maxSupply(overrides?: CallOverrides): Promise<BigNumber>;
 
     mint(
-      tokenURI: PromiseOrValue<string>,
+      _tokenURI: PromiseOrValue<string>,
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
-
-    mintFee(overrides?: CallOverrides): Promise<BigNumber>;
 
     mintWithSignature(
       addr: PromiseOrValue<string>,
       hash: PromiseOrValue<BytesLike>,
       sig: PromiseOrValue<BytesLike>,
-      tokenURI: PromiseOrValue<string>,
+      _tokenURI: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
+
+    modifyTariff(
+      _newTariff: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
@@ -857,6 +817,8 @@ export interface ERC721ExtensionSignature extends BaseContract {
       tokenId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
+
+    redemptionTariff(overrides?: CallOverrides): Promise<BigNumber>;
 
     renounceOwnership(
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -873,7 +835,7 @@ export interface ERC721ExtensionSignature extends BaseContract {
       from: PromiseOrValue<string>,
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
-      data: PromiseOrValue<BytesLike>,
+      _data: PromiseOrValue<BytesLike>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
@@ -895,6 +857,8 @@ export interface ERC721ExtensionSignature extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
+    totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
+
     transferFrom(
       from: PromiseOrValue<string>,
       to: PromiseOrValue<string>,
@@ -907,23 +871,8 @@ export interface ERC721ExtensionSignature extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
-    updateDevFee(
-      _devFee: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    updateDevWallet(
-      _devWallet: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
     updateMaxSupply(
       _maxSupply: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    updateMintFee(
-      _mintFee: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
@@ -944,13 +893,12 @@ export interface ERC721ExtensionSignature extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
+    burn(
+      tokenId: PromiseOrValue<BigNumberish>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
+
     cappedSupply(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    currentSupply(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    devFee(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    devWallet(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     getApproved(
       tokenId: PromiseOrValue<BigNumberish>,
@@ -966,17 +914,20 @@ export interface ERC721ExtensionSignature extends BaseContract {
     maxSupply(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     mint(
-      tokenURI: PromiseOrValue<string>,
+      _tokenURI: PromiseOrValue<string>,
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
-
-    mintFee(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     mintWithSignature(
       addr: PromiseOrValue<string>,
       hash: PromiseOrValue<BytesLike>,
       sig: PromiseOrValue<BytesLike>,
-      tokenURI: PromiseOrValue<string>,
+      _tokenURI: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
+
+    modifyTariff(
+      _newTariff: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
@@ -988,6 +939,8 @@ export interface ERC721ExtensionSignature extends BaseContract {
       tokenId: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
+
+    redemptionTariff(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     renounceOwnership(
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -1004,7 +957,7 @@ export interface ERC721ExtensionSignature extends BaseContract {
       from: PromiseOrValue<string>,
       to: PromiseOrValue<string>,
       tokenId: PromiseOrValue<BigNumberish>,
-      data: PromiseOrValue<BytesLike>,
+      _data: PromiseOrValue<BytesLike>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
@@ -1026,6 +979,8 @@ export interface ERC721ExtensionSignature extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
+    totalSupply(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
     transferFrom(
       from: PromiseOrValue<string>,
       to: PromiseOrValue<string>,
@@ -1038,23 +993,8 @@ export interface ERC721ExtensionSignature extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
-    updateDevFee(
-      _devFee: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    updateDevWallet(
-      _devWallet: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
     updateMaxSupply(
       _maxSupply: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    updateMintFee(
-      _mintFee: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 

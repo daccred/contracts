@@ -10,8 +10,6 @@ pragma solidity ^0.8.4;
 
 import "../ERC721ExtensionCore.sol";
 
-
-
 contract ERC721ABurnableMock is ERC721ExtensionCore {
     constructor(string memory name_, string memory symbol_) ERC721ExtensionCore(name_, symbol_) {}
 

@@ -16,6 +16,7 @@ export const deployContract = async function (contractName: string, constructorA
 
 export const constants = {
   ZERO_ADDRESS: '0x0000000000000000000000000000000000000000',
+  BASE_URL: 'https://ipfs.daccred.co',
   ZERO_BYTES32: '0x0000000000000000000000000000000000000000000000000000000000000000',
   MAX_UINT256: new BN('2').pow(new BN('256')).sub(new BN('1')),
   MAX_INT256: new BN('2').pow(new BN('255')).sub(new BN('1')),

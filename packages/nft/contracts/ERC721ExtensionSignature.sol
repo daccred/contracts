@@ -8,86 +8,95 @@
 
 pragma solidity ^0.8.4;
 
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/utils/Counters.sol";
+import "./ERC721ExtensionCore.sol";
+import "./Guard.sol";
 
-contract ERC721ExtensionSignature is ERC721URIStorage, Ownable {
-    using Counters for Counters.Counter;
-    Counters.Counter private _tokenIds;
+contract ERC721ExtensionSignature is Guarded, ERC721ExtensionCore, Ownable {
+    /* ---------------------------- */
+    /*   DEPLOYER CONFIGURATIONS   */
+    /* -------------------------- */
 
-    uint256 public maxSupply = 1000000;
-    uint256 public currentSupply = 0;
-    uint256 public mintFee = 0;
+    /* max supply is the max number of token IDs that can be minted in this contract */
+    uint256 public maxSupply;
+
+    /* Capped supply is a limitation on the number of tokens a user can mint */
     uint256 public cappedSupply;
-    uint256 public devFee = 150; // 1.5%
-    address immutable devWallet = address(0); // set correct dev wallet before launch
+
+    /* if the deployers require users to pay to mint, they charge a tarriff */
+    uint256 public redemptionTariff = 0;
+
+    /* ----------------------- */
+    /* DACCRED CONFIGURATIONS */
+    /* --------------------- */
+    uint256 immutable COMMISSIONS = 150; // 1.5% // !important set correct dev wallet before launch
+    address immutable COMMISSIONER = address(0); // !important set correct dev wallet before launch
 
     constructor(
         string memory _name,
         string memory _symbol,
-        uint256 _cappedSupply
-    ) ERC721(_name, _symbol) {
-        require(_cappedSupply > 0, "Invalid max supply");
-        cappedSupply = _cappedSupply;
-        // require(_devWallet != address(0), "Invalid address.");
-        // devWallet = _devWallet;
-    }
+        uint256 _maxSupply,
+        uint256 _cappedSupply,
+        uint256 _redemptionTariff
+    ) ERC721ExtensionCore(_name, _symbol) {
+        require(_maxSupply > 0, "[Ext721Sig]: NaN");
+        require(_cappedSupply > 0, "[Ext721Sig]: NaN");
+        require(_redemptionTariff > 0, "[Ext721Sig]: NaN");
 
-    function updateMaxSupply(uint256 _maxSupply) external onlyOwner {
-        require(_maxSupply > 0 && _maxSupply >= currentSupply, "Invalid max supply");
+        /* setup internal variables */
+        redemptionTariff = _redemptionTariff;
+        cappedSupply = _cappedSupply;
         maxSupply = _maxSupply;
     }
 
-    function updateMintFee(uint256 _mintFee) external onlyOwner {
-        mintFee = _mintFee;
+    function updateMaxSupply(uint256 _maxSupply) external onlyOwner {
+        require(_maxSupply > 0 && _maxSupply >= totalSupply(), "Invalid max supply");
+        maxSupply = _maxSupply;
     }
 
-    // function updateDevWallet(address _devWallet) external onlyOwner {
-    //     require(_devWallet != address(0), "Invalid address");
-    //     devWallet = _devWallet;
-    // }
-
-    function updateDevFee(uint256 _devFee) external onlyOwner {
-        require(_devFee < 10000, "Invalid value");
-        devFee = _devFee;
+    function modifyTariff(uint256 _newTariff) external onlyOwner {
+        redemptionTariff = _newTariff;
     }
 
-    function mint(string memory tokenURI) external payable returns (uint256){
-        require(msg.value >= mintFee, "Insufficient mint fee.");
-        uint256 newTokenId = mintTo(tokenURI, msg.sender);
-        // transfer dev fee
-        uint256 feeValue = (msg.value * devFee) / 10000;
-        payable(devWallet).transfer(feeValue);
+    /// @dev Override the ERC721ExtensionCore.mint function to handle payable mints.
+    /// @dev requires the caller to pay the redemptionTariff.
+
+    function mint(string memory _tokenURI) external payable override guarded returns (uint256) {
+        /// @dev ensure this transaction is funded
+        require(msg.value >= redemptionTariff, "[ExtSig:mint]:No funds");
+
+        /// @dev hook to run before minting
+        _beforeTokenMint(msg.sender);
+
+        /// @dev we do not regard the principle of quantity,
+        /// @dev    everyone mints only one token
+        _mint(msg.sender, 1);
+
+        uint256 newTokenId = _currentIndex;
+
+        /// @dev we can now set the tokenURI of the token we just minted
+        _setTokenURI(newTokenId, _tokenURI);
+
+        /// @dev we calculate the commissions for admin
+        uint256 commission = (msg.value * COMMISSIONS) / 10000;
+
+        /// @dev we send the commission to the commissioner
+        payable(COMMISSIONER).transfer(commission);
+
         return newTokenId;
     }
 
-    function burn(uint256 tokenId) external {
-        require(ownerOf(tokenId) == msg.sender,"Caller is not owner of the token.");
-        super._burn(tokenId);
-    }
-
-    function mintTo(string memory tokenURI, address recipient) internal returns (uint256) {
+    function _beforeTokenMint(address recipient) internal view {
         require(balanceOf(recipient) < cappedSupply, "You can't mint anymore.");
-        require(currentSupply < maxSupply, "Max supply reached");
-
-        _tokenIds.increment();
-
-        uint256 newItemId = _tokenIds.current();
-        _mint(recipient, newItemId);
-        _setTokenURI(newItemId, tokenURI);
-
-        currentSupply++;
-
-        return newItemId;
+        require(totalSupply() < maxSupply, "Max supply reached");
     }
 
     function mintWithSignature(
         address addr,
         bytes32 hash,
         bytes memory sig,
-        string memory tokenURI
-    ) external onlyOwner {
+        string memory _tokenURI
+    ) external guarded onlyOwner {
         /// @dev Require that the address is not a zero address.
         require(addr != address(0), "Mint to zero address.");
         /// @dev    Require that the hash is actually 32 [64 characters]
@@ -101,7 +110,17 @@ contract ERC721ExtensionSignature is ERC721URIStorage, Ownable {
         bytes32 prefixedHashMessage = keccak256(abi.encodePacked(prefix, hash));
         require(verifySigner(owner(), prefixedHashMessage, sig), "Hash not signed by owner.");
 
-        mintTo(tokenURI, addr);
+        /// @dev hook to run before minting
+        _beforeTokenMint(msg.sender);
+
+        /// @dev we do not regard the principle of quantity,
+        /// @dev    everyone mints only one token
+        _mint(msg.sender, 1);
+
+        uint256 newTokenId = _currentIndex;
+
+        /// @dev we can now set the tokenURI of the token we just minted
+        _setTokenURI(newTokenId, _tokenURI);
     }
 
     function verifySigner(

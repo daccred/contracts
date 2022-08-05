@@ -10,10 +10,10 @@ pragma solidity ^0.8.4;
 
 import "./ERC721A.sol";
 import "./interfaces/IERC721ExtensionCore.sol";
-import "@openzeppelin/contracts/utils/Strings.sol";
+import "./Guard.sol";
 
-contract ERC721ExtensionCore is ERC721A,  IERC721ExtensionCore {
-    using Strings for uint256;
+contract ERC721ExtensionCore is ERC721A, Guarded, IERC721ExtensionCore {
+    // using Strings for uint256;
 
     // This mapping enables us to use custom token URI from the daccred client
     mapping(uint256 => string) private _tokenURIs;
@@ -43,8 +43,32 @@ contract ERC721ExtensionCore is ERC721A,  IERC721ExtensionCore {
      */
     function _setTokenURI(uint256 tokenId, string memory _tokenURI) internal virtual {
         if (bytes(_tokenURI).length != 0) revert SetURICannotBeEmpty("empty tokenURI");
-        if (_exists(tokenId)) revert URIRequestForExistentToken();
+        if (bytes(_tokenURIs[tokenId]).length != 0) revert URIRequestForExistentToken();
         _tokenURIs[tokenId] = _tokenURI;
+    }
+
+    /**
+     * @dev Mints token to use based on tokenURI.
+     *
+     * Requirements:
+     *
+     * - `tokenURI` must be supplied.
+     */
+    function mint(string memory _tokenURI) external payable virtual guarded returns (uint256) {
+        require(msg.value == 0, "[Core.mint] value to be 0");
+
+        /// @dev we do not regard the principle of quantity,
+        /// @dev    everyone mints only one token
+        _mint(msg.sender, 1);
+
+        uint256 newTokenId = _currentIndex;
+
+        /// @dev we can now set the tokenURI of the token we just minted
+        _setTokenURI(newTokenId, _tokenURI);
+
+        // /// @dev emit transfer event
+        // emit Transfer(address(0), msg.sender, newTokenId);
+        return newTokenId;
     }
 
     /**
