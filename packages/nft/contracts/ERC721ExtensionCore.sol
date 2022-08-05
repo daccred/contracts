@@ -8,9 +8,9 @@
 
 pragma solidity ^0.8.4;
 
+import "./Guard.sol";
 import "./ERC721A.sol";
 import "./interfaces/IERC721ExtensionCore.sol";
-import "./Guard.sol";
 
 contract ERC721ExtensionCore is ERC721A, Guarded, IERC721ExtensionCore {
     // using Strings for uint256;
