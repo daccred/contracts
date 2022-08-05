@@ -9,6 +9,7 @@
 pragma solidity ^0.8.4;
 
 /// @notice Gas optimized reentrancy protection for smart contracts.
+/// @author Daccred (https://github.com/daccred/contracts)
 /// @author derived (https://github.com/transmissions11/solmate/blob/main/src/utils/ReentrancyGuard.sol)
 abstract contract Guarded {
     uint256 private locked = 1;

@@ -8,34 +8,35 @@
 
 pragma solidity ^0.8.4;
 
-import "@openzeppelin/contracts/access/Ownable.sol";
-import "./ERC721ExtensionCore.sol";
 import "./Guard.sol";
+import "./ERC721ExtensionCore.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract ERC721ExtensionSignature is Guarded, ERC721ExtensionCore, Ownable {
-    /* ---------------------------- */
-    /*   DEPLOYER CONFIGURATIONS   */
-    /* -------------------------- */
-
-    /* max supply is the max number of token IDs that can be minted in this contract */
+    /// @dev max supply is the max number of token IDs
+    /// @dev    that can be minted in this contract
     uint256 public maxSupply;
 
-    /* Capped supply is a limitation on the number of tokens a user can mint */
+    /// @dev Capped supply is a limitation on the
+    /// @dev    number of tokens a user can mint
     uint256 public cappedSupply;
 
-    /* if the deployers require users to pay to mint, they charge a tarriff */
+    ///@dev if the deployers require users to pay to mint,
+    /// @dev    they charge a tarriff
     uint256 public redemptionTariff = 0;
 
     /* ----------------------- */
     /* DACCRED CONFIGURATIONS */
     /* --------------------- */
-    uint256 immutable COMMISSIONS = 150; // 1.5% // !important set correct dev wallet before launch
-    address immutable COMMISSIONER = address(0); // !important set correct dev wallet before launch
+    uint256 immutable __COMMISSIONS__; // 1.5% // !important set correct dev wallet before launch
+    address immutable __COMMISSIONER__; // daccred multi-sig // !important set correct dev wallet before launch
 
     constructor(
         string memory _name,
         string memory _symbol,
+        address _comissioner,
         uint256 _maxSupply,
+        uint256 _commissions,
         uint256 _cappedSupply,
         uint256 _redemptionTariff
     ) ERC721ExtensionCore(_name, _symbol) {
@@ -43,7 +44,11 @@ contract ERC721ExtensionSignature is Guarded, ERC721ExtensionCore, Ownable {
         require(_cappedSupply > 0, "[Ext721Sig]: NaN");
         require(_redemptionTariff > 0, "[Ext721Sig]: NaN");
 
-        /* setup internal variables */
+        /// @dev initialize immutable variables
+        __COMMISSIONER__ = _comissioner;
+        __COMMISSIONS__ = _commissions;
+
+        /// @dev setup internal config variables
         redemptionTariff = _redemptionTariff;
         cappedSupply = _cappedSupply;
         maxSupply = _maxSupply;
@@ -66,11 +71,11 @@ contract ERC721ExtensionSignature is Guarded, ERC721ExtensionCore, Ownable {
         require(msg.value >= redemptionTariff, "[ExtSig:mint]:No funds");
 
         /// @dev hook to run before minting
-        _beforeTokenMint(msg.sender);
+        _beforeTokenMint(_msgSender());
 
         /// @dev we do not regard the principle of quantity,
         /// @dev    everyone mints only one token
-        _mint(msg.sender, 1);
+        _mint(_msgSender(), 1);
 
         uint256 newTokenId = _currentIndex;
 
@@ -78,10 +83,10 @@ contract ERC721ExtensionSignature is Guarded, ERC721ExtensionCore, Ownable {
         _setTokenURI(newTokenId, _tokenURI);
 
         /// @dev we calculate the commissions for admin
-        uint256 commission = (msg.value * COMMISSIONS) / 10000;
+        uint256 commission = (msg.value * __COMMISSIONS__) / 10000;
 
         /// @dev we send the commission to the commissioner
-        payable(COMMISSIONER).transfer(commission);
+        payable(__COMMISSIONER__).transfer(commission);
 
         return newTokenId;
     }
@@ -111,11 +116,11 @@ contract ERC721ExtensionSignature is Guarded, ERC721ExtensionCore, Ownable {
         require(verifySigner(owner(), prefixedHashMessage, sig), "Hash not signed by owner.");
 
         /// @dev hook to run before minting
-        _beforeTokenMint(msg.sender);
+        _beforeTokenMint(_msgSender());
 
         /// @dev we do not regard the principle of quantity,
         /// @dev    everyone mints only one token
-        _mint(msg.sender, 1);
+        _mint(_msgSender(), 1);
 
         uint256 newTokenId = _currentIndex;
 
