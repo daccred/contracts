@@ -18,6 +18,16 @@ import "./IERC721A.sol";
 
 interface IERC721ExtensionCore is IERC721A {
     /**
+     * The token already has an existing
+     */
+    error SetURICannotBeEmpty(string reason);
+
+    /**
+     * The token already has an existing
+     */
+    error URIRequestForExistentToken();
+
+    /**
      * @dev Burns `tokenId`. See {ERC721A-_burn}.
      *
      * Requirements:
