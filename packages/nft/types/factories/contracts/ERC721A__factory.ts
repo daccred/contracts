@@ -48,17 +48,6 @@ const _abi = [
     type: "error",
   },
   {
-    inputs: [
-      {
-        internalType: "string",
-        name: "reason",
-        type: "string",
-      },
-    ],
-    name: "SetURICannotBeEmpty",
-    type: "error",
-  },
-  {
     inputs: [],
     name: "TransferCallerNotOwnerNorApproved",
     type: "error",
@@ -81,11 +70,6 @@ const _abi = [
   {
     inputs: [],
     name: "URIQueryForNonexistentToken",
-    type: "error",
-  },
-  {
-    inputs: [],
-    name: "URIRequestForExistentToken",
     type: "error",
   },
   {

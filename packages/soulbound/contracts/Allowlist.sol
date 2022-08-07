@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: GPL-3.0
 pragma solidity ^0.8.8;
 
-import "./Ownable.sol";
 import "../interfaces/IAllowlist.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
 /**
  * @title Allowlist Contract.

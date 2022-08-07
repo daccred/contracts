@@ -86,16 +86,6 @@ interface IERC721A is IERC721, IERC721Metadata {
      */
     error URIQueryForNonexistentToken();
 
-    /**
-     * The token already has an existing
-     */
-    error URIRequestForExistentToken();
-
-    /**
-     * The token already has an existing
-     */
-    error SetURICannotBeEmpty(string reason);
-
     // Compiler will pack this into a single 256bit word.
     struct TokenOwnership {
         // The address of the owner.

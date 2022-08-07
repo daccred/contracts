@@ -7,8 +7,8 @@
 //    \/____/   \/_/\/_/   \/_____/   \/_____/   \/_/ /_/   \/_____/   \/____/
 
 pragma solidity ^0.8.4;
-import "./Ownable.sol";
 import "../contracts/interfaces/IAllowlist.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
 /**
  * @title Allowlist Contract.

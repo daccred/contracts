@@ -8,7 +8,7 @@
 
 pragma solidity ^0.8.8;
 
-import {Ownable} from "./Ownable.sol";
+import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
 /**
 * @title Pausable Contract.
