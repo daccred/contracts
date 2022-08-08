@@ -9,6 +9,7 @@ import type {
   CallOverrides,
   ContractTransaction,
   Overrides,
+  PayableOverrides,
   PopulatedTransaction,
   Signer,
   utils,
@@ -51,6 +52,7 @@ export interface ERC721ABurnableStartTokenIdMockInterface
     "getApproved(uint256)": FunctionFragment;
     "getOwnershipAt(uint256)": FunctionFragment;
     "isApprovedForAll(address,address)": FunctionFragment;
+    "mint(string)": FunctionFragment;
     "name()": FunctionFragment;
     "ownerOf(uint256)": FunctionFragment;
     "safeMint(address,uint256)": FunctionFragment;
@@ -75,6 +77,7 @@ export interface ERC721ABurnableStartTokenIdMockInterface
       | "getApproved"
       | "getOwnershipAt"
       | "isApprovedForAll"
+      | "mint"
       | "name"
       | "ownerOf"
       | "safeMint"
@@ -117,6 +120,10 @@ export interface ERC721ABurnableStartTokenIdMockInterface
   encodeFunctionData(
     functionFragment: "isApprovedForAll",
     values: [PromiseOrValue<string>, PromiseOrValue<string>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "mint",
+    values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(functionFragment: "name", values?: undefined): string;
   encodeFunctionData(
@@ -194,6 +201,7 @@ export interface ERC721ABurnableStartTokenIdMockInterface
     functionFragment: "isApprovedForAll",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "mint", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "name", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "ownerOf", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "safeMint", data: BytesLike): Result;
@@ -343,6 +351,11 @@ export interface ERC721ABurnableStartTokenIdMock extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[boolean]>;
 
+    mint(
+      _tokenURI: PromiseOrValue<string>,
+      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+
     name(overrides?: CallOverrides): Promise<[string]>;
 
     ownerOf(
@@ -440,6 +453,11 @@ export interface ERC721ABurnableStartTokenIdMock extends BaseContract {
     overrides?: CallOverrides
   ): Promise<boolean>;
 
+  mint(
+    _tokenURI: PromiseOrValue<string>,
+    overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
+
   name(overrides?: CallOverrides): Promise<string>;
 
   ownerOf(
@@ -536,6 +554,11 @@ export interface ERC721ABurnableStartTokenIdMock extends BaseContract {
       operator: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<boolean>;
+
+    mint(
+      _tokenURI: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
 
     name(overrides?: CallOverrides): Promise<string>;
 
@@ -670,6 +693,11 @@ export interface ERC721ABurnableStartTokenIdMock extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
+    mint(
+      _tokenURI: PromiseOrValue<string>,
+      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
+
     name(overrides?: CallOverrides): Promise<BigNumber>;
 
     ownerOf(
@@ -766,6 +794,11 @@ export interface ERC721ABurnableStartTokenIdMock extends BaseContract {
       owner: PromiseOrValue<string>,
       operator: PromiseOrValue<string>,
       overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    mint(
+      _tokenURI: PromiseOrValue<string>,
+      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     name(overrides?: CallOverrides): Promise<PopulatedTransaction>;

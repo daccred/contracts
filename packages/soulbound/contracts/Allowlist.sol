@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: GPL-3.0
-pragma solidity ^0.8.4;
+pragma solidity ^0.8.8;
 
-import "./Ownable.sol";
 import "../interfaces/IAllowlist.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
 /**
  * @title Allowlist Contract.
@@ -37,6 +37,8 @@ contract Allowlist is IAllowlist, Ownable {
 
     /// @dev constructor, setting the allowlistOwner.
     constructor(address _allowlistOwner) {
+        /// @dev Require address is valid.
+        require(_allowlistOwner != address(0), "Invalid Address.");
         /// @dev Set the variable name.
         allowlistOwner = _allowlistOwner;
     }
