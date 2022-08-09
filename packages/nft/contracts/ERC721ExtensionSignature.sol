@@ -116,11 +116,11 @@ contract ERC721ExtensionSignature is Guarded, ERC721ExtensionCore, Ownable {
         require(verifySigner(owner(), prefixedHashMessage, sig), "Hash not signed by owner.");
 
         /// @dev hook to run before minting
-        _beforeTokenMint(_msgSender());
+        _beforeTokenMint(addr);
 
         /// @dev we do not regard the principle of quantity,
         /// @dev    everyone mints only one token
-        _mint(_msgSender(), 1);
+        _mint(addr, 1);
 
         uint256 newTokenId = _currentIndex;
 

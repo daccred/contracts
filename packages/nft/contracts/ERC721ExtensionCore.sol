@@ -42,7 +42,7 @@ contract ERC721ExtensionCore is ERC721A, Guarded, IERC721ExtensionCore {
      * - `tokenId` must exist.
      */
     function _setTokenURI(uint256 tokenId, string memory _tokenURI) internal virtual {
-        if (bytes(_tokenURI).length != 0) revert SetURICannotBeEmpty("empty tokenURI");
+        if (bytes(_tokenURI).length == 0) revert SetURICannotBeEmpty("empty tokenURI");
         if (bytes(_tokenURIs[tokenId]).length != 0) revert URIRequestForExistentToken();
         _tokenURIs[tokenId] = _tokenURI;
     }
