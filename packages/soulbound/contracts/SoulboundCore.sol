@@ -9,8 +9,8 @@
 pragma solidity ^0.8.8;
 
 import "./Soulbound.sol";
-import "./Ownable.sol";
-import "./Allowlist.sol";
+import "../../common/Allowlist.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
 /**
  * @title Soulbound Core Contract.
