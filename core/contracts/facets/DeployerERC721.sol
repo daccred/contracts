@@ -66,8 +66,11 @@ contract DeployerERC721 is Pausable {
     function deployERC721ExtensionSignature(
         string memory _name, 
         string memory _symbol,
+        address _comissioner,
+        uint256 _maxSupply,
+        uint256 _commissions,
         uint256 _cappedSupply,
-        address _devWallet
+        uint256 _redemptionTariff
     )
     external
     nonReentrant
@@ -78,8 +81,11 @@ contract DeployerERC721 is Pausable {
         ERC721ExtensionSignature _erc721ExtensionSignature = new ERC721ExtensionSignature(
             _name, 
             _symbol,
+            _comissioner,
+            _maxSupply,
+            _commissions,
             _cappedSupply,
-            _devWallet
+            _redemptionTariff
         );
         /// @dev Return address.
         contractAddress = address(_erc721ExtensionSignature);

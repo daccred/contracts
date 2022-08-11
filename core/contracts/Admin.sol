@@ -99,8 +99,11 @@ contract Admin {
     function deployERC721ExtensionSignature(
         string memory _name, 
         string memory _symbol,
+        address _comissioner,
+        uint256 _maxSupply,
+        uint256 _commissions,
         uint256 _cappedSupply,
-        address _devWallet
+        uint256 _redemptionTariff
     )
     public
     returns(address)
@@ -108,7 +111,7 @@ contract Admin {
         /// @dev Get selector.
         bytes4 _selector = bytes4(
             abi.encodeWithSignature(
-                "deployERC721ExtensionSignature(string,string,uint256,address)"
+                "deployERC721ExtensionSignature(string,string,address,uint256,uint256,uint256,uint256)"
             )
         );
         /// @dev Require that the selector for the function exists.
@@ -119,10 +122,13 @@ contract Admin {
         (bool sent, bytes memory data) = _delegate.delegatecall(
             abi.encodeWithSelector(
                 _selector,
-                _name,
+                _name, 
                 _symbol,
+                _comissioner,
+                _maxSupply,
+                _commissions,
                 _cappedSupply,
-                _devWallet
+                _redemptionTariff
             )
         );
         /// @dev Require the call was sent.
