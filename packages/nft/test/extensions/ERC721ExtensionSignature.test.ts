@@ -10,7 +10,7 @@ const createTestSuite = ({ contract, constructorArgs }: any) =>
       beforeEach(async function () {
         this.erc721ExtensionWithSignature = await deployContract(contract, constructorArgs);
 
-        this.startTokenId = 1;
+        this.startTokenId = 0;
       });
 
       beforeEach(async function () {
@@ -19,12 +19,11 @@ const createTestSuite = ({ contract, constructorArgs }: any) =>
         this.addr1 = addr1;
         this.addr2 = addr2;
         this.spender = spender;
-        this.burnedTokenId = 1;
 
         this.hash = await ethers.utils.id("Minting");
         this.bytesDataHash = ethers.utils.arrayify(this.hash)
         this.signature = await this.owner.signMessage(this.bytesDataHash);
-        await this.erc721ExtensionWithSignature.connect(this.addr1).mint("test1");
+        await this.erc721ExtensionWithSignature.connect(this.addr1).mint("test1", { value: 10 });
       });
 
       it('mint with signature', async function () {
@@ -33,18 +32,18 @@ const createTestSuite = ({ contract, constructorArgs }: any) =>
       });
 
       it('cannot burn with invalid owner', async function () {
-        const query = this.erc721ExtensionWithSignature.connect(this.addr2).burn(1);
-        await expect(query).to.be.revertedWith('Caller is not owner of the token.');
+        const query = this.erc721ExtensionWithSignature.connect(this.addr2).burn(0);
+        await expect(query).to.be.revertedWith('TransferCallerNotOwnerNorApproved()');
       });
 
       it('burn with valid owner', async function () {
-        await this.erc721ExtensionWithSignature.connect(this.addr1).burn(1);
+        await this.erc721ExtensionWithSignature.connect(this.addr1).burn(0);
         expect(await this.erc721ExtensionWithSignature.balanceOf(this.addr1.address)).to.equal(0);
       });
 
       it('cannot mint over capped supply', async function () {
-        await this.erc721ExtensionWithSignature.connect(this.addr1).mint("test1");
-        const query = this.erc721ExtensionWithSignature.connect(this.addr1).mint("test2");
+        await this.erc721ExtensionWithSignature.connect(this.addr1).mint("test1", { value: 10 });
+        const query = this.erc721ExtensionWithSignature.connect(this.addr1).mint("test2", { value: 10 });
         await expect(query).to.be.revertedWith("You can't mint anymore.");
       });
 
@@ -80,9 +79,9 @@ const createTestSuite = ({ contract, constructorArgs }: any) =>
         });
       });
 
-      context('currentSupply()', function () {
+      context('totalSupply()', function () {
         it('has the expected value', async function () {
-          expect(await this.erc721ExtensionWithSignature.currentSupply()).to.equal(1);
+          expect(await this.erc721ExtensionWithSignature.totalSupply()).to.equal(1);
         });
       });
 
@@ -94,5 +93,5 @@ const createTestSuite = ({ contract, constructorArgs }: any) =>
     });
   };
 
-describe('ERC721ExtensionSignature', createTestSuite({ contract: 'ERC721ExtensionSignature', constructorArgs: ['Daccred', 'DCD', 1000, 2, 0 ] }));
+describe('ERC721ExtensionSignature', createTestSuite({ contract: 'ERC721ExtensionSignature', constructorArgs: ['Daccred', 'DCD', ZERO_ADDRESS, 1000000, 1000, 2, 10 ] }));
 
