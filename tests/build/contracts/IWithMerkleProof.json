@@ -1,0 +1,441 @@
+{
+  "abi": [
+    {
+      "inputs": [],
+      "name": "getMerkleRoot",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "_root",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "_root",
+          "type": "bytes32"
+        }
+      ],
+      "name": "setMerkleRoot",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32[]",
+          "name": "proof",
+          "type": "bytes32[]"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "root",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "leaf",
+          "type": "bytes32"
+        }
+      ],
+      "name": "verifyMerkleProof",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "allSourcePaths": {
+    "27": "contracts/contracts/packages/nft/contracts/interfaces/IWithMerkleProof.sol"
+  },
+  "ast": {
+    "absolutePath": "contracts/contracts/packages/nft/contracts/interfaces/IWithMerkleProof.sol",
+    "exportedSymbols": {
+      "IWithMerkleProof": [
+        3555
+      ]
+    },
+    "id": 3556,
+    "license": "GPL-3.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 3528,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".4"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "429:23:27"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IWithMerkleProof",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 3529,
+          "nodeType": "StructuredDocumentation",
+          "src": "578:115:27",
+          "text": " @title IWithMerkleProof Interface.\n @author Daccred.\n @dev Verifies a leaf as part of a Merkle tree."
+        },
+        "fullyImplemented": false,
+        "id": 3555,
+        "linearizedBaseContracts": [
+          3555
+        ],
+        "name": "IWithMerkleProof",
+        "nameLocation": "705:16:27",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "documentation": {
+              "id": 3530,
+              "nodeType": "StructuredDocumentation",
+              "src": "728:57:27",
+              "text": " @dev Allows caller to set merkle root."
+            },
+            "functionSelector": "7cb64759",
+            "id": 3535,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setMerkleRoot",
+            "nameLocation": "799:13:27",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3533,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3532,
+                  "mutability": "mutable",
+                  "name": "_root",
+                  "nameLocation": "821:5:27",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3535,
+                  "src": "813:13:27",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 3531,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "813:7:27",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "812:15:27"
+            },
+            "returnParameters": {
+              "id": 3534,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "836:0:27"
+            },
+            "scope": 3555,
+            "src": "790:47:27",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 3536,
+              "nodeType": "StructuredDocumentation",
+              "src": "843:116:27",
+              "text": " @dev Returns the merkle root, if it is set.\n @return _root which is the merkle root."
+            },
+            "functionSelector": "49590657",
+            "id": 3541,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getMerkleRoot",
+            "nameLocation": "973:13:27",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3537,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "986:2:27"
+            },
+            "returnParameters": {
+              "id": 3540,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3539,
+                  "mutability": "mutable",
+                  "name": "_root",
+                  "nameLocation": "1015:5:27",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3541,
+                  "src": "1007:13:27",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 3538,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1007:7:27",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1006:15:27"
+            },
+            "scope": 3555,
+            "src": "964:58:27",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 3542,
+              "nodeType": "StructuredDocumentation",
+              "src": "1028:359:27",
+              "text": " @dev Returns true if a `leaf` can be proved to be a part of a Merkle tree defined by `root`.\n For this, a `proof` must be provided, containing sibling hashes on the branch from the leaf to the root of the tree.\n Each pair of leaves and each pair of pre-images are assumed to be sorted.\n @param leaf, root and proof."
+            },
+            "functionSelector": "ada4fa18",
+            "id": 3554,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "verifyMerkleProof",
+            "nameLocation": "1401:17:27",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3550,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3545,
+                  "mutability": "mutable",
+                  "name": "proof",
+                  "nameLocation": "1445:5:27",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3554,
+                  "src": "1428:22:27",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_bytes32_$dyn_memory_ptr",
+                    "typeString": "bytes32[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 3543,
+                      "name": "bytes32",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1428:7:27",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      }
+                    },
+                    "id": 3544,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1428:9:27",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_bytes32_$dyn_storage_ptr",
+                      "typeString": "bytes32[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3547,
+                  "mutability": "mutable",
+                  "name": "root",
+                  "nameLocation": "1468:4:27",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3554,
+                  "src": "1460:12:27",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 3546,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1460:7:27",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3549,
+                  "mutability": "mutable",
+                  "name": "leaf",
+                  "nameLocation": "1490:4:27",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3554,
+                  "src": "1482:12:27",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 3548,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1482:7:27",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1418:82:27"
+            },
+            "returnParameters": {
+              "id": 3553,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3552,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3554,
+                  "src": "1519:4:27",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 3551,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1519:4:27",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1518:6:27"
+            },
+            "scope": 3555,
+            "src": "1392:133:27",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 3556,
+        "src": "695:832:27",
+        "usedErrors": []
+      }
+    ],
+    "src": "429:1099:27"
+  },
+  "bytecode": "",
+  "bytecodeSha1": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+  "compiler": {
+    "evm_version": "istanbul",
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "version": "0.8.15+commit.e14f2714"
+  },
+  "contractName": "IWithMerkleProof",
+  "coverageMap": {
+    "branches": {},
+    "statements": {}
+  },
+  "dependencies": [],
+  "deployedBytecode": "",
+  "deployedSourceMap": "",
+  "language": "Solidity",
+  "natspec": {
+    "author": "Daccred.",
+    "details": "Verifies a leaf as part of a Merkle tree.",
+    "kind": "dev",
+    "methods": {
+      "getMerkleRoot()": {
+        "details": "Returns the merkle root, if it is set.",
+        "returns": {
+          "_root": "which is the merkle root."
+        }
+      },
+      "setMerkleRoot(bytes32)": {
+        "details": "Allows caller to set merkle root."
+      },
+      "verifyMerkleProof(bytes32[],bytes32,bytes32)": {
+        "details": "Returns true if a `leaf` can be proved to be a part of a Merkle tree defined by `root`. For this, a `proof` must be provided, containing sibling hashes on the branch from the leaf to the root of the tree. Each pair of leaves and each pair of pre-images are assumed to be sorted.",
+        "params": {
+          "leaf": ", root and proof."
+        }
+      }
+    },
+    "title": "IWithMerkleProof Interface.",
+    "version": 1
+  },
+  "offset": [
+    695,
+    1527
+  ],
+  "opcodes": "",
+  "pcMap": {},
+  "sha1": "2522b9f33ee160c3e3c1d3cf6d104221b2af88ef",
+  "source": "// SPDX-License-Identifier: GPL-3.0\n\n// \t _____     ______     ______     ______     ______     ______     _____\n//  /\\  __-.  /\\  __ \\   /\\  ___\\   /\\  ___\\   /\\  == \\   /\\  ___\\   /\\  __-.\n//  \\ \\ \\/\\ \\ \\ \\  __ \\  \\ \\ \\____  \\ \\ \\____  \\ \\  __<   \\ \\  __\\   \\ \\ \\/\\ \\\n//   \\ \\____-  \\ \\_\\ \\_\\  \\ \\_____\\  \\ \\_____\\  \\ \\_\\ \\_\\  \\ \\_____\\  \\ \\____-\n//    \\/____/   \\/_/\\/_/   \\/_____/   \\/_____/   \\/_/ /_/   \\/_____/   \\/____/\n\npragma solidity ^0.8.4;\n\n/// @dev This library will be used for the proofs.\n// import \"@openzeppelin/contracts/utils/cryptography/MerkleProof.sol\";\n\n/**\n * @title IWithMerkleProof Interface.\n * @author Daccred.\n * @dev Verifies a leaf as part of a Merkle tree.\n */\n\ninterface IWithMerkleProof {\n    /**\n     * @dev Allows caller to set merkle root.\n     */\n    function setMerkleRoot(bytes32 _root) external;\n\n    /**\n     * @dev Returns the merkle root, if it is set.\n     *\n     * @return _root which is the merkle root.\n     */\n    function getMerkleRoot() external returns (bytes32 _root);\n\n    /**\n     * @dev Returns true if a `leaf` can be proved to be a part of a Merkle tree defined by `root`.\n     * For this, a `proof` must be provided, containing sibling hashes on the branch from the leaf to the root of the tree.\n     * Each pair of leaves and each pair of pre-images are assumed to be sorted.\n     *\n     * @param leaf, root and proof.\n     */\n    function verifyMerkleProof(\n        bytes32[] memory proof,\n        bytes32 root,\n        bytes32 leaf\n    ) external returns (bool);\n}\n",
+  "sourceMap": "",
+  "sourcePath": "contracts/contracts/packages/nft/contracts/interfaces/IWithMerkleProof.sol",
+  "type": "interface"
+}

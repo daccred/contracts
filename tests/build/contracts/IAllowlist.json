@@ -1,0 +1,633 @@
+{
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_address",
+          "type": "address"
+        }
+      ],
+      "name": "Unsigned",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "_address",
+          "type": "address"
+        }
+      ],
+      "name": "Signed",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "_address",
+          "type": "address"
+        }
+      ],
+      "name": "Verified",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "_hash",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes",
+          "name": "_signature",
+          "type": "bytes"
+        }
+      ],
+      "name": "verifySignature",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_signer",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "_hash",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes",
+          "name": "_signature",
+          "type": "bytes"
+        }
+      ],
+      "name": "verifySigner",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "allSourcePaths": {
+    "15": "contracts/contracts/packages/common/IAllowlist.sol"
+  },
+  "ast": {
+    "absolutePath": "contracts/contracts/packages/common/IAllowlist.sol",
+    "exportedSymbols": {
+      "IAllowlist": [
+        1161
+      ]
+    },
+    "id": 1162,
+    "license": "GPL-3.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1122,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".8"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "36:23:15"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IAllowlist",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 1123,
+          "nodeType": "StructuredDocumentation",
+          "src": "61:709:15",
+          "text": " @title IAllowlist Interface.\n @author Daccred.\n @dev\n Whitelist or Allowlists are popular gating mechanisms when minting NFTs.\n It allows NFTs to be minted by or to some specific addresses that have been \"Whitelisted\".\n To make sure that the minting addresses are verified, there are some validation methods put in place.\n The one to be used here is the Public Signature Mechanics Method (ECDSA).\n [Ref:: https://medium.com/donkeverse/hardcore-gas-savings-in-nft-minting-part-2-signatures-vs-merkle-trees-917c43c59b07].\n This interface contains functions that verifies that the caller [contract] has signed the whitelisted address.\n This is more gas efficient. [Ref:: Link above]."
+        },
+        "fullyImplemented": false,
+        "id": 1161,
+        "linearizedBaseContracts": [
+          1161
+        ],
+        "name": "IAllowlist",
+        "nameLocation": "782:10:15",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 1124,
+              "nodeType": "StructuredDocumentation",
+              "src": "831:43:15",
+              "text": "@dev Emitted when an address is signed."
+            },
+            "eventSelector": "568aebae0f7dc6c96727fb4cdfdf7add45fec43fffd69b3fa71ea0898a27f8cc",
+            "id": 1128,
+            "name": "Signed",
+            "nameLocation": "885:6:15",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1127,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1126,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_address",
+                  "nameLocation": "908:8:15",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1128,
+                  "src": "892:24:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1125,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "892:7:15",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "891:26:15"
+            },
+            "src": "879:39:15"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 1129,
+              "nodeType": "StructuredDocumentation",
+              "src": "923:77:15",
+              "text": "@dev Emitted when the address passed to the verify function returns true."
+            },
+            "eventSelector": "6a6455914f452787eb3985452aceedc1000fb545e394eb3b370e3d08958e0a5b",
+            "id": 1133,
+            "name": "Verified",
+            "nameLocation": "1011:8:15",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1132,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1131,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_address",
+                  "nameLocation": "1036:8:15",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1133,
+                  "src": "1020:24:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1130,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1020:7:15",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1019:26:15"
+            },
+            "src": "1005:41:15"
+          },
+          {
+            "documentation": {
+              "id": 1134,
+              "nodeType": "StructuredDocumentation",
+              "src": "1051:77:15",
+              "text": "@dev Thrown when the address passed to the verify function is not signed."
+            },
+            "errorSelector": "a5303a41",
+            "id": 1138,
+            "name": "Unsigned",
+            "nameLocation": "1139:8:15",
+            "nodeType": "ErrorDefinition",
+            "parameters": {
+              "id": 1137,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1136,
+                  "mutability": "mutable",
+                  "name": "_address",
+                  "nameLocation": "1156:8:15",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1138,
+                  "src": "1148:16:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1135,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1148:7:15",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1147:18:15"
+            },
+            "src": "1133:33:15"
+          },
+          {
+            "documentation": {
+              "id": 1139,
+              "nodeType": "StructuredDocumentation",
+              "src": "1204:394:15",
+              "text": " @dev Verifies that the public key that signed `_signature` is the caller of the function.\n Emits the {Verified} event.\n In error cases, throw the {Unsigned} error.\n @param\n _hash, hash of the address signed off-chain.\n _signature, signature to verify.\n @return bool, true if the signer is the contract and false if otherwise."
+            },
+            "functionSelector": "daca6f78",
+            "id": 1148,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "verifySignature",
+            "nameLocation": "1612:15:15",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1144,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1141,
+                  "mutability": "mutable",
+                  "name": "_hash",
+                  "nameLocation": "1636:5:15",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1148,
+                  "src": "1628:13:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1140,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1628:7:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1143,
+                  "mutability": "mutable",
+                  "name": "_signature",
+                  "nameLocation": "1656:10:15",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1148,
+                  "src": "1643:23:15",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 1142,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1643:5:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1627:40:15"
+            },
+            "returnParameters": {
+              "id": 1147,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1146,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1148,
+                  "src": "1702:4:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 1145,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1702:4:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1701:6:15"
+            },
+            "scope": 1161,
+            "src": "1603:105:15",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 1149,
+              "nodeType": "StructuredDocumentation",
+              "src": "1714:421:15",
+              "text": " @dev Verifies that the public key that signed `_signature` is the `_signer`.\n Emits the {Verified} event.\n In error cases, throw the {Unsigned} error.\n @param\n _signer, address to be verified.\n _hash, hash of the address signed off-chain.\n _signature, signature to verify.\n @return bool, true if the signer is the contract and false if otherwise."
+            },
+            "functionSelector": "e92b0842",
+            "id": 1160,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "verifySigner",
+            "nameLocation": "2149:12:15",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1156,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1151,
+                  "mutability": "mutable",
+                  "name": "_signer",
+                  "nameLocation": "2179:7:15",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1160,
+                  "src": "2171:15:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1150,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2171:7:15",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1153,
+                  "mutability": "mutable",
+                  "name": "_hash",
+                  "nameLocation": "2204:5:15",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1160,
+                  "src": "2196:13:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 1152,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2196:7:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1155,
+                  "mutability": "mutable",
+                  "name": "_signature",
+                  "nameLocation": "2232:10:15",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1160,
+                  "src": "2219:23:15",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 1154,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2219:5:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2161:87:15"
+            },
+            "returnParameters": {
+              "id": 1159,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1158,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1160,
+                  "src": "2267:4:15",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 1157,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2267:4:15",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2266:6:15"
+            },
+            "scope": 1161,
+            "src": "2140:133:15",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 1162,
+        "src": "772:1503:15",
+        "usedErrors": [
+          1138
+        ]
+      }
+    ],
+    "src": "36:2240:15"
+  },
+  "bytecode": "",
+  "bytecodeSha1": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+  "compiler": {
+    "evm_version": "istanbul",
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "version": "0.8.15+commit.e14f2714"
+  },
+  "contractName": "IAllowlist",
+  "coverageMap": {
+    "branches": {},
+    "statements": {}
+  },
+  "dependencies": [],
+  "deployedBytecode": "",
+  "deployedSourceMap": "",
+  "language": "Solidity",
+  "natspec": {
+    "author": "Daccred.",
+    "details": "Whitelist or Allowlists are popular gating mechanisms when minting NFTs. It allows NFTs to be minted by or to some specific addresses that have been \"Whitelisted\". To make sure that the minting addresses are verified, there are some validation methods put in place. The one to be used here is the Public Signature Mechanics Method (ECDSA). [Ref:: https://medium.com/donkeverse/hardcore-gas-savings-in-nft-minting-part-2-signatures-vs-merkle-trees-917c43c59b07]. This interface contains functions that verifies that the caller [contract] has signed the whitelisted address. This is more gas efficient. [Ref:: Link above].",
+    "errors": {
+      "Unsigned(address)": [
+        {
+          "details": "Thrown when the address passed to the verify function is not signed."
+        }
+      ]
+    },
+    "events": {
+      "Signed(address)": {
+        "details": "Emitted when an address is signed."
+      },
+      "Verified(address)": {
+        "details": "Emitted when the address passed to the verify function returns true."
+      }
+    },
+    "kind": "dev",
+    "methods": {
+      "verifySignature(bytes32,bytes)": {
+        "details": "Verifies that the public key that signed `_signature` is the caller of the function. Emits the {Verified} event. In error cases, throw the {Unsigned} error.",
+        "params": {
+          "_hash": ", hash of the address signed off-chain. _signature, signature to verify."
+        },
+        "returns": {
+          "_0": "bool, true if the signer is the contract and false if otherwise."
+        }
+      },
+      "verifySigner(address,bytes32,bytes)": {
+        "details": "Verifies that the public key that signed `_signature` is the `_signer`. Emits the {Verified} event. In error cases, throw the {Unsigned} error.",
+        "params": {
+          "_signer": ", address to be verified. _hash, hash of the address signed off-chain. _signature, signature to verify."
+        },
+        "returns": {
+          "_0": "bool, true if the signer is the contract and false if otherwise."
+        }
+      }
+    },
+    "title": "IAllowlist Interface.",
+    "version": 1
+  },
+  "offset": [
+    772,
+    2275
+  ],
+  "opcodes": "",
+  "pcMap": {},
+  "sha1": "15ab68bf911bdfe08b91673083d7f94168953b4f",
+  "source": "// SPDX-License-Identifier: GPL-3.0\npragma solidity ^0.8.8;\n\n/**\n * @title IAllowlist Interface.\n * @author Daccred.\n * @dev\n * Whitelist or Allowlists are popular gating mechanisms when minting NFTs.\n * It allows NFTs to be minted by or to some specific addresses that have been \"Whitelisted\".\n * To make sure that the minting addresses are verified, there are some validation methods put in place.\n * The one to be used here is the Public Signature Mechanics Method (ECDSA).\n * [Ref:: https://medium.com/donkeverse/hardcore-gas-savings-in-nft-minting-part-2-signatures-vs-merkle-trees-917c43c59b07].\n * This interface contains functions that verifies that the caller [contract] has signed the whitelisted address.\n * This is more gas efficient. [Ref:: Link above].\n */\n\ninterface IAllowlist {\n    // ===== E V E N T S =====\n\n    /// @dev Emitted when an address is signed.\n    event Signed(address indexed _address);\n    /// @dev Emitted when the address passed to the verify function returns true.\n    event Verified(address indexed _address);\n    /// @dev Thrown when the address passed to the verify function is not signed.\n    error Unsigned(address _address);\n\n    // ===== E V E N T S =====\n\n    /**\n     * @dev Verifies that the public key that signed `_signature` is the caller of the function.\n     * Emits the {Verified} event.\n     * In error cases, throw the {Unsigned} error.\n     *\n     * @param\n     * _hash, hash of the address signed off-chain.\n     * _signature, signature to verify.\n     *\n     * @return bool, true if the signer is the contract and false if otherwise.\n     */\n    function verifySignature(bytes32 _hash, bytes memory _signature)\n        external\n        returns (bool);\n\n    /**\n     * @dev Verifies that the public key that signed `_signature` is the `_signer`.\n     * Emits the {Verified} event.\n     * In error cases, throw the {Unsigned} error.\n     *\n     * @param\n     * _signer, address to be verified.\n     * _hash, hash of the address signed off-chain.\n     * _signature, signature to verify.\n     *\n     * @return bool, true if the signer is the contract and false if otherwise.\n     */\n    function verifySigner(\n        address _signer,\n        bytes32 _hash,\n        bytes memory _signature\n    ) external returns (bool);\n}\n",
+  "sourceMap": "",
+  "sourcePath": "contracts/contracts/packages/common/IAllowlist.sol",
+  "type": "interface"
+}
