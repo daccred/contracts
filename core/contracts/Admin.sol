@@ -303,7 +303,7 @@ contract Admin {
         /// @dev Get selector.
         bytes4 _selector = bytes4(
             abi.encodeWithSignature(
-                "deploySoulboundRedeemable(string,string,address,uint256)"
+                "deploySoulboundWithSignature(string,string,address,uint256)"
             )
         );
         /// @dev Require that the selector for the function exists.
