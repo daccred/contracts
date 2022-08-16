@@ -1,0 +1,1420 @@
+{
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "_error",
+          "type": "string"
+        }
+      ],
+      "name": "Attested",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_tokenId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "_error",
+          "type": "string"
+        }
+      ],
+      "name": "NonExistent",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_address",
+          "type": "address"
+        }
+      ],
+      "name": "ZeroAddress",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "_to",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "_tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "Attest",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "_from",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "_tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "Revoke",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_owner",
+          "type": "address"
+        }
+      ],
+      "name": "balanceOf",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "isMinted",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_tokenId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "tokenURI",
+          "type": "string"
+        }
+      ],
+      "name": "issue",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "issuerOf",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "ownerOf",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_from",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "revoke",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "allSourcePaths": {
+    "42": "contracts/contracts/packages/soulbound/interfaces/ISoulbound.sol"
+  },
+  "ast": {
+    "absolutePath": "contracts/contracts/packages/soulbound/interfaces/ISoulbound.sol",
+    "exportedSymbols": {
+      "ISoulbond": [
+        5970
+      ]
+    },
+    "id": 5971,
+    "license": "GPL-3.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 5878,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".8"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "36:23:42"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "ISoulbond",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 5879,
+          "nodeType": "StructuredDocumentation",
+          "src": "61:1026:42",
+          "text": " @title Soulbound Interface.\n @author Daccred.\n @dev\n Drafted from :: EIP-4973 [Ref: https://github.com/TimDaub/EIPs/blob/194f91067b8ef843467c15821ca5a5e3aa129fe6/EIPS/eip-4973.md].\n This interface will work with all tokens aimed at being Soulbound [Ref: https://www.cryptotimes.io/what-are-soulbound-tokens-sbts/].\n There are some quick information to note when implementing this interface.\n In addition to the link above, this interface ensures that a token can only be minted to an address once, minting the same token or\n transferring the same token to another address is not feasible. This is to make sure that, that particular token stays with the address,\n and CANNOT be moved around.\n The address the token is minted to is called the 'Soul Address'.\n However, this token can be revoked by the minter (whoever minted it to the Soul Address), and then, and only then\n can that token be reminted to the Soul Address.\n Also, in cases where the token is lost, the above will also apply."
+        },
+        "fullyImplemented": false,
+        "id": 5970,
+        "linearizedBaseContracts": [
+          5970
+        ],
+        "name": "ISoulbond",
+        "nameLocation": "1099:9:42",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 5880,
+              "nodeType": "StructuredDocumentation",
+              "src": "1157:51:42",
+              "text": "@dev Emitted when the token is minted to `_to`."
+            },
+            "eventSelector": "e9274a84b19e9428826de6bae8c48329354f8f0e73f771b97cae2d9dccd45a27",
+            "id": 5886,
+            "name": "Attest",
+            "nameLocation": "1219:6:42",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 5885,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5882,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_to",
+                  "nameLocation": "1242:3:42",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5886,
+                  "src": "1226:19:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 5881,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1226:7:42",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5884,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_tokenId",
+                  "nameLocation": "1263:8:42",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5886,
+                  "src": "1247:24:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 5883,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1247:7:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1225:47:42"
+            },
+            "src": "1213:60:42"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 5887,
+              "nodeType": "StructuredDocumentation",
+              "src": "1278:75:42",
+              "text": "@dev Emitted when the ownership of the token is withdrawn from `_from`."
+            },
+            "eventSelector": "ec9ab91322523c899ede7830ec9bfc992b5981cdcc27b91162fb23de5791117b",
+            "id": 5893,
+            "name": "Revoke",
+            "nameLocation": "1364:6:42",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 5892,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5889,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_from",
+                  "nameLocation": "1387:5:42",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5893,
+                  "src": "1371:21:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 5888,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1371:7:42",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5891,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_tokenId",
+                  "nameLocation": "1410:8:42",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5893,
+                  "src": "1394:24:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 5890,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1394:7:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1370:49:42"
+            },
+            "src": "1358:62:42"
+          },
+          {
+            "documentation": {
+              "id": 5894,
+              "nodeType": "StructuredDocumentation",
+              "src": "1510:40:42",
+              "text": "@dev Thrown if address is 0 address."
+            },
+            "errorSelector": "c80b8834",
+            "id": 5898,
+            "name": "ZeroAddress",
+            "nameLocation": "1561:11:42",
+            "nodeType": "ErrorDefinition",
+            "parameters": {
+              "id": 5897,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5896,
+                  "mutability": "mutable",
+                  "name": "_address",
+                  "nameLocation": "1581:8:42",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5898,
+                  "src": "1573:16:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 5895,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1573:7:42",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1572:18:42"
+            },
+            "src": "1555:36:42"
+          },
+          {
+            "documentation": {
+              "id": 5899,
+              "nodeType": "StructuredDocumentation",
+              "src": "1596:41:42",
+              "text": "@dev Thrown if token is not existent."
+            },
+            "errorSelector": "83b66a50",
+            "id": 5905,
+            "name": "NonExistent",
+            "nameLocation": "1648:11:42",
+            "nodeType": "ErrorDefinition",
+            "parameters": {
+              "id": 5904,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5901,
+                  "mutability": "mutable",
+                  "name": "_tokenId",
+                  "nameLocation": "1668:8:42",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5905,
+                  "src": "1660:16:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 5900,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1660:7:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5903,
+                  "mutability": "mutable",
+                  "name": "_error",
+                  "nameLocation": "1685:6:42",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5905,
+                  "src": "1678:13:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 5902,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1678:6:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1659:33:42"
+            },
+            "src": "1642:51:42"
+          },
+          {
+            "documentation": {
+              "id": 5906,
+              "nodeType": "StructuredDocumentation",
+              "src": "1698:49:42",
+              "text": "@dev Thrown if token has already been minted."
+            },
+            "errorSelector": "c98ab03f",
+            "id": 5912,
+            "name": "Attested",
+            "nameLocation": "1758:8:42",
+            "nodeType": "ErrorDefinition",
+            "parameters": {
+              "id": 5911,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5908,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nameLocation": "1775:7:42",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5912,
+                  "src": "1767:15:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 5907,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1767:7:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5910,
+                  "mutability": "mutable",
+                  "name": "_error",
+                  "nameLocation": "1791:6:42",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5912,
+                  "src": "1784:13:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 5909,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1784:6:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1766:32:42"
+            },
+            "src": "1752:47:42"
+          },
+          {
+            "documentation": {
+              "id": 5913,
+              "nodeType": "StructuredDocumentation",
+              "src": "1847:518:42",
+              "text": " @dev Mints a new token `_tokenId` to `_to`, giving to ownership of token `_tokenId`.\n This function will be used hand in hand with ERC721's _mint() function.\n Emits the {Attest} event.\n @notice `_to` cannot transfer the token.\n [CONDITIONS]\n `_to` must not be a 0 address.\n `_tokenId` must be an existent token.\n @param\n _to, Address to which token `_tokenId` is minted.\n _tokenId, Token to mint.\n @return bool."
+            },
+            "functionSelector": "ebf469dc",
+            "id": 5924,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "issue",
+            "nameLocation": "2379:5:42",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5920,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5915,
+                  "mutability": "mutable",
+                  "name": "_to",
+                  "nameLocation": "2402:3:42",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5924,
+                  "src": "2394:11:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 5914,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2394:7:42",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5917,
+                  "mutability": "mutable",
+                  "name": "_tokenId",
+                  "nameLocation": "2423:8:42",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5924,
+                  "src": "2415:16:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 5916,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2415:7:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5919,
+                  "mutability": "mutable",
+                  "name": "tokenURI",
+                  "nameLocation": "2455:8:42",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5924,
+                  "src": "2441:22:42",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 5918,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2441:6:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2384:85:42"
+            },
+            "returnParameters": {
+              "id": 5923,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5922,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5924,
+                  "src": "2488:4:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 5921,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2488:4:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2487:6:42"
+            },
+            "scope": 5970,
+            "src": "2370:124:42",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 5925,
+              "nodeType": "StructuredDocumentation",
+              "src": "2500:659:42",
+              "text": " @dev Withdraws ownership of token `_tokenId` from `_From`.\n This will be done when the ERC721's _burn() function is called.\n Emits the {Revoke} event.\n @notice `_from` must own the token.\n [CONDITIONS]\n `_from` must not be a 0 address.\n `_tokenId` must be an existent token.\n The function can only be called by the issuer of the token.\n This modifier onlyIssuer will be implemented in the contract. [Modifiers cannot be made in interfaces].\n @param\n _from => Address which owns token `_tokenId`.\n _tokenId => Token to revoke.\n @return bool."
+            },
+            "functionSelector": "eac449d9",
+            "id": 5934,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "revoke",
+            "nameLocation": "3173:6:42",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5930,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5927,
+                  "mutability": "mutable",
+                  "name": "_from",
+                  "nameLocation": "3188:5:42",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5934,
+                  "src": "3180:13:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 5926,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3180:7:42",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5929,
+                  "mutability": "mutable",
+                  "name": "_tokenId",
+                  "nameLocation": "3203:8:42",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5934,
+                  "src": "3195:16:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 5928,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3195:7:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3179:33:42"
+            },
+            "returnParameters": {
+              "id": 5933,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5932,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5934,
+                  "src": "3231:4:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 5931,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3231:4:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3230:6:42"
+            },
+            "scope": 5970,
+            "src": "3164:73:42",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "functionSelector": "6352211e",
+            "id": 5941,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "ownerOf",
+            "nameLocation": "3500:7:42",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5937,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5936,
+                  "mutability": "mutable",
+                  "name": "_tokenId",
+                  "nameLocation": "3516:8:42",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5941,
+                  "src": "3508:16:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 5935,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3508:7:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3507:18:42"
+            },
+            "returnParameters": {
+              "id": 5940,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5939,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5941,
+                  "src": "3544:7:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 5938,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3544:7:42",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3543:9:42"
+            },
+            "scope": 5970,
+            "src": "3491:62:42",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 5942,
+              "nodeType": "StructuredDocumentation",
+              "src": "3559:406:42",
+              "text": " @dev Since a token cannnot be minted twice.\n This function returns the address that minted token `_tokenId` to `_to`.\n [CONDITIONS]\n `_to` must not be a 0 address.\n `_tokenId` must be an existent token.\n @param\n _to => Address to which token `_tokenId` is minted.\n _tokenId => Token minted.\n @return address of issuer."
+            },
+            "functionSelector": "fb8f198d",
+            "id": 5951,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "issuerOf",
+            "nameLocation": "3979:8:42",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5947,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5944,
+                  "mutability": "mutable",
+                  "name": "_to",
+                  "nameLocation": "3996:3:42",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5951,
+                  "src": "3988:11:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 5943,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3988:7:42",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5946,
+                  "mutability": "mutable",
+                  "name": "_tokenId",
+                  "nameLocation": "4009:8:42",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5951,
+                  "src": "4001:16:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 5945,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4001:7:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3987:31:42"
+            },
+            "returnParameters": {
+              "id": 5950,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5949,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5951,
+                  "src": "4037:7:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 5948,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4037:7:42",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "4036:9:42"
+            },
+            "scope": 5970,
+            "src": "3970:76:42",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 5952,
+              "nodeType": "StructuredDocumentation",
+              "src": "4052:341:42",
+              "text": " @dev Returns true if token `_tokenId` was minted from `_from` to `_to`.\n [CONDITIONS]\n `_to` must not be a 0 address.\n `_tokenId` must be an existent token.\n @param\n _to => Address to which token `_tokenId` is minted.\n _tokenId => Token minted.\n @return bool."
+            },
+            "functionSelector": "5899e7b2",
+            "id": 5961,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isMinted",
+            "nameLocation": "4407:8:42",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5957,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5954,
+                  "mutability": "mutable",
+                  "name": "_to",
+                  "nameLocation": "4424:3:42",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5961,
+                  "src": "4416:11:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 5953,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4416:7:42",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 5956,
+                  "mutability": "mutable",
+                  "name": "_tokenId",
+                  "nameLocation": "4437:8:42",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5961,
+                  "src": "4429:16:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 5955,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4429:7:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "4415:31:42"
+            },
+            "returnParameters": {
+              "id": 5960,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5959,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5961,
+                  "src": "4465:4:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 5958,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4465:4:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "4464:6:42"
+            },
+            "scope": 5970,
+            "src": "4398:73:42",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 5962,
+              "nodeType": "StructuredDocumentation",
+              "src": "4477:236:42",
+              "text": " @dev Returns 1 if isMinted returns true and 0 if otherwise.\n [CONDITIONS]\n `_owner` must not be a 0 address.\n @param\n _owner => Address to evaluate.\n @return uint256."
+            },
+            "functionSelector": "70a08231",
+            "id": 5969,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "balanceOf",
+            "nameLocation": "4727:9:42",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 5965,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5964,
+                  "mutability": "mutable",
+                  "name": "_owner",
+                  "nameLocation": "4745:6:42",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5969,
+                  "src": "4737:14:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 5963,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4737:7:42",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "4736:16:42"
+            },
+            "returnParameters": {
+              "id": 5968,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5967,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 5969,
+                  "src": "4771:7:42",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 5966,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4771:7:42",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "4770:9:42"
+            },
+            "scope": 5970,
+            "src": "4718:62:42",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 5971,
+        "src": "1089:3693:42",
+        "usedErrors": [
+          5898,
+          5905,
+          5912
+        ]
+      }
+    ],
+    "src": "36:4747:42"
+  },
+  "bytecode": "",
+  "bytecodeSha1": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+  "compiler": {
+    "evm_version": "istanbul",
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "version": "0.8.15+commit.e14f2714"
+  },
+  "contractName": "ISoulbond",
+  "coverageMap": {
+    "branches": {},
+    "statements": {}
+  },
+  "dependencies": [],
+  "deployedBytecode": "",
+  "deployedSourceMap": "",
+  "language": "Solidity",
+  "natspec": {
+    "author": "Daccred.",
+    "details": "Drafted from :: EIP-4973 [Ref: https://github.com/TimDaub/EIPs/blob/194f91067b8ef843467c15821ca5a5e3aa129fe6/EIPS/eip-4973.md]. This interface will work with all tokens aimed at being Soulbound [Ref: https://www.cryptotimes.io/what-are-soulbound-tokens-sbts/]. There are some quick information to note when implementing this interface. In addition to the link above, this interface ensures that a token can only be minted to an address once, minting the same token or transferring the same token to another address is not feasible. This is to make sure that, that particular token stays with the address, and CANNOT be moved around. The address the token is minted to is called the 'Soul Address'. However, this token can be revoked by the minter (whoever minted it to the Soul Address), and then, and only then can that token be reminted to the Soul Address. Also, in cases where the token is lost, the above will also apply.",
+    "errors": {
+      "Attested(uint256,string)": [
+        {
+          "details": "Thrown if token has already been minted."
+        }
+      ],
+      "NonExistent(uint256,string)": [
+        {
+          "details": "Thrown if token is not existent."
+        }
+      ],
+      "ZeroAddress(address)": [
+        {
+          "details": "Thrown if address is 0 address."
+        }
+      ]
+    },
+    "events": {
+      "Attest(address,uint256)": {
+        "details": "Emitted when the token is minted to `_to`."
+      },
+      "Revoke(address,uint256)": {
+        "details": "Emitted when the ownership of the token is withdrawn from `_from`."
+      }
+    },
+    "kind": "dev",
+    "methods": {
+      "balanceOf(address)": {
+        "details": "Returns 1 if isMinted returns true and 0 if otherwise. [CONDITIONS] `_owner` must not be a 0 address.",
+        "params": {
+          "_owner": "=> Address to evaluate."
+        },
+        "returns": {
+          "_0": "uint256."
+        }
+      },
+      "isMinted(address,uint256)": {
+        "details": "Returns true if token `_tokenId` was minted from `_from` to `_to`. [CONDITIONS] `_to` must not be a 0 address. `_tokenId` must be an existent token.",
+        "params": {
+          "_to": "=> Address to which token `_tokenId` is minted. _tokenId => Token minted."
+        },
+        "returns": {
+          "_0": "bool."
+        }
+      },
+      "issue(address,uint256,string)": {
+        "details": "Mints a new token `_tokenId` to `_to`, giving to ownership of token `_tokenId`. This function will be used hand in hand with ERC721's _mint() function. Emits the {Attest} event.",
+        "notice": "`_to` cannot transfer the token. [CONDITIONS] `_to` must not be a 0 address. `_tokenId` must be an existent token.",
+        "params": {
+          "_to": ", Address to which token `_tokenId` is minted. _tokenId, Token to mint."
+        },
+        "returns": {
+          "_0": "bool."
+        }
+      },
+      "issuerOf(address,uint256)": {
+        "details": "Since a token cannnot be minted twice. This function returns the address that minted token `_tokenId` to `_to`. [CONDITIONS] `_to` must not be a 0 address. `_tokenId` must be an existent token.",
+        "params": {
+          "_to": "=> Address to which token `_tokenId` is minted. _tokenId => Token minted."
+        },
+        "returns": {
+          "_0": "address of issuer."
+        }
+      },
+      "revoke(address,uint256)": {
+        "details": "Withdraws ownership of token `_tokenId` from `_From`. This will be done when the ERC721's _burn() function is called. Emits the {Revoke} event.",
+        "notice": "`_from` must own the token. [CONDITIONS] `_from` must not be a 0 address. `_tokenId` must be an existent token. The function can only be called by the issuer of the token. This modifier onlyIssuer will be implemented in the contract. [Modifiers cannot be made in interfaces].",
+        "params": {
+          "_from": "=> Address which owns token `_tokenId`. _tokenId => Token to revoke."
+        },
+        "returns": {
+          "_0": "bool."
+        }
+      }
+    },
+    "title": "Soulbound Interface.",
+    "version": 1
+  },
+  "offset": [
+    1089,
+    4782
+  ],
+  "opcodes": "",
+  "pcMap": {},
+  "sha1": "5f97458569b7988e21868db35b212fc708da1406",
+  "source": "// SPDX-License-Identifier: GPL-3.0\npragma solidity ^0.8.8;\n\n/**\n * @title Soulbound Interface.\n * @author Daccred.\n * @dev\n * Drafted from :: EIP-4973 [Ref: https://github.com/TimDaub/EIPs/blob/194f91067b8ef843467c15821ca5a5e3aa129fe6/EIPS/eip-4973.md].\n *\n * This interface will work with all tokens aimed at being Soulbound [Ref: https://www.cryptotimes.io/what-are-soulbound-tokens-sbts/].\n * There are some quick information to note when implementing this interface.\n * In addition to the link above, this interface ensures that a token can only be minted to an address once, minting the same token or\n * transferring the same token to another address is not feasible. This is to make sure that, that particular token stays with the address,\n * and CANNOT be moved around.\n * The address the token is minted to is called the 'Soul Address'.\n * However, this token can be revoked by the minter (whoever minted it to the Soul Address), and then, and only then\n * can that token be reminted to the Soul Address.\n * Also, in cases where the token is lost, the above will also apply.\n */\n\ninterface ISoulbond {\n    // ========== E V E N T S ==========\n\n    /// @dev Emitted when the token is minted to `_to`.\n    event Attest(address indexed _to, uint256 indexed _tokenId);\n    /// @dev Emitted when the ownership of the token is withdrawn from `_from`.\n    event Revoke(address indexed _from, uint256 indexed _tokenId);\n\n    // ========== E V E N T S ==========\n\n    // ========== E R R O R s ==========\n\n    /// @dev Thrown if address is 0 address.\n    error ZeroAddress(address _address);\n    /// @dev Thrown if token is not existent.\n    error NonExistent(uint256 _tokenId, string _error);\n    /// @dev Thrown if token has already been minted.\n    error Attested(uint256 tokenId, string _error);\n\n    // ========== E R R O R s ==========\n\n    /**\n     * @dev Mints a new token `_tokenId` to `_to`, giving to ownership of token `_tokenId`.\n     * This function will be used hand in hand with ERC721's _mint() function.\n     * Emits the {Attest} event.\n     *\n     * @notice `_to` cannot transfer the token.\n     *\n     * [CONDITIONS]\n     * `_to` must not be a 0 address.\n     * `_tokenId` must be an existent token.\n     *\n     * @param\n     * _to, Address to which token `_tokenId` is minted.\n     * _tokenId, Token to mint.\n     *\n     * @return bool.\n     */\n    function issue(\n        address _to,\n        uint256 _tokenId,\n        string memory tokenURI\n    ) external returns (bool);\n\n    /**\n     * @dev Withdraws ownership of token `_tokenId` from `_From`.\n     * This will be done when the ERC721's _burn() function is called.\n     * Emits the {Revoke} event.\n     *\n     * @notice `_from` must own the token.\n     *\n     * [CONDITIONS]\n     * `_from` must not be a 0 address.\n     * `_tokenId` must be an existent token.\n     * The function can only be called by the issuer of the token.\n     * This modifier onlyIssuer will be implemented in the contract. [Modifiers cannot be made in interfaces].\n     *\n     * @param\n     * _from => Address which owns token `_tokenId`.\n     * _tokenId => Token to revoke.\n     *\n     * @return bool.\n     */\n    function revoke(address _from, uint256 _tokenId) external returns (bool);\n\n    /*\n     * @dev Returns the address that owns token `_tokenId`.\n     *\n     * [CONDITIONS]\n     * `_tokenId` must be an existent token.\n     *\n     * @param _tokenId => Token minted.\n     *\n     * @return address of owner of `_tokenId`.\n     */\n    function ownerOf(uint256 _tokenId) external returns (address);\n\n    /**\n     * @dev Since a token cannnot be minted twice.\n     * This function returns the address that minted token `_tokenId` to `_to`.\n     *\n     * [CONDITIONS]\n     * `_to` must not be a 0 address.\n     * `_tokenId` must be an existent token.\n     *\n     * @param\n     * _to => Address to which token `_tokenId` is minted.\n     * _tokenId => Token minted.\n     *\n     * @return address of issuer.\n     */\n    function issuerOf(address _to, uint256 _tokenId) external returns (address);\n\n    /**\n     * @dev Returns true if token `_tokenId` was minted from `_from` to `_to`.\n     *\n     * [CONDITIONS]\n     * `_to` must not be a 0 address.\n     * `_tokenId` must be an existent token.\n     *\n     * @param\n     * _to => Address to which token `_tokenId` is minted.\n     * _tokenId => Token minted.\n     *\n     * @return bool.\n     */\n    function isMinted(address _to, uint256 _tokenId) external returns (bool);\n\n    /**\n     * @dev Returns 1 if isMinted returns true and 0 if otherwise.\n     *\n     * [CONDITIONS]\n     * `_owner` must not be a 0 address.\n     *\n     * @param\n     * _owner => Address to evaluate.\n     *\n     * @return uint256.\n     */\n    function balanceOf(address _owner) external returns (uint256);\n}\n",
+  "sourceMap": "",
+  "sourcePath": "contracts/contracts/packages/soulbound/interfaces/ISoulbound.sol",
+  "type": "interface"
+}

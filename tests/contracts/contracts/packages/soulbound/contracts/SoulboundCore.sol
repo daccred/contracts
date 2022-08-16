@@ -78,7 +78,7 @@ contract SoulboundCore is Ownable, Soulbound, Allowlist {
         bytes memory sig,
         uint256 tokenId,
         string memory tokenURI
-    ) public virtual {
+    ) public {
         /// @dev Require that the address is not a zero address.
         require(addr != address(0), "Mint to zero address.");
         /// @dev    Require that the hash is actually 32 [64 characters]
@@ -89,11 +89,11 @@ contract SoulboundCore is Ownable, Soulbound, Allowlist {
         /// @dev    Verifies that the address was actually signed by the
         ///         allowlistOwner.
         require(verifySignature(hash, sig), "Hash not signed by owner.");
-        /// @dev Emit the IssueWithSignature event.
-        emit IssueWithSignature(addr, tokenId);
         /// @dev    Mint the tokens to address.
         ///         [Ref Soulbound.sol].
-        super._mint(addr, tokenId, tokenURI);
+        issue(addr, tokenId, tokenURI);
+        /// @dev Emit the IssueWithSignature event.
+        emit IssueWithSignature(addr, tokenId);
     }
 
     /**
@@ -112,7 +112,7 @@ contract SoulboundCore is Ownable, Soulbound, Allowlist {
         bytes32 hash,
         bytes memory sig,
         uint256 tokenId
-    ) public virtual {
+    ) public {
         /// @dev Require that the token exists.
         require(_exists(tokenId), "Revoke of inexistent token.");
         /// @dev    Require that the hash is actually 32 [64 characters]
@@ -123,11 +123,11 @@ contract SoulboundCore is Ownable, Soulbound, Allowlist {
         /// @dev    Verifies that the address was actually signed by the
         ///         allowlistOwner.
         require(verifySignature(hash, sig), "Hash not signed by owner.");
+        /// @dev    Mint the tokens to address.
+        ///         [Ref Soulbound.sol].
+        revoke(ownerOf(tokenId), tokenId);
         /// @dev Emit the RevokeWithSignature event.
         emit RevokeWithSignature(tokenId);
-        /// @dev    Burn the tokens from address.
-        ///         [Ref Soulbound.sol].
-        burn(ownerOf(tokenId), tokenId);
     }
 
     /**

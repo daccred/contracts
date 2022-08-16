@@ -1,0 +1,666 @@
+{
+  "coverage": {
+    "Admin": {
+      "branches": {
+        "Admin.addDeployerSelector": [
+          1,
+          1,
+          1
+        ],
+        "Admin.deployERC721ExtensionSignature": [
+          2,
+          2,
+          2
+        ],
+        "Admin.deploySoulbound": [
+          2,
+          1,
+          2
+        ],
+        "Admin.deploySoulboundRedeemable": [
+          2,
+          2,
+          2
+        ],
+        "Admin.deploySoulboundWithSignature": [
+          2,
+          2,
+          2
+        ]
+      },
+      "statements": {
+        "Admin.addDeployerSelector": [
+          2,
+          2
+        ],
+        "Admin.deployERC721ExtensionSignature": [
+          2,
+          2
+        ],
+        "Admin.deploySoulbound": [
+          2,
+          2
+        ],
+        "Admin.deploySoulboundRedeemable": [
+          2,
+          2
+        ],
+        "Admin.deploySoulboundWithSignature": [
+          2,
+          2
+        ]
+      },
+      "totals": {
+        "branches": [
+          9,
+          8,
+          9
+        ],
+        "statements": [
+          10,
+          10
+        ]
+      }
+    },
+    "DeployerERC721": {
+      "branches": {
+        "Ownable.transferOwnership": [
+          1,
+          1,
+          1
+        ],
+        "Pausable.pause": [
+          1,
+          1,
+          1
+        ],
+        "Pausable.unPause": [
+          1,
+          1,
+          1
+        ]
+      },
+      "statements": {
+        "Ownable.transferOwnership": [
+          2,
+          2
+        ],
+        "Pausable.pause": [
+          2,
+          2
+        ],
+        "Pausable.unPause": [
+          2,
+          2
+        ]
+      },
+      "totals": {
+        "branches": [
+          3,
+          3,
+          3
+        ],
+        "statements": [
+          6,
+          6
+        ]
+      }
+    },
+    "DeployerSoulbound": {
+      "branches": {
+        "Ownable.transferOwnership": [
+          1,
+          1,
+          1
+        ],
+        "Pausable.pause": [
+          1,
+          1,
+          1
+        ],
+        "Pausable.unPause": [
+          1,
+          1,
+          1
+        ]
+      },
+      "statements": {
+        "Ownable.transferOwnership": [
+          2,
+          2
+        ],
+        "Pausable.pause": [
+          2,
+          2
+        ],
+        "Pausable.unPause": [
+          2,
+          2
+        ]
+      },
+      "totals": {
+        "branches": [
+          3,
+          3,
+          3
+        ],
+        "statements": [
+          6,
+          6
+        ]
+      }
+    },
+    "DeployerSoulboundWithExtension": {
+      "branches": {
+        "Ownable.transferOwnership": [
+          1,
+          1,
+          1
+        ],
+        "Pausable.pause": [
+          1,
+          1,
+          1
+        ],
+        "Pausable.unPause": [
+          1,
+          1,
+          1
+        ]
+      },
+      "statements": {
+        "Ownable.transferOwnership": [
+          2,
+          2
+        ],
+        "Pausable.pause": [
+          2,
+          2
+        ],
+        "Pausable.unPause": [
+          2,
+          2
+        ]
+      },
+      "totals": {
+        "branches": [
+          3,
+          3,
+          3
+        ],
+        "statements": [
+          6,
+          6
+        ]
+      }
+    }
+  },
+  "highlights": {
+    "branches": {
+      "Admin": {
+        "0": [
+          [
+            1450,
+            1470,
+            "green",
+            ""
+          ],
+          [
+            3837,
+            3854,
+            "green",
+            ""
+          ],
+          [
+            4497,
+            4501,
+            "green",
+            ""
+          ],
+          [
+            5340,
+            5357,
+            "green",
+            ""
+          ],
+          [
+            5845,
+            5849,
+            "yellow",
+            ""
+          ],
+          [
+            8817,
+            8834,
+            "green",
+            ""
+          ],
+          [
+            9443,
+            9447,
+            "green",
+            ""
+          ],
+          [
+            10573,
+            10590,
+            "green",
+            ""
+          ],
+          [
+            11141,
+            11145,
+            "green",
+            ""
+          ]
+        ]
+      },
+      "DeployerERC721": {
+        "0": [
+          [
+            2006,
+            2028,
+            "green",
+            ""
+          ]
+        ],
+        "10": [],
+        "13": [
+          [
+            1855,
+            1862,
+            "green",
+            ""
+          ],
+          [
+            2168,
+            2174,
+            "green",
+            ""
+          ]
+        ],
+        "18": [],
+        "19": [],
+        "5": []
+      },
+      "DeployerSoulbound": {
+        "0": [
+          [
+            2006,
+            2028,
+            "green",
+            ""
+          ]
+        ],
+        "11": [],
+        "13": [
+          [
+            1855,
+            1862,
+            "green",
+            ""
+          ],
+          [
+            2168,
+            2174,
+            "green",
+            ""
+          ]
+        ],
+        "37": [],
+        "38": [],
+        "5": []
+      },
+      "DeployerSoulboundWithExtension": {
+        "0": [
+          [
+            2006,
+            2028,
+            "green",
+            ""
+          ]
+        ],
+        "12": [],
+        "13": [
+          [
+            1855,
+            1862,
+            "green",
+            ""
+          ],
+          [
+            2168,
+            2174,
+            "green",
+            ""
+          ]
+        ],
+        "39": [],
+        "40": [],
+        "5": []
+      }
+    },
+    "statements": {
+      "Admin": {
+        "0": [
+          [
+            1442,
+            1501,
+            "green",
+            ""
+          ],
+          [
+            1549,
+            1586,
+            "green",
+            ""
+          ],
+          [
+            3829,
+            3879,
+            "green",
+            ""
+          ],
+          [
+            4489,
+            4526,
+            "green",
+            ""
+          ],
+          [
+            5332,
+            5382,
+            "green",
+            ""
+          ],
+          [
+            5837,
+            5874,
+            "green",
+            ""
+          ],
+          [
+            8809,
+            8859,
+            "green",
+            ""
+          ],
+          [
+            9435,
+            9472,
+            "green",
+            ""
+          ],
+          [
+            10565,
+            10615,
+            "green",
+            ""
+          ],
+          [
+            11133,
+            11170,
+            "green",
+            ""
+          ],
+          [
+            11799,
+            11841,
+            "green",
+            ""
+          ]
+        ]
+      },
+      "DeployerERC721": {
+        "0": [
+          [
+            2378,
+            2395,
+            "green",
+            ""
+          ],
+          [
+            2405,
+            2450,
+            "green",
+            ""
+          ],
+          [
+            1101,
+            1114,
+            "red",
+            ""
+          ],
+          [
+            1732,
+            1762,
+            "red",
+            ""
+          ],
+          [
+            1998,
+            2071,
+            "green",
+            ""
+          ],
+          [
+            2081,
+            2109,
+            "green",
+            ""
+          ]
+        ],
+        "10": [],
+        "13": [
+          [
+            2496,
+            2509,
+            "red",
+            ""
+          ],
+          [
+            1847,
+            1883,
+            "green",
+            ""
+          ],
+          [
+            1930,
+            1943,
+            "green",
+            ""
+          ],
+          [
+            2160,
+            2199,
+            "green",
+            ""
+          ],
+          [
+            2247,
+            2261,
+            "green",
+            ""
+          ]
+        ],
+        "18": [],
+        "19": [],
+        "5": [
+          [
+            712,
+            729,
+            "red",
+            ""
+          ]
+        ]
+      },
+      "DeployerSoulbound": {
+        "0": [
+          [
+            2378,
+            2395,
+            "green",
+            ""
+          ],
+          [
+            2405,
+            2450,
+            "green",
+            ""
+          ],
+          [
+            1101,
+            1114,
+            "red",
+            ""
+          ],
+          [
+            1732,
+            1762,
+            "red",
+            ""
+          ],
+          [
+            1998,
+            2071,
+            "green",
+            ""
+          ],
+          [
+            2081,
+            2109,
+            "green",
+            ""
+          ]
+        ],
+        "11": [],
+        "13": [
+          [
+            2496,
+            2509,
+            "red",
+            ""
+          ],
+          [
+            1847,
+            1883,
+            "green",
+            ""
+          ],
+          [
+            1930,
+            1943,
+            "green",
+            ""
+          ],
+          [
+            2160,
+            2199,
+            "green",
+            ""
+          ],
+          [
+            2247,
+            2261,
+            "green",
+            ""
+          ]
+        ],
+        "37": [],
+        "38": [],
+        "5": [
+          [
+            712,
+            729,
+            "red",
+            ""
+          ]
+        ]
+      },
+      "DeployerSoulboundWithExtension": {
+        "0": [
+          [
+            2378,
+            2395,
+            "green",
+            ""
+          ],
+          [
+            2405,
+            2450,
+            "green",
+            ""
+          ],
+          [
+            1101,
+            1114,
+            "red",
+            ""
+          ],
+          [
+            1732,
+            1762,
+            "red",
+            ""
+          ],
+          [
+            1998,
+            2071,
+            "green",
+            ""
+          ],
+          [
+            2081,
+            2109,
+            "green",
+            ""
+          ]
+        ],
+        "12": [],
+        "13": [
+          [
+            2496,
+            2509,
+            "red",
+            ""
+          ],
+          [
+            1847,
+            1883,
+            "green",
+            ""
+          ],
+          [
+            1930,
+            1943,
+            "green",
+            ""
+          ],
+          [
+            2160,
+            2199,
+            "green",
+            ""
+          ],
+          [
+            2247,
+            2261,
+            "green",
+            ""
+          ]
+        ],
+        "39": [],
+        "40": [],
+        "5": [
+          [
+            712,
+            729,
+            "red",
+            ""
+          ]
+        ]
+      }
+    }
+  },
+  "sha1": {}
+}

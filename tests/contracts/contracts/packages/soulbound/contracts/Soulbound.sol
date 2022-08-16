@@ -49,14 +49,18 @@ contract Soulbound is ERC4973 {
      * @param _to        Address to which token `_tokenId` is minted.
      * @param _tokenId   Token to mint.
      * @param tokenURI   Auto generated or user passed URI for minted token.
+     *
+     * @return bool true or false.
      */
-    function mint(
+    function issue(
         address _to,
         uint256 _tokenId,
         string memory tokenURI
-    ) internal {
+    ) internal returns (bool) {
         /// @dev Mint Soulbound token to `_to` using ERC4973 _mint().
-        _mint(_to, _tokenId, tokenURI);
+        mintSoulboundToken(_to, _tokenId, tokenURI);
+        /// @dev Return true.
+        return true;
     }
 
     /**
@@ -75,14 +79,18 @@ contract Soulbound is ERC4973 {
      *
      * @param _from      Address which owns token `_tokenId`.
      * @param _tokenId   Token to revoke.
+     *
+     * @return bool true or false.
      */
-    function burn(address _from, uint256 _tokenId) internal {
+    function revoke(address _from, uint256 _tokenId) internal returns (bool) {
         /// @dev Require token exists.
         require(_exists(_tokenId), "Non-existent token.");
         /// @dev Require _tokenId is owned by _from.
         require(ownerOf(_tokenId) == _from, "Token not owned by address");
         /// @dev Burn the token.
-        _burn(_tokenId);
+        burnSoulboundToken(_tokenId);
+        /// @dev Return true.
+        return true;
     }
 
     /**
@@ -142,28 +150,21 @@ contract Soulbound is ERC4973 {
      * @param tokenId    Amount to be minted, GT 0.
      * @param tokenURI   URI of token minted.
      */
-    function _mint(
+    function mintSoulboundToken(
         address to,
         uint256 tokenId,
         string memory tokenURI
-    ) 
-    internal 
-    virtual 
-    override 
-    returns (uint256)
-    {
+    ) private {
         /// @dev Require the address receiving is not a zero address.
         require(to != address(0), "Mint to zero address.");
         /// @dev    ERC-4973 doesn't include checks for empty tokenURIs
         ///         but they should be necessary.
         require(bytes(tokenURI).length != 0, "Empty tokenURI.");
-        /// @dev Set record of owner to true;
-        mints[to][tokenId] = true;
         /// @dev    Mint to the `to` address.
         ///         ERC4973 runs check for existent token.
-        super._mint(to, tokenId, tokenURI);
-        /// @dev Return tokenID.
-        return tokenId;
+        _mint(to, tokenId, tokenURI);
+        /// @dev Set record of owner to true;
+        mints[to][tokenId] = true;
     }
 
     /**
@@ -172,19 +173,15 @@ contract Soulbound is ERC4973 {
      *
      * @param tokenId Token to be burnt.
      */
-    function _burn(uint256 tokenId) 
-    internal 
-    virtual 
-    override 
-    {
+    function burnSoulboundToken(uint256 tokenId) private {
         /// @dev Checks that the token actually exists.
         require(_exists(tokenId), "Burn of inexistent token");
         /// @dev Get owner of token tokenId.
         address _tokenOwner = ownerOf(tokenId);
+        /// @dev Burn the token.
+        _burn(tokenId);
         /// @dev Set record of owner to false.
         mints[_tokenOwner][tokenId] = false;
-        /// @dev Burn the token.
-        super._burn(tokenId);
     }
 
     /**

@@ -1,0 +1,776 @@
+{
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_address",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "name": "IssueWithSignatureError",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "_address",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "IssueWithSignature",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "_address",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "RevokeWithSignature",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "quantity",
+          "type": "uint256"
+        }
+      ],
+      "name": "issueWithSignature",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "revokeWithSignature",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "_hash",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes",
+          "name": "_signature",
+          "type": "bytes"
+        }
+      ],
+      "name": "verifySignature",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "allSourcePaths": {
+    "28": "contracts/contracts/packages/nft/contracts/interfaces/IWithSignature.sol"
+  },
+  "ast": {
+    "absolutePath": "contracts/contracts/packages/nft/contracts/interfaces/IWithSignature.sol",
+    "exportedSymbols": {
+      "IWithSignature": [
+        3606
+      ]
+    },
+    "id": 3607,
+    "license": "GPL-3.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 3557,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".4"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "429:23:28"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IWithSignature",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 3558,
+          "nodeType": "StructuredDocumentation",
+          "src": "454:71:28",
+          "text": " @title IWithSignature Interface.\n @author Daccred.\n @dev"
+        },
+        "fullyImplemented": false,
+        "id": 3606,
+        "linearizedBaseContracts": [
+          3606
+        ],
+        "name": "IWithSignature",
+        "nameLocation": "537:14:28",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 3559,
+              "nodeType": "StructuredDocumentation",
+              "src": "590:42:28",
+              "text": "@dev Emitted when the token is minted."
+            },
+            "eventSelector": "79af0e59b31823dd289ceebabc4d63d25f35926b8548e3a084a500c9d4e18556",
+            "id": 3565,
+            "name": "IssueWithSignature",
+            "nameLocation": "643:18:28",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 3564,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3561,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_address",
+                  "nameLocation": "678:8:28",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3565,
+                  "src": "662:24:28",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3560,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "662:7:28",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3563,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nameLocation": "704:7:28",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3565,
+                  "src": "688:23:28",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3562,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "688:7:28",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "661:51:28"
+            },
+            "src": "637:76:28"
+          },
+          {
+            "documentation": {
+              "id": 3566,
+              "nodeType": "StructuredDocumentation",
+              "src": "718:81:28",
+              "text": "@dev Thrown when the minting fails, because of insufficient eth or otherwise."
+            },
+            "errorSelector": "075da6f5",
+            "id": 3574,
+            "name": "IssueWithSignatureError",
+            "nameLocation": "810:23:28",
+            "nodeType": "ErrorDefinition",
+            "parameters": {
+              "id": 3573,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3568,
+                  "mutability": "mutable",
+                  "name": "_address",
+                  "nameLocation": "842:8:28",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3574,
+                  "src": "834:16:28",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3567,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "834:7:28",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3570,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nameLocation": "860:7:28",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3574,
+                  "src": "852:15:28",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3569,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "852:7:28",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3572,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3574,
+                  "src": "869:7:28",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 3571,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "869:7:28",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "833:44:28"
+            },
+            "src": "804:74:28"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 3575,
+              "nodeType": "StructuredDocumentation",
+              "src": "883:43:28",
+              "text": "@dev Emitted when the token is revoked."
+            },
+            "eventSelector": "c80ded5d5188b5efd58f2f9ccb75c94a99b8c4ac3074093a921438f6f0fd1076",
+            "id": 3581,
+            "name": "RevokeWithSignature",
+            "nameLocation": "937:19:28",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 3580,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3577,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "_address",
+                  "nameLocation": "973:8:28",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3581,
+                  "src": "957:24:28",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3576,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "957:7:28",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3579,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nameLocation": "999:7:28",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3581,
+                  "src": "983:23:28",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3578,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "983:7:28",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "956:51:28"
+            },
+            "src": "931:77:28"
+          },
+          {
+            "documentation": {
+              "id": 3582,
+              "nodeType": "StructuredDocumentation",
+              "src": "1046:456:28",
+              "text": " @dev Verifies that an address is part of the Allowlist.\n By verifying that the public key that signed `_signature` is the caller of the function.\n Emits the {Verified} event.\n In error cases, throw the {Unsigned} error.\n @param\n _hash, hash of the address signed off-chain.\n _signature, signature to verify.\n @return bool, true if the signer is the contract and false if otherwise."
+            },
+            "functionSelector": "daca6f78",
+            "id": 3591,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "verifySignature",
+            "nameLocation": "1516:15:28",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3587,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3584,
+                  "mutability": "mutable",
+                  "name": "_hash",
+                  "nameLocation": "1540:5:28",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3591,
+                  "src": "1532:13:28",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 3583,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1532:7:28",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3586,
+                  "mutability": "mutable",
+                  "name": "_signature",
+                  "nameLocation": "1560:10:28",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3591,
+                  "src": "1547:23:28",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 3585,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1547:5:28",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1531:40:28"
+            },
+            "returnParameters": {
+              "id": 3590,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3589,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3591,
+                  "src": "1590:4:28",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 3588,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1590:4:28",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1589:6:28"
+            },
+            "scope": 3606,
+            "src": "1507:89:28",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 3592,
+              "nodeType": "StructuredDocumentation",
+              "src": "1602:314:28",
+              "text": " @dev  Mints `quantity` number of tokens to `to`.\n       On the condition that the hash of `to`, has\n       been verified with Signature.\n Emits the {IssueWithSignature} event.\n @param to         Address of receiver.\n @param quantity   Amount to mint to `to`."
+            },
+            "functionSelector": "079bbc84",
+            "id": 3599,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "issueWithSignature",
+            "nameLocation": "1930:18:28",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3597,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3594,
+                  "mutability": "mutable",
+                  "name": "to",
+                  "nameLocation": "1957:2:28",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3599,
+                  "src": "1949:10:28",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3593,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1949:7:28",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3596,
+                  "mutability": "mutable",
+                  "name": "quantity",
+                  "nameLocation": "1969:8:28",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3599,
+                  "src": "1961:16:28",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3595,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1961:7:28",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1948:30:28"
+            },
+            "returnParameters": {
+              "id": 3598,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1987:0:28"
+            },
+            "scope": 3606,
+            "src": "1921:67:28",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 3600,
+              "nodeType": "StructuredDocumentation",
+              "src": "1994:120:28",
+              "text": " @dev Revokes the user's token ownership by burning.\n @param tokenId, token to be minted."
+            },
+            "functionSelector": "7dfedbca",
+            "id": 3605,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "revokeWithSignature",
+            "nameLocation": "2128:19:28",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3603,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3602,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nameLocation": "2156:7:28",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3605,
+                  "src": "2148:15:28",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3601,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2148:7:28",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2147:17:28"
+            },
+            "returnParameters": {
+              "id": 3604,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2173:0:28"
+            },
+            "scope": 3606,
+            "src": "2119:55:28",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 3607,
+        "src": "527:1649:28",
+        "usedErrors": [
+          3574
+        ]
+      }
+    ],
+    "src": "429:1748:28"
+  },
+  "bytecode": "",
+  "bytecodeSha1": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+  "compiler": {
+    "evm_version": "istanbul",
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "version": "0.8.15+commit.e14f2714"
+  },
+  "contractName": "IWithSignature",
+  "coverageMap": {
+    "branches": {},
+    "statements": {}
+  },
+  "dependencies": [],
+  "deployedBytecode": "",
+  "deployedSourceMap": "",
+  "language": "Solidity",
+  "natspec": {
+    "author": "Daccred.",
+    "errors": {
+      "IssueWithSignatureError(address,uint256,bytes32)": [
+        {
+          "details": "Thrown when the minting fails, because of insufficient eth or otherwise."
+        }
+      ]
+    },
+    "events": {
+      "IssueWithSignature(address,uint256)": {
+        "details": "Emitted when the token is minted."
+      },
+      "RevokeWithSignature(address,uint256)": {
+        "details": "Emitted when the token is revoked."
+      }
+    },
+    "kind": "dev",
+    "methods": {
+      "issueWithSignature(address,uint256)": {
+        "details": "Mints `quantity` number of tokens to `to`.       On the condition that the hash of `to`, has       been verified with Signature. Emits the {IssueWithSignature} event.",
+        "params": {
+          "quantity": "Amount to mint to `to`.",
+          "to": "Address of receiver."
+        }
+      },
+      "revokeWithSignature(uint256)": {
+        "details": "Revokes the user's token ownership by burning.",
+        "params": {
+          "tokenId": ", token to be minted."
+        }
+      },
+      "verifySignature(bytes32,bytes)": {
+        "details": "Verifies that an address is part of the Allowlist. By verifying that the public key that signed `_signature` is the caller of the function. Emits the {Verified} event. In error cases, throw the {Unsigned} error.",
+        "params": {
+          "_hash": ", hash of the address signed off-chain. _signature, signature to verify."
+        },
+        "returns": {
+          "_0": "bool, true if the signer is the contract and false if otherwise."
+        }
+      }
+    },
+    "title": "IWithSignature Interface.",
+    "version": 1
+  },
+  "offset": [
+    527,
+    2176
+  ],
+  "opcodes": "",
+  "pcMap": {},
+  "sha1": "fb58d7aa18c83de9099b1e5eb17e0941f353d45b",
+  "source": "// SPDX-License-Identifier: GPL-3.0\n\n// \t _____     ______     ______     ______     ______     ______     _____\n//  /\\  __-.  /\\  __ \\   /\\  ___\\   /\\  ___\\   /\\  == \\   /\\  ___\\   /\\  __-.\n//  \\ \\ \\/\\ \\ \\ \\  __ \\  \\ \\ \\____  \\ \\ \\____  \\ \\  __<   \\ \\  __\\   \\ \\ \\/\\ \\\n//   \\ \\____-  \\ \\_\\ \\_\\  \\ \\_____\\  \\ \\_____\\  \\ \\_\\ \\_\\  \\ \\_____\\  \\ \\____-\n//    \\/____/   \\/_/\\/_/   \\/_____/   \\/_____/   \\/_/ /_/   \\/_____/   \\/____/\n\npragma solidity ^0.8.4;\n\n/**\n * @title IWithSignature Interface.\n * @author Daccred.\n * @dev\n */\n\ninterface IWithSignature {\n    // ===== E V E N T S =====\n\n    /// @dev Emitted when the token is minted.\n    event IssueWithSignature(address indexed _address, uint256 indexed tokenId);\n    /// @dev Thrown when the minting fails, because of insufficient eth or otherwise.\n    error IssueWithSignatureError(address _address, uint256 tokenId, bytes32);\n    /// @dev Emitted when the token is revoked.\n    event RevokeWithSignature(address indexed _address, uint256 indexed tokenId);\n\n    // ===== E V E N T S =====\n\n    /**\n     * @dev Verifies that an address is part of the Allowlist.\n     * By verifying that the public key that signed `_signature` is the caller of the function.\n     * Emits the {Verified} event.\n     * In error cases, throw the {Unsigned} error.\n     *\n     * @param\n     * _hash, hash of the address signed off-chain.\n     * _signature, signature to verify.\n     *\n     * @return bool, true if the signer is the contract and false if otherwise.\n     */\n    function verifySignature(bytes32 _hash, bytes memory _signature) external returns (bool);\n\n    /**\n     * @dev  Mints `quantity` number of tokens to `to`.\n     *       On the condition that the hash of `to`, has\n     *       been verified with Signature.\n     * Emits the {IssueWithSignature} event.\n     *\n     * @param to         Address of receiver.\n     * @param quantity   Amount to mint to `to`.\n     */\n    function issueWithSignature(address to, uint256 quantity) external;\n\n    /**\n     * @dev Revokes the user's token ownership by burning.\n     *\n     * @param tokenId, token to be minted.\n     */\n    function revokeWithSignature(uint256 tokenId) external;\n}\n",
+  "sourceMap": "",
+  "sourcePath": "contracts/contracts/packages/nft/contracts/interfaces/IWithSignature.sol",
+  "type": "interface"
+}

@@ -37,22 +37,22 @@ contract SoulboundWithSignature is SoulboundCore {
      * @param tokenId    TokenId to be issued.
      * @param tokenURI   URI of token to be issued.
      */
-    function issueWithSignature(
+    function ownerIssueWithSignature(
         address addr,
         bytes32 hash,
         bytes memory sig,
         uint256 tokenId,
         string memory tokenURI
-    ) public virtual override onlyOwner {
+    ) public onlyOwner {
         /// @dev Ensure that the supply is not crossed.
         /// @dev    Should all soulbound tokens need to be limited,
         ///         copy this code and paste in Soulboundcore.sol
         ///         issueWithSignature function.
         require(supply < totalSupply, "Issue Cap Reached.");
+        /// @dev Issue With Signature.
+        issueWithSignature(addr, hash, sig, tokenId, tokenURI);
         /// @dev Incrememt supply on successful issue.
         supply++;
-        /// @dev Issue With Signature.
-        super.issueWithSignature(addr, hash, sig, tokenId, tokenURI);
     }
 
     /**
@@ -71,11 +71,11 @@ contract SoulboundWithSignature is SoulboundCore {
      * @param sig        Signature.
      * @param tokenId    TokenId to be issued.
      */
-    function revokeWithSignature(
+    function ownerRevokeWithSignature(
         bytes32 hash,
         bytes memory sig,
         uint256 tokenId
-    ) public virtual override onlyOwner {
+    ) public onlyOwner {
         /// @dev    If the supply control is not 0,
         ///         decrement the supply.
         ///         Should all soulbound tokens need to be limited,
@@ -90,6 +90,6 @@ contract SoulboundWithSignature is SoulboundCore {
         }
 
         /// @dev Revoke With Signature.
-        super.revokeWithSignature(hash, sig, tokenId);
+        revokeWithSignature(hash, sig, tokenId);
     }
 }

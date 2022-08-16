@@ -1,0 +1,368 @@
+{
+  "abi": [],
+  "allSourcePaths": {
+    "20": "contracts/contracts/packages/nft/contracts/Guard.sol"
+  },
+  "ast": {
+    "absolutePath": "contracts/contracts/packages/nft/contracts/Guard.sol",
+    "exportedSymbols": {
+      "Guarded": [
+        3259
+      ]
+    },
+    "id": 3260,
+    "license": "GPL-3.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 3235,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".4"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "429:23:20"
+      },
+      {
+        "abstract": true,
+        "baseContracts": [],
+        "canonicalName": "Guarded",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": {
+          "id": 3236,
+          "nodeType": "StructuredDocumentation",
+          "src": "454:233:20",
+          "text": "@notice Gas optimized reentrancy protection for smart contracts.\n @author Daccred (https://github.com/daccred/contracts)\n @author derived (https://github.com/transmissions11/solmate/blob/main/src/utils/ReentrancyGuard.sol)"
+        },
+        "fullyImplemented": true,
+        "id": 3259,
+        "linearizedBaseContracts": [
+          3259
+        ],
+        "name": "Guarded",
+        "nameLocation": "705:7:20",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 3239,
+            "mutability": "mutable",
+            "name": "locked",
+            "nameLocation": "735:6:20",
+            "nodeType": "VariableDeclaration",
+            "scope": 3259,
+            "src": "719:26:20",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 3237,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "719:7:20",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": {
+              "hexValue": "31",
+              "id": 3238,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "744:1:20",
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_1_by_1",
+                "typeString": "int_const 1"
+              },
+              "value": "1"
+            },
+            "visibility": "private"
+          },
+          {
+            "body": {
+              "id": 3257,
+              "nodeType": "Block",
+              "src": "779:105:20",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "id": 3244,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "id": 3242,
+                          "name": "locked",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 3239,
+                          "src": "797:6:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "hexValue": "31",
+                          "id": 3243,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "number",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "807:1:20",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_rational_1_by_1",
+                            "typeString": "int_const 1"
+                          },
+                          "value": "1"
+                        },
+                        "src": "797:11:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "5245454e5452414e4359",
+                        "id": 3245,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "810:12:20",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_180a23d5434c537ca84b1e47f534d18e25bd055e02a65ce20bae4afd9c835f59",
+                          "typeString": "literal_string \"REENTRANCY\""
+                        },
+                        "value": "REENTRANCY"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_180a23d5434c537ca84b1e47f534d18e25bd055e02a65ce20bae4afd9c835f59",
+                          "typeString": "literal_string \"REENTRANCY\""
+                        }
+                      ],
+                      "id": 3241,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        -18,
+                        -18
+                      ],
+                      "referencedDeclaration": -18,
+                      "src": "789:7:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 3246,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "789:34:20",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 3247,
+                  "nodeType": "ExpressionStatement",
+                  "src": "789:34:20"
+                },
+                {
+                  "expression": {
+                    "id": 3250,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 3248,
+                      "name": "locked",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 3239,
+                      "src": "834:6:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "hexValue": "32",
+                      "id": 3249,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "843:1:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_2_by_1",
+                        "typeString": "int_const 2"
+                      },
+                      "value": "2"
+                    },
+                    "src": "834:10:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 3251,
+                  "nodeType": "ExpressionStatement",
+                  "src": "834:10:20"
+                },
+                {
+                  "id": 3252,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "855:1:20"
+                },
+                {
+                  "expression": {
+                    "id": 3255,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 3253,
+                      "name": "locked",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 3239,
+                      "src": "867:6:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "hexValue": "31",
+                      "id": 3254,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "876:1:20",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_1_by_1",
+                        "typeString": "int_const 1"
+                      },
+                      "value": "1"
+                    },
+                    "src": "867:10:20",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 3256,
+                  "nodeType": "ExpressionStatement",
+                  "src": "867:10:20"
+                }
+              ]
+            },
+            "id": 3258,
+            "name": "guarded",
+            "nameLocation": "761:7:20",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 3240,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "768:2:20"
+            },
+            "src": "752:132:20",
+            "virtual": true,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 3260,
+        "src": "687:199:20",
+        "usedErrors": []
+      }
+    ],
+    "src": "429:458:20"
+  },
+  "bytecode": "",
+  "bytecodeSha1": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+  "compiler": {
+    "evm_version": "istanbul",
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "version": "0.8.15+commit.e14f2714"
+  },
+  "contractName": "Guarded",
+  "coverageMap": {
+    "branches": {},
+    "statements": {}
+  },
+  "dependencies": [],
+  "deployedBytecode": "",
+  "deployedSourceMap": "",
+  "language": "Solidity",
+  "natspec": {
+    "author": "Daccred (https://github.com/daccred/contracts)derived (https://github.com/transmissions11/solmate/blob/main/src/utils/ReentrancyGuard.sol)",
+    "kind": "dev",
+    "methods": {},
+    "notice": "Gas optimized reentrancy protection for smart contracts.",
+    "version": 1
+  },
+  "offset": [
+    687,
+    886
+  ],
+  "opcodes": "",
+  "pcMap": {},
+  "sha1": "3d7e139037ea884d175519613ab91b3e0c15b099",
+  "source": "// SPDX-License-Identifier: GPL-3.0\n\n// \t _____     ______     ______     ______     ______     ______     _____\n//  /\\  __-.  /\\  __ \\   /\\  ___\\   /\\  ___\\   /\\  == \\   /\\  ___\\   /\\  __-.\n//  \\ \\ \\/\\ \\ \\ \\  __ \\  \\ \\ \\____  \\ \\ \\____  \\ \\  __<   \\ \\  __\\   \\ \\ \\/\\ \\\n//   \\ \\____-  \\ \\_\\ \\_\\  \\ \\_____\\  \\ \\_____\\  \\ \\_\\ \\_\\  \\ \\_____\\  \\ \\____-\n//    \\/____/   \\/_/\\/_/   \\/_____/   \\/_____/   \\/_/ /_/   \\/_____/   \\/____/\n\npragma solidity ^0.8.4;\n\n/// @notice Gas optimized reentrancy protection for smart contracts.\n/// @author Daccred (https://github.com/daccred/contracts)\n/// @author derived (https://github.com/transmissions11/solmate/blob/main/src/utils/ReentrancyGuard.sol)\nabstract contract Guarded {\n    uint256 private locked = 1;\n\n    modifier guarded() virtual {\n        require(locked == 1, \"REENTRANCY\");\n\n        locked = 2;\n\n        _;\n\n        locked = 1;\n    }\n}\n",
+  "sourceMap": "",
+  "sourcePath": "contracts/contracts/packages/nft/contracts/Guard.sol",
+  "type": "contract"
+}

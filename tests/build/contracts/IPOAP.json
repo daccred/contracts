@@ -1,0 +1,1036 @@
+{
+  "abi": [
+    {
+      "inputs": [],
+      "name": "ApprovalCallerNotOwnerNorApproved",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ApprovalQueryForNonexistentToken",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ApprovalToCurrentOwner",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ApproveToCaller",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "BalanceQueryForZeroAddress",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "MintToZeroAddress",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "MintZeroQuantity",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "OwnerQueryForNonexistentToken",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "TransferCallerNotOwnerNorApproved",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "TransferFromIncorrectOwner",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "TransferToNonERC721ReceiverImplementer",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "TransferToZeroAddress",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "URIQueryForNonexistentToken",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "approved",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "Approval",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "operator",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bool",
+          "name": "approved",
+          "type": "bool"
+        }
+      ],
+      "name": "ApprovalForAll",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "eventId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "EventToken",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "Transfer",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "approve",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "balanceOf",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "balance",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getApproved",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "operator",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "operator",
+          "type": "address"
+        }
+      ],
+      "name": "isApprovedForAll",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_eventId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "mintToken",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "name",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "ownerOf",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "safeTransferFrom",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "safeTransferFrom",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "operator",
+          "type": "address"
+        },
+        {
+          "internalType": "bool",
+          "name": "_approved",
+          "type": "bool"
+        }
+      ],
+      "name": "setApprovalForAll",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes4",
+          "name": "interfaceId",
+          "type": "bytes4"
+        }
+      ],
+      "name": "supportsInterface",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "symbol",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "tokenURI",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "totalSupply",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "transferFrom",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_eventId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "_receiver",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "transferToken",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "allSourcePaths": {
+    "1": "C:/Users/antho/.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.6.0/contracts/token/ERC721/IERC721.sol",
+    "22": "contracts/contracts/packages/nft/contracts/interfaces/IERC721A.sol",
+    "24": "contracts/contracts/packages/nft/contracts/interfaces/IPOAP.sol",
+    "3": "C:/Users/antho/.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.6.0/contracts/token/ERC721/extensions/IERC721Metadata.sol",
+    "8": "C:/Users/antho/.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.6.0/contracts/utils/introspection/IERC165.sol"
+  },
+  "ast": {
+    "absolutePath": "contracts/contracts/packages/nft/contracts/interfaces/IPOAP.sol",
+    "exportedSymbols": {
+      "IERC165": [
+        6792
+      ],
+      "IERC721": [
+        6753
+      ],
+      "IERC721A": [
+        3390
+      ],
+      "IERC721Metadata": [
+        6780
+      ],
+      "IPOAP": [
+        3443
+      ]
+    },
+    "id": 3444,
+    "license": "GPL-3.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 3413,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".4"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "429:23:24"
+      },
+      {
+        "absolutePath": "contracts/contracts/packages/nft/contracts/interfaces/IERC721A.sol",
+        "file": "./IERC721A.sol",
+        "id": 3414,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 3444,
+        "sourceUnit": 3391,
+        "src": "454:24:24",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 3416,
+              "name": "IERC721A",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 3390,
+              "src": "1220:8:24"
+            },
+            "id": 3417,
+            "nodeType": "InheritanceSpecifier",
+            "src": "1220:8:24"
+          }
+        ],
+        "canonicalName": "IPOAP",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 3415,
+          "nodeType": "StructuredDocumentation",
+          "src": "1066:133:24",
+          "text": " @title ERC-721 Non-Fungible Token Standard, optional metadata extension\n @dev See https://eips.ethereum.org/EIPS/eip-721"
+        },
+        "fullyImplemented": false,
+        "id": 3443,
+        "linearizedBaseContracts": [
+          3443,
+          3390,
+          6780,
+          6753,
+          6792
+        ],
+        "name": "IPOAP",
+        "nameLocation": "1211:5:24",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 3418,
+              "nodeType": "StructuredDocumentation",
+              "src": "1277:53:24",
+              "text": "@dev Emitted when a token is minted for an event."
+            },
+            "eventSelector": "4b3711cd7ece062b0828c1b6e08d814a72d4c003383a016c833cbb1b45956e34",
+            "id": 3424,
+            "name": "EventToken",
+            "nameLocation": "1341:10:24",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 3423,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3420,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "eventId",
+                  "nameLocation": "1360:7:24",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3424,
+                  "src": "1352:15:24",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3419,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1352:7:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3422,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nameLocation": "1377:7:24",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3424,
+                  "src": "1369:15:24",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3421,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1369:7:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1351:34:24"
+            },
+            "src": "1335:51:24"
+          },
+          {
+            "documentation": {
+              "id": 3425,
+              "nodeType": "StructuredDocumentation",
+              "src": "1434:375:24",
+              "text": " @dev Mints token `_tokenId` for a particular event `_eventId`.\n Emits the {EventToken} event.\n On calling this function, all tokens are minted to the caller.\n Then it can be transferred to attendees via transferToken.\n @param\n _eventId => The event for which the token was minted.\n _tokenId => Token to be minted."
+            },
+            "functionSelector": "20cbf5f9",
+            "id": 3432,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "mintToken",
+            "nameLocation": "1823:9:24",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3430,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3427,
+                  "mutability": "mutable",
+                  "name": "_eventId",
+                  "nameLocation": "1841:8:24",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3432,
+                  "src": "1833:16:24",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3426,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1833:7:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3429,
+                  "mutability": "mutable",
+                  "name": "_tokenId",
+                  "nameLocation": "1859:8:24",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3432,
+                  "src": "1851:16:24",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3428,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1851:7:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1832:36:24"
+            },
+            "returnParameters": {
+              "id": 3431,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1877:0:24"
+            },
+            "scope": 3443,
+            "src": "1814:64:24",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 3433,
+              "nodeType": "StructuredDocumentation",
+              "src": "1884:241:24",
+              "text": " @dev Mints the POAP token `_tokenId` to `_receiver`.\n @param\n _eventId => The event for which the token was minted.\n _receiver => Address receiving the token.\n _tokenId => Token to be minted."
+            },
+            "functionSelector": "dbb5313f",
+            "id": 3442,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "transferToken",
+            "nameLocation": "2139:13:24",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 3440,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3435,
+                  "mutability": "mutable",
+                  "name": "_eventId",
+                  "nameLocation": "2170:8:24",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3442,
+                  "src": "2162:16:24",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3434,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2162:7:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3437,
+                  "mutability": "mutable",
+                  "name": "_receiver",
+                  "nameLocation": "2196:9:24",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3442,
+                  "src": "2188:17:24",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 3436,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2188:7:24",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 3439,
+                  "mutability": "mutable",
+                  "name": "_tokenId",
+                  "nameLocation": "2223:8:24",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 3442,
+                  "src": "2215:16:24",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 3438,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2215:7:24",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2152:85:24"
+            },
+            "returnParameters": {
+              "id": 3441,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2246:0:24"
+            },
+            "scope": 3443,
+            "src": "2130:117:24",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 3444,
+        "src": "1201:1048:24",
+        "usedErrors": [
+          3331,
+          3334,
+          3337,
+          3340,
+          3343,
+          3346,
+          3349,
+          3352,
+          3355,
+          3358,
+          3361,
+          3364,
+          3367
+        ]
+      }
+    ],
+    "src": "429:1821:24"
+  },
+  "bytecode": "",
+  "bytecodeSha1": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+  "compiler": {
+    "evm_version": "istanbul",
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "version": "0.8.15+commit.e14f2714"
+  },
+  "contractName": "IPOAP",
+  "coverageMap": {
+    "branches": {},
+    "statements": {}
+  },
+  "dependencies": [
+    "OpenZeppelin/openzeppelin-contracts@4.6.0/IERC165",
+    "OpenZeppelin/openzeppelin-contracts@4.6.0/IERC721",
+    "IERC721A",
+    "OpenZeppelin/openzeppelin-contracts@4.6.0/IERC721Metadata"
+  ],
+  "deployedBytecode": "",
+  "deployedSourceMap": "",
+  "language": "Solidity",
+  "natspec": {
+    "details": "See https://eips.ethereum.org/EIPS/eip-721",
+    "errors": {
+      "ApprovalCallerNotOwnerNorApproved()": [
+        {
+          "notice": "The caller must own the token or be an approved operator."
+        }
+      ],
+      "ApprovalQueryForNonexistentToken()": [
+        {
+          "notice": "The token does not exist."
+        }
+      ],
+      "ApprovalToCurrentOwner()": [
+        {
+          "notice": "The caller cannot approve to the current owner."
+        }
+      ],
+      "ApproveToCaller()": [
+        {
+          "notice": "The caller cannot approve to their own address."
+        }
+      ],
+      "BalanceQueryForZeroAddress()": [
+        {
+          "notice": "Cannot query the balance for the zero address."
+        }
+      ],
+      "MintToZeroAddress()": [
+        {
+          "notice": "Cannot mint to the zero address."
+        }
+      ],
+      "MintZeroQuantity()": [
+        {
+          "notice": "The quantity of tokens minted must be more than zero."
+        }
+      ],
+      "OwnerQueryForNonexistentToken()": [
+        {
+          "notice": "The token does not exist."
+        }
+      ],
+      "TransferCallerNotOwnerNorApproved()": [
+        {
+          "notice": "The caller must own the token or be an approved operator."
+        }
+      ],
+      "TransferFromIncorrectOwner()": [
+        {
+          "notice": "The token must be owned by `from`."
+        }
+      ],
+      "TransferToNonERC721ReceiverImplementer()": [
+        {
+          "notice": "Cannot safely transfer to a contract that does not implement the ERC721Receiver interface."
+        }
+      ],
+      "TransferToZeroAddress()": [
+        {
+          "notice": "Cannot transfer to the zero address."
+        }
+      ],
+      "URIQueryForNonexistentToken()": [
+        {
+          "notice": "The token does not exist."
+        }
+      ]
+    },
+    "events": {
+      "EventToken(uint256,uint256)": {
+        "details": "Emitted when a token is minted for an event."
+      }
+    },
+    "kind": "dev",
+    "methods": {
+      "approve(address,uint256)": {
+        "details": "Gives permission to `to` to transfer `tokenId` token to another account. The approval is cleared when the token is transferred. Only a single account can be approved at a time, so approving the zero address clears previous approvals. Requirements: - The caller must own the token or be an approved operator. - `tokenId` must exist. Emits an {Approval} event."
+      },
+      "balanceOf(address)": {
+        "details": "Returns the number of tokens in ``owner``'s account."
+      },
+      "getApproved(uint256)": {
+        "details": "Returns the account approved for `tokenId` token. Requirements: - `tokenId` must exist."
+      },
+      "isApprovedForAll(address,address)": {
+        "details": "Returns if the `operator` is allowed to manage all of the assets of `owner`. See {setApprovalForAll}"
+      },
+      "mintToken(uint256,uint256)": {
+        "details": "Mints token `_tokenId` for a particular event `_eventId`. Emits the {EventToken} event. On calling this function, all tokens are minted to the caller. Then it can be transferred to attendees via transferToken.",
+        "params": {
+          "_eventId": "=> The event for which the token was minted. _tokenId => Token to be minted."
+        }
+      },
+      "name()": {
+        "details": "Returns the token collection name."
+      },
+      "ownerOf(uint256)": {
+        "details": "Returns the owner of the `tokenId` token. Requirements: - `tokenId` must exist."
+      },
+      "safeTransferFrom(address,address,uint256)": {
+        "details": "Safely transfers `tokenId` token from `from` to `to`, checking first that contract recipients are aware of the ERC721 protocol to prevent tokens from being forever locked. Requirements: - `from` cannot be the zero address. - `to` cannot be the zero address. - `tokenId` token must exist and be owned by `from`. - If the caller is not `from`, it must be have been allowed to move this token by either {approve} or {setApprovalForAll}. - If `to` refers to a smart contract, it must implement {IERC721Receiver-onERC721Received}, which is called upon a safe transfer. Emits a {Transfer} event."
+      },
+      "safeTransferFrom(address,address,uint256,bytes)": {
+        "details": "Safely transfers `tokenId` token from `from` to `to`. Requirements: - `from` cannot be the zero address. - `to` cannot be the zero address. - `tokenId` token must exist and be owned by `from`. - If the caller is not `from`, it must be approved to move this token by either {approve} or {setApprovalForAll}. - If `to` refers to a smart contract, it must implement {IERC721Receiver-onERC721Received}, which is called upon a safe transfer. Emits a {Transfer} event."
+      },
+      "setApprovalForAll(address,bool)": {
+        "details": "Approve or remove `operator` as an operator for the caller. Operators can call {transferFrom} or {safeTransferFrom} for any token owned by the caller. Requirements: - The `operator` cannot be the caller. Emits an {ApprovalForAll} event."
+      },
+      "supportsInterface(bytes4)": {
+        "details": "Returns true if this contract implements the interface defined by `interfaceId`. See the corresponding https://eips.ethereum.org/EIPS/eip-165#how-interfaces-are-identified[EIP section] to learn more about how these ids are created. This function call must use less than 30 000 gas."
+      },
+      "symbol()": {
+        "details": "Returns the token collection symbol."
+      },
+      "tokenURI(uint256)": {
+        "details": "Returns the Uniform Resource Identifier (URI) for `tokenId` token."
+      },
+      "totalSupply()": {
+        "details": "Returns the total amount of tokens stored by the contract. Burned tokens are calculated here, use `_totalMinted()` if you want to count just minted tokens."
+      },
+      "transferFrom(address,address,uint256)": {
+        "details": "Transfers `tokenId` token from `from` to `to`. WARNING: Usage of this method is discouraged, use {safeTransferFrom} whenever possible. Requirements: - `from` cannot be the zero address. - `to` cannot be the zero address. - `tokenId` token must be owned by `from`. - If the caller is not `from`, it must be approved to move this token by either {approve} or {setApprovalForAll}. Emits a {Transfer} event."
+      },
+      "transferToken(uint256,address,uint256)": {
+        "details": "Mints the POAP token `_tokenId` to `_receiver`.",
+        "params": {
+          "_eventId": "=> The event for which the token was minted. _receiver => Address receiving the token. _tokenId => Token to be minted."
+        }
+      }
+    },
+    "title": "ERC-721 Non-Fungible Token Standard, optional metadata extension",
+    "version": 1
+  },
+  "offset": [
+    1201,
+    2249
+  ],
+  "opcodes": "",
+  "pcMap": {},
+  "sha1": "fab2f1ae68757c762fdc9d4db888daa24b1ba6c5",
+  "source": "// SPDX-License-Identifier: GPL-3.0\n\n// \t _____     ______     ______     ______     ______     ______     _____\n//  /\\  __-.  /\\  __ \\   /\\  ___\\   /\\  ___\\   /\\  == \\   /\\  ___\\   /\\  __-.\n//  \\ \\ \\/\\ \\ \\ \\  __ \\  \\ \\ \\____  \\ \\ \\____  \\ \\  __<   \\ \\  __\\   \\ \\ \\/\\ \\\n//   \\ \\____-  \\ \\_\\ \\_\\  \\ \\_____\\  \\ \\_____\\  \\ \\_\\ \\_\\  \\ \\_____\\  \\ \\____-\n//    \\/____/   \\/_/\\/_/   \\/_____/   \\/_____/   \\/_/ /_/   \\/_____/   \\/____/\n\npragma solidity ^0.8.4;\n\nimport \"./IERC721A.sol\";\n\n/**\n * @title POAP [Proof Of Attendance Protocol] Interface.\n * @author Daccred.\n * @dev\n * POAPs are a type of NFTs minted to addresses, showing that they attended a particular event or activity.\n * These NFTs are minted on a POAP minting smart contract, then transferred free to the attenders of the events.\n * [Ref: https://www.fool.com/investing/stock-market/market-sectors/financials/non-fungible-tokens/poap-nfts/].\n * This unique type of NFT is a free digital gift from the organizers of an event to the attendees.\n * Sample Metadata: https://poap.xyz/events/jsons/28.json.\n */\n\n/**\n * @title ERC-721 Non-Fungible Token Standard, optional metadata extension\n * @dev See https://eips.ethereum.org/EIPS/eip-721\n */\n\ninterface IPOAP is IERC721A {\n    // ========== E V E N T S ==========\n\n    /// @dev Emitted when a token is minted for an event.\n    event EventToken(uint256 eventId, uint256 tokenId);\n\n    // ========== E V E N T S ==========\n\n    /**\n     * @dev Mints token `_tokenId` for a particular event `_eventId`.\n     * Emits the {EventToken} event.\n     * On calling this function, all tokens are minted to the caller.\n     * Then it can be transferred to attendees via transferToken.\n     *\n     * @param\n     * _eventId => The event for which the token was minted.\n     * _tokenId => Token to be minted.\n     */\n    function mintToken(uint256 _eventId, uint256 _tokenId) external;\n\n    /**\n     * @dev Mints the POAP token `_tokenId` to `_receiver`.\n     *\n     * @param\n     * _eventId => The event for which the token was minted.\n     * _receiver => Address receiving the token.\n     * _tokenId => Token to be minted.\n     */\n    function transferToken(\n        uint256 _eventId,\n        address _receiver,\n        uint256 _tokenId\n    ) external;\n}\n",
+  "sourceMap": "",
+  "sourcePath": "contracts/contracts/packages/nft/contracts/interfaces/IPOAP.sol",
+  "type": "interface"
+}

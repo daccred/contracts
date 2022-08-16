@@ -134,12 +134,12 @@ contract SoulboundRedeemable is IsValidWithDate, SoulboundWithSignature {
      * @param tokenId            Id of token to be minted.
      * @param _tokenExpiryDate   Set expiry date from the deployer.
      */
-    function mint(
+    function mintPendingRedeemableToken(
         address from,
         address to,
         uint256 tokenId,
         uint256 _tokenExpiryDate
-    ) external onlyOwner onlyAllowlistOwner(from) {
+    ) public onlyOwner onlyAllowlistOwner(from) {
         /// @dev Ensure that the supply is not crossed.
         /// @dev    Should all soulbound tokens need to be limited,
         ///         copy this code and paste in Soulboundcore.sol
@@ -170,7 +170,7 @@ contract SoulboundRedeemable is IsValidWithDate, SoulboundWithSignature {
      * @param _receiver  Receiver of the token.
      * @param tokenId    Pending tokenId for the receiver.
      */
-    function pay(address _receiver, uint256 tokenId)
+    function payToReceiveToken(address _receiver, uint256 tokenId)
         public
         payable
         onlyOwner
@@ -206,7 +206,7 @@ contract SoulboundRedeemable is IsValidWithDate, SoulboundWithSignature {
         /// @dev Generate tokenURI.
         string memory _tokenURI = generateTokenURI(tokenId);
         /// @dev Finally issue the token to the `_receiver`.
-        super._mint(_receiver, tokenId, _tokenURI);
+        issue(_receiver, tokenId, _tokenURI);
         /// @dev Increment totalSales.
         totalSales++;
         /// @dev Add to the total Revenue.
@@ -229,7 +229,7 @@ contract SoulboundRedeemable is IsValidWithDate, SoulboundWithSignature {
      * @param tokenId            Pending tokenId for the receiver.
      * @param _tokenExpiryDate   New expiry date for tokens.
      */
-    function redeemPending(
+    function redeemPendingToken(
         address _receiver,
         uint256 tokenId,
         uint256 _tokenExpiryDate
@@ -280,7 +280,7 @@ contract SoulboundRedeemable is IsValidWithDate, SoulboundWithSignature {
      * @param tokenId            Pending tokenId for the receiver.
      * @param _tokenExpiryDate   New expiry date for tokens.
      */
-    function redeemMinted(
+    function redeemMintedToken(
         address _receiver,
         uint256 tokenId,
         uint256 _tokenExpiryDate
@@ -330,7 +330,7 @@ contract SoulboundRedeemable is IsValidWithDate, SoulboundWithSignature {
      * @param hash               Hash of message.
      * @param sig                Signature.
      */
-    function redeemPendingWithSignature(
+    function redeemPendingTokenWithSignature(
         address _caller,
         address _receiver,
         uint256 tokenId,
@@ -341,7 +341,7 @@ contract SoulboundRedeemable is IsValidWithDate, SoulboundWithSignature {
         /// @dev Require that the signer is the allowlistowner.
         require(verifySignature(hash, sig), "Hash not signed by you.");
         /// @dev RedeemToken.
-        redeemPending(_receiver, tokenId, _tokenExpiryDate);
+        redeemPendingToken(_receiver, tokenId, _tokenExpiryDate);
     }
 
     /**
@@ -358,7 +358,7 @@ contract SoulboundRedeemable is IsValidWithDate, SoulboundWithSignature {
      * @param hash               Hash of message.
      * @param sig                Signature.
      */
-    function redeemMintedWithSignature(
+    function redeemMintedTokenWithSignature(
         address _caller,
         address _receiver,
         uint256 tokenId,
@@ -369,7 +369,7 @@ contract SoulboundRedeemable is IsValidWithDate, SoulboundWithSignature {
         /// @dev Require that the signer is the allowlistowner.
         require(verifySignature(hash, sig), "Hash not signed by you.");
         /// @dev RedeemToken.
-        redeemMinted(_receiver, tokenId, _tokenExpiryDate);
+        redeemMintedToken(_receiver, tokenId, _tokenExpiryDate);
     }
 
     /**
