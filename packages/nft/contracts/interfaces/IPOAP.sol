@@ -30,32 +30,32 @@ interface IPOAP is IERC721A {
     // ========== E V E N T S ==========
 
     /// @dev Emitted when a token is minted for an event.
-    event EventToken(uint256 eventId, uint256 tokenId);
+    event EventToken(address eventId, uint256 tokenQuantity);
 
     // ========== E V E N T S ==========
 
     /**
-     * @dev Mints token `_tokenId` for a particular event `_eventId`.
+     * @dev Mints token `_tokenQuantity` for a particular event to `_eventId`.
      * Emits the {EventToken} event.
      * On calling this function, all tokens are minted to the caller.
      * Then it can be transferred to attendees via transferToken.
      *
      * @param
      * _eventId => The event for which the token was minted.
-     * _tokenId => Token to be minted.
+     * _tokenQuantity => Token to be minted.
      */
-    function mintToken(uint256 _eventId, uint256 _tokenId) external;
+    function mint(address _eventId, uint256 _tokenQuantity) external;
 
     /**
-     * @dev Mints the POAP token `_tokenId` to `_receiver`.
+     * @dev Transfers the POAP token `_tokenQuantity` to `_receiver`.
      *
      * @param
      * _eventId => The event for which the token was minted.
      * _receiver => Address receiving the token.
-     * _tokenId => Token to be minted.
+     * _tokenQuantity => Token to be minted.
      */
-    function transferToken(
-        uint256 _eventId,
+    function transfer(
+        address _eventId,
         address _receiver,
         uint256 _tokenId
     ) external;

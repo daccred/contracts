@@ -206,7 +206,7 @@ contract SoulboundRedeemable is IsValidWithDate, SoulboundWithSignature {
         /// @dev Generate tokenURI.
         string memory _tokenURI = generateTokenURI(tokenId);
         /// @dev Finally issue the token to the `_receiver`.
-        issue(_receiver, tokenId, _tokenURI);
+        super._mint(_receiver, tokenId, _tokenURI);
         /// @dev Increment totalSales.
         totalSales++;
         /// @dev Add to the total Revenue.
