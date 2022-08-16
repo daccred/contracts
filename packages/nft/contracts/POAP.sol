@@ -49,16 +49,17 @@ abstract contract POAP is IPOAP, ERC721A {
      * _receiver => Address receiving the token.
      * _tokenQuantity => Token to be minted.
     */
-    function transfer(
+    function transferToken(
         address _eventId,
         address _receiver,
         uint256 _tokenId
     ) public 
     {
-        require(ownerOf(_tokenId) == _eventId,"!Owner");
+        
+        require(_eventId == address(this), "invalid event");
 
         safeTransferFrom(
-            _eventId,
+            msg.sender,
             _receiver,
             _tokenId
         );

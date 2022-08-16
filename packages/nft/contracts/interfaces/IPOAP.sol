@@ -54,7 +54,7 @@ interface IPOAP is IERC721A {
      * _receiver => Address receiving the token.
      * _tokenQuantity => Token to be minted.
      */
-    function transfer(
+    function transferToken(
         address _eventId,
         address _receiver,
         uint256 _tokenId

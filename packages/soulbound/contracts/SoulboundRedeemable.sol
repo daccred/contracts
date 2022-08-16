@@ -134,7 +134,7 @@ contract SoulboundRedeemable is IsValidWithDate, SoulboundWithSignature {
      * @param tokenId            Id of token to be minted.
      * @param _tokenExpiryDate   Set expiry date from the deployer.
      */
-    function mintPendingRedeemableToken(
+    function _mint(
         address from,
         address to,
         uint256 tokenId,
@@ -170,7 +170,7 @@ contract SoulboundRedeemable is IsValidWithDate, SoulboundWithSignature {
      * @param _receiver  Receiver of the token.
      * @param tokenId    Pending tokenId for the receiver.
      */
-    function payToReceiveToken(address _receiver, uint256 tokenId)
+    function pay(address _receiver, uint256 tokenId)
         public
         payable
         onlyOwner
@@ -229,7 +229,7 @@ contract SoulboundRedeemable is IsValidWithDate, SoulboundWithSignature {
      * @param tokenId            Pending tokenId for the receiver.
      * @param _tokenExpiryDate   New expiry date for tokens.
      */
-    function redeemPendingToken(
+    function redeemPending(
         address _receiver,
         uint256 tokenId,
         uint256 _tokenExpiryDate
@@ -280,7 +280,7 @@ contract SoulboundRedeemable is IsValidWithDate, SoulboundWithSignature {
      * @param tokenId            Pending tokenId for the receiver.
      * @param _tokenExpiryDate   New expiry date for tokens.
      */
-    function redeemMintedToken(
+    function redeemMinted(
         address _receiver,
         uint256 tokenId,
         uint256 _tokenExpiryDate
@@ -330,7 +330,7 @@ contract SoulboundRedeemable is IsValidWithDate, SoulboundWithSignature {
      * @param hash               Hash of message.
      * @param sig                Signature.
      */
-    function redeemPendingTokenWithSignature(
+    function redeemPendingWithSignature(
         address _caller,
         address _receiver,
         uint256 tokenId,
@@ -341,7 +341,7 @@ contract SoulboundRedeemable is IsValidWithDate, SoulboundWithSignature {
         /// @dev Require that the signer is the allowlistowner.
         require(verifySignature(hash, sig), "Hash not signed by you.");
         /// @dev RedeemToken.
-        redeemPendingToken(_receiver, tokenId, _tokenExpiryDate);
+        redeemPending(_receiver, tokenId, _tokenExpiryDate);
     }
 
     /**
@@ -358,7 +358,7 @@ contract SoulboundRedeemable is IsValidWithDate, SoulboundWithSignature {
      * @param hash               Hash of message.
      * @param sig                Signature.
      */
-    function redeemMintedTokenWithSignature(
+    function redeemMintedWithSignature(
         address _caller,
         address _receiver,
         uint256 tokenId,
@@ -369,7 +369,7 @@ contract SoulboundRedeemable is IsValidWithDate, SoulboundWithSignature {
         /// @dev Require that the signer is the allowlistowner.
         require(verifySignature(hash, sig), "Hash not signed by you.");
         /// @dev RedeemToken.
-        redeemMintedToken(_receiver, tokenId, _tokenExpiryDate);
+        redeemMinted(_receiver, tokenId, _tokenExpiryDate);
     }
 
     /**
