@@ -56,7 +56,7 @@ abstract contract POAP is IPOAP, ERC721A {
     ) public 
     {
         
-        require(_eventId == address(this), "invalid event");
+        require(_eventId == address(this), "Invalid event");
 
         safeTransferFrom(
             msg.sender,

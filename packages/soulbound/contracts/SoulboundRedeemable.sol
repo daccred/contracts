@@ -134,12 +134,12 @@ contract SoulboundRedeemable is IsValidWithDate, SoulboundWithSignature {
      * @param tokenId            Id of token to be minted.
      * @param _tokenExpiryDate   Set expiry date from the deployer.
      */
-    function _mint(
+    function mint(
         address from,
         address to,
         uint256 tokenId,
         uint256 _tokenExpiryDate
-    ) public onlyOwner onlyAllowlistOwner(from) {
+    ) external onlyOwner onlyAllowlistOwner(from) {
         /// @dev Ensure that the supply is not crossed.
         /// @dev    Should all soulbound tokens need to be limited,
         ///         copy this code and paste in Soulboundcore.sol
